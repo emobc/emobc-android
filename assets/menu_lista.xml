@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Menús</dataId>
+		<headerText>Menus</headerText>
+		<order>false</order>
+		<geoRef/>
+		<list>
+			<listItem>
+				<description>Tipo de Menu 1</description>
+				<text>Diseño menú 1</text>
+				<nextLevel>
+					<nextLevelLevelId>Diseño menú 1</nextLevelLevelId>
+					<nextLevelDataId>Diseño menú 1</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_1.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Tipo de Menu 2</description>
+				<text>Diseño menú 2</text>
+				<nextLevel>
+					<nextLevelLevelId>Diseño menú 2</nextLevelLevelId>
+					<nextLevelDataId>Diseño menú 2</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_2.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Tipo de Menu 3</description>
+				<text>Diseño menú 3</text>
+				<nextLevel>
+					<nextLevelLevelId>Diseño menú 3</nextLevelLevelId>
+					<nextLevelDataId>Diseño menú 3</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_3.png</imageFile>
+			</listItem>
+		</list>
+	</data>
+</levelData>

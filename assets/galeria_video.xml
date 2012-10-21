@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Galeria video</dataId>
+		<headerImageFile>white_title.png</headerImageFile>
+		<headerText>Videos</headerText>
+		<list>	
+            <listItem>
+				<description>Spot publicitario Español</description>
+				<text>Spot Español</text>
+				<nextLevel>
+					<nextLevelLevelId>videos</nextLevelLevelId>
+					<nextLevelDataId>vEspanol</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_1.png</imageFile>
+			</listItem>	
+            <listItem>
+				<description>Spot publicitario Ingles</description>
+				<text>Spot Ingles</text>
+				<nextLevel>
+					<nextLevelLevelId>videos</nextLevelLevelId>
+					<nextLevelDataId>vIngles</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_2.png</imageFile>
+			</listItem>	
+		</list>
+	</data>
+</levelData>

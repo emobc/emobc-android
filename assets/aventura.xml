@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Aventura</dataId>
+		<headerImageFile>images/cover/imageCover.png</headerImageFile>
+		<headerText>Aventura</headerText>
+		<description>Esto es una aventura de prueba. El final depende de las elecciones que tomes en las preguntas</description>
+		<time>1</time>
+		<first>habitacion</first> 
+		<questions>
+            <question>
+                <idQ>habitacion</idQ>
+                <imageFile>images/cover/imageCover.png</imageFile>
+                <text>Estás en una habitación de un hotel.</text>
+                <weight>0</weight>
+                <answers>
+                    <answer>
+                        <answerText>Ir al baño de la habitación</answerText>
+                        <correct>false</correct>
+                        <next>banio</next>
+                    </answer>
+                    <answer>
+                        <answerText>Salir de la habitación</answerText>
+                        <correct>false</correct>
+                        <next>pasillo</next>
+                    </answer>
+                </answers>
+           	</question>
+           	<question>
+           	    <idQ>banio</idQ>
+           	    <imageFile>images/cover/imageCover.png</imageFile>
+                <text>Hay un muerto en el suelo junto con un arma</text>
+                <weight>0</weight>
+                <answers>
+                    <answer>
+                        <answerText>Usar el arma y suicidarse</answerText>
+                        <correct>true</correct>
+                        <next></next>
+                    </answer>
+                    <answer>
+                        <answerText>Volver a la habitación</answerText>
+                        <correct>false</correct>
+                        <next>habitacion</next>
+                    </answer>
+                    <answer>
+                        <answerText>Darse un baño</answerText>
+                        <correct>false</correct>
+                        <next>banio</next>
+                    </answer>
+                </answers>
+           	</question>
+           	<question>
+           	    <idQ>pasillo</idQ>
+           	    <imageFile>images/cover/imageCover.png</imageFile>
+                <text>No hay nadie en el pasillo</text>
+                <weight>0</weight>
+                <answers>
+                    <answer>
+                        <answerText>Bajar a recepción</answerText>
+                        <correct>false</correct>
+                        <next>recepcion</next>
+                    </answer>
+                    <answer>
+                        <answerText>Entrar en la habitación</answerText>
+                        <correct>false</correct>
+                        <next>habitacion</next>
+                    </answer>
+                </answers>
+           	</question>
+           	<question>
+           	    <idQ>recepcion</idQ>
+           	    <imageFile>images/cover/imageCover.png</imageFile>
+                <text>No hay nadie. Hay mucho dinero en la mesa de recepción</text>
+                <weight>5</weight>
+                <answers>
+                    <answer>
+                        <answerText>Irse sin el dinero</answerText>
+                        <correct>false</correct>
+                        <next></next>
+                    </answer>
+                    <answer>
+                        <answerText>Irse con el dinero</answerText>
+                        <correct>true</correct>
+                        <next></next>
+                    </answer>
+                </answers>
+           	</question>
+         </questions>
+	</data>
+</levelData>

@@ -1,0 +1,3 @@
+Update SENDER ID in app.xml. Currently you need to modify the file with the value of Google API Project:
+
+CommonUtilities.java

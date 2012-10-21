@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>vEspanol</dataId>
+		<headerText>Video español</headerText>
+		<local>false</local>
+		<videoUrl>http://www.youtube.com/watch?v=aLGmOjSCXls</videoUrl>
+	</data>
+	<data>
+		<dataId>vIngles</dataId>
+		<headerText>Video ingles</headerText>
+		<local>false</local>
+		<videoUrl>http://www.youtube.com/watch?v=VSJiVG-KkBk<!--&-->feature=plcp</videoUrl>
+	</data>
+</levelData>

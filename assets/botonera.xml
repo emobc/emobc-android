@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Botonera</dataId>
+		<headerText>Botonera</headerText>
+		<buttons>
+			<button>
+				<buttonTitle>Lorem</buttonTitle>
+				<buttonFileName>images/menu/backButton.png</buttonFileName>
+				<nextLevel>
+					<nextLevelLevelId/>
+					<nextLevelDataId/>
+				</nextLevel>
+			</button>
+			<button>
+				<buttonTitle>Ipsum</buttonTitle>
+				<buttonFileName>images/menu/homeButton.png</buttonFileName>
+				<nextLevel>
+					<nextLevelLevelId/>
+					<nextLevelDataId/>
+				</nextLevel>
+			</button>
+		</buttons>
+	</data>
+</levelData>

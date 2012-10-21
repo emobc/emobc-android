@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Listado</dataId>
+		<headerText>Listado</headerText>
+		<order>false</order>
+		<geoRef/>
+		<list>
+			<listItem>
+				<description>Ejemplo 1</description>
+				<text>Pdf</text>
+				<nextLevel>
+					<nextLevelLevelId>PDF</nextLevelLevelId>
+					<nextLevelDataId>PDF</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_1.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Ejemplo 2</description>
+				<text>Web</text>
+				<nextLevel>
+					<nextLevelLevelId>Contenedor Web</nextLevelLevelId>
+					<nextLevelDataId>Contenedor Web</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_2.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Ejemplo 3</description>
+				<text>Galeria Foto</text>
+				<nextLevel>
+					<nextLevelLevelId>Galería Foto</nextLevelLevelId>
+					<nextLevelDataId>Galería Foto</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_3.png</imageFile>
+			</listItem>
+		</list>
+	</data>
+</levelData>

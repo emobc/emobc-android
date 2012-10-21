@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sideMenuLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/MenuHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/sideMenuList"
+        android:layout_width="match_parent"
+        android:layout_height="394dp"
+        android:layout_weight="1.21"
+        android:background="#FFFFFF"
+        android:cacheColorHint="#999999"
+        android:visibility="visible" >
+    </ListView>
+
+</LinearLayout>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/backgroundLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/bannerTopLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+    </LinearLayout>
+    
+    <RelativeLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+		android:layout_below="@id/bannerTopLayout">
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bannerBottomLayout">
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:id="@id/bannerBottomLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
+
+    
+    <RelativeLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLayout"
+        android:layout_above="@+id/bottomLayout" >
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:scaleType="fitXY"/>
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@+id/calendarView"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/header"
+            android:gravity="bottom|center_horizontal" >
+
+            <Button
+                android:id="@+id/prevMonthButton"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="21dp"
+                android:text="@string/prev" />
+
+            <TextView
+                android:id="@+id/textViewMonth"
+                android:layout_width="195dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignBaseline="@id/prevMonthButton"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/nextMonthButton"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="21dp"
+                android:text="@string/next" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/listViewCalendarEvents"
+            android:layout_width="252dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textViewDayEvents" >
+        </ListView>
+
+        <TextView
+            android:id="@id/textViewDayEvents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/listViewCalendarEvents"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/RelativeLayout2"
+            android:layout_toRightOf="@id/calendarView"
+            android:text="@string/events_day"
+            android:textColor="#000000" />
+
+        <com.emobc.android.views.CalendarView
+            android:id="@id/calendarView"
+            android:layout_width="wrap_content"
+            android:maxWidth="268dp"
+            android:minWidth="268dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-30dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>
+
+</FrameLayout>

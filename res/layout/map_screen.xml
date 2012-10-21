@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sideMenuLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/MenuHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/sideMenuList"
+        android:layout_width="match_parent"
+        android:layout_height="394dp"
+        android:layout_weight="1.21"
+        android:background="#FFFFFF"
+        android:cacheColorHint="#999999"
+        android:visibility="visible" >
+    </ListView>
+
+</LinearLayout>
+
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/backgroundLayout"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/bannerTopLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+    </LinearLayout>
+    
+    <RelativeLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+		android:layout_below="@id/bannerTopLayout">
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bannerBottomLayout">
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:id="@id/bannerBottomLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
+
+    
+    <RelativeLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLayout"
+        android:layout_above="@+id/bottomLayout" >
+
+		<TextView 
+		    android:id="@+id/header"
+			android:scaleType="fitXY"
+			android:layout_width="fill_parent" 
+	    	android:layout_height="45dip" 
+	    	android:paddingTop="10dip" 
+	    	android:gravity="center_vertical" 
+	    	android:paddingLeft="20dip">
+		</TextView>
+
+		<LinearLayout
+		    android:id="@+id/descr_mas"
+		    android:layout_width="fill_parent"
+		    android:layout_height="34dip"
+		    android:layout_alignParentBottom="true"
+		    android:layout_alignParentLeft="true" >
+		</LinearLayout>
+
+		<LinearLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="270dip"
+		    android:layout_alignParentLeft="true"
+		    android:layout_centerVertical="true"
+		    android:layout_weight="1"
+		    android:orientation="vertical" >
+
+		    <com.google.android.maps.MapView
+		        android:id="@+id/mapview"
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent"
+		        android:apiKey="0zG8LavhgAc9bdrd60XQ_GIjViX8JULWkgWDpcw"
+		        android:clickable="true"
+		        android:paddingLeft="10dip"
+		        android:paddingRight="10dip" >
+		    </com.google.android.maps.MapView>
+		</LinearLayout>
+  	
+	</RelativeLayout>
+
+</RelativeLayout>
+
+</FrameLayout>

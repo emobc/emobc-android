@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<level>
+	<menuActions>
+		<action>
+			<actionTitle>Boton1</actionTitle>
+			<actionImageName>images/menu/backButton.png</actionImageName>
+			<systemAction>back</systemAction>
+			<leftMargin>5</leftMargin>
+			<widthButton>50</widthButton>
+			<heightButton>28</heightButton>
+			<nextLevel>
+				<nextLevelLevelId></nextLevelLevelId>
+				<nextLevelDataId></nextLevelDataId>
+			</nextLevel>
+		</action>
+	</menuActions>
+</level>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Mapa</dataId>
+		<headerText>Mapa</headerText>
+		<localizeMe>true</localizeMe>
+		<showAll>false</showAll>
+		<currentPositionIconFile>punto.png</currentPositionIconFile>
+		<positions>
+			<position>
+				<iconFile>images/icons/icono_punto_mapa.png</iconFile>
+				<imageFile/>
+				<positionTitle>Madrid</positionTitle>
+				<positionAdress>Madrid</positionAdress>
+				<positionLat>40.339150</positionLat>
+				<positionLon>-3.731208</positionLon>
+				<nextLevel>
+					<nextLevelLevelId>PDF</nextLevelLevelId>
+					<nextLevelDataId>PDF</nextLevelDataId>
+				</nextLevel>
+			</position>
+			<position>
+				<iconFile>images/icons/icono_punto_mapa.png</iconFile>
+				<imageFile/>
+				<positionTitle>Barcelona</positionTitle>
+				<positionAdress>Barcelona</positionAdress>
+				<positionLat>50.24</positionLat>
+				<positionLon>30.41</positionLon>
+				<nextLevel>
+					<nextLevelLevelId>Contenedor Web</nextLevelLevelId>
+					<nextLevelDataId>Contenedor Web</nextLevelDataId>
+				</nextLevel>
+			</position>
+			<position>
+				<iconFile>images/icons/icono_punto_mapa.png</iconFile>
+				<imageFile/>
+				<positionTitle>Zaragoza</positionTitle>
+				<positionAdress>Zaragoza</positionAdress>
+				<positionLat>60.24</positionLat>
+				<positionLon>20.41</positionLon>
+				<nextLevel>
+					<nextLevelLevelId>Galería video</nextLevelLevelId>
+					<nextLevelDataId>Galería video</nextLevelDataId>
+				</nextLevel>
+			</position>
+			<position>
+				<iconFile>images/icons/icono_punto_mapa.png</iconFile>
+				<imageFile/>
+				<positionTitle>Toledo</positionTitle>
+				<positionAdress>Toledo</positionAdress>
+				<positionLat>108.24</positionLat>
+				<positionLon>5.41</positionLon>
+				<nextLevel>
+					<nextLevelLevelId/>
+					<nextLevelDataId/>
+				</nextLevel>
+			</position>
+		</positions>
+	</data>
+</levelData>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <styles>
+      
+    <type>
+      <typeId>CALENDAR_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;selection_list=list1;</components>
+    </type>
+    
+    <type>
+      <typeId>COVER</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+      
+	  <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components></components>
+    </type>
+    
+    <type>
+      <typeId>BUTTONS_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>	
+      
+	  <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+    
+    <type>
+      <typeId>FORM_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+      
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+    
+    <type>
+      <typeId>IMAGE_GALLERY_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+      
+	  <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+    
+    <type>
+      <typeId>IMAGE_LIST_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;selection_list=list1;</components>
+    </type>
+    
+    <type>
+      <typeId>IMAGE_TEXT_DESCRIPTION_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+      
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;footer=text2;basic_text=text1;</components>
+    </type>
+
+    
+    <type>
+      <typeId>IMAGE_ZOOM_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+      
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+    
+    <type>
+      <typeId>LIST_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;selection_list=list1;description=title2;</components>
+    </type>
+    
+    <type>
+      <typeId>MAP_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+    
+    <type>
+      <typeId>PDF_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+      
+    <type>
+      <typeId>QR_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+    
+    <type>
+      <typeId>VIDEO_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+    
+    <type>
+      <typeId>WEB_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+	
+	<type>
+      <typeId>CANVAS_ACTIVITY</typeId>
+      <backgroundFileName></backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+	
+	<type>
+      <typeId>AUDIO_ACTIVITY</typeId>
+      <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+    
+  </styles>
+</application>

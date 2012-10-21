@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_home" android:icon="@drawable/home" android:title="@string/menu_home" />
+    <item android:id="@+id/menu_back" android:icon="@drawable/back" android:title="@string/menu_back" />
+    <item android:id="@+id/menu_tts" android:title="@string/menu_tts" android:icon="@drawable/voz_n"/>
+    <item android:id="@+id/menu_map" android:icon="@drawable/go_map" android:title="@string/menu_map" />
+    <item android:id="@+id/menu_map_mad" android:icon="@drawable/go_map_mad" android:title="@string/menu_map_mad" />
+</menu>

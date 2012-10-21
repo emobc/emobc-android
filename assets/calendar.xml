@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+    <data>
+        <dataId>Calendar</dataId>
+        <headerImageFile></headerImageFile>
+        <headerText>CalendarioIphone</headerText>
+        <events>
+            <event>
+                <title>titulo Evento 1</title>
+                <eventDate>17/07/2012</eventDate>
+				<time>12:00</time>
+				<text>descripcion Evento 17/07</text>
+                <nextLevel>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
+			<event>
+                <title>titulo Evento 2</title>
+                <eventDate>17/07/2012</eventDate>
+				<time>15:30</time>
+				<text>descripcion Evento 17/07</text>
+                <nextLevel>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
+			<event>
+                <title>titulo Evento1</title>
+                <eventDate>19/07/2012</eventDate>
+				<time>17:00</time>
+				<text>descripcion Evento 19/07</text>
+                <nextLevel>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
+			<event>
+                <title>titulo Evento 1</title>
+                <eventDate>07/07/2012</eventDate>
+				<time>09:00</time>
+				<text>descripcion Evento 07/07</text>
+                <nextLevel>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
+			<event>
+                <title>titulo Evento 1</title>
+                <eventDate>05/08/2012</eventDate>
+				<time>20:00</time>
+				<text>descripcion Evento 05/08</text>
+                <nextLevel>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
+			<event>
+                <title>titulo Evento 1</title>
+                <eventDate>18/07/2012</eventDate>
+				<time>22:15</time>
+				<text>descripcion Evento 18/07</text>
+                <nextLevel>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
+		</events>
+    </data>
+</levelData>

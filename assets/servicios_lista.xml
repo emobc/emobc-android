@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Servicios</dataId>
+		<headerText>Servicion</headerText>
+		<order>false</order>
+		<geoRef/>
+		<list>
+			<listItem>
+				<description>Notificaciones</description>
+				<text>Notificaciones</text>
+				<nextLevel>
+					<nextLevelLevelId>Notificaciones</nextLevelLevelId>
+					<nextLevelDataId>Notificaciones</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Tracking usuarios</description>
+				<text>Tracking Usuarios</text>
+				<nextLevel>
+					<nextLevelLevelId>Tracking Usuarios</nextLevelLevelId>
+					<nextLevelDataId>Tracking Usuarios</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Monetizacion publicidad</description>
+				<text>Monetización Ads</text>
+				<nextLevel>
+					<nextLevelLevelId>Monetización Ads</nextLevelLevelId>
+					<nextLevelDataId>Monetización Ads</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Gestion web</description>
+				<text>Gestión Web</text>
+				<nextLevel>
+					<nextLevelLevelId>Gestión Web</nextLevelLevelId>
+					<nextLevelDataId>Gestión Web</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Servicions web</description>
+				<text>Web Services</text>
+				<nextLevel>
+					<nextLevelLevelId>Web Services</nextLevelLevelId>
+					<nextLevelDataId>Web Services</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+		</list>
+	</data>
+</levelData>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Contenidos</dataId>
+		<headerText>Contenidos</headerText>
+		<order>false</order>
+		<geoRef/>
+		<list>
+			<listItem>
+				<description>Texto con imagen</description>
+				<text>Texto</text>
+				<nextLevel>
+					<nextLevelLevelId>Texto</nextLevelLevelId>
+					<nextLevelDataId>Texto</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_2.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Listado con imagen</description>
+				<text>Listado con imagen</text>
+				<nextLevel>
+					<nextLevelLevelId>Listado con imagen</nextLevelLevelId>
+					<nextLevelDataId>Listado con imagen</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_1.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Foto tamaño real</description>
+				<text>Foto</text>
+				<nextLevel>
+					<nextLevelLevelId>Foto</nextLevelLevelId>
+					<nextLevelDataId>Foto</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_3.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Pdf</description>
+				<text>PDF</text>
+				<nextLevel>
+					<nextLevelLevelId>PDF</nextLevelLevelId>
+					<nextLevelDataId>PDF</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_1.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Mapa con localizaciones</description>
+				<text>Mapa</text>
+				<nextLevel>
+					<nextLevelLevelId>Mapa</nextLevelLevelId>
+					<nextLevelDataId>Mapa</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_3.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Quiz</description>
+				<text>Quiz</text>
+				<nextLevel>
+					<nextLevelLevelId>QUIZ</nextLevelLevelId>
+					<nextLevelDataId>QUIZ</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_1.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Quiz aventura</description>
+				<text>Aventura</text>
+				<nextLevel>
+					<nextLevelLevelId>Aventura</nextLevelLevelId>
+					<nextLevelDataId>Aventura</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_3.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Canvas</description>
+				<text>Canvas</text>
+				<nextLevel>
+					<nextLevelLevelId>CANVAS</nextLevelLevelId>
+					<nextLevelDataId>CANVAS</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_2.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Audio local</description>
+				<text>Audio</text>
+				<nextLevel>
+					<nextLevelLevelId>AUDIO</nextLevelLevelId>
+					<nextLevelDataId>AUDIO</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_1.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Audio Url</description>
+				<text>Audio</text>
+				<nextLevel>
+					<nextLevelLevelId>AUDIO Url</nextLevelLevelId>
+					<nextLevelDataId>AUDIO Url</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_2.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Video youtube</description>
+				<text>Video</text>
+				<nextLevel>
+					<nextLevelLevelId>Galería video</nextLevelLevelId>
+					<nextLevelDataId>Galería video</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_3.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Contenido Online</description>
+				<text>Contenidos Online</text>
+				<nextLevel>
+					<nextLevelLevelId>ContenidosOnline</nextLevelLevelId>
+					<nextLevelDataId>ContenidosOnline</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_2.png</imageFile>
+			</listItem>
+		</list>
+	</data>
+</levelData>

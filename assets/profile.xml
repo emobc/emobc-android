@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profile>
+	<field>
+		<fieldType>INPUT_TEXT</fieldType>
+		<fieldLabel>Nombre y Apellido:</fieldLabel>
+		<fieldName>nombre_apellido</fieldName>
+		<fieldParam/>
+	</field>
+	<field>
+		<fieldType>INPUT_NUMBER</fieldType>
+		<fieldLabel>Edad:</fieldLabel>
+		<fieldName>edad</fieldName>
+		<fieldParam/>
+	</field>
+</profile>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>QUIZ</dataId>
+		<headerImageFile>images/cover/imageCover.png</headerImageFile>
+		<headerText>Quiz</headerText>
+		<description>Este es un quiz de prueba. Las preguntas tienen diferente peso según su dificultad. El quiz tiene un peso total de 9 que en los resultados serían 9000 puntos. Según las respuestas podrás conseguir de 0 a 9000 puntos.</description>
+		<time>1</time>
+		<first></first> 
+		<questions>
+            <question>
+                <id>santiago</id>
+                <imageFile>images/cover/imageCover.png</imageFile>
+                <text>¿De qué color es el caballo blanco de Santiago?</text>
+                <weight>1</weight>
+                <answers>
+                    <answer>
+                        <answerText>Negro</answerText>
+                        <correct>false</correct>
+                        <next></next>
+                    </answer>
+                    <answer>
+                        <answerText>Azul</answerText>
+                        <correct>false</correct>
+                        <next></next>
+                    </answer>
+                    <answer>
+                        <answerText>Blanco</answerText>
+                        <correct>true</correct>
+                        <next></next>
+                    </answer>
+                </answers>
+           	</question>
+           	<question>
+           	    <id>capital</id>
+           	    <imageFile>images/cover/imageCover.png</imageFile>
+                <text>¿Cuál es la capital de España?</text>
+                <weight>3</weight>
+                <answers>
+                    <answer>
+                        <answerText>Madrid</answerText>
+                        <correct>true</correct>
+                        <next></next>
+                    </answer>
+                    <answer>
+                        <answerText>Sevilla</answerText>
+                        <correct>false</correct>
+                        <next></next>
+                    </answer>
+                    <answer>
+                        <answerText>Barcelona</answerText>
+                        <correct>false</correct>
+                        <next></next>
+                    </answer>
+                </answers>
+           	</question>
+           	<question>
+           	    <id>aeropuerto</id>
+           	    <imageFile>images/cover/imageCover.png</imageFile>
+                <text>¿Qué aeropuerto es el que aparece en la imagen?</text>
+                <weight>5</weight>
+                <answers>
+                    <answer>
+                        <answerText>Barajas</answerText>
+                        <correct>true</correct>
+                        <next></next>
+                    </answer>
+                    <answer>
+                        <answerText>Sevilla</answerText>
+                        <correct>false</correct>
+                        <next></next>
+                    </answer>
+                    <answer>
+                        <answerText>Barcelona</answerText>
+                        <correct>false</correct>
+                        <next></next>
+                    </answer>
+                </answers>
+           	</question>
+         </questions>
+	</data>
+</levelData>

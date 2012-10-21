@@ -1,0 +1,119 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sideMenuLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/MenuHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/sideMenuList"
+        android:layout_width="match_parent"
+        android:layout_height="394dp"
+        android:layout_weight="1.21"
+        android:background="#FFFFFF"
+        android:cacheColorHint="#999999"
+        android:visibility="visible" >
+    </ListView>
+
+</LinearLayout>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/bannerTopLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+    </LinearLayout>
+    
+    <RelativeLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+		android:layout_below="@id/bannerTopLayout">
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bannerBottomLayout">
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:id="@id/bannerBottomLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
+
+    
+    <RelativeLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLayout"
+        android:layout_above="@+id/bottomLayout" >
+
+        <Button
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="Share" />
+
+        <ImageView
+            android:id="@+id/imageResult"
+            android:layout_below="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ok_icon" />
+
+        <ProgressBar
+            android:id="@+id/score"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_below="@+id/imageResult"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="31dp" />
+        
+        <TextView
+            android:id="@+id/scoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_medium"
+            android:layout_below="@+id/score"
+            android:layout_centerHorizontal="true"
+            tools:context=".QuizResultsActivity" />
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="59dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/scoreText"
+            android:text="Ok" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
+</FrameLayout>
