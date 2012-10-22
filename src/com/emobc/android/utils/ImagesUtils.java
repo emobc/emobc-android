@@ -22,6 +22,7 @@
  */
 package com.emobc.android.utils;
 
+import java.io.File;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,17 +30,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.InvalidParameterException;
 
-import com.emobc.android.activities.SplashActivity;
-
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
 import android.util.Log;
+
+import com.emobc.android.activities.SplashActivity;
 
 
 /**
@@ -49,10 +49,15 @@ import android.util.Log;
  * @version 0.1
  * @since 0.1
  */
-public class ImagesUtils extends Activity{
+public class ImagesUtils {
 
-	private static final String DEFAULT_IMAGE_PATH_IMAGES = "images/";
-	private static final String DEFAULT_IMAGE_PATH_DRAWABLE = "drawable/";
+	private static final String DEFAULT_IMAGE_PATH_IMAGES = "images" + File.separator;
+	private static final String DEFAULT_IMAGE_PATH_DRAWABLE = "drawable" + File.separator;
+	
+	private static final String DENSITY_LOW_IMAGE_PATH = "ldpi";
+	private static final String DENSITY_MEDIUM_IMAGE_PATH = "mdpi";
+	private static final String DENSITY_HIGH_IMAGE_PATH = "hpdi";
+	private static final String DENSITY_XHIGH_IMAGE_PATH = "xhdpi";
 	
 	
 	/**
@@ -140,12 +145,21 @@ public class ImagesUtils extends Activity{
 				}
 				
 				if(ret == null){
-				
-					Log.e("ImagesUtils", "Error loading image: " + DEFAULT_IMAGE_PATH_DRAWABLE + imageName);
+					String imagePathName = getImagesPathName(context);
+					String rawImageName = null;
+					StringBuilder imageNameBuilder = new StringBuilder();
+					
 					if(imageName.startsWith(DEFAULT_IMAGE_PATH_IMAGES)){
-						ret = getDrawableFromAssetName(context, imageName);	
+						rawImageName = imageName.substring(DEFAULT_IMAGE_PATH_IMAGES.length());
 					}else{
-						ret = getDrawableFromAssetName(context, DEFAULT_IMAGE_PATH_IMAGES + imageName);
+						rawImageName = imageName;
+					}
+					imageNameBuilder.append(imagePathName);
+					imageNameBuilder.append(rawImageName);
+					try {
+						ret = getDrawableFromAssetName(context, imageNameBuilder.toString());
+					} catch (InvalidFileException e) {
+						ret = getDrawableFromAssetName(context, DEFAULT_IMAGE_PATH_IMAGES + rawImageName);
 					}
 				}
 					
@@ -156,6 +170,38 @@ public class ImagesUtils extends Activity{
 	}
 	
 	
+	/**
+	 * Return the directory where to find the application images based on the Display Metrics of the Context.
+	 * <p>
+	 * By default, images should be placed under <code>/assets/images/</code> directory.
+	 * </p><p>
+	 * According to the density detected, this are the images directories:
+	 * <ul>
+	 * 	<li><strong>Low Density</strong>: <code>/assets/images/ldpi/</code></li>
+	 * 	<li><strong>Medium Density</strong>: <code>/assets/images/mdpi/</code></li>
+	 * 	<li><strong>High Density</strong>: <code>/assets/images/hdpi/</code></li>
+	 * 	<li><strong>Extra High Density</strong>: <code>/assets/images/xhdpi/</code></li>
+	 * </ul>
+	 * </p>
+	 * @param context
+	 * @return Path to the application images directory.
+	 */
+	private static String getImagesPathName(Context context) {
+		switch (context.getResources().getDisplayMetrics().densityDpi) {
+		case DisplayMetrics.DENSITY_LOW:
+			return DEFAULT_IMAGE_PATH_IMAGES + DENSITY_LOW_IMAGE_PATH + File.separator;
+		case DisplayMetrics.DENSITY_MEDIUM:
+			return DEFAULT_IMAGE_PATH_IMAGES + DENSITY_MEDIUM_IMAGE_PATH + File.separator;
+		case DisplayMetrics.DENSITY_HIGH:
+			return DEFAULT_IMAGE_PATH_IMAGES + DENSITY_HIGH_IMAGE_PATH + File.separator;
+		case DisplayMetrics.DENSITY_XHIGH:
+			return DEFAULT_IMAGE_PATH_IMAGES + DENSITY_XHIGH_IMAGE_PATH + File.separator;
+		default:
+			break;		    
+		}		
+		return DEFAULT_IMAGE_PATH_DRAWABLE;
+	}
+
 	/**
 	 * Returns a Drawable object from assets/images path.
 	 * @param context
