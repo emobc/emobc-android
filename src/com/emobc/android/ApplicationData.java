@@ -27,7 +27,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.WeakHashMap;
+
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v4.util.LruCache;
 
 import com.emobc.android.activities.generators.ActivityGenerator;
 import com.emobc.android.activities.generators.ActivityGeneratorFactory;
@@ -44,12 +47,16 @@ import com.emobc.android.themes.FormatStyle;
 import com.emobc.android.themes.LevelTypeStyle;
 import com.emobc.android.utils.InvalidFileException;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-
 /**
  * Singleton is used for read and manage the app.xml file
  * From this class you can access to application Levels.
+ * <p>ApplicationData operates in local or remove model.</p>
+ * <p><strong>Local mode</strong> seeks for 
+ * Level Ids only in memory tables. If a Level Id is not found, a <code>null</code>
+ * {@link AppLevel} is returned.</p>
+ * <p><strong>Remote mode</strong> seeks for Level Ids in memory first and if it not present then 
+ * seeks for the Level Id in the <i>Remote Application File</i>.
+ * </p>
  * @author Jorge E. Villaverde
  * @author Jonatan Alcocer Luna
  * @version 0.1
@@ -68,6 +75,7 @@ public class ApplicationData {
 	public static final int SEARCH_LIMIT = 20;
 
 	public static final String EMOBC_LEVEL_ID = "eMobc";
+
 	
 	private String title;
 	private String coverFileName;
@@ -87,18 +95,47 @@ public class ApplicationData {
 	private Map<String, FormatStyle> formatStyleMap = new HashMap<String, FormatStyle>();
 	
 	private static ApplicationData instance = null;
-//	private static int maxSizeCache = 6 * 1024 * 1024; //6 Mib for image cache
-//	public LruCache<String, Drawable> cache = new LruCache<String, Drawable>(maxSizeCache);
-	private Map<String, Drawable> cache;
+
+	/**
+	 * 6 MiB Cache Size
+	 */
+	private static final int MAX_CACHE_SIZE = 6 * 1024 * 1024;
+	
+	public LruCache<String, Drawable> cache = null;
 
 	private Profile profile;
 	
+	/**
+	 * If <tt>true</tt>, {@link AppLevel} could be read from a remote
+	 * location defined in {@link ApplicationData#removeApplicationFileUrl}.
+	 */
+	private final boolean remote;
 	
+	/**
+	 * URL of the Remote Application File.
+	 */
+	private final String remoteApplicationFileUrl;
+	
+	
+	/**
+	 * Default Constructor. 
+	 * <p>Used for Local Application File</p>
+	 */
 	public ApplicationData (){
-		super();
-		loadDefaultLevels();
+		this(null);
 	}
 	
+	/**
+	 * Remote Application File Constructor.
+	 * Set the application Data in remote mode.
+	 * @param remoteApplicationFileUrl
+	 */
+	public ApplicationData(String remoteApplicationFileUrl){
+		super();
+		this.remoteApplicationFileUrl = remoteApplicationFileUrl;
+		this.remote = (remoteApplicationFileUrl != null && !remoteApplicationFileUrl.isEmpty());
+		loadDefaultLevels();
+	}
 	
 	/**
 	 * Carga los Nivels por Defecto utilizados
@@ -421,9 +458,9 @@ public class ApplicationData {
 		this.profile = profile;
 	}
 
-	public Map<String, Drawable> getCache() {
+	public LruCache<String, Drawable> getCache() {
 		if(this.cache == null)
-			this.cache = new WeakHashMap<String, Drawable>();
+			this.cache = new LruCache<String, Drawable>(MAX_CACHE_SIZE);
 		return cache;
 	}
 
@@ -448,4 +485,13 @@ public class ApplicationData {
 		return null;
 	}
 
+
+	public boolean isRemote() {
+		return remote;
+	}
+
+
+	public String getRemoteApplicationFileUrl() {
+		return remoteApplicationFileUrl;
+	}
 }
