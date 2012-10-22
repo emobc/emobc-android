@@ -31,6 +31,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class PdfLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4683910944804801949L;
 	private boolean local;
 	private String pdfUrl;
 	

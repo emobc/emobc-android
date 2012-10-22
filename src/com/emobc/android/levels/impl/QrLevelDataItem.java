@@ -35,6 +35,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class QrLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2438456538947693894L;
 	private Map<String, NextLevel> idMap = new HashMap<String, NextLevel>();
 	
 	public void addCodeNextLevel(String qrCode, NextLevel nextLevel){

@@ -22,6 +22,8 @@
 */
 package com.emobc.android.levels.impl;
 
+import java.io.Serializable;
+
 import com.emobc.android.NextLevel;
 
 /**
@@ -30,7 +32,11 @@ import com.emobc.android.NextLevel;
  * @version 0.1
  * @since 0.1
  */
-public class ImageDataItem {
+public class ImageDataItem implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6138781645881016318L;
 	private String imageFile;
 	private NextLevel nextLevel;
 

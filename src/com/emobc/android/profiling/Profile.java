@@ -40,6 +40,10 @@ import android.content.SharedPreferences;
  * @since 0.1
  */
 public class Profile extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7780560160626829149L;
 	private static final String PROFILE_PREFS_NAME = "_EMOBC_PROFILE_";
 	private static final String PROFILE_FILLED = "_EMOBC_PROFILE_FILLED_";
 

@@ -22,6 +22,7 @@
 */
 package com.emobc.android.levels;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,11 @@ import com.emobc.android.SimpleSearchResult;
  * @version 0.1
  * @since 0.1
  */
-public abstract class AppLevelDataItem {
+public abstract class AppLevelDataItem implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8684371733952075864L;
 	private String id;
 	private String headerImageFile;
 	private String headerText;

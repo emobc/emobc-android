@@ -20,10 +20,12 @@
 * along with eMobc. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.emobc.android.levels.impl;
+package com.emobc.android.levels.impl.quiz;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Class for save information about quiz questions
@@ -31,8 +33,12 @@ import java.util.List;
  * @version 0.1
  * @since 0.1
  */
-public class QuestionDataItem {
+public class QuestionDataItem implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 533093280057664189L;
 	//Attributes
 	private String id;
 	//Question
@@ -40,13 +46,13 @@ public class QuestionDataItem {
 	//Weight
 	private int weight;
 	//Answers
-	private List<AnswerDataItem> answers;
+	private List<QuizAnswerDataItem> answers;
 	//Image
 	private String image;
 	
 	
 	public QuestionDataItem(){
-		this.answers = new ArrayList<AnswerDataItem>();
+		this.answers = new ArrayList<QuizAnswerDataItem>();
 		this.weight = 1;
 	}
 	
@@ -88,15 +94,15 @@ public class QuestionDataItem {
 	 * Return an the answer list
 	 * @return 
 	 */
-	public List<AnswerDataItem> getAnswers() {
+	public List<QuizAnswerDataItem> getAnswers() {
 		return this.answers;
 	}
 	/**
 	 * Method for parseUtils. Set a new answer for the question
 	 * @param answer
 	 */
-	public void setAnswer(AnswerDataItem answer) {
-		this.answers.add((AnswerDataItem) answer);
+	public void setAnswer(QuizAnswerDataItem answer) {
+		this.answers.add((QuizAnswerDataItem) answer);
 	}
 	
 	/**

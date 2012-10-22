@@ -39,6 +39,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class ListLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7132752966923511993L;
 	private List<ListItemDataItem> list = new ArrayList<ListItemDataItem>();
 	private boolean order = true;
 	

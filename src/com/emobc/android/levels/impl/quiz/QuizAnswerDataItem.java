@@ -20,14 +20,20 @@
 * along with eMobc. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.emobc.android.levels.impl;
+package com.emobc.android.levels.impl.quiz;
+
+import java.io.Serializable;
 
 /**
  * @author Jorge E. Villaverde
  * @version 0.1
  * @since 0.1
  */
-public class AnswerDataItem {
+public class QuizAnswerDataItem implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8813047025399307726L;
 	private String AnsText;
 	private String next;
 	private boolean correct;

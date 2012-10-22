@@ -31,8 +31,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.emobc.android.levels.impl.QuizController;
-import com.emobc.android.levels.impl.Results;
+import com.emobc.android.levels.impl.quiz.QuizController;
+import com.emobc.android.levels.impl.quiz.QuizResults;
 import com.emobc.android.menu.CreateMenus;
 
 /**
@@ -41,10 +41,11 @@ import com.emobc.android.menu.CreateMenus;
  * @since 0.1
  */
 public class QuizResultsActivity extends CreateMenus {
-	private QuizController quiz;
-	private Results results;
+	private QuizController quizController;
+	private QuizResults results;
 	//timer for the progress bar
     Handler handler = new Handler();
+    
     Runnable runnable = new Runnable() {
 		
 		@Override
@@ -62,28 +63,30 @@ public class QuizResultsActivity extends CreateMenus {
         
         createBanner();
         
-        this.quiz = QuizActivity.quiz;
-        this.results = quiz.getResult();
-        Button ok = (Button) findViewById(R.id.ok);
-        ok.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				finish();
+        Intent intent = getIntent();
+        this.quizController = (QuizController)intent.getSerializableExtra(QuizController.QUIZ_CONTROLLER_TAG);
+        if(this.quizController != null){
+	        this.results = this.quizController.getResult();
+	        Button ok = (Button) findViewById(R.id.ok);
+	        ok.setOnClickListener(new View.OnClickListener() {
 				
-			}
-		});
-        Button share = (Button) findViewById(R.id.share);
-        share.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				share();
+				@Override
+				public void onClick(View v) {
+					finish();
+					
+				}
+			});
+	        Button share = (Button) findViewById(R.id.share);
+	        share.setOnClickListener(new View.OnClickListener() {
 				
-			}
-		});
-        runnable.run();
-        
+				@Override
+				public void onClick(View v) {
+					share();
+					
+				}
+			});
+	        runnable.run();
+        }        
     }
     
     private void updateScoreBar(){

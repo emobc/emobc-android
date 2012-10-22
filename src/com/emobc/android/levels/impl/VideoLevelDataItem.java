@@ -31,6 +31,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class VideoLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3320267440402470040L;
 	private String videoPath;
 
 	public String getVideoPath() {

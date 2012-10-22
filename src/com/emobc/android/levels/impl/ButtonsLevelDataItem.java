@@ -37,6 +37,11 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class ButtonsLevelDataItem extends AppLevelDataItem{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6628336619871975019L;
+
 	public static final int DEFAULT_COLUMNS_NUMBER = 2;
 	
 	private List<AppButton> buttonList = new ArrayList<AppButton>();

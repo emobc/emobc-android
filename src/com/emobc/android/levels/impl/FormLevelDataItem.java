@@ -36,6 +36,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class FormLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2729772219137566162L;
 	private List<FormDataItem> list = new ArrayList<FormDataItem>();
 	private String actionUrl;
 	private NextLevel nextLevel;

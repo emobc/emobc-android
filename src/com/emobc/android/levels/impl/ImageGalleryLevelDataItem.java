@@ -38,6 +38,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class ImageGalleryLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5660240605896211302L;
 	private List<ImageDataItem> list = new ArrayList<ImageDataItem>();
 	
 	public List<ImageDataItem> getList() {

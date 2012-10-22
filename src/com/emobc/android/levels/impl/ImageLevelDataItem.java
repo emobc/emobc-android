@@ -36,6 +36,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class ImageLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -845851879439529555L;
 	private String imageFile;
 
 	public String getImageFile() {

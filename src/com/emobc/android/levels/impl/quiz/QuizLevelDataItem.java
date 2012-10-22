@@ -20,11 +20,12 @@
 * along with eMobc. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.emobc.android.levels.impl;
+package com.emobc.android.levels.impl.quiz;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.emobc.android.levels.AppLevelDataItem;
 
@@ -35,21 +36,16 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @version 0.1
  * @since 0.1
  */
-public class QuizLevelDataItem extends AppLevelDataItem{
-	private HashMap<String, QuestionDataItem> questions;
+public class QuizLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1652883187842179071L;
+	private Map<String, QuestionDataItem> questions = new HashMap<String, QuestionDataItem>();
 	private String description;
-	private boolean adventureMode;
+	private boolean adventureMode = false;
 	private int time;
-	
 	private String first;
-	
-	
-	
-	
-	public QuizLevelDataItem() {
-		this.adventureMode = false;
-		this.questions = new HashMap<String, QuestionDataItem>();
-	}
 	
 	public boolean isAdventureMode() {
 		return adventureMode;
@@ -115,8 +111,6 @@ public class QuizLevelDataItem extends AppLevelDataItem{
 		this.time = Integer.valueOf(time);
 	}
 	
-	
-	
 	/**
 	 * Method for parseUtils. Add new question. Question must have ID.
 	 * @param questions
@@ -125,34 +119,4 @@ public class QuizLevelDataItem extends AppLevelDataItem{
 		this.questions.put(question.getId(), question);
 		
 	}
-
-	/*Parcelable
-	public QuizDataItem(Parcel parcel){
-		this();
-		readFromParcel();
-	}
-	
-	public static final Parcelable.Creator<QuizDataItem> CREATE = new Parcelable.Creator<QuizDataItem>() {
-
-		@Override
-		public QuizDataItem createFromParcel(Parcel source) {
-			return new QuizDataItem(source);
-		}
-
-		@Override
-		public QuizDataItem[] newArray(int size) {
-			return new QuizDataItem[size];
-		}
-	};
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		// TODO Auto-generated method stub
-		
-	}*/
-	
 }

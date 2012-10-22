@@ -30,6 +30,10 @@ package com.emobc.android.levels.impl;
  * @since 0.1
  */
 public class ImageListLevelDataItem extends ListLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2555431767312072554L;
 	private String imageFile;
 
 	public String getImageFile() {

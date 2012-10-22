@@ -32,8 +32,8 @@ import android.widget.Toast;
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.ActivityGenerator;
-import com.emobc.android.levels.impl.QuizController;
-import com.emobc.android.levels.impl.QuizLevelDataItem;
+import com.emobc.android.levels.impl.quiz.QuizController;
+import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
 import com.emobc.android.menu.CreateMenus;
 import com.emobc.android.utils.InvalidFileException;
 
@@ -42,8 +42,7 @@ import com.emobc.android.utils.InvalidFileException;
  * @since 0.1
  */
 public class QuizActivity extends CreateMenus {
-	//FIXME Esta está recontra mal.
-	static QuizController quiz;
+	private QuizController quizController;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,30 +77,25 @@ public class QuizActivity extends CreateMenus {
         start.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent (getApplicationContext(),QuizQuestionsActivity.class);
-				startActivity(i);
+				Intent launchActivity = new Intent (getApplicationContext(), QuizQuestionsActivity.class);
+				launchActivity.putExtra(QuizController.QUIZ_CONTROLLER_TAG, quizController);	
+				startActivity(launchActivity);
 			}
 		});
     }
     
     public void setQuiz(QuizLevelDataItem quiz){
-    	QuizController qController = new QuizController();
-    	qController.addQuiz(quiz);
-    	this.quiz = qController;
+    	this.quizController = new QuizController();
+    	quizController.addQuiz(quiz);
     }
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Make sure the request was successful
         if (resultCode == RESULT_OK) {
-        	Intent i = new Intent (this,QuizResultsActivity.class);
-        	startActivity(i);
-            //View layout = findViewById(R.id.contentLayout);
-            //TextView tv = new TextView();
-            
-            //layout
-        }
+        	Intent launchActivity = new Intent (this,QuizResultsActivity.class);
+        	launchActivity.putExtra(QuizController.QUIZ_CONTROLLER_TAG, quizController);
+        	startActivity(launchActivity);
+         }
     }
-
-    
 }

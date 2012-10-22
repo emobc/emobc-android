@@ -34,6 +34,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class CalendarLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6594484667689229208L;
 	//key: date in string dd/mm/yy
 	private HashMap<String,TreeSet<EventDataItem>> events;
 	public CalendarLevelDataItem(){

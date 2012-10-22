@@ -38,6 +38,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class ImageTextDescriptionLevelDataItem extends AppLevelDataItem implements AppDataItemText{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4465741016627387925L;
 	private String text;
 	private String imageFile;
 	private String barText;

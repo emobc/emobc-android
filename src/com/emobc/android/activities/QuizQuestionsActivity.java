@@ -37,7 +37,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.emobc.android.levels.impl.QuizController;
+import com.emobc.android.levels.impl.quiz.QuizController;
 import com.emobc.android.menu.CreateMenus;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
@@ -48,26 +48,31 @@ import com.emobc.android.utils.InvalidFileException;
  * @since 0.1
  */
 public class QuizQuestionsActivity extends CreateMenus {
-	private QuizController qController;
+	
+	private QuizController quizController;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_questions_layout);
-        setQuiz(QuizActivity.quiz);
         
         createBanner();
-        qController.start(0);
-        
-        updateQuestion();
-        Button next = (Button) findViewById(R.id.nextQuizButton);
-        
-        next.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				checkAnswer();
-			}
-		});
+
+        Intent intent = getIntent();
+        this.quizController = (QuizController)intent.getSerializableExtra(QuizController.QUIZ_CONTROLLER_TAG);
+        if(this.quizController != null){        
+	        quizController.start(0);
+	        
+	        updateQuestion();
+	        Button next = (Button) findViewById(R.id.nextQuizButton);
+	        
+	        next.setOnClickListener(new View.OnClickListener() {				
+				@Override
+				public void onClick(View v) {
+					checkAnswer();
+				}
+			});
+        }
     }
     @Override
     public void onBackPressed() {
@@ -96,7 +101,7 @@ public class QuizQuestionsActivity extends CreateMenus {
     	RadioGroup rGroup = (RadioGroup) findViewById(R.id.answersRadioGroup);
     	int idCheck = rGroup.getCheckedRadioButtonId();
 		if (idCheck!=-1){
-			qController.setAnswer(idCheck);
+			quizController.setAnswer(idCheck);
 			rGroup.clearCheck();
 			nextQuestion();
 		}else{
@@ -110,14 +115,15 @@ public class QuizQuestionsActivity extends CreateMenus {
      * Updates the activity with next questions
      */
     protected void nextQuestion(){
-    	if (qController.hasNext()){
-    		qController.next();
+    	if (quizController.hasNext()){
+    		quizController.next();
     		updateQuestion();
     	}else{
-    		qController.finish();
+    		quizController.finish();
     		setResult(Activity.RESULT_OK);
-    		Intent i = new Intent (this,QuizResultsActivity.class);
-        	startActivity(i);
+    		Intent launchActivity = new Intent (this,QuizResultsActivity.class);
+        	launchActivity.putExtra(QuizController.QUIZ_CONTROLLER_TAG, quizController);    		
+        	startActivity(launchActivity);
     		finish();
     		this.finish();
     	}
@@ -142,28 +148,21 @@ public class QuizQuestionsActivity extends CreateMenus {
 		           }
 		       });
 		AlertDialog alert = builder.create();
-		alert.show();
-		
+		alert.show();	
 	}
-
-	private void setQuiz(QuizController quiz) {
-		this.qController = quiz;
-		
-	}
-
 	
 	/**
 	 * Write the question information in the layout
 	 */
 	private void updateQuestion(){
-		String currQuestion = qController.getQuestion();
+		String currQuestion = quizController.getQuestion();
 		
 		//Image
 		ImageView image = (ImageView) findViewById(R.id.questionImage);
 		Drawable d;
-		if (qController.getImage()!=null){
+		if (quizController.getImage()!=null){
 			try {
-				d = ImagesUtils.getDrawable(getApplicationContext(), qController.getImage());
+				d = ImagesUtils.getDrawable(getApplicationContext(), quizController.getImage());
 				image.setImageDrawable(d);
 				image.setVisibility(ImageView.VISIBLE);
 			} catch (InvalidFileException e) {
@@ -183,7 +182,7 @@ public class QuizQuestionsActivity extends CreateMenus {
         RadioGroup ansRadioGroup = (RadioGroup) findViewById(R.id.answersRadioGroup);
         ansRadioGroup.removeAllViews();
         //Answers
-        Iterator<String> i = qController.getAnswers().iterator();
+        Iterator<String> i = quizController.getAnswers().iterator();
         int idButton = 0;
         while (i.hasNext()){
         	RadioButton r = new RadioButton(getApplicationContext());

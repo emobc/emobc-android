@@ -34,6 +34,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class MapLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5549692558498988163L;
 	private boolean localizeMe;
 	private boolean showAllPositions;
 	private List<MapDataItem> items = new ArrayList<MapDataItem>();

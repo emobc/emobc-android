@@ -31,7 +31,7 @@ import com.emobc.android.activities.QuizActivity;
 import com.emobc.android.activities.R;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelData;
-import com.emobc.android.levels.impl.QuizLevelDataItem;
+import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
 import com.emobc.android.menu.CreateMenus;
 
 /**

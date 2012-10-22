@@ -31,6 +31,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class WebLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2234720337479223831L;
 	private boolean local;
 	private String webUrl;
 	

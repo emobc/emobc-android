@@ -30,6 +30,10 @@ import com.emobc.android.levels.AppLevelDataItem;
  * @since 0.1
  */
 public class AudioLevelDataItem extends AppLevelDataItem {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -113376959489733844L;
 	private boolean local;
 	private String audioUrl;
 	private String image;

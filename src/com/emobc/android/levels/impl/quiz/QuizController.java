@@ -20,12 +20,14 @@
 * along with eMobc. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.emobc.android.levels.impl;
+package com.emobc.android.levels.impl.quiz;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+
 
 import android.util.Log;
 
@@ -34,7 +36,15 @@ import android.util.Log;
  * @version 0.1
  * @since 0.1
  */
-public class QuizController {
+public class QuizController implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7877510063743276015L;
+
+	public static final String QUIZ_CONTROLLER_TAG = "_QUIZ_CONTROLLER_TAG_";
+	
 	/*--------- Attributes ----------*/
 	//Quiz
 	private List<QuizLevelDataItem> data;
@@ -45,10 +55,10 @@ public class QuizController {
 	private int questionIndex; //Index of question
 	private QuestionDataItem currQuestion;
 	private String idNextQuestion;
-	private List<AnswerDataItem> currAnswers;
+	private List<QuizAnswerDataItem> currAnswers;
 	private int currAnswer; //Current answer selected
 	//Results
-	private Results results = new Results(0);
+	private QuizResults results = new QuizResults(0);
 
 	/*------- Constructor --------*/
 	public QuizController(){
@@ -68,7 +78,7 @@ public class QuizController {
 		this.quizIndex=0;
 		initQuiz(data.get(quizIndex));
 		if (actualQuiz.isAdventureMode()){
-			this.results = new Results(0);
+			this.results = new QuizResults(0);
 		}
 		
 	}
@@ -146,7 +156,7 @@ public class QuizController {
 	 */
 	public void next(){
 		//Saves answer results
-		AnswerDataItem answer = currQuestion.getAnswers().get(currAnswer);
+		QuizAnswerDataItem answer = currQuestion.getAnswers().get(currAnswer);
 		if (answer.isCorrect()){
 			this.results.setAnswer(currQuestion.getWeight(), true);
 		}else{
@@ -197,10 +207,10 @@ public class QuizController {
 	 * @return
 	 */
 	public List<String> getAnswers(){
-		Iterator<AnswerDataItem> i = currAnswers.iterator();
+		Iterator<QuizAnswerDataItem> i = currAnswers.iterator();
 		List<String> toReturn = new ArrayList<String>();
 		while (i.hasNext()){
-			AnswerDataItem actual = (AnswerDataItem) i.next();
+			QuizAnswerDataItem actual = (QuizAnswerDataItem) i.next();
 			toReturn.add(actual.getAnsText());
 		}
 		return toReturn;
@@ -215,7 +225,7 @@ public class QuizController {
 	 */
 	public void setAnswer(int index){
 		currAnswer = index;
-		AnswerDataItem answer = currQuestion.getAnswers().get(currAnswer);
+		QuizAnswerDataItem answer = currQuestion.getAnswers().get(currAnswer);
 		this.idNextQuestion = answer.getNext(); 
 	}
 	
@@ -225,7 +235,7 @@ public class QuizController {
 	 * 
 	 * @return
 	 */
-	public Results getResult(){
+	public QuizResults getResult(){
 		return this.results;
 	}
 	
@@ -235,7 +245,7 @@ public class QuizController {
 	 */
 	public void finish(){
 		//Saves answer results
-		AnswerDataItem answer = currQuestion.getAnswers().get(currAnswer);
+		QuizAnswerDataItem answer = currQuestion.getAnswers().get(currAnswer);
 		if (answer.isCorrect()){
 			this.results.setAnswer(currQuestion.getWeight(), true);
 		}else{

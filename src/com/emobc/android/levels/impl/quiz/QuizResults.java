@@ -20,7 +20,9 @@
 * along with eMobc. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.emobc.android.levels.impl;
+package com.emobc.android.levels.impl.quiz;
+
+import java.io.Serializable;
 
 /**
  * Class for save and show quiz results.
@@ -28,7 +30,11 @@ package com.emobc.android.levels.impl;
  * @version 0.1
  * @since 0.1
  */
-public class Results {
+public class QuizResults implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2562040949530110518L;
 	//private boolean penalty;
 	private double penaltyPor;
 	private int corrects;
@@ -39,7 +45,7 @@ public class Results {
 	/**
 	 * Constructor for default penalty Results objects
 	 */
-	public Results(){
+	public QuizResults(){
 		//this.penalty=false;
 		this.corrects=0;
 		this.incorrects=0;
@@ -50,7 +56,7 @@ public class Results {
 	 * Constructor
 	 * @param penalty Penalty percentage. From 0 to 1. Default value = 0.25
 	 */
-	public Results(double penalty){
+	public QuizResults(double penalty){
 		//this.penalty = true;
 		if (penalty<0||penalty>1){
 			this.penaltyPor = 0.25;

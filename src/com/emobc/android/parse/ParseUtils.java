@@ -56,7 +56,6 @@ import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.CoverActivityGenerator;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelData;
-import com.emobc.android.levels.impl.AnswerDataItem;
 import com.emobc.android.levels.impl.AudioLevelDataItem;
 import com.emobc.android.levels.impl.BannerDataItem;
 import com.emobc.android.levels.impl.ButtonsLevelDataItem;
@@ -77,11 +76,12 @@ import com.emobc.android.levels.impl.MapDataItem;
 import com.emobc.android.levels.impl.MapLevelDataItem;
 import com.emobc.android.levels.impl.PdfLevelDataItem;
 import com.emobc.android.levels.impl.QrLevelDataItem;
-import com.emobc.android.levels.impl.QuestionDataItem;
-import com.emobc.android.levels.impl.QuizLevelDataItem;
 import com.emobc.android.levels.impl.ServerPushDataItem;
 import com.emobc.android.levels.impl.VideoLevelDataItem;
 import com.emobc.android.levels.impl.WebLevelDataItem;
+import com.emobc.android.levels.impl.quiz.QuizAnswerDataItem;
+import com.emobc.android.levels.impl.quiz.QuestionDataItem;
+import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
 import com.emobc.android.menu.ActiveMenus;
 import com.emobc.android.menu.MenuActionDataItem;
 import com.emobc.android.menu.MenuActions;
@@ -1314,7 +1314,7 @@ public class ParseUtils {
                 new NwXmlStandarParserTextHandler() {
                     private AppLevelData appLevelData = new DefaultAppLevelData();
                     private QuizLevelDataItem currItem;
-                    private AnswerDataItem currAnswer;
+                    private QuizAnswerDataItem currAnswer;
                     private QuestionDataItem currQuestion;
                     
                     @Override
@@ -1350,7 +1350,7 @@ public class ParseUtils {
                         }else if(currentField.equals(_WEIGHT_TAG_)){
                             currQuestion.setWeight(text);
                         }else if(currentField.equals(_ANSWER_TAG_)){
-                            currAnswer = new AnswerDataItem();
+                            currAnswer = new QuizAnswerDataItem();
                             currQuestion.setAnswer(currAnswer);
                         }else if(currentField.equals(_ANSWER_TEXT_TAG)){
                             currAnswer.setAnsText(text);
