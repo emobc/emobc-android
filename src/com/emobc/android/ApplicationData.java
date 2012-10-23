@@ -211,7 +211,7 @@ public class ApplicationData {
 	 * @return
 	 */
 	public AppLevelDataItem getDataItem(Context context, NextLevel nextLevel){
-		AppLevel appLevel = getNextAppLevel(nextLevel);
+		AppLevel appLevel = getNextAppLevel(nextLevel, context);
 		AppLevelData data = appLevel.getData(context);
 		AppLevelDataItem item = data.findByNextLevel(nextLevel);				
 		return item;
@@ -243,7 +243,23 @@ public class ApplicationData {
 	 * @param NextLevel nextLevel
 	 * @return AppLevel
 	 */
-	public AppLevel getNextAppLevel(NextLevel nextLevel){
+	public AppLevel getNextAppLevel(NextLevel nextLevel, Context context){
+		if(!isRemote())
+			return localNextLevel(nextLevel);
+		return remoteNextLevel(nextLevel, context);
+	}
+
+	private AppLevel remoteNextLevel(NextLevel nextLevel, Context context) {
+		AppLevel localAppLevel = localNextLevel(nextLevel);
+		if(localAppLevel == null){
+			ApplicationData appData = ParseUtils.parseApplicationData(context, remoteApplicationFileUrl);
+			merge(appData);
+			return localNextLevel(nextLevel);
+		}
+		return null;
+	}
+
+	private AppLevel localNextLevel(NextLevel nextLevel) {
 		String levelId = nextLevel.getLevelId();
 		if(levelId != null){
 			return levelMap.get(levelId);

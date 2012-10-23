@@ -15,18 +15,18 @@
  */
 package com.emobc.android.activities;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+
 import com.emobc.android.ApplicationData;
 import com.emobc.android.activities.generators.AbstractActivtyGenerator;
 import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.profiling.ProfileNextLevel;
 import com.emobc.android.utils.InvalidFileException;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 
 /** 
  * Es la primera pantalla (de carga) que aparece. 
@@ -47,7 +47,7 @@ public class SplashActivity extends Activity {
 		super.onCreate(icicle); 
 		Log.i("SplashActivity", "OnCreate Splash");
 		//overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-
+		
 		//setContentView(R.layout.splash_screen);		
 		try {
 			instance = ApplicationData.readApplicationData(this);

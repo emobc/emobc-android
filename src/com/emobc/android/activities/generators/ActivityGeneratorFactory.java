@@ -47,7 +47,7 @@ public abstract class ActivityGeneratorFactory {
 	 */
 	public static ActivityGenerator createActivityGenerator(Context context, NextLevel nextLevel) throws InvalidFileException{
 		ApplicationData applicationData = SplashActivity.getApplicationData();
-		AppLevel appLevel = applicationData.getNextAppLevel(nextLevel);
+		AppLevel appLevel = applicationData.getNextAppLevel(nextLevel, context);
 		switch (appLevel.getActivityType()) {
 		case IMAGE_TEXT_DESCRIPTION_ACTIVITY:
 			return new ImageTextDescriptionActivityGenerator(appLevel, nextLevel);

@@ -43,10 +43,12 @@ import java.util.Map;
 import java.util.TreeSet;
 import java.util.concurrent.ExecutionException;
 
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
+
+import android.content.Context;
+import android.util.Log;
 
 import com.emobc.android.ActivityType;
 import com.emobc.android.AppButton;
@@ -54,6 +56,7 @@ import com.emobc.android.ApplicationData;
 import com.emobc.android.EntryPoint;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.CoverActivityGenerator;
+import com.emobc.android.config.ApplicationConfiguration;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelData;
 import com.emobc.android.levels.impl.AudioLevelDataItem;
@@ -79,8 +82,8 @@ import com.emobc.android.levels.impl.QrLevelDataItem;
 import com.emobc.android.levels.impl.ServerPushDataItem;
 import com.emobc.android.levels.impl.VideoLevelDataItem;
 import com.emobc.android.levels.impl.WebLevelDataItem;
-import com.emobc.android.levels.impl.quiz.QuizAnswerDataItem;
 import com.emobc.android.levels.impl.quiz.QuestionDataItem;
+import com.emobc.android.levels.impl.quiz.QuizAnswerDataItem;
 import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
 import com.emobc.android.menu.ActiveMenus;
 import com.emobc.android.menu.MenuActionDataItem;
@@ -88,10 +91,8 @@ import com.emobc.android.menu.MenuActions;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.themes.FormatStyle;
 import com.emobc.android.themes.LevelTypeStyle;
+import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.RetreiveFileContentTask;
-
-import android.content.Context;
-import android.util.Log;
 
 /**
  * Utility xml parsing of all of the application.
@@ -270,9 +271,15 @@ public class ParseUtils {
 	 */
 	public static ApplicationData parseApplicationData(Context context, Locale locale, String xmlFileName) {
 		XmlPullParser xpp = createXpp(context, locale, xmlFileName, false);
-		if(xpp != null)
-			return fromData(parseApplicationFile(xpp));
-		return null;
+		if(xpp == null)
+			return null;
+		
+		ApplicationConfiguration config = null;
+		try {
+			config = ApplicationConfiguration.readConfiguration(context);
+		} catch (InvalidFileException e) {
+		}
+		return fromData(parseApplicationFile(xpp), config);
 	}
 	
 	/**
@@ -284,9 +291,15 @@ public class ParseUtils {
 	 */
 	public static ApplicationData parseApplicationData(Context context, String str) {
 		XmlPullParser xpp = createXppFromString(context, str);
-		if(xpp != null)
-			return fromData(parseApplicationFile(xpp));
-		return null;
+		if(xpp == null)
+			return null;
+		
+		ApplicationConfiguration config = null;
+		try {
+			config = ApplicationConfiguration.readConfiguration(context);
+		} catch (InvalidFileException e) {
+		}
+		return fromData(parseApplicationFile(xpp), config);
 	}
 	
 	/**
@@ -435,10 +448,13 @@ public class ParseUtils {
 	 * @return ApplicationData
 	 */
 	@SuppressWarnings("unchecked")
-	private static ApplicationData fromData(Map<String, Object> data) {
-		ApplicationData ret = new ApplicationData();
-		
-		
+	private static ApplicationData fromData(Map<String, Object> data, ApplicationConfiguration config) {
+		ApplicationData ret = null;
+		if(config != null){
+			ret = new ApplicationData((String)config.getAttribute(ApplicationConfiguration.REMOTE_APP_URL));
+		}else {
+			ret = new ApplicationData();
+		}
 		ret.setEntryPoint((EntryPoint)data.get(_ENTRY_POINT_TAG_));
 		
 		ret.setMenu((ActiveMenus)data.get(_MENU_TAG_));
@@ -494,7 +510,7 @@ public class ParseUtils {
 	 * @param usePostMethod 
 	 * @return XmlPullParser
 	 */
-	private static XmlPullParser createXpp(Context context, Locale locale, String xmlFileName, boolean usePostMethod){
+	public static XmlPullParser createXpp(Context context, Locale locale, String xmlFileName, boolean usePostMethod){
 		if(xmlFileName == null || xmlFileName.isEmpty())
 			return null;
 		InputStream is = null;
@@ -581,7 +597,7 @@ public class ParseUtils {
 	 * @param InputStream is
 	 * @return XmlPullParser
 	 */
-	private static XmlPullParser createXpp(Context context, InputStream is){
+	public static XmlPullParser createXpp(Context context, InputStream is){
 		if(is == null)
 			throw new InvalidParameterException("InputStream = null");
 			

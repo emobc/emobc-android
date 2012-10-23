@@ -152,7 +152,7 @@ public class CoverActivity extends CreateMenus {
 	protected void showNextLevel(Context context, NextLevel nextLevel) {
 		 if(nextLevel != null){
 			ApplicationData applicationData = SplashActivity.getApplicationData();
-			AppLevel level = applicationData.getNextAppLevel(nextLevel);
+			AppLevel level = applicationData.getNextAppLevel(nextLevel, context);
 			if(level != null){
 				Class<? extends Activity> clazz = level.getAcivityClass();
 				

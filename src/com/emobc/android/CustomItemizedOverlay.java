@@ -104,7 +104,7 @@ public class CustomItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 			ApplicationData appData;
 			try {
 				appData = ApplicationData.readApplicationData(context);
-				AppLevel level = appData.getNextAppLevel(nextLevel);
+				AppLevel level = appData.getNextAppLevel(nextLevel, context);
 				if(level != null){
 					Class<? extends Activity> clazz = level.getAcivityClass();
 					
