@@ -22,6 +22,15 @@
 */
 package com.emobc.android.activities;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.widget.Toast;
+
 import com.emobc.android.ApplicationData;
 import com.emobc.android.EntryPoint;
 import com.emobc.android.NextLevel;
@@ -31,16 +40,6 @@ import com.emobc.android.levels.impl.ServerPushDataItem;
 import com.emobc.android.menu.CreateMenus;
 import com.emobc.android.utils.CommonUtilities;
 import com.google.android.gcm.GCMRegistrar;
-
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.widget.Toast;
 
 /** 
  * Class that defines an activity of type COVER_ACTIVITY, and 
@@ -59,11 +58,10 @@ public class CoverActivity extends CreateMenus {
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-    	
         super.onCreate(savedInstanceState);
         Log.i("CoverActivity", "OnCreate Cover");
         //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-        
+
         ApplicationData applicationData = SplashActivity.getApplicationData();
 		if(applicationData != null){
 			
@@ -96,7 +94,7 @@ public class CoverActivity extends CreateMenus {
 			            // Device is already registered on GCM, check server.
 			            if (GCMRegistrar.isRegisteredOnServer(this)) {
 			                // Skips registration
-			                System.out.println(GCMRegistrar.getRegistrationId(this));
+			                Log.v("CoverActivity", GCMRegistrar.getRegistrationId(this));
 			            } else {
 			                // Try to register again, but not in the UI thread.
 			                // It's also necessary to cancel the thread onDestroy(),

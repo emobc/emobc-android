@@ -251,12 +251,11 @@ public class ApplicationData {
 
 	private AppLevel remoteNextLevel(NextLevel nextLevel, Context context) {
 		AppLevel localAppLevel = localNextLevel(nextLevel);
-		if(localAppLevel == null){
-			ApplicationData appData = ParseUtils.parseApplicationData(context, remoteApplicationFileUrl);
-			merge(appData);
-			return localNextLevel(nextLevel);
-		}
-		return null;
+		if(localAppLevel != null)
+			return localAppLevel;
+		ApplicationData appData = ParseUtils.parseApplicationData(context, remoteApplicationFileUrl);
+		merge(appData);
+		return localNextLevel(nextLevel);
 	}
 
 	private AppLevel localNextLevel(NextLevel nextLevel) {
