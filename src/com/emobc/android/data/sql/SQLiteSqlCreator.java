@@ -45,6 +45,7 @@ public class SQLiteSqlCreator {
 	private static final String VARCHAR_FIELD_TYPE = "VARCHAR";
 	private static final String DATETIME_FIELD_TYPE = "DATETIME";
 	private static final String INTEGER_FIELD_TYPE = "INTEGER";
+	private static final Object PRIMARY_KEY_STATEMENT = " PRIMARY KEY";
 	
 	public String createTable(Table table){
 		StringBuilder builder = new StringBuilder();
@@ -79,6 +80,9 @@ public class SQLiteSqlCreator {
 		builder.append(field.getName());
 		builder.append(FIELD_NAME_TYPE_SEPARATOR);
 		builder.append(mapSqliteFieldType(field.getType()));
+		if(field.isKey()){
+			builder.append(PRIMARY_KEY_STATEMENT);
+		}
 		return builder.toString();
 	}
 
