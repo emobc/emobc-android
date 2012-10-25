@@ -3,7 +3,7 @@
 *
 * This file is part of eMobc.
 *
-* FieldType.java
+* EMobcParser.java
 * eMobc Android Framework
 *
 * eMobc is free software: you can redistribute it and/or modify
@@ -20,25 +20,13 @@
 * along with eMobc. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.emobc.android.data.metadata;
+package com.emobc.android.parse;
 
 /**
  * @author Jorge E. Villaverde
  * @since 0.1
  * @version 0.1
  */
-public enum FieldType {
-	TEXT,
-	NUMBER,
-	DATE;
-
-	public static FieldType parseText(String text) {
-		if("TEXT".equalsIgnoreCase(text))
-			return TEXT;
-		if("NUMBER".equalsIgnoreCase(text))
-			return NUMBER;
-		if("DATE".equalsIgnoreCase(text))
-			return DATE;
-		return null;
-	}
+public interface EMobcParser<T> {
+	T parse();
 }
