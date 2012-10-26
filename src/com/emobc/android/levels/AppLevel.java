@@ -67,6 +67,15 @@ public class AppLevel {
 	private String xib;
 	private LevelTypeStyle levelTypeStyle;
 	private boolean useProfile = false;
+
+	public static final AppLevel COVER_APP_LEVEL;
+	
+	static{
+		COVER_APP_LEVEL = new AppLevel(1);
+		COVER_APP_LEVEL.setActivityType(ActivityType.COVER_ACTIVITY);
+		COVER_APP_LEVEL.setTitle("Cover App Level");
+	}
+	
 	
 	public AppLevel(int number) {
 		super();

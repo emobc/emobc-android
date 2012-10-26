@@ -147,7 +147,8 @@ public class ApplicationData {
 		AppLevel emobcLevel = new AppLevel(0);
 		emobcLevel.setId(EMOBC_LEVEL_ID);
 		emobcLevel.setActivityType(ActivityType.PROFILE_ACTIVITY);
-		emobcLevel.setTitle("Profile");
+		emobcLevel.setTitle("Profile");	
+		
 		addLevel(emobcLevel);		
 	}
 
@@ -259,12 +260,24 @@ public class ApplicationData {
 	}
 
 	private AppLevel localNextLevel(NextLevel nextLevel) {
+		AppLevel defaultLevel = checkDefaultLevel(nextLevel);
+		if(defaultLevel != null)
+			return defaultLevel;
+		
 		String levelId = nextLevel.getLevelId();
 		if(levelId != null){
 			return levelMap.get(levelId);
 		}
 		if(nextLevel.getLevelNumber() > NextLevel.NO_LEVEL && nextLevel.getLevelNumber() < levels.size())
 			return levels.get(nextLevel.getLevelNumber());
+		return null;
+	}
+
+	
+	private AppLevel checkDefaultLevel(NextLevel nextLevel) {
+		if(NextLevel.COVER_NEXT_LEVEL.equals(nextLevel)){
+			return AppLevel.COVER_APP_LEVEL;
+		}			
 		return null;
 	}
 
@@ -415,6 +428,7 @@ public class ApplicationData {
 	public void setLevels(List<AppLevel> levels) {
 		this.levels = levels;
 		levelMap.clear();
+		loadDefaultLevels();
 		for(AppLevel level : levels){
 			if(level.getId() != null)
 				levelMap.put(level.getId(), level);

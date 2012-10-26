@@ -43,11 +43,14 @@ public class NextLevel implements Serializable {
 	private static final long serialVersionUID = -6849041165502606331L;
 
 	public static final int NO_LEVEL = -1;
+	public static final String EMOBC_COVER_DATA_ID = "cover";
 	
 	private int levelNumber = NO_LEVEL;
 	private String levelId;
 	private int dataNumber = NO_LEVEL;
 	private String dataId;
+	
+	public static NextLevel COVER_NEXT_LEVEL = new NextLevel(ApplicationData.EMOBC_LEVEL_ID, EMOBC_COVER_DATA_ID);
 
 	public NextLevel() {
 		super();
@@ -116,5 +119,42 @@ public class NextLevel implements Serializable {
 			builder.append(dataNumber);
 		}	
 		return builder.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dataId == null) ? 0 : dataId.hashCode());
+		result = prime * result + dataNumber;
+		result = prime * result + ((levelId == null) ? 0 : levelId.hashCode());
+		result = prime * result + levelNumber;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NextLevel other = (NextLevel) obj;
+		if (dataId == null) {
+			if (other.dataId != null)
+				return false;
+		} else if (!dataId.equals(other.dataId))
+			return false;
+		if (dataNumber != other.dataNumber)
+			return false;
+		if (levelId == null) {
+			if (other.levelId != null)
+				return false;
+		} else if (!levelId.equals(other.levelId))
+			return false;
+		if (levelNumber != other.levelNumber)
+			return false;
+		return true;
 	}
 }
