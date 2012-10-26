@@ -26,6 +26,7 @@ import java.util.List;
 
 import com.emobc.android.data.metadata.Field;
 import com.emobc.android.data.metadata.FieldType;
+import com.emobc.android.data.metadata.Model;
 import com.emobc.android.data.metadata.Table;
 
 /**
@@ -46,8 +47,9 @@ public class SQLiteSqlCreator {
 	private static final String DATETIME_FIELD_TYPE = "DATETIME";
 	private static final String INTEGER_FIELD_TYPE = "INTEGER";
 	private static final Object PRIMARY_KEY_STATEMENT = " PRIMARY KEY";
+	private static final Object DROP_STATEMENT = "DROP TABLE IF EXISTS ";
 	
-	public String createTable(Table table){
+	public String createTableSql(Table table){
 		StringBuilder builder = new StringBuilder();
 		
 		builder.append(CREATE_STATEMENT);
@@ -98,5 +100,41 @@ public class SQLiteSqlCreator {
 			return VARCHAR_FIELD_TYPE;
 		}
 		
+	}
+
+	public String createModelSql(Model model) {
+		StringBuilder builder = new StringBuilder();
+		
+		String sep = "";
+		for(Table table : model.getTables()){
+			builder.append(sep);
+			builder.append(createTableSql(table));
+			sep = "\n";
+		}
+		
+		return builder.toString();
+	}
+
+	public String dropModelSql(Model model) {
+		StringBuilder builder = new StringBuilder();
+		
+		String sep = "";
+		for(Table table : model.getTables()){
+			builder.append(sep);
+			builder.append(dropTableSql(table));
+			sep = "\n";
+		}
+		
+		return builder.toString();
+	}
+
+	public String dropTableSql(Table table) {
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append(DROP_STATEMENT);
+		builder.append(table.getName());
+		builder.append(END_STATEMENT);
+		
+		return builder.toString();
 	}
 }
