@@ -564,7 +564,7 @@ public class ParseUtils {
 				//url = new URL(encodedUrl);
 				is = (InputStream)url.getContent();
 			}else{
-				RetreiveFileContentTask task = new RetreiveFileContentTask(Profile.getProfileData(context), usePostMethod); 
+				RetreiveFileContentTask task = new RetreiveFileContentTask(Profile.createNamedParameters(context), usePostMethod); 
 				task.execute(url);
 				String text = task.get();
 				is = new ByteArrayInputStream(text.getBytes("UTF-8"));		

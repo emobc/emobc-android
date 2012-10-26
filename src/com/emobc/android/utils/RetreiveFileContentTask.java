@@ -25,9 +25,7 @@ package com.emobc.android.utils;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -38,10 +36,8 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -52,12 +48,12 @@ import android.util.Log;
  * @since 0.1
  */
 public class RetreiveFileContentTask extends AsyncTask<URL, Void, String> {
-	private SharedPreferences settings;
+	private List<NameValuePair> parameters;
 	private boolean usePostMethod;
 	
-	public RetreiveFileContentTask(SharedPreferences settings, boolean usePostMethod){
+	public RetreiveFileContentTask(List<NameValuePair> parameters, boolean usePostMethod){
 		super();
-		this.settings = settings;
+		this.parameters = parameters;
 		this.usePostMethod = usePostMethod;
 	}
 	
@@ -97,8 +93,6 @@ public class RetreiveFileContentTask extends AsyncTask<URL, Void, String> {
 
 	private HttpUriRequest createPostUriRequest(URL url) {
 		HttpPost httppost = new HttpPost(url.toString());
-		List<NameValuePair> parameters = createProfileParameters();
-
         // Add your data
         try {
 			httppost.setEntity(new UrlEncodedFormEntity(parameters));
@@ -112,17 +106,4 @@ public class RetreiveFileContentTask extends AsyncTask<URL, Void, String> {
 		HttpGet httpGet = new HttpGet(url.toString());
 		return httpGet;
 	}
-
-	private List<NameValuePair> createProfileParameters() {
-		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		Map<String, ?> map = settings.getAll();
-		for(String key : map.keySet()){
-			final String value = map.get(key).toString();			
-			if(value != null && value.length() > 0){
-		        nameValuePairs.add(new BasicNameValuePair(key, value));
-			}			
-		}
-		return nameValuePairs;
-	}
-
 }

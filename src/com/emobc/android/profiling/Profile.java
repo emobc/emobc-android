@@ -24,6 +24,10 @@ package com.emobc.android.profiling;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import com.emobc.android.levels.AppLevelDataItem;
 import com.emobc.android.levels.impl.FormDataItem;
@@ -70,5 +74,16 @@ public class Profile extends AppLevelDataItem {
 		editor.putBoolean(Profile.PROFILE_FILLED, true);
 		editor.commit();
 	}
-
+	public static List<NameValuePair> createNamedParameters(Context context) {
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		SharedPreferences settings = getProfileData(context);
+		Map<String, ?> map = settings.getAll();
+		for(String key : map.keySet()){
+			final String value = map.get(key).toString();			
+			if(value != null && value.length() > 0){
+		        nameValuePairs.add(new BasicNameValuePair(key, value));
+			}			
+		}
+		return nameValuePairs;
+	}
 }

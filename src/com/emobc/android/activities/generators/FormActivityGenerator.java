@@ -22,23 +22,16 @@
 */
 package com.emobc.android.activities.generators;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -55,7 +48,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.emobc.android.ActivityType;
 import com.emobc.android.ApplicationData;
@@ -67,7 +59,7 @@ import com.emobc.android.levels.AppLevelData;
 import com.emobc.android.levels.impl.FormDataItem;
 import com.emobc.android.levels.impl.FormLevelDataItem;
 import com.emobc.android.menu.CreateMenus;
-import com.emobc.android.utils.HttpUtils;
+import com.emobc.android.utils.RetreiveFileContentTask;
 
 /**
  * Screen generator, responsible for specific components to initialize the 
@@ -126,36 +118,24 @@ public class FormActivityGenerator extends LevelActivityGenerator {
 	 * @param activity
 	 */
 	protected void processSubmit(Activity activity) {
-		List<NameValuePair> parameters;
 		try {
-			parameters = createParameters();			
+			List<NameValuePair> parameters = createParameters();			
 			try {
 				URL url = new URL(item.getActionUrl());
 
-				HttpClient httpclient = HttpUtils.getHttpClient(url.getProtocol().equalsIgnoreCase(HttpUtils.HTTPS_PROTOCOL));
-				HttpPost httppost = new HttpPost(item.getActionUrl());
-				
-			    try {
-			        // Add your data
-			        httppost.setEntity(new UrlEncodedFormEntity(parameters));
-
-			        // Execute HTTP Post Request
-			        HttpResponse response = httpclient.execute(httppost);
-			      
-			        if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
-			        	String str = EntityUtils.toString(response.getEntity());
-			        	
-			        	ApplicationData.mergeAppDataFromString(activity, str);
-			        	
-			        	showNextLevel(activity, item.getNextLevel());
-			        }
-			    } catch (ClientProtocolException e) {
-			    	Log.e("FormActivityGenerator: ClientProtocolException: ", e.getMessage());
-			    	Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
-			    } catch (IOException e) {
-			    	Log.e("FormActivityGenerator: IOException: ", e.getMessage());
-			    	Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();		    	
-			    }
+				RetreiveFileContentTask task = new RetreiveFileContentTask(parameters, true); 
+				task.execute(url);
+				try {
+					String text = task.get();
+		        	
+		        	ApplicationData.mergeAppDataFromString(activity, text);
+		        	
+		        	showNextLevel(activity, item.getNextLevel());
+				} catch (InterruptedException e) {
+			    	Log.e("FormActivityGenerator: InterruptedException: ", e.getMessage());
+				} catch (ExecutionException e) {
+			    	Log.e("FormActivityGenerator: ExecutionException: ", e.getMessage());
+				}
 			} catch (MalformedURLException e1) {
 			}		    
 		} catch (final RequiredFieldException e) {
