@@ -706,14 +706,12 @@ public class ParseUtils {
 	 * @param xmlFileName
 	 * @return
 	 */
-	public static MenuActions parseMenuData(Context context, String xmlFileName) {
+	public static MenuActions parseMenuData(Context context, String xmlFileName) throws InvalidFileException {
 		XmlPullParser xpp = createXpp(context, Locale.getDefault(), xmlFileName, false);
-		if(xpp != null){
-
-			Map<String, Object> data = parseMenuDataFile(xpp);  
-			return fromMenuData(data);
-		}
-		return null;
+		if(xpp == null)
+			throw new InvalidFileException(String.format("File %s does not exits", xmlFileName));
+		Map<String, Object> data = parseMenuDataFile(xpp);  
+		return fromMenuData(data);
 	}
 	
 	/**

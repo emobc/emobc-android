@@ -328,74 +328,79 @@ public class CreateMenus extends Activity implements AnimationListener, OnGestur
 	 * @param xmlFileName
 	 */
 	private void createCurrentMenu(RelativeLayout layout, String xmlFileName){
-		MenuActions menu = ParseUtils.parseMenuData(this, xmlFileName);
-		List<MenuActionDataItem> listActions = menu.getList();
-		
-		if(listActions == null || listActions.isEmpty())
-			return;
-		
-		for(int i=0; i < listActions.size(); i++){
-			final MenuActionDataItem action = listActions.get(i);
-				
-			if( this.isEntryPoint == false || (
-					(this.isEntryPoint == true & ( !action.getSystemAction().equals("home") && 
-					!action.getSystemAction().equals("back") ) ) ) ){
-				
-				final ImageButton btnAction = new ImageButton(this);		
+		MenuActions menu = null;
+		try {
+			menu = ParseUtils.parseMenuData(this, xmlFileName);
+			List<MenuActionDataItem> listActions = menu.getList();
+			
+			if(listActions == null || listActions.isEmpty())
+				return;
+			
+			for(int i=0; i < listActions.size(); i++){
+				final MenuActionDataItem action = listActions.get(i);
+					
+				if( this.isEntryPoint == false || (
+						(this.isEntryPoint == true & ( !action.getSystemAction().equals("home") && 
+						!action.getSystemAction().equals("back") ) ) ) ){
+					
+					final ImageButton btnAction = new ImageButton(this);		
 
-				//String resource = action.getImageName().split("\\.")[0];
-				//btnAction.setImageResource(getResources().getIdentifier(resource, "drawable", getPackageName()));
-				Drawable imageButton = null;
-				try {
-					imageButton = ImagesUtils.getDrawable(activity, action.getImageName());
-					btnAction.setImageDrawable(imageButton);
-				} catch (InvalidFileException e) {
-					e.printStackTrace();
-				}
-				
-				//Ancho y alto del boton
-				RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(/*action.getWidthButton()*/LayoutParams.WRAP_CONTENT, /*action.getHeightButton()*/LayoutParams.WRAP_CONTENT);
-				OnClickListener cl;
-				if(action.getSystemAction().equals("sideMenu")){
-					lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-					
-					//Margen izquierdo
-					lp.setMargins(action.getLeftMargin(), 10, 0, 10);
-					
-		            this.sideMenuLayout = (LinearLayout) findViewById(R.id.sideMenuLayout);
-		            this.appLayout = (RelativeLayout) findViewById(R.id.backgroundLayout);
-					
-					cl= new ClickListener();
-				}else{	
-					lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-					
-					//Margen derecho
-					int realMargin;
-					if (imageButton!=null){
-						int width = imageButton.getIntrinsicWidth();
-						realMargin= width * i + action.getLeftMargin()*(i+1);
-					}else{
-						realMargin= action.getWidthButton()*i + action.getLeftMargin()*(i+1);
+					//String resource = action.getImageName().split("\\.")[0];
+					//btnAction.setImageResource(getResources().getIdentifier(resource, "drawable", getPackageName()));
+					Drawable imageButton = null;
+					try {
+						imageButton = ImagesUtils.getDrawable(activity, action.getImageName());
+						btnAction.setImageDrawable(imageButton);
+					} catch (InvalidFileException e) {
+						e.printStackTrace();
 					}
 					
-					lp.setMargins(0, 10, realMargin, 10);
-				
-					cl= new View.OnClickListener() {
-				        public void onClick(View view) {
-				        	optionSelected(action);
-				        }
-			        };
-				}
+					//Ancho y alto del boton
+					RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(/*action.getWidthButton()*/LayoutParams.WRAP_CONTENT, /*action.getHeightButton()*/LayoutParams.WRAP_CONTENT);
+					OnClickListener cl;
+					if(action.getSystemAction().equals("sideMenu")){
+						lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+						
+						//Margen izquierdo
+						lp.setMargins(action.getLeftMargin(), 10, 0, 10);
+						
+			            this.sideMenuLayout = (LinearLayout) findViewById(R.id.sideMenuLayout);
+			            this.appLayout = (RelativeLayout) findViewById(R.id.backgroundLayout);
+						
+						cl= new ClickListener();
+					}else{	
+						lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+						
+						//Margen derecho
+						int realMargin;
+						if (imageButton!=null){
+							int width = imageButton.getIntrinsicWidth();
+							realMargin= width * i + action.getLeftMargin()*(i+1);
+						}else{
+							realMargin= action.getWidthButton()*i + action.getLeftMargin()*(i+1);
+						}
+						
+						lp.setMargins(0, 10, realMargin, 10);
+					
+						cl= new View.OnClickListener() {
+					        public void onClick(View view) {
+					        	optionSelected(action);
+					        }
+				        };
+					}
 
-				btnAction.setLayoutParams(lp);
-				
-				//Añade la nueva opcion al menu
-				layout.addView(btnAction);
-				btnAction.setOnClickListener(cl);
-				
-				i++;
-			}//End if
-		}//End While
+					btnAction.setLayoutParams(lp);
+					
+					//Añade la nueva opcion al menu
+					layout.addView(btnAction);
+					btnAction.setOnClickListener(cl);
+					
+					i++;
+				}//End if
+			}//End While
+		} catch (InvalidFileException e) {
+			Log.e("createCurrentMenu", e.getMessage());
+		}		
 	}
 	
 	/**
@@ -466,30 +471,32 @@ public class CreateMenus extends Activity implements AnimationListener, OnGestur
 	 * action is necessary to override the system selection methods.
 	 * @param contextMenu
 	 */
-	private void createContextMenu(Menu contextMenu)
-	{	
-		MenuActions menuActions = ParseUtils.parseMenuData(this, this.contextMenuXmlFileName);
-		
-		this.listContextualActions = menuActions.getList();
-		
-		Iterator<MenuActionDataItem> itContextualActions = this.listContextualActions.iterator();
-		
-		int i = 0;
-		while(itContextualActions.hasNext()){
-			final MenuActionDataItem action = itContextualActions.next();
+	private void createContextMenu(Menu contextMenu) {	
+		MenuActions menuActions;
+		try {
+			menuActions = ParseUtils.parseMenuData(this, this.contextMenuXmlFileName);
+			this.listContextualActions = menuActions.getList();
 			
-			if( this.isEntryPoint == false || (
-					(this.isEntryPoint == true & ( !action.getSystemAction().equals("home") && 
-					!action.getSystemAction().equals("back") ) ) ) ){
+			Iterator<MenuActionDataItem> itContextualActions = this.listContextualActions.iterator();
 			
-			String resource = "drawable/" + action.getImageName().split("\\.")[0];
-			int idImage = getResources().getIdentifier(resource, null, getPackageName());
-			
-			contextMenu.add(Menu.NONE, i, Menu.NONE, action.getTitle()).setIcon(idImage);
-			i++;
+			int i = 0;
+			while(itContextualActions.hasNext()){
+				final MenuActionDataItem action = itContextualActions.next();
+				
+				if( this.isEntryPoint == false || (
+						(this.isEntryPoint == true & ( !action.getSystemAction().equals("home") && 
+						!action.getSystemAction().equals("back") ) ) ) ){
+				
+				String resource = "drawable/" + action.getImageName().split("\\.")[0];
+				int idImage = getResources().getIdentifier(resource, null, getPackageName());
+				
+				contextMenu.add(Menu.NONE, i, Menu.NONE, action.getTitle()).setIcon(idImage);
+				i++;
+				}
 			}
-		}
-		
+		} catch (InvalidFileException e) {
+			Log.e("createContextMenu", e.getMessage());
+		}	
 	}
 	
 	//  -- Side_Menu methods
@@ -556,12 +563,17 @@ public class CreateMenus extends Activity implements AnimationListener, OnGestur
      * @param xmlFileName
      */
     private void initializeSideMenuList(String xmlFileName){
-    	MenuActions menu = ParseUtils.parseMenuData(this, xmlFileName);
-		List<MenuActionDataItem> listActions= menu.getList();
-    	
-    	ListView lv = (ListView)findViewById(R.id.sideMenuList);
-    	lv.setAdapter(new NwListAdapter(this.activity, R.layout.list_item, listActions));
-		lv.setTextFilterEnabled(true);
+    	MenuActions menu;
+		try {
+			menu = ParseUtils.parseMenuData(this, xmlFileName);
+			List<MenuActionDataItem> listActions= menu.getList();
+	    	
+	    	ListView lv = (ListView)findViewById(R.id.sideMenuList);
+	    	lv.setAdapter(new NwListAdapter(this.activity, R.layout.list_item, listActions));
+			lv.setTextFilterEnabled(true);
+		} catch (InvalidFileException e) {
+			Log.e("initializeSideMenuList", e.getMessage());
+		}
     }
 
 	//  -- All show methods
