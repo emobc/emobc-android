@@ -34,6 +34,7 @@ import com.emobc.android.menu.CreateMenus;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -90,13 +91,17 @@ public class FormActivity extends CreateMenus {
 		while (i.hasNext()){
 			String key = i.next();
 			View v = controlsMap.get(key);
-			if (v instanceof Spinner){
-				((Spinner) v).setSelection(settings.getInt(key,0));
-            }else if (v instanceof CheckBox){
-            	((CheckBox) v).setChecked(settings.getBoolean(key,false));
-            }else if (v instanceof EditText){
-            	((EditText)v).setText(settings.getString(key,""));
-            }
+			try{
+				if (v instanceof Spinner){
+					((Spinner) v).setSelection(settings.getInt(key,0));
+	            }else if (v instanceof CheckBox){
+	            	((CheckBox) v).setChecked(settings.getBoolean(key,false));
+	            }else if (v instanceof EditText){
+	            	((EditText)v).setText(settings.getString(key,""));
+	            }
+			}catch(ClassCastException e){
+				Log.e("FormActivity", e.getMessage());
+			}
 			
 		}
 		

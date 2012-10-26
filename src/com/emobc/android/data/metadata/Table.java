@@ -26,6 +26,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 /**
  * @author Jorge E. Villaverde
@@ -40,9 +42,12 @@ public class Table implements Serializable {
 	
 	private static final String DEFAULT_ID_FILE_NAME = "id";
 	private static final FieldType DEFAULT_ID_FILE_TYPE = FieldType.NUMBER;
+
+	public static final int INVALID_INDEX_VALUE = -1;
 	
 	private final String name;
 	private List<Field> fields = new ArrayList<Field>();
+	private Map<String, Field> fieldMap = new WeakHashMap<String, Field>();
 	
 	public Table(String name) {
 		super();
@@ -53,9 +58,12 @@ public class Table implements Serializable {
 	}
 
 	public void addField(Field field){
+		if(field == null)
+			throw new IllegalArgumentException("Field is null");
 		if(fields.contains(field))
 			throw new InvalidFieldException("Table: " + name + " already contains field: " + field.getName());
 		fields.add(field);
+		fieldMap.put(field.getName(), field);
 	}
 	
 	public List<Field> getFields() {
@@ -68,5 +76,12 @@ public class Table implements Serializable {
 	
 	public String toString(){
 		return "[table = "+name+"]";
+	}
+
+	public int getFieldIndex(String fieldName) {
+		if(fieldName == null || fieldName.isEmpty())
+			throw new IllegalArgumentException("Invalid Field Name: " + fieldName);
+		Field field = fieldMap.get(fieldName);
+		return fields.indexOf(field);
 	}
 }
