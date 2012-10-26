@@ -184,18 +184,18 @@ public class FormActivityGenerator extends LevelActivityGenerator {
 	private String getControlText(View view, FormDataItem dataItem) {
 		String ret = "";
 		switch (dataItem.getType()) {
-		case INPUT_TEXT:break;
-		case INPUT_NUMBER:break;
-		case INPUT_EMAIL:break;
-		case INPUT_PHONE:break;
+		case INPUT_TEXT:
+		case INPUT_NUMBER:
+		case INPUT_EMAIL:
+		case INPUT_PHONE:
 		case INPUT_PASSWORD:
-			//ret  = ((EditText)view).getText().toString();
+			ret  = ((EditText)view).getText().toString();
 			break;
 		case INPUT_CHECK:
-			//ret  = ((CheckBox)view).isChecked() ? "true":"false";
+			ret  = ((CheckBox)view).isChecked() ? "true":"false";
 			break;
 		case INPUT_PICKER:
-			//ret = ((Spinner)view).getSelectedItem().toString();
+			ret = ((Spinner)view).getSelectedItem().toString();
 			break; 
 		default:
 			break;
