@@ -56,7 +56,7 @@ public class ImagesUtils {
 	
 	private static final String DENSITY_LOW_IMAGE_PATH = "ldpi";
 	private static final String DENSITY_MEDIUM_IMAGE_PATH = "mdpi";
-	private static final String DENSITY_HIGH_IMAGE_PATH = "hpdi";
+	private static final String DENSITY_HIGH_IMAGE_PATH = "hdpi";
 	private static final String DENSITY_XHIGH_IMAGE_PATH = "xhdpi";
 	
 	
