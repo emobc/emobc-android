@@ -55,4 +55,16 @@ public class Entity implements Serializable {
 			throw new IllegalArgumentException(String.format("Field %s not found in Table %s", fieldName, table.getName()));
 		return data[index];
 	}
+
+	public Table getTable() {
+		return table;
+	}
+
+	public Object[] getData() {
+		return data;
+	}
+
+	public String getId() {
+		return String.valueOf(getFieldValue(Table.DEFAULT_ID_FILE_NAME));
+	}
  }

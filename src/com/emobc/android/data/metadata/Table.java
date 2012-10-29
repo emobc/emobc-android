@@ -40,7 +40,8 @@ public class Table implements Serializable {
 	 */
 	private static final long serialVersionUID = -3962721272514772791L;
 	
-	private static final String DEFAULT_ID_FILE_NAME = "id";
+	public static final String DEFAULT_ID_FILE_NAME = "id";
+	public static final String DEFAULT_WHERE = DEFAULT_ID_FILE_NAME + " = ?";
 	private static final FieldType DEFAULT_ID_FILE_TYPE = FieldType.NUMBER;
 
 	public static final int INVALID_INDEX_VALUE = -1;
@@ -83,5 +84,16 @@ public class Table implements Serializable {
 			throw new IllegalArgumentException("Invalid Field Name: " + fieldName);
 		Field field = fieldMap.get(fieldName);
 		return fields.indexOf(field);
+	}
+
+	public String[] getColumns() {
+		List<String> columns = new ArrayList<String>(fields.size());
+		for(Field field : fields)
+			columns.add(field.getName());
+ 		return columns.toArray(new String[1]);
+	}
+	
+	public Field getId(){
+		return fieldMap.get(DEFAULT_ID_FILE_NAME);
 	}
 }
