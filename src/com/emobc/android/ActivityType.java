@@ -64,6 +64,8 @@ package com.emobc.android;
  *  </li>
  * 	<li><strong>PROFILE_ACTIVITY</strong>: 
  *  this activity is similar to <tt>FORM_ACTIVITY</tt>, but its purpose is to retrieve user profile data. 
+ *  </li>
+ *  <li><strong>CRUD_ACTIVITY</strong>: Define and manage CRUD operations.
  *  </li> 
  * </ul>
  * @author Jorge E. Villaverde
@@ -89,48 +91,6 @@ public enum ActivityType {
 	QUIZ_ACTIVITY,
 	AUDIO_ACTIVITY,
 	CANVAS_ACTIVITY,
-	PROFILE_ACTIVITY;
-
-	public static ActivityType formString(String text) {
-		if("COVER_ACTIVITY".equalsIgnoreCase(text)){
-			return COVER_ACTIVITY;
-		}else if("BUTTONS_ACTIVITY".equalsIgnoreCase(text)){
-			return BUTTONS_ACTIVITY;
-		}else if("IMAGE_TEXT_DESCRIPTION_ACTIVITY".equalsIgnoreCase(text)){
-			return IMAGE_TEXT_DESCRIPTION_ACTIVITY;
-		}else if("IMAGE_LIST_ACTIVITY".equalsIgnoreCase(text)){
-			return IMAGE_LIST_ACTIVITY;
-		}else if("LIST_ACTIVITY".equalsIgnoreCase(text)){
-			return LIST_ACTIVITY;
-		}else if("VIDEO_ACTIVITY".equalsIgnoreCase(text)){
-			return VIDEO_ACTIVITY;
-		}else if("IMAGE_ZOOM_ACTIVITY".equalsIgnoreCase(text)){
-			return IMAGE_ZOOM_ACTIVITY;
-		}else if("IMAGE_GALLERY_ACTIVITY".equalsIgnoreCase(text)){
-			return IMAGE_GALLERY_ACTIVITY;
-		}else if("WEB_ACTIVITY".equalsIgnoreCase(text)){
-			return WEB_ACTIVITY;
-		}else if("QR_ACTIVITY".equalsIgnoreCase(text)){
-			return QR_ACTIVITY;
-		}else if("FORM_ACTIVITY".equalsIgnoreCase(text)){
-			return FORM_ACTIVITY;
-		}else if("MAP_ACTIVITY".equalsIgnoreCase(text)){
-			return MAP_ACTIVITY;
-		}else if("PDF_ACTIVITY".equalsIgnoreCase(text)){
-			return PDF_ACTIVITY;
-		}else if("SOUND_ACTIVITY".equalsIgnoreCase(text)){
-			return SOUND_ACTIVITY;
-		}else if("CALENDAR_ACTIVITY".equalsIgnoreCase(text)){
-			return CALENDAR_ACTIVITY;
-		}else if("QUIZ_ACTIVITY".equalsIgnoreCase(text)){
-			return QUIZ_ACTIVITY;
-		}else if("AUDIO_ACTIVITY".equalsIgnoreCase(text)){
-			return AUDIO_ACTIVITY;
-		}else if("CANVAS_ACTIVITY".equalsIgnoreCase(text)){
-			return CANVAS_ACTIVITY;
-		}else if("PROFILE_ACTIVITY".equalsIgnoreCase(text)){
-			return PROFILE_ACTIVITY;
-		}		
-		return null;
-	}
+	PROFILE_ACTIVITY,
+	CRUD_ACTIVITY;
 }
