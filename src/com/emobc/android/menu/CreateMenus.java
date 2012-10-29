@@ -356,7 +356,11 @@ public class CreateMenus extends Activity implements AnimationListener, OnGestur
 					}
 					
 					//Ancho y alto del boton
-					RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(/*action.getWidthButton()*/LayoutParams.WRAP_CONTENT, /*action.getHeightButton()*/LayoutParams.WRAP_CONTENT);
+					RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+							action.getWidthButton(),
+							action.getHeightButton());
+//							/*action.getWidthButton()*/LayoutParams.WRAP_CONTENT, 
+//							/*action.getHeightButton()*/LayoutParams.WRAP_CONTENT);
 					OnClickListener cl;
 					if(action.getSystemAction().equals("sideMenu")){
 						lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
@@ -380,7 +384,7 @@ public class CreateMenus extends Activity implements AnimationListener, OnGestur
 							realMargin= action.getWidthButton()*i + action.getLeftMargin()*(i+1);
 						}
 						
-						lp.setMargins(0, 10, realMargin, 10);
+						lp.setMargins(0, 0, realMargin, 10);
 					
 						cl= new View.OnClickListener() {
 					        public void onClick(View view) {
