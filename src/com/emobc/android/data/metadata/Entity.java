@@ -55,6 +55,13 @@ public class Entity implements Serializable {
 			throw new IllegalArgumentException(String.format("Field %s not found in Table %s", fieldName, table.getName()));
 		return data[index];
 	}
+	
+	public void setFieldValue(String fieldName, Object value){
+		int index = table.getFieldIndex(fieldName);
+		if(index == Table.INVALID_INDEX_VALUE)
+			throw new IllegalArgumentException(String.format("Field %s not found in Table %s", fieldName, table.getName()));
+		data[index] = value;		
+	}
 
 	public Table getTable() {
 		return table;

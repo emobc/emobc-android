@@ -109,10 +109,10 @@ public class DataEngine extends SQLiteOpenHelper {
 			return null;
 		
 		List<Entity> entities = new ArrayList<Entity>();
-		if(cursor.moveToFirst()) {
+		if (cursor.moveToFirst()) {
 			List<Field> fields = table.getFields();
 			
-			while(cursor.isAfterLast()) {
+			do {
 				List<Object> data = new ArrayList<Object>(fields.size());
 				for(int i=0;i < fields.size(); i++){
 					Field field = fields.get(i);
@@ -132,8 +132,9 @@ public class DataEngine extends SQLiteOpenHelper {
 				}
 				Entity entity = new Entity(table, data.toArray());
 				entities.add(entity);
-			}
+			}while(cursor.moveToNext());
 		}
+		cursor.close();
 		return entities;
 	}
 	
@@ -148,7 +149,9 @@ public class DataEngine extends SQLiteOpenHelper {
 		List<Field> fields = table.getFields();
 		for(int i = 0; i < fields.size(); i++){
 			Field field = fields.get(i);
-			values.put(field.getName(), data[i].toString());			
+			if(!Table.DEFAULT_ID_FILE_NAME.equals(field.getName())){
+				values.put(field.getName(), data[i].toString());
+			}
 		}
 		Long id = getWritableDatabase().insert(table.getName(), null, values);
 		return (id != -1);
@@ -178,14 +181,17 @@ public class DataEngine extends SQLiteOpenHelper {
 		return (ret != -1);
 	}
 	
-	public void deleteEntity(Entity entity){
+	public boolean deleteEntity(Entity entity){
 		checkEntity(entity);
 		Table table = entity.getTable();
 		String id = entity.getId();
-		getWritableDatabase().delete(
+		
+		int rowsAffected = getWritableDatabase().delete(
 				table.getName(),
 				Table.DEFAULT_WHERE,
 				new String[]{id});
+		
+		return (rowsAffected > 0);
 	}
 
 	private void checkEntity(Entity entity) {
