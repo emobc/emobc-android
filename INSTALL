@@ -1,0 +1,11 @@
+Follow the next steps:
+
+1. Configure project.properties and default.properties with the SKD version (ej. 16 = Android 4.0)
+2. Import the project in Eclipse
+3. Install Google APIs
+4. Configure the project with Google APIs
+5. Make a clean and refresh in the project
+6. Run the project in Simulator
+
+For Google ADs you need installed the latest Android SDK.
+
