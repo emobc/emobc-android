@@ -101,7 +101,7 @@ public class ApplicationData {
 	 */
 	private static final int MAX_CACHE_SIZE = 6 * 1024 * 1024;
 	
-	public LruCache<String, Drawable> cache = null;
+	private LruCache<String, Drawable> cache = null;
 
 	private Profile profile;
 	

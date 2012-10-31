@@ -62,7 +62,7 @@ public class SplashActivity extends Activity {
 			@Override
 			public void run() {
 				Intent mainIntent = null;
-				if(Profile.isFilled(SplashActivity.this)){
+				if(instance.getProfile() == null || Profile.isFilled(SplashActivity.this)){
 					mainIntent = new Intent(SplashActivity.this, CoverActivity.class);
 					SplashActivity.this.startActivity(mainIntent);
 					SplashActivity.this.finish();
