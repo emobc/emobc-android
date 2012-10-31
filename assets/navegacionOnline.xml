@@ -11,7 +11,7 @@
 				<text>Listado</text>
 				<nextLevel>
 					<nextLevelLevelId>ListadoOnline</nextLevelLevelId>
-					<nextLevelDataId>novedades</nextLevelDataId>
+					<nextLevelDataId>Listado</nextLevelDataId>
 				</nextLevel>
 				<imageFile>images/icons/boton_listado_1.png</imageFile>
 			</listItem>

@@ -10,8 +10,8 @@
 				<description>Formulario solicita un proyecto</description>
 				<text>Solicita un proyecto</text>
 				<nextLevel>
-					<nextLevelLevelId>Formulario 1</nextLevelLevelId>
-					<nextLevelDataId>Formulario 1</nextLevelDataId>
+					<nextLevelLevelId>Formulario1</nextLevelLevelId>
+					<nextLevelDataId>Formulario1</nextLevelDataId>
 				</nextLevel>
 				<imageFile>images/icons/button_default.png</imageFile>
 			</listItem>
@@ -19,8 +19,8 @@
 				<description>Formulario alta bolsa de trabajo</description>
 				<text>Alta bolsa de trabajo</text>
 				<nextLevel>
-					<nextLevelLevelId>Formulario 2</nextLevelLevelId>
-					<nextLevelDataId>Formulario 2</nextLevelDataId>
+					<nextLevelLevelId>Formulario2</nextLevelLevelId>
+					<nextLevelDataId>Formulario2</nextLevelDataId>
 				</nextLevel>
 				<imageFile>images/icons/button_default.png</imageFile>
 			</listItem>
@@ -28,8 +28,8 @@
 				<description>Formulario contacto</description>
 				<text>Contacto</text>
 				<nextLevel>
-					<nextLevelLevelId>Formulario 2</nextLevelLevelId>
-					<nextLevelDataId>Formulario 2</nextLevelDataId>
+					<nextLevelLevelId>Formulario3</nextLevelLevelId>
+					<nextLevelDataId>Formulario3</nextLevelDataId>
 				</nextLevel>
 				<imageFile>images/icons/button_default.png</imageFile>
 			</listItem>

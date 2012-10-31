@@ -34,7 +34,7 @@
 			<heightButton>38</heightButton>
 			<nextLevel>
 				<nextLevelLevelId>PDF</nextLevelLevelId>
-				<nextLevelDataId></nextLevelDataId>
+				<nextLevelDataId>PDF</nextLevelDataId>
 			</nextLevel>
 		</action>
 		<action>

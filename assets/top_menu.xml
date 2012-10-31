@@ -3,7 +3,7 @@
 	<menuActions>
 		<action>
 			<actionTitle>Boton1</actionTitle>
-			<actionImageName>images/menu/backButton.png</actionImageName>
+			<actionImageName>images/menu/back.png</actionImageName>
 			<systemAction>back</systemAction>
 			<leftMargin>5</leftMargin>
 			<widthButton>50</widthButton>

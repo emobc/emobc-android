@@ -3,7 +3,7 @@
 	<data>
 		<dataId>AUDIO Url</dataId>
 		<headerText>Audio</headerText>
-		<local></local>
+		<local>false</local>
 		<audioUrl>http://www.robtowns.com/music/blind_willie.mp3</audioUrl>
 	</data>
 </levelData>

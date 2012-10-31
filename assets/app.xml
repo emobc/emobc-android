@@ -4,6 +4,7 @@
 	<coverFileName>portada.xml</coverFileName>
 	<stylesFileName>style.xml</stylesFileName>
 	<formatsFileName>format.xml</formatsFileName>
+	<profileFileName>profile.xml</profileFileName>
 	<entryPoint>
 		<pointLevelId></pointLevelId>
 		<pointDataId></pointDataId>
@@ -13,12 +14,12 @@
 		<bottomMenu>bottom_menu.xml</bottomMenu>
 		<backgroundMenu>images/menu/backgroundMenu.png</backgroundMenu>
 	</menu>
-	<banner>
+	<!--<banner>
 		<type>admob</type>
 		<position>top</position>
 		<id>a14b5f8130c17ef</id>
 	</banner>
-	<!--<banner>
+	<banner>
 		<type>yoc</type>
 		<position>top</position>
 		<id>32088</id>
@@ -36,7 +37,6 @@
 		<level>
 			<levelId>ListadoOnline</levelId>
 			<levelTitle>Listado Online</levelTitle>
-			<!--<levelFile>https://s3-eu-west-1.amazonaws.com/3minmotor/novedades/novedades.xml</levelFile>-->
 			<levelFile>http://www.emobc.com/demo/xml/listado_lista.xml</levelFile>
 			<levelType>LIST_ACTIVITY</levelType>
 			<levelXib/>
@@ -89,6 +89,14 @@
 			<levelType>IMAGE_GALLERY_ACTIVITY</levelType>
 			<levelXib/>
 			<levelTransition>None</levelTransition>
+		</level>
+		<level>
+			<levelId>Galería Foto CurlDown</levelId>
+			<levelTitle>Galería Foto</levelTitle>
+			<levelFile>galeria_foto.xml</levelFile>
+			<levelType>IMAGE_GALLERY_ACTIVITY</levelType>
+			<levelXib/>
+			<levelTransition>CurlDown</levelTransition>
 		</level>
 		<level>
 			<levelId>Galeria video</levelId>
@@ -163,9 +171,9 @@
 			<levelTransition>None</levelTransition>
 		</level>
 		<level>
-			<levelId>Diseño menú 3</levelId>
-			<levelTitle>Diseño menú 3</levelTitle>
-			<levelFile>menu_3_text.xml</levelFile>
+			<levelId>emobc</levelId>
+			<levelTitle>emobc</levelTitle>
+			<levelFile>emobc.xml</levelFile>
 			<levelType>IMAGE_TEXT_DESCRIPTION_ACTIVITY</levelType>
 			<levelXib/>
 			<levelTransition>None</levelTransition>
@@ -190,6 +198,22 @@
 			<levelId>Texto Online</levelId>
 			<levelTitle>Texto</levelTitle>
 			<levelFile>http://www.emobc.com/demo/xml/texto_contenido.xml</levelFile>
+			<levelType>IMAGE_TEXT_DESCRIPTION_ACTIVITY</levelType>
+			<levelXib/>
+			<levelTransition>None</levelTransition>
+		</level>
+		<level>
+			<levelId>Texto CurlUp</levelId>
+			<levelTitle>Texto</levelTitle>
+			<levelFile>texto_contenido.xml</levelFile>
+			<levelType>IMAGE_TEXT_DESCRIPTION_ACTIVITY</levelType>
+			<levelXib/>
+			<levelTransition>CurlUp</levelTransition>
+		</level>
+		<level>
+			<levelId>Publicidad</levelId>
+			<levelTitle>Publicidad</levelTitle>
+			<levelFile>publicidad.xml</levelFile>
 			<levelType>IMAGE_TEXT_DESCRIPTION_ACTIVITY</levelType>
 			<levelXib/>
 			<levelTransition>None</levelTransition>
@@ -259,6 +283,14 @@
 			<levelTransition>None</levelTransition>
 		</level>
 		<level>
+			<levelId>PDF FlipLeft</levelId>
+			<levelTitle>PDF</levelTitle>
+			<levelFile>pdf_contenido.xml</levelFile>
+			<levelType>PDF_ACTIVITY</levelType>
+			<levelXib/>
+			<levelTransition>FlipLeft</levelTransition>
+		</level>
+		<level>
 			<levelId>Mapa</levelId>
 			<levelTitle>Mapa</levelTitle>
 			<levelFile>Mapa.xml</levelFile>
@@ -283,7 +315,7 @@
 			<levelTransition>None</levelTransition>
 		</level>
 		<level>
-			<levelId>Formulario 1</levelId>
+			<levelId>Formulario1</levelId>
 			<levelTitle>Formulario 1</levelTitle>
 			<levelFile>form_1.xml</levelFile>
 			<levelType>FORM_ACTIVITY</levelType>
@@ -291,9 +323,17 @@
 			<levelTransition>None</levelTransition>
 		</level>
 		<level>
-			<levelId>Formulario 2</levelId>
+			<levelId>Formulario2</levelId>
 			<levelTitle>Formulario 2</levelTitle>
 			<levelFile>form_2.xml</levelFile>
+			<levelType>FORM_ACTIVITY</levelType>
+			<levelXib/>
+			<levelTransition>None</levelTransition>
+		</level>
+		<level>
+			<levelId>Formulario3</levelId>
+			<levelTitle>Formulario 3</levelTitle>
+			<levelFile>form_3.xml</levelFile>
 			<levelType>FORM_ACTIVITY</levelType>
 			<levelXib/>
 			<levelTransition>None</levelTransition>
@@ -315,10 +355,34 @@
 			<levelTransition>None</levelTransition>
 		</level>
 		<level>
+			<levelId>Contenedor Web Html</levelId>
+			<levelTitle>Contenedor Web</levelTitle>
+			<levelFile>web_Html.xml</levelFile>
+			<levelType>WEB_ACTIVITY</levelType>
+			<levelXib/>
+			<levelTransition>None</levelTransition>
+		</level>
+		<level>
 			<levelId>Contenedor Web</levelId>
 			<levelTitle>Contenedor Web</levelTitle>
 			<levelFile>web.xml</levelFile>
 			<levelType>WEB_ACTIVITY</levelType>
+			<levelXib/>
+			<levelTransition>None</levelTransition>
+		</level>
+		<level>
+			<levelId>Contenedor Web FlipRight</levelId>
+			<levelTitle>Contenedor Web</levelTitle>
+			<levelFile>web.xml</levelFile>
+			<levelType>WEB_ACTIVITY</levelType>
+			<levelXib/>
+			<levelTransition>FlipRight</levelTransition>
+		</level>
+		<level>
+			<levelId>Transiciones</levelId>
+			<levelTitle>Transiciones</levelTitle>
+			<levelFile>transiciones.xml</levelFile>
+			<levelType>LIST_ACTIVITY</levelType>
 			<levelXib/>
 			<levelTransition>None</levelTransition>
 		</level>

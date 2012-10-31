@@ -3,8 +3,8 @@
 	<data>
 		<dataId>AUDIO</dataId>
 		<headerText>Audio</headerText>
-		<local></local>
-		<audioUrl></audioUrl>
+		<local>true</local>
+		<audioUrl>eMobc</audioUrl>
 	</data>
 </levelData>
 

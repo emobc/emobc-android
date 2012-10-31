@@ -3,6 +3,6 @@
 	<data>
 		<dataId>Foto</dataId>
 		<headerText>Foto tamaño real</headerText>
-		<imageFile>images/cover/imageCover-iPad@2x.png</imageFile>
+		<imageFile>images/cover/imageCover.png</imageFile>
 	</data>
 </levelData>
