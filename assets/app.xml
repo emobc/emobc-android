@@ -24,7 +24,7 @@
 		<position>top</position>
 		<id>32088</id>
 	</banner>-->
-	<rotation></rotation>
+	<rotation>both</rotation>
 	<levels>
 		<level>
 			<levelId>Listado</levelId>
