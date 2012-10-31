@@ -64,8 +64,6 @@ public class SplashActivity extends Activity {
 				Intent mainIntent = null;
 				if(Profile.isFilled(SplashActivity.this)){
 					mainIntent = new Intent(SplashActivity.this, CoverActivity.class);
-//					mainIntent = new Intent(SplashActivity.this, CrudReadActivity.class);
-//					mainIntent.putExtra("table", "table-test.xml");
 					SplashActivity.this.startActivity(mainIntent);
 					SplashActivity.this.finish();
 				}else{
