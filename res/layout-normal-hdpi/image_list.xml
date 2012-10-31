@@ -19,7 +19,7 @@
 	    <ListView
 	        android:id="@+id/sideMenuList"
 	        android:layout_width="match_parent"
-	        android:layout_height="394dp"
+	        android:layout_height="0dp"
 	        android:layout_weight="1.21"
 	        android:background="#FFFFFF"
 	        android:cacheColorHint="#999999"
@@ -81,7 +81,7 @@
 	            android:paddingLeft="20dip"
 	            android:paddingTop="10dip"
 	            android:scaleType="fitXY"
-	            android:text="normal-hdpi">
+	            android:text="normal">
 	        </TextView>
 	
 	        <ImageView
@@ -89,7 +89,6 @@
 	            android:layout_width="fill_parent"
 	            android:layout_height="130dip"
 	            android:layout_below="@+id/header"
-	            
 	            android:paddingTop="5dip"
 	            android:scaleType="fitXY"
 	            android:src="@null" />
@@ -100,7 +99,6 @@
 	            android:layout_height="270dip"
 	            android:layout_alignParentBottom="true"
 	            android:layout_below="@+id/descr_image"
-	            android:layout_weight="1"
 	            android:orientation="vertical" >
 	
 	            <ListView

@@ -163,34 +163,6 @@ public class ListActivityGenerator extends LevelActivityGenerator {
             }
             
             return vi;
-    		/*LinearLayout view = (convertView != null) ? (LinearLayout) convertView : createView(parent);
-    		final ListItemDataItem item = items.get(position);
-            
-    		View.OnClickListener listener = new View.OnClickListener() {
-		        public void onClick(View view) {
-		        	showNextLevel(activity, item.getNextLevel());		        	
-		        }
-            };
-    		
-            Button button = (Button)view.findViewById(R.id.selection_list);
-            button.setText(item.getText());
-            button.setOnClickListener(listener);
-            SplashActivity.getApplicationData().initializeListFormat( activity, "LIST_ACTIVITY", button);
-            
-			Drawable drawable;
-			try {
-				drawable = ImagesUtils.getDrawable(activity, item.getImageFile());
-				if(drawable != null){
-					ImageView listItemImage = (ImageView)view.findViewById(R.id.list_img);
-					if(listItemImage != null)
-						listItemImage.setImageDrawable(drawable);
-				}
-			} catch (InvalidFileException e) {
-				Log.e("AppCoverData", e.getLocalizedMessage());
-		    	Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
-			}          
-            
-	    	return view;*/
     	 }
 
     	@SuppressWarnings("unused")

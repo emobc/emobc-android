@@ -70,4 +70,8 @@
     <string name="title_activity_canvas">CanvasActivity</string>
 	<string name="facebook">Facebook</string>
     <string name="twitter">Twitter</string>
+    <string name="crud">ABM</string>
+    <string name="crud_create">Crear</string>
+    <string name="crud_open">Abrir</string>
+    <string name="crud_delete">Eliminar</string>
 </resources>

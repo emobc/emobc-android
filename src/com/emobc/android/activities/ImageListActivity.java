@@ -1,18 +1,25 @@
-/*
- * Copyright © 2011-2012 Neurowork S.L.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+/**
+* Copyright 2012 Neurowork Consulting S.L.
+*
+* This file is part of eMobc.
+*
+* ImageListActivity.java
+* eMobc Android Framework
+*
+* eMobc is free software: you can redistribute it and/or modify
+* it under the terms of the Affero GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* eMobc is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the Affero GNU General Public License
+* along with eMobc. If not, see <http://www.gnu.org/licenses/>.
+*
+*/
 package com.emobc.android.activities;
 
 import com.emobc.android.ApplicationData;
@@ -24,12 +31,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 /** 
-* Class that defines an activity of type IMAGE_LIST_ACTIVITY, and 
-* initialize all screen menu and the screen rotations. In its 
-* method onCreate(), call its ImageListActivityGenerator generator class. 
-* @author Jonatan Alcocer Luna
-* @author Jorge E. Villaverde
-*/
+ * Class that defines an activity of type IMAGE_LIST_ACTIVITY, and 
+ * initialize all screen menu and the screen rotations. In its 
+ * method onCreate(), call its ImageListActivityGenerator generator class. 
+ * @author Jonatan Alcocer Luna
+ * @author Jorge E. Villaverde
+ * @since 0.1
+ * @version 0.1
+ */
 public class ImageListActivity extends CreateMenus {
 	/** 
 	 * Called when the activity is first created. 

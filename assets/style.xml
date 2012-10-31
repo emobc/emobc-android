@@ -11,7 +11,7 @@
     </type>
     
     <type>
-      <typeId>COVER</typeId>
+      <typeId>COVER_ACTIVITY</typeId>
       <backgroundFileName>/images/cover/backgroundCover.png</backgroundFileName>
       
 	  <!-- Generic widgets: header, footer, basic_text, selection_list -->
