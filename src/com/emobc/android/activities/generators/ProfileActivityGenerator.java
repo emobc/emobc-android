@@ -101,6 +101,9 @@ public class ProfileActivityGenerator extends AbstractActivtyGenerator {
 	private void insertField(Activity activity, FormDataItem dataItem, LinearLayout formLayout) {
 		View control = null;
 		
+		if(dataItem.getType() == null)
+			return;
+		
 		switch (dataItem.getType()) {
 		case INPUT_TEXT:
 			control = insertTextField(activity, dataItem);

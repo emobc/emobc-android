@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level>
 	<title/>
-	<backgroundFileName>images/cover/backgroundCover.png</backgroundFileName>
+	<backgroundFileName>images/cover/background.png</backgroundFileName>
 	<titleFileName>images/cover/imageCover.png</titleFileName>
 	<facebook>http://es-es.facebook.com/emobcapp</facebook>
 	<twitter>http://twitter.com/emobcapp</twitter>

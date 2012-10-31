@@ -52,8 +52,7 @@ import com.google.android.gcm.GCMRegistrar;
  * @since 0.1
  */
 public class CoverActivity extends CreateMenus {
-	protected static final Context Activity = null;
-    AsyncTask<Void, Void, Void> mRegisterTask;
+    private AsyncTask<Void, Void, Void> mRegisterTask;
 		
 	/** Called when the activity is first created. */
     @Override
@@ -175,7 +174,7 @@ public class CoverActivity extends CreateMenus {
 	    	moveTaskToBack(true);
 	        return true;
 	    }
-	return super.onKeyDown(keyCode, event);
+	    return super.onKeyDown(keyCode, event);
 	}
 	
 }

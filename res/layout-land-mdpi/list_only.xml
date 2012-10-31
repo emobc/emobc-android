@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sideMenuLayout"
@@ -26,18 +28,20 @@
 
 </LinearLayout>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/backgroundLayout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
-
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/backgroundLayout"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
     <LinearLayout
         android:id="@+id/bannerTopLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
     </LinearLayout>
     
     <RelativeLayout
@@ -61,8 +65,7 @@
         android:orientation="vertical"
         android:layout_alignParentBottom="true">
     </LinearLayout>
-
-    
+ 
     <RelativeLayout
         android:id="@+id/contentLayout"
         android:layout_width="wrap_content"
@@ -76,11 +79,8 @@
             android:layout_height="45dip"
             android:gravity="center_vertical|center_horizontal"
             android:scaleType="fitXY"
-            android:text="normal-hdpi"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:typeface="sans" />
+            android:text="normal-mdpi">
+        </TextView>
 
         <ListView
             android:id="@+id/list"
@@ -91,21 +91,18 @@
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginLeft="15dip"
             android:layout_marginRight="14dip"
-            android:layout_weight="1"
-            android:cacheColorHint="#FFFFFFFF"
-            android:divider="@null"
-            android:dividerHeight="5dip"
-            android:textColor="#FFFFFFFF" >
+            android:divider="@android:drawable/divider_horizontal_bright">
 
         </ListView>
 
         <LinearLayout
-            android:id="@+id/descr_mas"
-            android:layout_width="fill_parent"
-            android:layout_height="34dip"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true" >
-        </LinearLayout>
+		    android:id="@+id/descr_mas"
+		    android:layout_width="fill_parent"
+		    android:layout_height="34dip"
+		    android:layout_alignParentBottom="true"
+		    android:layout_alignParentLeft="true" >
+		</LinearLayout>
+        
     </RelativeLayout>
 
 </RelativeLayout>
