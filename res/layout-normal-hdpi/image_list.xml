@@ -81,7 +81,7 @@
 	            android:paddingLeft="20dip"
 	            android:paddingTop="10dip"
 	            android:scaleType="fitXY"
-	            android:text="normal">
+	            android:text="normal-hdpi">
 	        </TextView>
 	
 	        <ImageView
@@ -89,6 +89,7 @@
 	            android:layout_width="fill_parent"
 	            android:layout_height="130dip"
 	            android:layout_below="@+id/header"
+	            android:contentDescription="@string/hint"
 	            android:paddingTop="5dip"
 	            android:scaleType="fitXY"
 	            android:src="@null" />
