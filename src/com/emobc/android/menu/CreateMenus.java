@@ -398,8 +398,6 @@ public class CreateMenus extends Activity implements AnimationListener, OnGestur
 					//Añade la nueva opcion al menu
 					layout.addView(btnAction);
 					btnAction.setOnClickListener(cl);
-					
-					i++;
 				}//End if
 			}//End While
 		} catch (InvalidFileException e) {

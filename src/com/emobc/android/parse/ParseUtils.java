@@ -828,7 +828,10 @@ public class ParseUtils {
 							currItem = new LevelTypeStyle();
 							currList.add(currItem);
 						}else if(currentField.equals(_TYPEID_TAG_)){
-							currItem.setLevelType(ActivityType.valueOf(text));
+							try {
+								currItem.setLevelType(ActivityType.valueOf(text));
+							} catch (IllegalArgumentException e) {
+							}
 						}else if(currentField.equals(_BACKGROUND_FILE_NAME_TAG_)){
 							currItem.setBackground(text);
 						}else if(currentField.equals(_COMPONENTS_TAG_)){
