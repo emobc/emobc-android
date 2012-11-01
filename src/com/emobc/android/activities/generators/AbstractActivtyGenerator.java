@@ -71,7 +71,9 @@ public abstract class AbstractActivtyGenerator implements ActivityGenerator {
 	public void initializeActivity(final Activity activity) {
 		activity.setContentView(getContentViewResourceId(activity));
 		
-		initializeGestures((CreateMenus)activity);
+		if (activity instanceof CreateMenus) {
+			initializeGestures((CreateMenus)activity);			
+		}
 		
 		intializeSubActivity(activity);
 	}
