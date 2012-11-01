@@ -52,6 +52,7 @@ import com.emobc.android.utils.InvalidFileException;
  * Screen generator, responsible for specific components to initialize the 
  * display type "IMAGE_GALLERY". It also creates the menus, rotations, and the format for 
  * the components.
+ * 
  * @author Jonatan Alcocer Luna
  * @author Jorge E. Villaverde
  * @version 0.1

@@ -37,6 +37,7 @@ import com.google.android.gcm.GCMRegistrar;
 
 /**
  * Helper class used to communicate with the demo server.
+ * 
  * @author Jonatan Alcocer Luna
  * @version 0.1
  * @since 0.1

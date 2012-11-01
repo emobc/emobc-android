@@ -32,7 +32,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 /** 
- * Class that defines an activity of type BUTTONS_ACTIVITY, and 
+ * Defines an activity of type BUTTONS_ACTIVITY, and 
  * initialize all screen menu and the screen rotations. In its 
  * method onCreate(), call its ButtonsActivityGenerator generator class.
  * @see ButtonsActivityGenerator

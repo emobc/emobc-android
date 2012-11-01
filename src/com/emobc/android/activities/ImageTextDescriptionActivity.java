@@ -24,9 +24,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 /** 
-* Class that defines an activity of type IMAGE_TEXT_DESCRIPTION_ACTIVITY, and 
+* Defines an activity of type IMAGE_TEXT_DESCRIPTION_ACTIVITY, and 
 * initialize all screen menu and the screen rotations. In its 
-* method onCreate(), call its ImageTextDescriptionActivityGenerator generator class. 
+* method onCreate(), call its ImageTextDescriptionActivityGenerator generator.
+* 
 * @author Jonatan Alcocer Luna
 * @author Jorge E. Villaverde
 */

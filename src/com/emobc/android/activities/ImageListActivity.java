@@ -31,7 +31,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 /** 
- * Class that defines an activity of type IMAGE_LIST_ACTIVITY, and 
+ * Defines an activity of type IMAGE_LIST_ACTIVITY, and 
  * initialize all screen menu and the screen rotations. In its 
  * method onCreate(), call its ImageListActivityGenerator generator class. 
  * @author Jonatan Alcocer Luna

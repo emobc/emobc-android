@@ -27,6 +27,7 @@ import android.app.Activity;
 /**
  * Interface AbstractActivityGenerator abstract class that 
  * implements the method initializeActivity ()
+ * 
  * @author Jorge E. Villaverde
  * @author Jonatan Alcocer Luna
  * @version 0.1

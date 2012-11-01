@@ -24,7 +24,7 @@ package com.emobc.android;
 
 /**
  * Class responsible for saving the data "entryPoint" in app.xml file
- * It consists of a <data> levelId </ data> and <data> Dataid </ data> unique.
+ * It consists of a <data> levelId </data> and <data> Dataid </data> unique.
  * @author Jonatan Alcocer Luna
  * @version 0.1
  * @sine 1.0

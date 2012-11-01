@@ -48,10 +48,10 @@ import com.google.android.maps.MapActivity;
 import com.google.tts.TextToSpeechBeta;
 import com.google.tts.TextToSpeechBeta.OnInitListener;
 
-
 /** 
- * Class that defines an activity of type MAP_ACTIVITY. In its 
- * method onCreate(), call its MapActivityGenerator generator class. 
+ * Defines an activity of type MAP_ACTIVITY. In its 
+ * method onCreate(), call its MapActivityGenerator generator.
+ *  
  * @author Jonatan Alcocer Luna
  * @author Jorge E. Villaverde
  * @see MapActivityGenerator

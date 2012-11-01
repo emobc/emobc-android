@@ -38,9 +38,10 @@ import com.emobc.android.ApplicationData;
 import com.emobc.android.SearchResult;
 
 /** 
-* Class that defines an activity of type GALLERY_ACTIVITY, and 
+* Defines an activity of type GALLERY_ACTIVITY, and 
 * initialize all screen menu and the screen rotations. In its 
-* method onCreate(), call its GalleryActivityGenerator generator class. 
+* method onCreate(), call its GalleryActivityGenerator generator.
+* 
 * @author Jonatan Alcocer Luna
 */
 public class GalleryActivity extends CoverButtonsActivity {

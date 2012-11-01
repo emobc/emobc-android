@@ -138,7 +138,7 @@ public class ApplicationData {
 	}
 	
 	/**
-	 * Carga los Nivels por Defecto utilizados
+	 * Load default levels
 	 */
 	private void loadDefaultLevels() {
 		if(levels == null)
@@ -220,7 +220,6 @@ public class ApplicationData {
 
 	/**
 	 * Returns an ActivityGenerator with data obtained after parsing cover file
-	 * Se devuelve un ActivityGenerator con los datos obtenidos al parsear el fichero "portada".xml
 	 * @param context
 	 * @return ActivityGenerator
 	 */

@@ -33,6 +33,7 @@ import android.util.Log;
 
 /**
  * Abstract Factory of Activities Generators
+ * 
  * @author Jorge E. Villaverde
  * @version 0.1
  * @since 0.1

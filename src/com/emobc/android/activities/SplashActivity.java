@@ -29,10 +29,9 @@ import com.emobc.android.profiling.ProfileNextLevel;
 import com.emobc.android.utils.InvalidFileException;
 
 /** 
- * Es la primera pantalla (de carga) que aparece. 
- * En su onCreate() se hace un contentView de splash_screen. 
- * Por ultimo, se genera un nuevo Intent basado en CoverActivity.class, es decir, 
- * la portada, y se inicia dicha actividad
+ * First screen in the main Application. 
+ * onCreate() loads the splash content view. 
+ * Loads the Cover Activity
  *
  * @author Jorge E. Villaverde
  * @version 0.1

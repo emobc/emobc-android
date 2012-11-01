@@ -52,6 +52,7 @@ import com.emobc.android.utils.ImagesUtils;
 /**
  * Abstract class that implements all the methods necessary for the proper 
  * start of the screens, focusing primarily on the current "level".
+ * 
  * @author Jonatan Alcocer Luna
  * @author Jorge E. Villaverde
  * @version 0.1

@@ -23,6 +23,8 @@ import android.widget.ImageView;
 import com.emobc.android.menu.CreateMenus;
 
 /**
+ * Defines additional buttons of COVER_ACTIVITY
+ * 
  * @author Jorge E. Villaverde
  *
  */

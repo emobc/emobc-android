@@ -34,7 +34,7 @@ import com.emobc.android.activities.generators.AudioActivityGenerator;
 import com.emobc.android.menu.CreateMenus;
 
 /**
- * Class that defines an activity of type <tt>AUDIO_ACTIVITY</tt>, and 
+ * Defines an activity of type <tt>AUDIO_ACTIVITY</tt>, and 
  * initialize all screen menu and the screen rotations.
  * @author Jorge E. Villaverde
  * @see AudioActivityGenerator

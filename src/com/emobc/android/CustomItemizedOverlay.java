@@ -95,7 +95,7 @@ public class CustomItemizedOverlay extends ItemizedOverlay<OverlayItem> {
    
    /**
 	 * Start a new activity in the levelId leaning and dataId of NextLevel. 
-	 * Also initializes parameters NextLevel and entrypoint 
+	 * Also initializes parameters NextLevel and EntryPoint 
 	 * @param context
 	 * @param nextLevel
 	 */

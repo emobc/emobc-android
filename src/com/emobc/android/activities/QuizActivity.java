@@ -38,6 +38,10 @@ import com.emobc.android.menu.CreateMenus;
 import com.emobc.android.utils.InvalidFileException;
 
 /**
+ * Defines an activity of type QUIZ_ACTIVITY, and 
+ * initialize all screen menu and the screen rotations. In its 
+ * method onCreate(), call its QrActivityGenerator generator.
+ * 
  * @author Jorge E. Villaverde
  * @since 0.1
  */

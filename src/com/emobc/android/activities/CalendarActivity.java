@@ -39,7 +39,7 @@ import com.emobc.android.views.CalendarView;
 import com.emobc.android.views.Cell;
 
 /**
- * class that defines an activity of type CALENDAR_ACTIVITY, and 
+ * Defines an activity of type CALENDAR_ACTIVITY, and 
  * initialize all screen menu and the screen rotations. In its 
  * method onCreate(), call its CalendarActivityGenerator generator class. 
  * @author Manuel Mora Cuesta

@@ -22,14 +22,21 @@
 */
 package com.emobc.android.activities;
 
+import com.emobc.android.activities.generators.CalendarActivityGenerator;
+
 import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * @author Jorge E. Villaverde
+ * Defines an activity of type CALENDAR_ACTIVITY, and 
+ * initialize all screen menu and the screen rotations. In its 
+ * method onCreate(), call its CalendarActivityGenerator generator class. 
+ * 
+ * @see CanvasActivityGenerator
  * @version 0.1
  * @since 0.1
  */
+
 public class CanvasActivity extends Activity {
 
     @Override

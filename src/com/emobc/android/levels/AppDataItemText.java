@@ -23,7 +23,7 @@
 package com.emobc.android.levels;
 
 /**
- * AppDataItem Interface. Contains the text associated to currem item.
+ * AppDataItem Interface. Contains the text associated to current item.
  * @author Jorge E. Villaverde
  * @version 0.1
  * @since 0.1

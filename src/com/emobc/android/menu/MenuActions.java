@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class that contains a list of actions (buttons) unique for 
+ * Contains a list of actions (buttons) unique for 
  * a particular menu.
  * @author Jonatan Alcocer Luna
  * @version 0.1

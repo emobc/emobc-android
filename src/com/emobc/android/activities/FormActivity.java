@@ -41,8 +41,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 /**
- * Class that defines an activity of type FORM_ACTIVITY. In its 
- * method onCreate(), call its MapActivityGenerator generator class. 
+ * Defines an activity of type FORM_ACTIVITY. In its 
+ * method onCreate(), call its MapActivityGenerator generator. 
+ * 
  * @author Jorge E. Villaverde
  * @see FormActivityGenerator
  * @version 0.1

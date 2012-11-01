@@ -55,6 +55,7 @@ import com.emobc.android.views.CalendarView.OnCellTouchListener;
  * Screen generator, responsible for specific components to initialize the 
  * display type "CALENDAR". It also creates the menus, rotations, and the format for 
  * the components.
+ * 
  * @author Manuel Mora Cuesta
  * @author Jonatan Alcocer Luna
  * @version 0.1

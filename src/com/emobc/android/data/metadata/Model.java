@@ -36,10 +36,6 @@ import java.util.WeakHashMap;
  * @version 0.1
  */
 public class Model implements Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5215024398259728798L;
 	private List<Table> tables = new ArrayList<Table>();
 	private Map<String, Table> tableMap = new WeakHashMap<String, Table>();

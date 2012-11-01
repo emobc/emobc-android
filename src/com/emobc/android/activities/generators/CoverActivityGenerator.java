@@ -45,6 +45,7 @@ import com.emobc.android.utils.Utils;
 /**
  * Screen generator, responsible for specific components to initialize the 
  * display type "COVER". 
+ * 
  * @author Jonatan Alcocer Luna
  * @author Jorge E. Villaverde
  * @version 0.1

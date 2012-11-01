@@ -20,6 +20,7 @@
  * along with eMobc. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
 /**
  * This package contains the classes that implement the Theme of Activities.
  * @author Jorge E. Villaverde

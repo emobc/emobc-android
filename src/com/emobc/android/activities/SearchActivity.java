@@ -48,8 +48,9 @@ import com.emobc.android.levels.AppLevel;
 import com.emobc.android.menu.CreateMenus;
 
 /** 
- * Class that defines an activity of type SEARCH_ACTIVITY, and 
- * initialize all screen menu and the screen rotations. 
+ * Defines an activity of type SEARCH_ACTIVITY, and 
+ * initialize all screen menu and the screen rotations.
+ *  
  * @author Jonatan Alcocer Luna
  * @author Jorge E. Villaverde
  * @version 0.1

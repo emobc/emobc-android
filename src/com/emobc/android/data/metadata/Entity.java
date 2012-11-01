@@ -30,9 +30,6 @@ import java.io.Serializable;
  * @version 0.1
  */
 public class Entity implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8994319763813195117L;
 	private final Table table;
 	private final Object[] data;

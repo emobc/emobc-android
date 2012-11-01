@@ -42,6 +42,10 @@ import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelData;
 
 /**
+ * Screen generator, responsible for specific components to initialize the 
+ * display type "CANVAS". It also creates the menus, rotations, and the format for 
+ * the components.
+ * 
  * @author Jorge E. Villaverde
  * @author Jonatan Alcocer Luna
  * @version 0.1

@@ -50,7 +50,8 @@ import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
 
 /**
- * This type of Activity reproduces an audio file from an URL.
+ * This type of Activity plays an audio file from a remote or local URL.
+ * 
  * @author Jorge E. Villaverde
  * @version 0.1
  * @since 0.1

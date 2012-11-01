@@ -35,8 +35,9 @@ import com.emobc.android.activities.generators.WebActivityGenerator;
 import com.emobc.android.menu.CreateMenus;
 
 /**
- * Class that defines an activity of type <tt>WEB_ACTIVITY</tt>, and 
+ * Defines an activity of type <tt>WEB_ACTIVITY</tt>, and 
  * initialize all screen menu and the screen rotations.
+ * 
  * @author Jorge E. Villaverde
  * @see AudioActivityGenerator
  * @version 0.1

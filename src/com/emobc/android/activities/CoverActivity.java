@@ -42,7 +42,7 @@ import com.emobc.android.utils.CommonUtilities;
 import com.google.android.gcm.GCMRegistrar;
 
 /** 
- * Class that defines an activity of type COVER_ACTIVITY, and 
+ * Defines an activity of type COVER_ACTIVITY, and 
  * initialize all screen menu and the screen rotations. In its 
  * method onCreate(), call its ImageListActivityGenerator generator class if 
  * is not entry point. If not, call method show Next Level, and start another new activity.

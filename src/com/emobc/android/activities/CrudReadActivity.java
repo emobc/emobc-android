@@ -51,6 +51,8 @@ import com.emobc.android.data.parse.TableParser;
 import com.emobc.android.parse.ParseUtils;
 
 /**
+ * Defines an activity of type CRUDREAD_ACTIVITY.
+ * 
  * @author Jorge E. Villaverde
  * @since 0.1
  * @version 0.1

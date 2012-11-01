@@ -23,6 +23,7 @@
 package com.emobc.android;
 
 /**
+ * Search result interface
  * @author Jorge E. Villaverde
  * @version 0.1
  * @since 0.1

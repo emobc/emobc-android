@@ -33,9 +33,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 /** 
- * Class that defines an activity of type VIDEO_ACTIVITY, and 
+ * Defines an activity of type VIDEO_ACTIVITY, and 
  * initialize all screen menu and the screen rotations. In its 
- * method onCreate(), call its VideoActivityGenerator generator class. 
+ * method onCreate(), call its VideoActivityGenerator generator class.
+ *  
  * @author Jonatan Alcocer Luna
  * @author Jorge E. Villaverde
  * @see VideoActivityGenerator

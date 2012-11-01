@@ -35,9 +35,6 @@ import java.util.WeakHashMap;
  * @version 0.1
  */
 public class Table implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3962721272514772791L;
 	
 	public static final String DEFAULT_ID_FILE_NAME = "id";

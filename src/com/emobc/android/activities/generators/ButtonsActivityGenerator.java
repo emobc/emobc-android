@@ -49,6 +49,7 @@ import com.emobc.android.utils.InvalidFileException;
  * display type "BUTTONS". It also creates the menus, rotations, and the format for 
  * the components.
  * </p>
+ * 
  * @author Jorge E. Villaverde
  * @author Jonatan Alcocer Luna
  * @version 0.1
