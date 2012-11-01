@@ -182,6 +182,9 @@ public class FormActivityGenerator extends LevelActivityGenerator {
 	 * @return String
 	 */
 	private String getControlText(View view, FormDataItem dataItem) {
+		if(dataItem.getType() == null)
+			return "";
+		
 		String ret = "";
 		switch (dataItem.getType()) {
 		case INPUT_TEXT:
@@ -211,6 +214,9 @@ public class FormActivityGenerator extends LevelActivityGenerator {
 	 */
 	private void insertField(Activity activity, FormDataItem dataItem, LinearLayout formLayout) {
 		View control = null;
+		
+		if(dataItem.getType() == null)
+			return;
 		
 		switch (dataItem.getType()) {
 		case INPUT_TEXT:

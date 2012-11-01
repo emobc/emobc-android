@@ -1068,7 +1068,11 @@ public class ParseUtils {
 					}
 					currList.add(currFormItem);
 				}else if(currentField.equals(_FIELD_TYPE_TAG_)){
-					currFormItem.setType(FormFieldType.fromText(text));
+					FormFieldType type = FormFieldType.fromText(text);
+					if(type != null)
+						currFormItem.setType(type);
+					else
+						Log.w("ParseUtils: parseForm", "Invalid Field Type: " + type);
 				}else if(currentField.equals(_FIELD_LABEL_TAG_)){
 					currFormItem.setFieldLabel(text);
 				}else if(currentField.equals(_FIELD_NAME_TAG_)){
