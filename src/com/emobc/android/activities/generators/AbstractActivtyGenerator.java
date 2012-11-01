@@ -28,12 +28,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.gesture.GestureLibraries;
-import android.gesture.GestureLibrary;
-import android.gesture.GestureOverlayView;
 import android.net.Uri;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +39,6 @@ import com.emobc.android.activities.R;
 import com.emobc.android.activities.SplashActivity;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelDataItem;
-import com.emobc.android.menu.CreateMenus;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.Utils;
@@ -70,26 +65,8 @@ public abstract class AbstractActivtyGenerator implements ActivityGenerator {
 	@Override
 	public void initializeActivity(final Activity activity) {
 		activity.setContentView(getContentViewResourceId(activity));
-		
-		if (activity instanceof CreateMenus) {
-			initializeGestures((CreateMenus)activity);			
-		}
-		
+				
 		intializeSubActivity(activity);
-	}
-
-	private void initializeGestures(CreateMenus activity) {
-        GestureOverlayView gestureOverlayView = new GestureOverlayView(activity);
-        
-        View inflate = activity.getLayoutInflater().inflate(getContentViewResourceId(activity), null);
-        
-        gestureOverlayView.addView(inflate);
-        gestureOverlayView.addOnGesturePerformedListener(activity);
-        GestureLibrary gestureLib = GestureLibraries.fromRawResource(activity, R.raw.gestures);
-        if (!gestureLib.load()) {
-        	activity.finish();
-        }
-        activity.setGestureLib(gestureLib);
 	}
 
 	/**
