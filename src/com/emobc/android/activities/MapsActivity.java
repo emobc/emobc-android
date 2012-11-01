@@ -143,7 +143,7 @@ public class MapsActivity extends MapActivity {
 
 				if (Utils.hasLength(item.getGeoReferencia())) {
 					String urlString = "http://maps.google.com/maps?q="
-							+ item.getGeoReferencia() + "&near=Madrid,Espaï¿½a";
+							+ item.getGeoReferencia() + "&near=Madrid,Espa–a";
 					Intent browserIntent = new Intent(
 							"android.intent.action.VIEW", Uri.parse(urlString));
 					startActivity(browserIntent);
@@ -165,7 +165,7 @@ public class MapsActivity extends MapActivity {
 			planoImage.setImageDrawable(drawable);
 
 			TextView head = (TextView) this.findViewById(R.id.header);
-			head.setText("Plano TurÃ­stico");
+			head.setText("Plano Tur’stico");
 		} catch (InvalidFileException e) {
 			Log.e("AppCoverData", e.getLocalizedMessage());
 		}

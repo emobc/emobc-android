@@ -102,7 +102,7 @@
                     android:id="@+id/mapview"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:apiKey="0vavCtthYEZBOvuguUcpfycukdbtXVO8Rhq6dgw"
+                    android:apiKey="0Se6_iYPNPlYadZh715KPaXjTFLlXwDBGhi8i4Q"
                     android:clickable="true"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip" >

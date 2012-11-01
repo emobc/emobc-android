@@ -80,7 +80,7 @@ public class MapActivityGenerator extends LevelActivityGenerator {
 		initializeHeader(activity, dataItem);
 		
 		/*
-		//NO FUNCIONA
+		//FIX: NO FUNCIONA
 		//Create Banner
 		CreateMenus c = (CreateMenus)activity;
 		c.createBanner();

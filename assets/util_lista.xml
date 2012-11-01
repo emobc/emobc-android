@@ -64,7 +64,7 @@
 				<description>Editar perfil</description>
 				<text>Perfil</text>
 				<nextLevel>
-					<nextLevelLevelId>eMobc</nextLevelLevelId>
+					<nextLevelLevelId>emobc</nextLevelLevelId>
 					<nextLevelDataId>profile</nextLevelDataId>
 				</nextLevel>
 				<imageFile>images/icons/button_default.png</imageFile>

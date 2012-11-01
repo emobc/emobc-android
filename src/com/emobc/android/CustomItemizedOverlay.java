@@ -74,7 +74,7 @@ public class CustomItemizedOverlay extends ItemizedOverlay<OverlayItem> {
       dialog.setTitle(item.getTitle());
       dialog.setMessage(item.getSnippet());
       final Context nContext = context;
-      dialog.setPositiveButton("M√°s informaci√≥n", new DialogInterface.OnClickListener() {
+      dialog.setPositiveButton("Más información", new DialogInterface.OnClickListener() {
           public void onClick(DialogInterface dialog, int id) {
         	 showNextLevel(nContext, item.getNextLevel());
          }

@@ -9,3 +9,9 @@ Follow the next steps:
 
 For Google ADs you need installed the latest Android SDK.
 
+For Google MAPS APIS you need to change the API Key in map_sreen layouts. 
+https://developers.google.com/android/maps-api-signup
+
+Get the MD5 sum:
+ keytool -list -keystore ~/.android/debug.keystore
+
