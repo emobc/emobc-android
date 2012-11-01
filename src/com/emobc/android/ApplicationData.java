@@ -74,7 +74,7 @@ public class ApplicationData {
 	
 	public static final int SEARCH_LIMIT = 20;
 
-	public static final String EMOBC_LEVEL_ID = "eMobc";
+	public static final String EMOBC_LEVEL_ID = "emobc";
 
 	
 	private String title;
