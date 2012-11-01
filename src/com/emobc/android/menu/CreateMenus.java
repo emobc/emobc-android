@@ -23,7 +23,6 @@
 package com.emobc.android.menu;
 
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,11 +32,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.gesture.Gesture;
-import android.gesture.GestureLibrary;
-import android.gesture.GestureOverlayView;
-import android.gesture.GestureOverlayView.OnGesturePerformedListener;
-import android.gesture.Prediction;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -92,7 +86,7 @@ import com.google.tts.TextToSpeechBeta.OnInitListener;
  * @version 0.1
  * @since 0.1
  */
-public class CreateMenus extends Activity implements AnimationListener, OnGesturePerformedListener {
+public class CreateMenus extends Activity implements AnimationListener {
 	
 	private static final String ROTATION_LANDSCAPE = "landscape";
 	private static final String ROTATION_PORTRAIT = "portrait";
@@ -109,14 +103,6 @@ public class CreateMenus extends Activity implements AnimationListener, OnGestur
 	private boolean menuOut = false;
     private AnimParams animParams = new AnimParams();
  
-    private GestureLibrary gestureLib;
-    
-	public void setGestureLib(GestureLibrary gestureLib) {
-		this.gestureLib = gestureLib;
-	}
-	public GestureLibrary getGestureLib() {
-		return gestureLib;
-	}
 	/**
 	 * Class for intercept call phone.
 	 */
@@ -820,15 +806,4 @@ public class CreateMenus extends Activity implements AnimationListener, OnGestur
 			
 		}
 	}
-	@Override
-	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
-	    ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
-	    for (Prediction prediction : predictions) {
-	      if (prediction.score > 1.0) {
-	        Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
-	            .show();
-	      }
-	    }
-	}
-
 }
