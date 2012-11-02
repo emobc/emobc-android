@@ -31,6 +31,7 @@ import java.util.Map;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.util.LruCache;
+import android.util.Log;
 
 import com.emobc.android.activities.generators.ActivityGenerator;
 import com.emobc.android.activities.generators.ActivityGeneratorFactory;
@@ -149,7 +150,7 @@ public class ApplicationData {
 		emobcLevel.setActivityType(ActivityType.PROFILE_ACTIVITY);
 		emobcLevel.setTitle("Profile");	
 		
-		addLevel(emobcLevel);		
+		addLevel(emobcLevel, false);		
 	}
 
 	/**
@@ -501,11 +502,33 @@ public class ApplicationData {
 
 
 	public void addLevel(AppLevel level) {
-		levels.add(level);
-		if(level.getId() != null)
-			levelMap.put(level.getId(), level);
+		addLevel(level, true);
+	}
+	
+	/**
+	 * Adds a new Level if the levelId is valid or if 
+	 * <code>checkDefaults</code>is false.
+	 * @param level
+	 * @param checkDefaults
+	 */
+	private void addLevel(AppLevel level, boolean checkDefaults) {
+		if(!checkDefaults || validLevelId(level.getId())){
+			levels.add(level);
+			if(level.getId() != null)
+				levelMap.put(level.getId(), level);
+		}else{
+			Log.w("ApplicationData: addLevel", "Invalid Level Id: " + level.getId());
+		}
+		
 	}
 
+
+
+	private boolean validLevelId(String levelId) {
+		if(EMOBC_LEVEL_ID.equals(levelId))
+			return false;
+		return true;
+	}
 
 	public LevelTypeStyle getLevelStyle(ActivityType activityType) {
 		if(levelStyleTypeMap != null)
