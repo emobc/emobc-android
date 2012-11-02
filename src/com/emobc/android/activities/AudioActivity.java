@@ -69,7 +69,7 @@ public class AudioActivity extends CreateMenus {
     @Override
     public void onBackPressed() {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Se cancelar√° la reproducci√≥n")
+		builder.setMessage("Se cancelará la reproducción")
 		       .setCancelable(false)
 		       .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {

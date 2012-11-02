@@ -122,7 +122,6 @@
                 android:layout_marginLeft="13dip"
                 android:layout_marginRight="12dip"
                 android:layout_weight="0.18"
-                android:background="#ffffff"
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip"
                 android:text="@null"

@@ -2,7 +2,7 @@
 <levelData>
 	<data>
 		<dataId>Formulario2</dataId>
-		<headerText>Alta Bolsa de trabajo</headerText>
+		<headerText>Alta bolsa de trabajo</headerText>
 		<nextLevel>
 			<nextLevelLevelId>envio</nextLevelLevelId>
 			<nextLevelDataId>ok</nextLevelDataId>

@@ -117,7 +117,7 @@
 	
 	<type>
       <typeId>CANVAS_ACTIVITY</typeId>
-      <backgroundFileName></backgroundFileName>
+      <backgroundFileName>images/cover/background.png</backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
