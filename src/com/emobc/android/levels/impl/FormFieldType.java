@@ -28,6 +28,10 @@ import com.emobc.android.activities.generators.FormActivityGenerator;
 
 /**
  * Enumerates field types to the Form Activity
+ * <ul>
+ * 	<li><strong>INPUT_TEXTVIEW</strong>: Multi-line input text.</li>
+ *  <li><strong>INPUT_IMAGE</strong>: Camera image.</li>
+ * </ul>
  * @author Jorge E. Villaverde
  * @see FormActivity
  * @see FormActivityGenerator
@@ -41,7 +45,9 @@ public enum FormFieldType {
 	INPUT_PHONE,
 	INPUT_CHECK,
 	INPUT_PICKER,
-	INPUT_PASSWORD;	
+	INPUT_PASSWORD,
+	INPUT_TEXTVIEW,
+	INPUT_IMAGE;	
 
 	public static FormFieldType fromText(final String text){
 		if("INPUT_TEXT".equals(text))
@@ -58,6 +64,10 @@ public enum FormFieldType {
 			return INPUT_PICKER;
 		if("INPUT_PASSWORD".equals(text))
 			return INPUT_PASSWORD;
+		if("INPUT_TEXTVIEW".equals(text))
+			return INPUT_TEXTVIEW;
+		if("INPUT_IMAGE".equals(text))
+			return INPUT_IMAGE;
 		return null;
 	}
 }
