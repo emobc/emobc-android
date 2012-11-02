@@ -79,6 +79,7 @@
     	android:layout_height="45dip" 
     	android:paddingTop="10dip" 
     	android:gravity="center_vertical" 
+    	android:background="@android:color/transparent"
     	android:paddingLeft="20dip">
 	</TextView>
 
@@ -100,7 +101,7 @@
     	        android:layout_gravity="center_horizontal"
     	        android:layout_marginLeft="13dip"
     	        android:layout_marginRight="12dip"
-    	        android:background="#ffffff"
+    	        android:background="#00000000"
     	        android:paddingLeft="10dip"
     	        android:paddingRight="10dip"
     	        android:text="@null" />

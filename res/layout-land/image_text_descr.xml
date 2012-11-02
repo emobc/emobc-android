@@ -126,6 +126,7 @@
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip"
                 android:text="@null"
+                android:background="#00000000"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:typeface="sans" />
