@@ -22,8 +22,6 @@
 */
 package com.emobc.android.activities;
 
-import com.emobc.android.activities.generators.CalendarActivityGenerator;
-
 import android.app.Activity;
 import android.os.Bundle;
 

@@ -2,7 +2,6 @@
 <levelData>
 	<data>
 		<dataId>Aventura</dataId>
-		<headerImageFile>images/cover/imageCover.png</headerImageFile>
 		<headerText>Aventura</headerText>
 		<description>Esto es una aventura de prueba. El final depende de las elecciones que tomes en las preguntas</description>
 		<time>1</time>
