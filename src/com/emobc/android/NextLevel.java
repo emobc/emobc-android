@@ -45,7 +45,8 @@ public class NextLevel implements Serializable {
 	public static final int NO_LEVEL = -1;
 	public static final String EMOBC_COVER_DATA_ID = "cover";
 	public static final String PROFILE_DATA_ID = "profile";
-	
+	public static final String SEARCH_DATA_ID = "search";
+		
 	private int levelNumber = NO_LEVEL;
 	private String levelId;
 	private int dataNumber = NO_LEVEL;
@@ -65,6 +66,15 @@ public class NextLevel implements Serializable {
 	public static NextLevel PROFILE_NEXT_LEVEL = new NextLevel(
 			ApplicationData.EMOBC_LEVEL_ID, PROFILE_DATA_ID);
 
+	
+	/**
+	 * Search Next Level:
+	 * <tt>emobc/search</tt>
+	 */
+	public static final NextLevel SEARCH_NEXT_LEVEL = new NextLevel(
+			ApplicationData.EMOBC_LEVEL_ID, SEARCH_DATA_ID);
+
+	
 	public NextLevel() {
 		super();
 	}

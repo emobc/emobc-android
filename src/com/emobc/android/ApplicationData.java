@@ -68,7 +68,6 @@ public class ApplicationData {
 	
 	public static final String NEXT_LEVEL_TAG = "_NEXT_LEVEL_";
 	public static final String IS_ENTRY_POINT_TAG = "_IS_ENTRY_POINT_";
-	public static final String IS_PROFILE_TAG = "_IS_PROFILE_";
 
 	public static final String IS_SIDE_MENU_TAG = "_IS_SIDE_MENU_";
 	
@@ -144,13 +143,13 @@ public class ApplicationData {
 	private void loadDefaultLevels() {
 		if(levels == null)
 			levels = new ArrayList<AppLevel>();
-		
-		AppLevel emobcLevel = new AppLevel(0);
-		emobcLevel.setId(EMOBC_LEVEL_ID);
-		emobcLevel.setActivityType(ActivityType.PROFILE_ACTIVITY);
-		emobcLevel.setTitle("Profile");	
-		
-		addLevel(emobcLevel, false);		
+//		
+//		AppLevel emobcLevel = new AppLevel(0);
+//		emobcLevel.setId(EMOBC_LEVEL_ID);
+//		emobcLevel.setActivityType(ActivityType.PROFILE_ACTIVITY);
+//		emobcLevel.setTitle("Profile");	
+//		
+//		addLevel(emobcLevel, false);		
 	}
 
 	/**
@@ -278,6 +277,12 @@ public class ApplicationData {
 		if(NextLevel.COVER_NEXT_LEVEL.equals(nextLevel)){
 			return AppLevel.COVER_APP_LEVEL;
 		}			
+		if(NextLevel.PROFILE_NEXT_LEVEL.equals(nextLevel)){
+			return AppLevel.PROFILE_APP_LEVEL;
+		}
+		if(NextLevel.SEARCH_NEXT_LEVEL.equals(nextLevel)){
+			return AppLevel.SEARCH_APP_LEVEL;
+		}
 		return null;
 	}
 

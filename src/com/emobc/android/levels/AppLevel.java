@@ -25,6 +25,9 @@ package com.emobc.android.levels;
 import java.util.List;
 import java.util.Locale;
 
+import android.app.Activity;
+import android.content.Context;
+
 import com.emobc.android.ActivityType;
 import com.emobc.android.SearchResult;
 import com.emobc.android.activities.AudioActivity;
@@ -37,12 +40,10 @@ import com.emobc.android.activities.ImageTextDescriptionActivity;
 import com.emobc.android.activities.MapsActivity;
 import com.emobc.android.activities.QrActivity;
 import com.emobc.android.activities.QuizActivity;
+import com.emobc.android.activities.SearchActivity;
 import com.emobc.android.activities.WebActivity;
 import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.themes.LevelTypeStyle;
-
-import android.app.Activity;
-import android.content.Context;
 
 /**
  * Application Level
@@ -69,11 +70,21 @@ public class AppLevel {
 	private boolean useProfile = false;
 
 	public static final AppLevel COVER_APP_LEVEL;
+	public static final AppLevel PROFILE_APP_LEVEL;
+	public static final AppLevel SEARCH_APP_LEVEL;
 	
 	static{
 		COVER_APP_LEVEL = new AppLevel(1);
 		COVER_APP_LEVEL.setActivityType(ActivityType.COVER_ACTIVITY);
 		COVER_APP_LEVEL.setTitle("Cover App Level");
+		
+		PROFILE_APP_LEVEL = new AppLevel(2);
+		PROFILE_APP_LEVEL.setActivityType(ActivityType.PROFILE_ACTIVITY);
+		PROFILE_APP_LEVEL.setTitle("Cover App Level");
+		
+		SEARCH_APP_LEVEL = new AppLevel(3);
+		SEARCH_APP_LEVEL.setActivityType(ActivityType.SEARCH_ACTIVITY);
+		SEARCH_APP_LEVEL.setTitle("Search App Level");
 	}
 	
 	
@@ -138,6 +149,8 @@ public class AppLevel {
 			return FormActivity.class;
 		case WEB_ACTIVITY:
 			return WebActivity.class;
+		case SEARCH_ACTIVITY:
+			return SearchActivity.class;
 		default:
 			return ImageListActivity.class;
 		}
