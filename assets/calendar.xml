@@ -3,7 +3,7 @@
     <data>
         <dataId>Calendar</dataId>
         <headerImageFile></headerImageFile>
-        <headerText>CalendarioIphone</headerText>
+        <headerText>Calendario</headerText>
         <events>
             <event>
                 <title>titulo Evento 1</title>
