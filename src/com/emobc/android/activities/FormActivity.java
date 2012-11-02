@@ -66,8 +66,8 @@ public class FormActivity extends CreateMenus {
 		if(applicationData != null){
 			Intent intent = getIntent();  
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
-			isProfile = (Boolean)intent.getSerializableExtra(ApplicationData.IS_PROFILE_TAG);
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
+			isProfile = NextLevel.PROFILE_NEXT_LEVEL.equals(nextLevel);
 			ActivityGenerator generator = applicationData.getFromNextLevel(this, nextLevel);
 			generator.initializeActivity(this);
 		}else{

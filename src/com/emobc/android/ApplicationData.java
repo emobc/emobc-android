@@ -31,6 +31,7 @@ import java.util.Map;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.util.LruCache;
+import android.util.Log;
 
 import com.emobc.android.activities.generators.ActivityGenerator;
 import com.emobc.android.activities.generators.ActivityGeneratorFactory;
@@ -67,7 +68,6 @@ public class ApplicationData {
 	
 	public static final String NEXT_LEVEL_TAG = "_NEXT_LEVEL_";
 	public static final String IS_ENTRY_POINT_TAG = "_IS_ENTRY_POINT_";
-	public static final String IS_PROFILE_TAG = "_IS_PROFILE_";
 
 	public static final String IS_SIDE_MENU_TAG = "_IS_SIDE_MENU_";
 	
@@ -143,13 +143,13 @@ public class ApplicationData {
 	private void loadDefaultLevels() {
 		if(levels == null)
 			levels = new ArrayList<AppLevel>();
-		
-		AppLevel emobcLevel = new AppLevel(0);
-		emobcLevel.setId(EMOBC_LEVEL_ID);
-		emobcLevel.setActivityType(ActivityType.PROFILE_ACTIVITY);
-		emobcLevel.setTitle("Profile");	
-		
-		addLevel(emobcLevel);		
+//		
+//		AppLevel emobcLevel = new AppLevel(0);
+//		emobcLevel.setId(EMOBC_LEVEL_ID);
+//		emobcLevel.setActivityType(ActivityType.PROFILE_ACTIVITY);
+//		emobcLevel.setTitle("Profile");	
+//		
+//		addLevel(emobcLevel, false);		
 	}
 
 	/**
@@ -277,6 +277,12 @@ public class ApplicationData {
 		if(NextLevel.COVER_NEXT_LEVEL.equals(nextLevel)){
 			return AppLevel.COVER_APP_LEVEL;
 		}			
+		if(NextLevel.PROFILE_NEXT_LEVEL.equals(nextLevel)){
+			return AppLevel.PROFILE_APP_LEVEL;
+		}
+		if(NextLevel.SEARCH_NEXT_LEVEL.equals(nextLevel)){
+			return AppLevel.SEARCH_APP_LEVEL;
+		}
 		return null;
 	}
 
@@ -501,11 +507,33 @@ public class ApplicationData {
 
 
 	public void addLevel(AppLevel level) {
-		levels.add(level);
-		if(level.getId() != null)
-			levelMap.put(level.getId(), level);
+		addLevel(level, true);
+	}
+	
+	/**
+	 * Adds a new Level if the levelId is valid or if 
+	 * <code>checkDefaults</code>is false.
+	 * @param level
+	 * @param checkDefaults
+	 */
+	private void addLevel(AppLevel level, boolean checkDefaults) {
+		if(!checkDefaults || validLevelId(level.getId())){
+			levels.add(level);
+			if(level.getId() != null)
+				levelMap.put(level.getId(), level);
+		}else{
+			Log.w("ApplicationData: addLevel", "Invalid Level Id: " + level.getId());
+		}
+		
 	}
 
+
+
+	private boolean validLevelId(String levelId) {
+		if(EMOBC_LEVEL_ID.equals(levelId))
+			return false;
+		return true;
+	}
 
 	public LevelTypeStyle getLevelStyle(ActivityType activityType) {
 		if(levelStyleTypeMap != null)

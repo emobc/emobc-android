@@ -118,11 +118,7 @@ public abstract class AbstractActivtyGenerator implements ActivityGenerator {
 				Intent launchActivity = new Intent(context, clazz);				
 				launchActivity.putExtra(ApplicationData.NEXT_LEVEL_TAG, nextLevel);	
 				launchActivity.putExtra(ApplicationData.IS_ENTRY_POINT_TAG, false);
-				
-				if(ApplicationData.EMOBC_LEVEL_ID.equals(level.getId())){
-					launchActivity.putExtra(ApplicationData.IS_PROFILE_TAG, true);
-				}
-				
+								
 				context.startActivity(launchActivity);
 			}else{
 				CharSequence text = "Invalid Next Level: " + nextLevel.toString();

@@ -22,10 +22,10 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.emobc.android.ApplicationData;
+import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.AbstractActivtyGenerator;
 import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.profiling.Profile;
-import com.emobc.android.profiling.ProfileNextLevel;
 import com.emobc.android.utils.InvalidFileException;
 
 /** 
@@ -66,7 +66,7 @@ public class SplashActivity extends Activity {
 					SplashActivity.this.startActivity(mainIntent);
 					SplashActivity.this.finish();
 				}else{
-					AbstractActivtyGenerator.showNextLevel(SplashActivity.this, ProfileNextLevel.getInstance());
+					AbstractActivtyGenerator.showNextLevel(SplashActivity.this, NextLevel.PROFILE_NEXT_LEVEL);
 				}
 			}
 
