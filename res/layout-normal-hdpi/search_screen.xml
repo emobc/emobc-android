@@ -122,9 +122,10 @@
 		    android:orientation="horizontal" >
 
 		    <EditText
-		        android:id="@+id/editText1"
+		        android:id="@+id/searchInput"
 		        android:layout_width="250dip"
 		        android:layout_height="50dip"
+		        android:inputType="text"
 		        android:layout_marginLeft="4dip" >
 
 		        <requestFocus />

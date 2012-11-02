@@ -17,7 +17,7 @@
     <ListView
         android:id="@+id/sideMenuList"
         android:layout_width="match_parent"
-        android:layout_height="394dp"
+        android:layout_height="0dip"
         android:layout_weight="1.21"
         android:background="#FFFFFF"
         android:cacheColorHint="#999999"
@@ -95,7 +95,6 @@
 		    android:layout_above="@+id/descr_mas"
 		    android:layout_alignParentLeft="true"
 		    android:layout_below="@+id/linearLayout4"
-		    android:layout_weight="1"
 		    android:orientation="vertical" >
 
 		    <ListView
@@ -122,9 +121,10 @@
 		    android:orientation="horizontal" >
 
 		    <EditText
-		        android:id="@+id/editText1"
+		        android:id="@+id/searchInput"
 		        android:layout_width="250dip"
 		        android:layout_height="50dip"
+		        android:inputType="text"
 		        android:layout_marginLeft="4dip" >
 
 		        <requestFocus />

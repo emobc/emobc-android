@@ -47,7 +47,7 @@ public class ImageListActivity extends CreateMenus {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
             
-        boolean isEntryPoint = false;
+        Boolean isEntryPoint = null;
         rotateScreen(this);
         
         ApplicationData applicationData = SplashActivity.getApplicationData();
@@ -62,7 +62,7 @@ public class ImageListActivity extends CreateMenus {
 			startActivity(i);
 			finish();
 		}
-		createMenus(this, isEntryPoint);
+		createMenus(this, isEntryPoint == null ? false : isEntryPoint.booleanValue());
     }
 
 }

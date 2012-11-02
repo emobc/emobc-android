@@ -30,15 +30,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.emobc.android.ApplicationData;
@@ -77,7 +76,7 @@ public class SearchActivity extends CreateMenus {
         Intent intent = getIntent();
 		isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
 		   
-        textResult = (EditText) findViewById (R.id.editText1);
+        textResult = (EditText) findViewById (R.id.searchInput);
 
         Button searchButton = (Button) findViewById (R.id.SearchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +100,6 @@ public class SearchActivity extends CreateMenus {
 			ApplicationData applicationData = SplashActivity.getApplicationData();
 			List<SearchResult> lista = applicationData.findWidthText(this, searchText.toString());
 			if(lista != null){
-				Log.e("eMobc", "Tamaño: " + lista.size());
 				ListView lv = (ListView) findViewById(R.id.searchList);	
 				lv.setAdapter(new SearchListAdapter(this, R.layout.list_item, lista));
 				lv.setTextFilterEnabled(true);
@@ -126,7 +124,7 @@ public class SearchActivity extends CreateMenus {
     	
     	@Override
     	public View getView(int position, View convertView, ViewGroup parent) {
-    		LinearLayout view = (convertView != null) ? (LinearLayout) convertView : createView(parent);
+    		RelativeLayout view = (convertView != null) ? (RelativeLayout) convertView : createView(parent);
     		final SearchResult item = items.get(position);
             
     		View.OnClickListener listener = new View.OnClickListener() {
@@ -135,7 +133,7 @@ public class SearchActivity extends CreateMenus {
 		        }
             };
 
-            Button button = (Button)view.findViewById(R.id.searchList);
+            Button button = (Button)view.findViewById(R.id.selection_list);
             button.setText(item.getText().toUpperCase());
             button.setBackgroundResource(R.drawable.list_selector);
             button.setOnClickListener(listener);
@@ -168,8 +166,8 @@ public class SearchActivity extends CreateMenus {
 		}
 
 
-    	 private LinearLayout createView(ViewGroup parent) {
-    		 LinearLayout item = (LinearLayout)activity.getLayoutInflater().inflate(R.layout.list_item, parent, false);
+    	 private RelativeLayout createView(ViewGroup parent) {
+    		 RelativeLayout item = (RelativeLayout)activity.getLayoutInflater().inflate(R.layout.list_item, parent, false);
     		 return item;
     	 }
     }
