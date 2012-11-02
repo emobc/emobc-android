@@ -83,7 +83,8 @@ public class CalendarActivityGenerator extends LevelActivityGenerator {
 		final TextView tv = (TextView) activity.findViewById(R.id.textViewMonth);
 		final CalendarHelper h = new CalendarHelper(activity);
 		tv.setText(h.getMonthInString(cv.getMonth()+1));
-		//Lista de eventos del calendario
+		
+		//Calendar event list
 		if (!item.getEvents().isEmpty()){
 			cv.setEvents(item.getEvents());	
 		}
@@ -105,6 +106,7 @@ public class CalendarActivityGenerator extends LevelActivityGenerator {
 				tv.setText(h.getMonthInString(cv.getMonth()+1));
 			}
 		});
+		
 		//Getting today
 		int day = cv.getDate().get(Calendar.DAY_OF_MONTH);
 		int month = cv.getDate().get(Calendar.MONTH)+1;
@@ -141,11 +143,11 @@ public class CalendarActivityGenerator extends LevelActivityGenerator {
 		TreeSet<EventDataItem> eventsInDate = TotalEvents.get(date);
 		ArrayList<EventDataItem> eventsList = new ArrayList<EventDataItem>();
 		//Maybe null
-		if (eventsInDate!=null){
+		if (eventsInDate != null){
 			eventsList.addAll(eventsInDate);
 		}
 		
-		//Putting the list in the ListView
+		// Loading the list in the ListView
 		ListView lv = (ListView)activity.findViewById(R.id.listViewCalendarEvents);
 		lv.setAdapter(new CalListAdapter(activity, R.layout.list_item, eventsList));
 		lv.setTextFilterEnabled(true);

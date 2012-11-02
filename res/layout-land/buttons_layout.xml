@@ -61,14 +61,12 @@
         android:layout_alignParentBottom="true">
     </LinearLayout>
 
-    
     <RelativeLayout
         android:id="@+id/contentLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/topLayout"
         android:layout_above="@+id/bottomLayout"
-        android:background="@android:drawable/dark_header" >
+        android:layout_below="@+id/topLayout" >
 
 		<TextView android:text="normal-hdpi"
 			android:id="@+id/header"
