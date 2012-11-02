@@ -25,12 +25,6 @@ package com.emobc.android.activities;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.emobc.android.ApplicationData;
-import com.emobc.android.NextLevel;
-import com.emobc.android.activities.generators.ActivityGenerator;
-import com.emobc.android.activities.generators.FormActivityGenerator;
-import com.emobc.android.menu.CreateMenus;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,6 +33,11 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.emobc.android.ApplicationData;
+import com.emobc.android.NextLevel;
+import com.emobc.android.activities.generators.FormActivityGenerator;
+import com.emobc.android.menu.CreateMenus;
 
 /**
  * Defines an activity of type FORM_ACTIVITY. In its 
@@ -51,7 +50,9 @@ import android.widget.Spinner;
  */
 public class FormActivity extends CreateMenus {
 	public static final String PREFS_NAME = "FormPrefsFile";
+	public static final int PICK_IMAGE_REQUEST = 1;
 	private Map<String,View> controlsMap;
+	private FormActivityGenerator generator;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -61,6 +62,7 @@ public class FormActivity extends CreateMenus {
 	    boolean isEntryPoint = false;
 	    Boolean isProfile = null;
 	    rotateScreen(this);
+	    generator = null;
 	    
 	    ApplicationData applicationData = SplashActivity.getApplicationData();
 		if(applicationData != null){
@@ -68,7 +70,7 @@ public class FormActivity extends CreateMenus {
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
 			isProfile = NextLevel.PROFILE_NEXT_LEVEL.equals(nextLevel);
-			ActivityGenerator generator = applicationData.getFromNextLevel(this, nextLevel);
+			this.generator = (FormActivityGenerator)applicationData.getFromNextLevel(this, nextLevel);
 			generator.initializeActivity(this);
 		}else{
 			Intent i = new Intent (this, SplashActivity.class);
@@ -181,5 +183,16 @@ public class FormActivity extends CreateMenus {
 	}
 	public void setControlsMap (Map<String,View> controlsMap){
 		this.controlsMap = controlsMap;
+	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == PICK_IMAGE_REQUEST) {
+			if (resultCode == RESULT_OK) {
+				// A contact was picked.  Here we will just display it
+				// to the user.
+				String imageContent = data.getDataString();
+				generator.setImageContent(imageContent);
+			}
+		}		
 	}
 }
