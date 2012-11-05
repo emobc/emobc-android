@@ -37,6 +37,11 @@
 				<required/>
 			</field>
 			<field>
+				<fieldType>INPUT_LABEL</fieldType>
+				<fieldLabel>Perfil</fieldLabel>
+				<fieldName>perfil</fieldName>
+			</field>
+			<field>
 				<fieldType>INPUT_CHECK</fieldType>
 				<fieldLabel>Disenador:</fieldLabel>
 				<fieldName>estDis</fieldName>

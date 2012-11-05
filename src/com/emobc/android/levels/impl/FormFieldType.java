@@ -39,6 +39,7 @@ import com.emobc.android.activities.generators.FormActivityGenerator;
  * @since 0.1
  */
 public enum FormFieldType {
+	INPUT_LABEL,
 	INPUT_TEXT,
 	INPUT_NUMBER,
 	INPUT_EMAIL,
