@@ -85,6 +85,7 @@ import com.emobc.android.utils.RetreiveFileContentTask;
  * 
  * @author Jonatan Alcocer Luna
  * @author Jorge E. Villaverde
+ * @author Alejandro S‡nchez Acosta
  * @version 0.1
  * @since 0.1
  */
@@ -209,6 +210,7 @@ public class FormActivityGenerator extends LevelActivityGenerator {
 		
 		String ret = "";
 		switch (dataItem.getType()) {
+		case INPUT_LABEL:
 		case INPUT_TEXT:
 		case INPUT_NUMBER:
 		case INPUT_EMAIL:
@@ -278,6 +280,8 @@ public class FormActivityGenerator extends LevelActivityGenerator {
 			return;
 		
 		switch (dataItem.getType()) {
+		case INPUT_LABEL:
+			break;
 		case INPUT_TEXT:
 			control = insertTextField(activity, dataItem);
 			break;
@@ -309,9 +313,10 @@ public class FormActivityGenerator extends LevelActivityGenerator {
 			break;
 		}
 		
-		formLayout.addView(control);
-		controlsMap.put(dataItem.getFieldName(), control);
-
+		if (control != null) {
+			formLayout.addView(control);
+			controlsMap.put(dataItem.getFieldName(), control);
+		}
 	}
 
 	private View insertImageField(final Activity activity, FormDataItem dataItem) {
@@ -379,6 +384,7 @@ public class FormActivityGenerator extends LevelActivityGenerator {
 		txt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 		return txt;
 	}
+	
 	private EditText insertPhoneField(Context context, FormDataItem dataItem) {
 		EditText txt = insertTextField(context, dataItem);
 		txt.setInputType(InputType.TYPE_CLASS_PHONE);

@@ -105,6 +105,8 @@ public class ProfileActivityGenerator extends AbstractActivtyGenerator {
 			return;
 		
 		switch (dataItem.getType()) {
+		case INPUT_LABEL:
+			break;
 		case INPUT_TEXT:
 			control = insertTextField(activity, dataItem);
 			break;
@@ -130,9 +132,10 @@ public class ProfileActivityGenerator extends AbstractActivtyGenerator {
 			break;
 		}
 		
-		formLayout.addView(control);
-		controlsMap.put(dataItem.getFieldName(), control);
-
+		if (control != null) {
+			formLayout.addView(control);
+			controlsMap.put(dataItem.getFieldName(), control);
+		}
 	}
 
 	private View insertPickerField(Activity activity, FormDataItem dataItem) {
