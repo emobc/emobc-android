@@ -31,6 +31,7 @@ import android.media.MediaPlayer.OnBufferingUpdateListener;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -232,17 +233,13 @@ public class AudioActivityGenerator extends LevelActivityGenerator {
 					mp.setDataSource(item.getAudioUrl());
 				}
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e("AudioActivityGenerator: playPause", e.getMessage());
 			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e("AudioActivityGenerator: playPause", e.getMessage());
 			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e("AudioActivityGenerator: playPause", e.getMessage());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e("AudioActivityGenerator: playPause", e.getMessage());
 			}
 			mp.prepareAsync();
 			firstTime = false;
