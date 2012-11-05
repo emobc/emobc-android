@@ -14,11 +14,12 @@
 		<bottomMenu>bottom_menu.xml</bottomMenu>
 		<backgroundMenu>images/menu/backgroundMenu.png</backgroundMenu>
 	</menu>
-	<!--<banner>
+	<banner>
 		<type>admob</type>
 		<position>top</position>
 		<id>a14b5f8130c17ef</id>
 	</banner>
+	<!-- 
 	<banner>
 		<type>yoc</type>
 		<position>top</position>
