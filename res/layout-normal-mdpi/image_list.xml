@@ -58,19 +58,16 @@
         <TextView
             android:id="@+id/header"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dip"
-            android:paddingTop="10dip"
+            android:layout_height="45dip"
+            android:gravity="center_vertical|center_horizontal"
             android:scaleType="fitXY"
-            android:text="normal-hdpi" >
-
+            android:text="normal-mdpi">
         </TextView>
 
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="fill_parent"
-            android:layout_height="270dip"
+            android:layout_height="430dip"
             android:layout_above="@+id/descr_image"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/header"

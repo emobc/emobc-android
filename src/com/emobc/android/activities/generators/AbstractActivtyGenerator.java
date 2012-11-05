@@ -97,7 +97,7 @@ public abstract class AbstractActivtyGenerator implements ActivityGenerator {
 	 * @param context
 	 * @param urlString
 	 */
-	protected void lunchUrl(Context context, String urlString){
+	protected void launchUrl(Context context, String urlString){
 		Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse(urlString ));
 		context.startActivity(browserIntent);
 	}
