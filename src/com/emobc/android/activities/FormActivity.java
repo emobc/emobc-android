@@ -37,6 +37,7 @@ import android.widget.Spinner;
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.FormActivityGenerator;
+import com.emobc.android.activities.generators.ProfileActivityGenerator;
 import com.emobc.android.menu.CreateMenus;
 
 /**
@@ -53,6 +54,7 @@ public class FormActivity extends CreateMenus {
 	public static final int PICK_IMAGE_REQUEST = 1;
 	private Map<String,View> controlsMap;
 	private FormActivityGenerator generator;
+	private ProfileActivityGenerator profileGenerator;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -70,8 +72,13 @@ public class FormActivity extends CreateMenus {
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
 			isProfile = NextLevel.PROFILE_NEXT_LEVEL.equals(nextLevel);
-			this.generator = (FormActivityGenerator)applicationData.getFromNextLevel(this, nextLevel);
-			generator.initializeActivity(this);
+			if (isProfile) {
+				this.profileGenerator = (ProfileActivityGenerator)applicationData.getFromNextLevel(this, nextLevel);
+				profileGenerator.initializeActivity(this);
+			} else {
+				this.generator = (FormActivityGenerator)applicationData.getFromNextLevel(this, nextLevel);
+				generator.initializeActivity(this);
+			}
 		}else{
 			Intent i = new Intent (this, SplashActivity.class);
 			startActivity(i);
