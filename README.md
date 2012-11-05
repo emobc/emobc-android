@@ -12,3 +12,5 @@ Check supported resolutions in Android website.
 4) Integrate with third parties (Mylin GitHub and Egit)
 5) Deploy your project
 6) If you want to make changes, upload them or make a pull request in GitHub.
+
+Contact information emobc in developers _at_ emobc _dot_ com
