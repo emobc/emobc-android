@@ -108,18 +108,6 @@ public class ImagesUtils {
 	}
 	
 	/**
-	 * Returns true if the imageFile name starts with <code>http://</code> or <code>https://</code> 
-	 * @param imageFile
-	 * @return
-	 */
-	public static boolean isUrl(String imageFile){
-		if(imageFile.startsWith("http://")||imageFile.startsWith("https://")){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	/**
 	 * Returns a Drawable object from an image name in drawable/images folder.
 	 * @param context
 	 * @param imageName
@@ -134,7 +122,7 @@ public class ImagesUtils {
 			Log.i("ImagesUtils", "Loading from cache: " + imageName);
 			return SplashActivity.getApplicationData().getCache().get(imageName);
 		}else{
-			if(imageName.startsWith("http://") || imageName.startsWith("https://")){
+			if(Utils.isUrl(imageName)){
 				ret = getDrawableFromUrl(imageName);
 			}else{
 	

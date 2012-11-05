@@ -23,6 +23,7 @@
 package com.emobc.android.activities.generators;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.MediaController;
@@ -64,14 +65,21 @@ public class VideoActivityGenerator extends LevelActivityGenerator {
 		c.createBanner();
 		
 		if(Utils.hasLength(item.getVideoPath())){
-			Log.d("URL",item.getVideoPath());
-			VideoView video = (VideoView)activity.findViewById(R.id.video);
-			video.setVideoURI(Uri.parse(item.getVideoPath()));
-			MediaController mc = new MediaController(activity);
-			video.setMediaController(mc);
-			video.requestFocus();
-			video.start();
-			mc.show();
+			if(Utils.isUrl(item.getVideoPath())){
+				activity.startActivity(new Intent(
+						Intent.ACTION_VIEW, 
+						Uri.parse(item.getVideoPath())));
+				activity.finish();
+			}else{
+				Log.d("URL",item.getVideoPath());
+				VideoView video = (VideoView)activity.findViewById(R.id.video);
+				video.setVideoURI(Uri.parse(item.getVideoPath()));
+				MediaController mc = new MediaController(activity);
+				video.setMediaController(mc);
+				video.requestFocus();
+				video.start();
+				mc.show();
+			}
 		} 
 		
 	}

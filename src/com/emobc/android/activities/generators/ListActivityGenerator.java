@@ -48,6 +48,7 @@ import com.emobc.android.menu.CreateMenus;
 import com.emobc.android.utils.ImageLoader;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
+import com.emobc.android.utils.Utils;
 
 /**
  * Screen generator, responsible for specific components to initialize the 
@@ -150,7 +151,7 @@ public class ListActivityGenerator extends LevelActivityGenerator {
             vi.setTag(holder);
             
             
-            if (ImagesUtils.isUrl(item.getImageFile())){
+            if (Utils.isUrl(item.getImageFile())){
             	holder.image.setTag(item.getImageFile());
             	imageLoader.DisplayImage(item.getImageFile(), activity, holder.image);
             }else{

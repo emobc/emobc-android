@@ -57,4 +57,17 @@ public class Utils {
 		return false;
 	}
 	
+	
+	/**
+	 * Returns true if the imageFile name starts with <code>http://</code> or <code>https://</code> 
+	 * @param imageFile
+	 * @return
+	 */
+	public static boolean isUrl(String imageFile){
+		if(imageFile.startsWith("http://")||imageFile.startsWith("https://")){
+			return true;
+		}else{
+			return false;
+		}
+	}	
 }
