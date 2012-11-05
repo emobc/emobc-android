@@ -184,7 +184,7 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 			if(wwwButton != null){
 				wwwButton.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
-						lunchUrl(activity, wwwUrl);
+						launchUrl(activity, wwwUrl);
 					}
 				});
 			}
@@ -194,7 +194,7 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 			if(facebookButton != null){
 				facebookButton.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
-						lunchUrl(activity, facebookUrl);
+						launchUrl(activity, facebookUrl);
 					}
 				});				
 			}
@@ -204,7 +204,7 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 			if(twitterButton != null){
 				twitterButton.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
-						lunchUrl(activity, twitterUrl);
+						launchUrl(activity, twitterUrl);
 					}
 				});				
 			}
