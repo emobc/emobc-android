@@ -98,9 +98,21 @@ public abstract class AbstractActivtyGenerator implements ActivityGenerator {
 	 * @param urlString
 	 */
 	protected void launchUrl(Context context, String urlString){
-		Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse(urlString ));
+		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString));
 		context.startActivity(browserIntent);
 	}
+	
+	protected void launchFacebookUrl(Context context, String urlString){
+		Intent lunchIntend = null;
+		try {
+			context.getPackageManager().getPackageInfo("com.facebook.katana", 0);
+			lunchIntend = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/" + urlString));
+			context.startActivity(lunchIntend);
+		} catch (Exception e) {
+			launchUrl(context, "http://www.facebook.com/" + urlString);
+		}		
+	}
+	
 	
 	/**
 	 * Start a new activity in the levelId leaning and dataId of NextLevel. 
