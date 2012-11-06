@@ -7,7 +7,7 @@ Follow the next steps:
 5. Make a clean and refresh in the project
 6. Run the project in Simulator
 
-For Google ADs you need installed the latest Android SDK.
+For Google ADs you need installed Android SDK > 2.3.3.
 
 For Google MAPS APIS you need to change the API Key in map_sreen layouts. 
 https://developers.google.com/android/maps-api-signup
