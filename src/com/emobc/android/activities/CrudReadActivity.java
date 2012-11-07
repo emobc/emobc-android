@@ -26,22 +26,22 @@ import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.emobc.android.data.engine.DataEngine;
 import com.emobc.android.data.metadata.Entity;
@@ -58,9 +58,10 @@ import com.emobc.android.parse.ParseUtils;
  * @version 0.1
  */
 public class CrudReadActivity extends Activity {
-	private TableParser parser;
 	private DataEngine engine;
 	private Model model;
+	private Table table;
+	private EntityListAdapter adpter;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,31 +71,33 @@ public class CrudReadActivity extends Activity {
 
     	String tableName = getIntent().getExtras().getString("table");
     	
-    	parser = new TableParser(ParseUtils.createXpp(
+    	TableParser parser = new TableParser(ParseUtils.createXpp(
     			this, 
     			Locale.getDefault(), 
     			tableName, 
     			false));
     	
-    	
-    	Table table = parser.parse();
+    	this.table = parser.parse();
 
     	model = new Model("Test Model");
 		model.addTable(table);
     	
-    	engine = new DataEngine(this, model);
-
-		Object[] data={"1", "Leo Messi", "01/10/1980", 180};
-		engine.createEntity(table, data);
-    	
+    	engine = new DataEngine(this, model);    	
+   	
+		TextView header = (TextView)findViewById(R.id.crud_header);
+		header.setText(table.getName());
+		
     	List<Entity> entities = engine.readAllEntities(table); 
     	
     	ListView lv = (ListView)findViewById(R.id.crud_list);
-		lv.setAdapter(new EntityListAdapter(this, R.layout.list_item, entities));
+    	this.adpter = new EntityListAdapter(this, R.layout.list_item, entities);
+		lv.setAdapter(adpter);
 		lv.setTextFilterEnabled(true);
 		
-        unregisterForContextMenu(lv);
+		registerForContextMenu(lv);
     }
+    
+    // Application Menu
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,47 +107,84 @@ public class CrudReadActivity extends Activity {
     }
     
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.crud_create:
+                createEntity();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    
+    // Context Menu
+    
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
+        
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+        
+        menu.setHeaderTitle(((TextView)info.targetView).getText());
+        
         inflater.inflate(R.menu.crud_context_menu, menu);
     }    
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-    	case R.id.crud_create:
-    		return true;
-    	default:
-    		return super.onOptionsItemSelected(item);
-        }
-    }
     
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+        
+        Entity entity = adpter.getEntityByPosition(info.position);
+        
         switch (item.getItemId()) {
             case R.id.crud_open:
-                openEntity(info.id);
+                openEntity(entity);
                 return true;
             case R.id.crud_delete:
-                deleteEntity(info.id);
+                deleteEntity(entity);
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
-    }    
+    }   
     
-	private void deleteEntity(long id) {
-		// TODO Auto-generated method stub
+    
+    private void createEntity() {
+    	Intent createEntityIntend = new Intent();
+    	createEntityIntend = new Intent(this, CrudFormActivity.class);
+    	createEntityIntend.putExtra("table", table);
 		
+		startActivity(createEntityIntend);
+		finish();
+    }
+    
+	private void deleteEntity(final Entity entity) {
+		if(entity != null){
+			
+			String strFormat = getResources().getString(R.string.crud_delete_confirm_msg);
+			String strMessage = String.format(strFormat, entity.getFieldValue("nombre")); 
+			
+			new AlertDialog.Builder(this).setTitle(R.string.crud_delete_confirm)
+	        .setMessage(strMessage)
+	        .setPositiveButton(android.R.string.ok, 
+	        		new DialogInterface.OnClickListener() {
+	        			@Override
+	        			public void onClick(DialogInterface dialogInterface, int i) {
+	        				adpter.removeEntity(entity);
+	        				engine.deleteEntity(entity);
+	        			}
+	        })
+	        .setNeutralButton(android.R.string.cancel, null) 
+	        .create()
+	        .show();		
+		}
 	}
 
-	private void openEntity(long id) {
-		// TODO Auto-generated method stub
-		
+	private void openEntity(final Entity entity) {
+
 	}
 
 	/**
@@ -153,55 +193,31 @@ public class CrudReadActivity extends Activity {
     private class EntityListAdapter extends BaseAdapter {
     	private List<Entity> items;
     	private Activity activity;
-    	private LayoutInflater inflater=null;
-    	
-        public class ViewHolder{
-            @SuppressWarnings("unused")
-			public Button button;
-            public ImageView image;
-        }
-        
+    	        
         public EntityListAdapter(Activity context, int textViewResourceId, List<Entity> objects) {
     		this.items = objects;
     		this.activity = context;
-    		inflater = LayoutInflater.from(context);
 		}
     	
-    	public View getView(int position, View convertView, ViewGroup parent) {
-    		View vi=convertView;
-            ViewHolder holder;
-            final Entity item = items.get(position);
-            if(convertView==null){
-                vi = inflater.inflate(R.layout.list_item, null);
-                holder=new ViewHolder();
-               // button.setText(item.getText().toUpperCase());            
-            }else{
-                holder=(ViewHolder)vi.getTag();
-            }
-            
-            View.OnClickListener listener = new View.OnClickListener() {
-		        public void onClick(View view) {
-//		        	showNextLevel(activity, item.getNextLevel());
-		        	Toast.makeText(activity, item.getId(), Toast.LENGTH_SHORT).show();
-		        }
-            };
+    	public Entity getEntityByPosition(int position) {
+			return items.get(position);
+		}
 
-            Button button = (Button)vi.findViewById(R.id.selection_list);
-            button.setText(item.getFieldValue("nombre").toString());
-            button.setOnClickListener(listener);
-            holder.button=button;
-            holder.image=(ImageView)vi.findViewById(R.id.list_img);
-            vi.setTag(holder);
-                        
-            return vi;
-    	 }
+		public View getView(int position, View convertView, ViewGroup parent) {
+    		TextView view = (convertView != null) ? (TextView) convertView : createView(parent);
+    		final Entity item = items.get(position);
+    		
+    		view.setText(item.getFieldValue("nombre").toString());   		
+    		
+	    	return view;
+    	}
 
-    	@SuppressWarnings("unused")
-		private LinearLayout createView(ViewGroup parent) {
-    		 LinearLayout item = (LinearLayout)activity.getLayoutInflater().inflate(R.layout.list_item, parent, false);
-    		 return item;
-    	 }
-
+    	private TextView createView(ViewGroup parent) {
+    		TextView item = (TextView)activity.getLayoutInflater().inflate(
+    				R.layout.crud_list_item, parent, false);
+    		return item;
+    	}
+    	
 		@Override
 		public int getCount() {
 			return items.size();
@@ -215,6 +231,11 @@ public class CrudReadActivity extends Activity {
 		@Override
 		public long getItemId(int position) {
 			return position;
+		}
+		
+		public void removeEntity(Entity entity){
+			items.remove(entity);
+			notifyDataSetChanged();
 		}
     }
 }

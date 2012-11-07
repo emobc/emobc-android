@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/backgroundLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:background="@drawable/fondo">
+
+  	<TextView android:id="@+id/crud_header"
+		android:scaleType="fitXY" 
+		android:textColor="#ffffff"
+		android:textSize="20sp" 
+		android:textStyle="bold" 
+		android:typeface="sans" 
+		android:layout_width="fill_parent" 
+    	android:layout_height="45dip" 
+    	android:gravity="center_vertical|center_horizontal" 
+    	android:text="CRUD">
+	</TextView>
+	<ListView
+    	android:id="@+id/crud_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/crud_header"
+		android:layout_gravity="bottom|center_horizontal"
+		android:divider="@android:drawable/divider_horizontal_bright">
+  	</ListView>
+</RelativeLayout>

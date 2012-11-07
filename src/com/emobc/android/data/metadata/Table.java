@@ -25,9 +25,9 @@ package com.emobc.android.data.metadata;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 /**
  * @author Jorge E. Villaverde
@@ -45,7 +45,7 @@ public class Table implements Serializable {
 	
 	private final String name;
 	private List<Field> fields = new ArrayList<Field>();
-	private Map<String, Field> fieldMap = new WeakHashMap<String, Field>();
+	private Map<String, Field> fieldMap = new HashMap<String, Field>();
 	
 	public Table(String name) {
 		super();
