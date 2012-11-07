@@ -13,4 +13,6 @@ Check supported resolutions in Android website.
 5) Deploy your project
 6) If you want to make changes, upload them or make a pull request in GitHub.
 
+Soon documentation in the website and blog and new features.
+
 Contact information emobc in developers _at_ emobc _dot_ com

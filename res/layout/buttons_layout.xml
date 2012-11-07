@@ -70,13 +70,13 @@
         android:layout_above="@+id/bottomLayout"
         android:layout_below="@+id/topLayout" >
 
-		<TextView android:text="normal-hdpi"
+		<TextView android:text="Buttons"
 			android:id="@+id/header"
 			android:scaleType="fitXY" 
 			android:layout_width="fill_parent" 
 	    	android:layout_height="45dip" 
 	    	android:paddingTop="10dip" 
-	    	android:gravity="center_vertical" 
+	    	android:gravity="center_vertical|center_horizontal" 
 	    	android:paddingLeft="20dip">
 		</TextView>
 		

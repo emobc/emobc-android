@@ -80,7 +80,8 @@
 			android:textStyle="bold" android:typeface="sans" 
 			android:layout_width="fill_parent" 
 	    	android:layout_height="45dip" 
-	    	android:gravity="center_vertical|center_horizontal" android:text="Videos">
+	    	android:gravity="center_vertical|center_horizontal" 
+	    	android:text="Audio">
 		</TextView>
 
 		<ImageView

@@ -76,7 +76,8 @@
 			android:scaleType="fitXY"
 			android:layout_width="fill_parent" 
 	    	android:layout_height="45dip" 
-	    	android:gravity="center_vertical|center_horizontal" android:text="Web Viewer">
+	    	android:gravity="center_vertical|center_horizontal" 
+	    	android:text="Web">
 		</TextView>
 	
 		<WebView

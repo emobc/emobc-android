@@ -79,7 +79,7 @@
             android:layout_height="45dip"
             android:gravity="center_vertical|center_horizontal"
             android:scaleType="fitXY"
-            android:text="normal-hdpi">
+            android:text="List only">
         </TextView>
 
         <ListView

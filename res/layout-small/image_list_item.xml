@@ -7,7 +7,7 @@
 	<Button 
 		android:id="@+id/selection_list"
 		android:gravity="left|center_vertical"
-		android:layout_height="15dip" 
+		android:layout_height="40dip" 
 		android:layout_width="fill_parent">
 	</Button>
 </LinearLayout>
