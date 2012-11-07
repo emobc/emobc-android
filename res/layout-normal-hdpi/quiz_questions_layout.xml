@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_medium"
-            android:text="@string/hello_world"
+            android:text="@null"
             android:layout_below="@id/questionImage"
             android:layout_centerHorizontal="true"
             tools:context=".QuizActivity" />

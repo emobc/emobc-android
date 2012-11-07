@@ -194,7 +194,11 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 			if(facebookButton != null){
 				facebookButton.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
-						launchUrl(activity, facebookUrl);
+						// If we place the user id of facebook, we can open the facebook app.
+						if(facebookUrl.startsWith("http://www.facebook.com/"))
+							launchUrl(activity, facebookUrl);
+						else
+							launchFacebookUrl(activity, facebookUrl);
 					}
 				});				
 			}

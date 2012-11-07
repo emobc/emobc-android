@@ -71,4 +71,24 @@ public class Entity implements Serializable {
 	public String getId() {
 		return String.valueOf(getFieldValue(Table.DEFAULT_ID_FILE_NAME));
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (getId().hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Entity other = (Entity) obj;
+		return other.getId().equals(getId());
+	}
  }

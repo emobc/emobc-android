@@ -25,17 +25,17 @@ package com.emobc.android.data.engine;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.emobc.android.data.metadata.Entity;
-import com.emobc.android.data.metadata.Field;
-import com.emobc.android.data.metadata.Model;
-import com.emobc.android.data.metadata.Table;
-import com.emobc.android.data.sql.SQLiteSqlCreator;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.emobc.android.data.metadata.Entity;
+import com.emobc.android.data.metadata.Field;
+import com.emobc.android.data.metadata.Model;
+import com.emobc.android.data.metadata.Table;
+import com.emobc.android.data.sql.SQLiteSqlCreator;
 
 /**
  * Simple SQLite Database Engine Wrapper.
@@ -110,32 +110,39 @@ public class DataEngine extends SQLiteOpenHelper {
 		
 		List<Entity> entities = new ArrayList<Entity>();
 		if (cursor.moveToFirst()) {
-			List<Field> fields = table.getFields();
-			
 			do {
-				List<Object> data = new ArrayList<Object>(fields.size());
-				for(int i=0;i < fields.size(); i++){
-					Field field = fields.get(i);
-					switch (field.getType()) {
-					case TEXT:
-						data.add(cursor.getString(i));	
-						break;
-					case NUMBER:
-						data.add(cursor.getInt(i));
-						break;
-					case DATE:
-						data.add(cursor.getString(i));
-						break;
-					default:
-						break;
-					}
-				}
-				Entity entity = new Entity(table, data.toArray());
+				Entity entity = readEntityFromCursor(cursor, table);
 				entities.add(entity);
 			}while(cursor.moveToNext());
 		}
 		cursor.close();
 		return entities;
+	}
+	
+	public Entity findEntityById(Table table, String id){
+		checkTable(table);
+		
+		Cursor cursor = getReadableDatabase().query(table.getName(), 
+				table.getColumns(), 
+				Table.DEFAULT_WHERE,
+				new String[]{id},
+				null,
+				null,
+				null);
+		
+		Entity ret = null;
+		
+		if (cursor.moveToFirst()) {
+			do {
+				ret = readEntityFromCursor(cursor, table);
+				if(ret != null){
+					break;
+				}
+			}while(cursor.moveToNext());
+		}
+		cursor.close();
+		
+		return ret ;
 	}
 	
 	public boolean createEntity(Table table, Object[] data){		
@@ -203,5 +210,34 @@ public class DataEngine extends SQLiteOpenHelper {
 			throw new IllegalArgumentException("Model has no table: " + entity.getTable().getName());
 		if(entity.getData() == null)
 			throw new IllegalArgumentException("Entity Data is null");		
+	}
+	
+	private void checkTable(Table table){
+		if(model.getTable(table.getName()) == null)
+			throw new IllegalArgumentException("Model has no table: " + table.getName());		
+	}
+	
+	private static Entity readEntityFromCursor(Cursor cursor, Table table){
+		List<Field> fields = table.getFields();
+		
+		List<Object> data = new ArrayList<Object>(fields.size());
+		for(int i=0;i < fields.size(); i++){
+			Field field = fields.get(i);
+			switch (field.getType()) {
+			case TEXT:
+				data.add(cursor.getString(i));	
+				break;
+			case NUMBER:
+				data.add(cursor.getInt(i));
+				break;
+			case DATE:
+				data.add(cursor.getString(i));
+				break;
+			default:
+				break;
+			}
+		}
+		Entity entity = new Entity(table, data.toArray());
+		return entity;
 	}
 }

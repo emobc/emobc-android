@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/crud"
-          android:title="@string/crud" >
-        <!-- "file" submenu -->
-        <menu>
-            <item android:id="@+id/crud_open"
-                  android:title="@string/crud_open" />
-            <item android:id="@+id/crud_delete"
-                  android:title="@string/crud_delete" />
-        </menu>
-    </item>
+	<item android:id="@+id/crud_open"
+		android:title="@string/crud_open" />
+	<item android:id="@+id/crud_delete"
+    	android:title="@string/crud_delete" />
 </menu>
