@@ -15,15 +15,20 @@
 		android:typeface="sans" 
 		android:layout_width="fill_parent" 
     	android:layout_height="45dip" 
-    	android:gravity="center_vertical|center_horizontal" 
-    	android:text="CRUD">
+    	android:gravity="center_vertical|center_horizontal">
 	</TextView>
-	<ListView
-    	android:id="@+id/crud_list"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/crud_header"
-		android:layout_gravity="bottom|center_horizontal"
-		android:divider="@android:drawable/divider_horizontal_bright">
-  	</ListView>
+
+	<ScrollView
+	    android:id="@+id/crud_form_scroll"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_below="@+id/crud_header" >
+
+	    <LinearLayout
+	        android:id="@+id/crud_form_layout"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+	    </LinearLayout>
+	</ScrollView>
 </RelativeLayout>

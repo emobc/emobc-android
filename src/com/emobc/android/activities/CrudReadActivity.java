@@ -156,6 +156,7 @@ public class CrudReadActivity extends Activity {
     	Intent createEntityIntend = new Intent();
     	createEntityIntend = new Intent(this, CrudFormActivity.class);
     	createEntityIntend.putExtra("table", table);
+    	createEntityIntend.putExtra("model", model);
 		
 		startActivity(createEntityIntend);
 		finish();
