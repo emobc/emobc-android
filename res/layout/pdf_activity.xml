@@ -79,7 +79,7 @@
             android:layout_alignParentTop="true"
             android:gravity="center_vertical|center_horizontal"
             android:scaleType="fitXY"
-            android:text="Videos"/>
+            android:text="Pdf"/>
 
         <WebView
             android:id="@+id/pdfviewer"

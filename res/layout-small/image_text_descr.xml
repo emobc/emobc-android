@@ -72,13 +72,13 @@
         android:layout_below="@+id/topLayout"
         android:layout_above="@+id/bottomLayout" >
 
-	<TextView android:text="Image Text"
+	<TextView android:text="normal-hdpi"
 		android:id="@+id/header"
 		android:scaleType="fitXY" 
 		android:layout_width="fill_parent" 
     	android:layout_height="45dip" 
     	android:paddingTop="10dip" 
-    	android:gravity="center_vertical|center_horizontal" 
+    	android:gravity="center_vertical" 
     	android:paddingLeft="20dip">
 	</TextView>
 
@@ -109,7 +109,7 @@
     	<ImageView
     	    android:id="@+id/descr_image"
     	    android:layout_width="fill_parent"
-    	    android:layout_height="190px"
+    	    android:layout_height="50dip"
     	    android:layout_alignParentBottom="true"
     	    android:layout_alignParentLeft="true"
     	    android:padding="15dip"

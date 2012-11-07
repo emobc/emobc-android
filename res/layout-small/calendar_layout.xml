@@ -115,25 +115,23 @@
                     android:layout_marginRight="21dp"
                     android:text="@string/next" />
             </RelativeLayout>
-
+
             <com.emobc.android.views.CalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/RelativeLayout2"
-                android:layout_marginTop="-45dp"
-                android:paddingBottom="10dip"
-                android:paddingTop="20dip" />
-
+                android:layout_marginTop="-45dp" />
+
             <TextView
                 android:id="@+id/textViewDayEvents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/calendarView"
+ 
                 android:text="@string/events_day"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#000000"
-                android:textSize="14sp" />
+                android:textColor="#000000" />
 
             <ListView
                 android:id="@+id/listViewCalendarEvents"
