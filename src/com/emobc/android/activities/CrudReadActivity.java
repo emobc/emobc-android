@@ -43,11 +43,14 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.emobc.android.ApplicationData;
+import com.emobc.android.NextLevel;
 import com.emobc.android.data.engine.DataEngine;
 import com.emobc.android.data.metadata.Entity;
 import com.emobc.android.data.metadata.Model;
 import com.emobc.android.data.metadata.Table;
-import com.emobc.android.data.parse.TableParser;
+import com.emobc.android.data.parse.ModelParser;
+import com.emobc.android.levels.AppLevel;
 import com.emobc.android.parse.ParseUtils;
 
 /**
@@ -75,20 +78,21 @@ public class CrudReadActivity extends Activity {
     	
     	setContentView(R.layout.crud_read);
 
-    	String tableName = getIntent().getExtras().getString(CRUD_TABLE);
-    	
-    	TableParser parser = new TableParser(ParseUtils.createXpp(
+		Intent intent = getIntent();  
+		NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
+
+		ApplicationData applicationData = SplashActivity.getApplicationData();
+		AppLevel level = applicationData.getNextAppLevel(nextLevel, this);
+		
+		ModelParser parser = new ModelParser(ParseUtils.createXpp(
     			this, 
     			Locale.getDefault(), 
-    			tableName, 
-    			false));
-    	
-    	this.table = parser.parse();
-
-    	model = new Model("Test Model");
-		model.addTable(table);
-    	
-    	engine = new DataEngine(this, model);    	
+    			level.getFileName(), 
+    			false)); 
+		
+		this.model = parser.parse();
+    	this.table = model.getTable(nextLevel.getDataId());
+    	this.engine = new DataEngine(this, model);    	
    	
 		TextView header = (TextView)findViewById(R.id.crud_header);
 		header.setText(table.getName());
