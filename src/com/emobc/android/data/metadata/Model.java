@@ -26,9 +26,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 /**
  * @author Jorge E. Villaverde
@@ -38,7 +38,7 @@ import java.util.WeakHashMap;
 public class Model implements Serializable {
 	private static final long serialVersionUID = -5215024398259728798L;
 	private List<Table> tables = new ArrayList<Table>();
-	private Map<String, Table> tableMap = new WeakHashMap<String, Table>();
+	private Map<String, Table> tableMap = new HashMap<String, Table>();
 	
 	private final String name;
 

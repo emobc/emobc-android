@@ -58,10 +58,16 @@ import com.emobc.android.parse.ParseUtils;
  * @version 0.1
  */
 public class CrudReadActivity extends Activity {
+	public static final String CRUD_TABLE = "table";
 	private DataEngine engine;
 	private Model model;
 	private Table table;
 	private EntityListAdapter adpter;
+	
+	private static final int CRUD_CREATE_ENTITY = 1;
+	private static final int CRUD_UPDATE_ENTITY = 2;
+	
+	public static final String CRUD_ENTITY = "_crud_entity_";
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +75,7 @@ public class CrudReadActivity extends Activity {
     	
     	setContentView(R.layout.crud_read);
 
-    	String tableName = getIntent().getExtras().getString("table");
+    	String tableName = getIntent().getExtras().getString(CRUD_TABLE);
     	
     	TableParser parser = new TableParser(ParseUtils.createXpp(
     			this, 
@@ -155,10 +161,9 @@ public class CrudReadActivity extends Activity {
     private void createEntity() {
     	Intent createEntityIntend = new Intent();
     	createEntityIntend = new Intent(this, CrudFormActivity.class);
-    	createEntityIntend.putExtra("table", table);
+    	createEntityIntend.putExtra(CRUD_TABLE, table);
 		
-		startActivity(createEntityIntend);
-		finish();
+		startActivityForResult(createEntityIntend, CRUD_CREATE_ENTITY);
     }
     
 	private void deleteEntity(final Entity entity) {
@@ -184,8 +189,32 @@ public class CrudReadActivity extends Activity {
 	}
 
 	private void openEntity(final Entity entity) {
-
+    	Intent createEntityIntend = new Intent();
+    	createEntityIntend = new Intent(this, CrudFormActivity.class);
+    	createEntityIntend.putExtra(CRUD_TABLE, table);
+    	createEntityIntend.putExtra(CRUD_ENTITY, entity);
+    	
+		startActivityForResult(createEntityIntend, CRUD_UPDATE_ENTITY);
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if(resultCode == RESULT_OK){
+			if(requestCode == CRUD_CREATE_ENTITY){
+				Entity entity = (Entity)data.getSerializableExtra(CRUD_ENTITY);
+				if(engine.createEntity(entity)){
+					adpter.addEntity(entity);					
+				}
+			}else if(requestCode == CRUD_UPDATE_ENTITY){
+				Entity entity = (Entity)data.getSerializableExtra(CRUD_ENTITY);
+				if(engine.updateEntity(entity)){
+					adpter.updateEntity(entity);
+				}
+			}
+		}
+	}	
 
 	/**
 	 * Class intended for the creation and initialization of listView
@@ -199,7 +228,7 @@ public class CrudReadActivity extends Activity {
     		this.activity = context;
 		}
     	
-    	public Entity getEntityByPosition(int position) {
+		public Entity getEntityByPosition(int position) {
 			return items.get(position);
 		}
 
@@ -236,6 +265,19 @@ public class CrudReadActivity extends Activity {
 		public void removeEntity(Entity entity){
 			items.remove(entity);
 			notifyDataSetChanged();
+		}
+		
+    	public void addEntity(Entity entity) {
+			items.add(entity);
+			notifyDataSetChanged();
+		}
+    	
+    	public void updateEntity(Entity entity) {
+    		int location = items.indexOf(entity);
+    		if(location != -1){
+    			items.set(location, entity);
+    			notifyDataSetChanged();    			
+    		}
 		}
     }
 }
