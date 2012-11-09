@@ -27,6 +27,7 @@ import java.util.Locale;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 
 import com.emobc.android.ActivityType;
 import com.emobc.android.SearchResult;
@@ -34,6 +35,7 @@ import com.emobc.android.activities.AudioActivity;
 import com.emobc.android.activities.ButtonsActivity;
 import com.emobc.android.activities.CalendarActivity;
 import com.emobc.android.activities.CoverActivity;
+import com.emobc.android.activities.CrudReadActivity;
 import com.emobc.android.activities.FormActivity;
 import com.emobc.android.activities.ImageListActivity;
 import com.emobc.android.activities.ImageTextDescriptionActivity;
@@ -151,7 +153,10 @@ public class AppLevel {
 			return WebActivity.class;
 		case SEARCH_ACTIVITY:
 			return SearchActivity.class;
+		case CRUD_ACTIVITY:
+			return CrudReadActivity.class;
 		default:
+			Log.w("AppLevel: getActiviClass", "Asiging default Activity Class to Activity Type: " + activityType);
 			return ImageListActivity.class;
 		}
 	}

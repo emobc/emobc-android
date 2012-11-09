@@ -41,6 +41,7 @@ import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.ActivityGenerator;
 import com.emobc.android.levels.AppDataItemText;
 import com.emobc.android.levels.AppLevelDataItem;
+import com.emobc.android.menu.CreateMenus;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.Utils;
@@ -76,7 +77,7 @@ public class MapsActivity extends MapActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		CreateMenus.rotateScreen(this);
 		
         ApplicationData applicationData = SplashActivity.getApplicationData();
 		if(applicationData != null){

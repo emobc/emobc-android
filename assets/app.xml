@@ -531,5 +531,13 @@
 			<levelXib/>
 			<levelTransition>None</levelTransition>
 		</level>
+		<level>
+			<levelId>crud</levelId>
+			<levelTitle>ABM Personas</levelTitle>	
+			<levelFile>table-test.xml</levelFile>
+			<levelType>CRUD_ACTIVITY</levelType>
+			<levelXib/>
+			<levelTransition>None</levelTransition>
+		</level>
 	</levels>
 </application>
