@@ -64,10 +64,13 @@ public class Utils {
 	 * @return
 	 */
 	public static boolean isUrl(String imageFile){
-		if(imageFile.startsWith("http://")||imageFile.startsWith("https://")){
-			return true;
-		}else{
-			return false;
+		if (imageFile != null) {
+			if(imageFile.startsWith("http://")||imageFile.startsWith("https://")){
+				return true;
+			}else{
+				return false;
+			}
 		}
+		return false;
 	}	
 }
