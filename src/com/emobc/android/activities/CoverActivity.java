@@ -147,7 +147,7 @@ public class CoverActivity extends CreateMenus {
     }
     
 	protected void showNextLevel(Context context, NextLevel nextLevel) {
-		 if(nextLevel != null){
+		if(nextLevel != null && nextLevel.getLevelId() != null && nextLevel.getDataId() != null){
 			ApplicationData applicationData = SplashActivity.getApplicationData();
 			AppLevel level = applicationData.getNextAppLevel(nextLevel, context);
 			if(level != null){
