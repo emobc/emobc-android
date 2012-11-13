@@ -536,7 +536,12 @@ public class ParseUtils {
 		try {
 			is = context.getAssets().open(createXmlFileName(xmlFileName, locale));
 		} catch (IOException e) {
-			return contentInputStreamFromAssets(context, null, xmlFileName);
+			Log.e("ParseUtils", e.getLocalizedMessage());
+			try {
+				is = context.getAssets().open(createXmlFileName(xmlFileName, null));
+			} catch (IOException e1) {
+				Log.e("ParseUtils", e1.getLocalizedMessage());
+			}
 		}
 		return is;
 	}
