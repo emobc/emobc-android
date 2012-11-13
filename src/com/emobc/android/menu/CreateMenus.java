@@ -741,7 +741,7 @@ public class CreateMenus extends Activity implements AnimationListener {
      * both (horizontal|vertical) its determined by the sensor
      * @param activity
      */
-    protected void rotateScreen(Activity activity){
+    public static void rotateScreen(Activity activity){
 		ApplicationData applicationData = SplashActivity.getApplicationData();
 		String rotation = applicationData.getRotation();
 		rotateScreen(activity, rotation);
@@ -754,7 +754,7 @@ public class CreateMenus extends Activity implements AnimationListener {
      * both (horizontal|vertical) its determined by the sensor
      * @param activity
      */
-	private void rotateScreen(Activity activity, String rotation){
+	private static void rotateScreen(Activity activity, String rotation){
 		if(rotation == null || rotation.isEmpty())
 			return;
 		

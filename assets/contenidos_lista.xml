@@ -7,6 +7,15 @@
 		<geoRef/>
 		<list>
 			<listItem>
+				<description>ABM Personas</description>
+				<text>CRUD</text>
+				<nextLevel>
+					<nextLevelLevelId>crud</nextLevelLevelId>
+					<nextLevelDataId>Persona</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_2.png</imageFile>
+			</listItem>
+		    			<listItem>
 				<description>Texto con imagen</description>
 				<text>Texto</text>
 				<nextLevel>

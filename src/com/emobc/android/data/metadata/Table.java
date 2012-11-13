@@ -37,9 +37,9 @@ import java.util.Map;
 public class Table implements Serializable {
 	private static final long serialVersionUID = -3962721272514772791L;
 	
-	public static final String DEFAULT_ID_FILE_NAME = "id";
-	public static final String DEFAULT_WHERE = DEFAULT_ID_FILE_NAME + " = ?";
-	private static final FieldType DEFAULT_ID_FILE_TYPE = FieldType.NUMBER;
+	public static final String DEFAULT_ID_FIELD_NAME = "id";
+	public static final String DEFAULT_WHERE = DEFAULT_ID_FIELD_NAME + " = ?";
+	private static final FieldType DEFAULT_ID_FIELD_TYPE = FieldType.NUMBER;
 
 	public static final int INVALID_INDEX_VALUE = -1;
 	
@@ -52,7 +52,7 @@ public class Table implements Serializable {
 		if(name == null || name.isEmpty())
 			throw new IllegalArgumentException("Invalida tabla name: " + name); 
 		this.name = name;
-		addField(new Field(DEFAULT_ID_FILE_NAME, DEFAULT_ID_FILE_TYPE, true));
+		addField(new Field(DEFAULT_ID_FIELD_NAME, DEFAULT_ID_FIELD_TYPE, true));
 	}
 
 	public void addField(Field field){
@@ -91,6 +91,6 @@ public class Table implements Serializable {
 	}
 	
 	public Field getId(){
-		return fieldMap.get(DEFAULT_ID_FILE_NAME);
+		return fieldMap.get(DEFAULT_ID_FIELD_NAME);
 	}
 }

@@ -27,22 +27,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.emobc.android.data.engine.DataEngine;
-import com.emobc.android.data.metadata.Field;
-import com.emobc.android.data.metadata.Model;
-import com.emobc.android.data.metadata.Table;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.emobc.android.data.metadata.Entity;
+import com.emobc.android.data.metadata.Field;
+import com.emobc.android.data.metadata.Table;
 
 /**
  * @author Jorge E. Villaverde
@@ -52,7 +53,7 @@ import android.widget.TextView;
 public class CrudFormActivity extends Activity {
 	private Table table;
 	private Map<String,View> controlsMap;
-	private Model model;
+	private Entity entity;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,8 +61,8 @@ public class CrudFormActivity extends Activity {
     	
     	setContentView(R.layout.crud_form);
     	
-    	table = (Table)getIntent().getExtras().get("table");
-    	model = (Model)getIntent().getExtras().get("model");;
+    	table = (Table)getIntent().getSerializableExtra(CrudReadActivity.CRUD_TABLE);
+    	entity = (Entity)getIntent().getSerializableExtra(CrudReadActivity.CRUD_ENTITY);
     	
     	if(table != null){
     		TextView header = (TextView)findViewById(R.id.crud_header);
@@ -77,25 +78,53 @@ public class CrudFormActivity extends Activity {
 		LinearLayout formLayout = (LinearLayout)findViewById(R.id.crud_form_layout);
 		
 		for(Field field : fields){
-			if(!Table.DEFAULT_ID_FILE_NAME.equals(field.getName()))
+			if(!Table.DEFAULT_ID_FIELD_NAME.equals(field.getName()))
 				insertField(field, formLayout);
 		}
 		
+		LinearLayout ll = new LinearLayout(this);
+		ll.setOrientation(LinearLayout.HORIZONTAL);
+		ll.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		
 		Button submit = new Button(this);
-		submit.setText(R.string.form_submit_buttom);
+		submit.setText(android.R.string.ok);
+		submit.setLayoutParams(new LayoutParams(
+		        ViewGroup.LayoutParams.WRAP_CONTENT,
+	            ViewGroup.LayoutParams.WRAP_CONTENT));
 		submit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				processSubmit();
 			}
 		});
-		formLayout.addView(submit);
+
+		Button cancel = new Button(this);
+		cancel.setText(android.R.string.cancel);
+		cancel.setLayoutParams(new LayoutParams(
+		        ViewGroup.LayoutParams.WRAP_CONTENT,
+	            ViewGroup.LayoutParams.WRAP_CONTENT));
+		cancel.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				processCancel();
+			}
+		});
+		
+		ll.addView(submit);
+		ll.addView(cancel);
+
+		formLayout.addView(ll);
 		
 	}
 	
+	protected void processCancel() {
+		Intent intent = getIntent();
+		intent.putExtra(CrudReadActivity.CRUD_ENTITY, entity);
+		setResult(RESULT_CANCELED, intent);
+		finish();				
+	}
+	
 	protected void processSubmit() {
-		DataEngine engine = new DataEngine(this, model);
-		
 		List<Object> data = new ArrayList<Object>();
 		// add de id
 		data.add("");
@@ -108,13 +137,23 @@ public class CrudFormActivity extends Activity {
 			}
 		}
 		
-		engine.createEntity(table, data.toArray());
+		if(this.entity == null){
+			this.entity = new Entity(table, data.toArray());	
+		}else{
+			List<Field> fields = table.getFields();
+			for(int i=0; i < fields.size(); i ++){
+				Field field = fields.get(i);
+				Object value = data.get(i);
+				if(!Table.DEFAULT_ID_FIELD_NAME.equals(field.getName())){
+					this.entity.setFieldValue(field.getName(), value);
+				}
+			}
+		}
 		
-    	Intent createEntityIntend = new Intent();
-    	createEntityIntend = new Intent(this, CrudReadActivity.class);
-    	createEntityIntend.putExtra("table", "table-test.xml");
-		startActivity(createEntityIntend);
-		finish();
+		Intent intent = getIntent();
+		intent.putExtra(CrudReadActivity.CRUD_ENTITY, entity);
+		setResult(RESULT_OK, intent);
+		finish();		
 	}
 	
 	private void insertField(Field field, LinearLayout formLayout) {
@@ -162,6 +201,10 @@ public class CrudFormActivity extends Activity {
 		EditText txt = new EditText(this);
 		txt.setTag(field.getName());
 		txt.setHint(field.getName());
+		
+		if(entity != null){
+			txt.setText(entity.getFieldValue(field.getName()).toString());
+		}
 		
 		txt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 		    @Override

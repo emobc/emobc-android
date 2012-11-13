@@ -69,7 +69,7 @@ public class Entity implements Serializable {
 	}
 
 	public String getId() {
-		return String.valueOf(getFieldValue(Table.DEFAULT_ID_FILE_NAME));
+		return String.valueOf(getFieldValue(Table.DEFAULT_ID_FIELD_NAME));
 	}
 
 	@Override

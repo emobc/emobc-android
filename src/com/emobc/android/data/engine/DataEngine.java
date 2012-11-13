@@ -145,6 +145,10 @@ public class DataEngine extends SQLiteOpenHelper {
 		return ret ;
 	}
 	
+	public boolean createEntity(Entity entity) {
+		return createEntity(entity.getTable(), entity.getData());
+	}
+	
 	public boolean createEntity(Table table, Object[] data){		
 		if(table == null)
 			throw new IllegalArgumentException("Table is null");
@@ -156,7 +160,7 @@ public class DataEngine extends SQLiteOpenHelper {
 		List<Field> fields = table.getFields();
 		for(int i = 0; i < fields.size(); i++){
 			Field field = fields.get(i);
-			if(!Table.DEFAULT_ID_FILE_NAME.equals(field.getName())){
+			if(!Table.DEFAULT_ID_FIELD_NAME.equals(field.getName())){
 				values.put(field.getName(), data[i].toString());
 			}
 		}
@@ -175,7 +179,7 @@ public class DataEngine extends SQLiteOpenHelper {
 		List<Field> fields = table.getFields();
 		for(int i = 0; i < fields.size(); i++){
 			Field field = fields.get(i);
-			if(Table.DEFAULT_ID_FILE_NAME.equals(field.getName())){
+			if(Table.DEFAULT_ID_FIELD_NAME.equals(field.getName())){
 				id = data[i].toString();
 			}else{
 				values.put(field.getName(), data[i].toString());
