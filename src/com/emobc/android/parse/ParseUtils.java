@@ -534,18 +534,23 @@ public class ParseUtils {
 	protected static InputStream contentInputStreamFromAssets(Context context, Locale locale, String xmlFileName) {
 		InputStream is = null;
 		try {
-			String localeXmlFileName = locale.getLanguage() + File.separator + xmlFileName;
-			is = context.getAssets().open(localeXmlFileName);
+			is = context.getAssets().open(createXmlFileName(xmlFileName, locale));
 		} catch (IOException e) {
-			Log.e("ParseUtils", e.getLocalizedMessage());
-			//Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-			try {
-				is = context.getAssets().open(xmlFileName);
-			} catch (IOException e1) {
-				Log.e("ParseUtils", e1.getLocalizedMessage());
-			}
+			return contentInputStreamFromAssets(context, null, xmlFileName);
 		}
 		return is;
+	}
+
+	private static String createXmlFileName(String xmlFileName, Locale locale) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("xml");
+		builder.append(File.separator);
+		if(locale != null){
+			builder.append(locale.getLanguage());
+			builder.append(File.separator);
+		}
+		builder.append(xmlFileName);
+		return builder.toString();
 	}
 
 	/**
