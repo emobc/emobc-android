@@ -532,13 +532,18 @@ public class ParseUtils {
 	 * @return
 	 */
 	protected static InputStream contentInputStreamFromAssets(Context context, Locale locale, String xmlFileName) {
+		InputStream is = null;
 		try {
-			return context.getAssets().open(createXmlFileName(xmlFileName, locale));
+			is = context.getAssets().open(createXmlFileName(xmlFileName, locale));
 		} catch (IOException e) {
-			if(locale != null)
-				return contentInputStreamFromAssets(context, null, xmlFileName);
+			Log.e("ParseUtils", e.getLocalizedMessage());
+			try {
+				is = context.getAssets().open(createXmlFileName(xmlFileName, null));
+			} catch (IOException e1) {
+				Log.e("ParseUtils", e1.getLocalizedMessage());
+			}
 		}
-		return null;
+		return is;
 	}
 
 	private static String createXmlFileName(String xmlFileName, Locale locale) {
