@@ -115,46 +115,52 @@ public class ImagesUtils {
 	 * @throws InvalidFileException
 	 */
 	public static Drawable getDrawable(Context context, String imageName) throws InvalidFileException{
-		if(imageName == null || imageName.isEmpty())
-			return null;
-		Drawable ret = null;
-		if (SplashActivity.getApplicationData().getCache().get(imageName)!=null){
-			Log.i("ImagesUtils", "Loading from cache: " + imageName);
-			return SplashActivity.getApplicationData().getCache().get(imageName);
-		}else{
-			if(Utils.isUrl(imageName)){
-				ret = getDrawableFromUrl(imageName);
+		try {
+			if(imageName == null || imageName.isEmpty())
+				return null;
+			
+			Drawable ret = null;
+			if (SplashActivity.getApplicationData().getCache().get(imageName)!=null){
+				Log.i("ImagesUtils", "Loading from cache: " + imageName);
+				return SplashActivity.getApplicationData().getCache().get(imageName);
 			}else{
-	
-				if(imageName.startsWith(DEFAULT_IMAGE_PATH_DRAWABLE)){
-					ret = getDrawableFromName(context, imageName);
+				if(Utils.isUrl(imageName)){
+					ret = getDrawableFromUrl(imageName);
 				}else{
-					ret = getDrawableFromName(context, DEFAULT_IMAGE_PATH_DRAWABLE + imageName);
-				}
-				
-				if(ret == null){
-					String imagePathName = getImagesPathName(context);
-					String rawImageName = null;
-					StringBuilder imageNameBuilder = new StringBuilder();
-					
-					if(imageName.startsWith(DEFAULT_IMAGE_PATH_IMAGES)){
-						rawImageName = imageName.substring(DEFAULT_IMAGE_PATH_IMAGES.length());
+		
+					if(imageName.startsWith(DEFAULT_IMAGE_PATH_DRAWABLE)){
+						ret = getDrawableFromName(context, imageName);
 					}else{
-						rawImageName = imageName;
+						ret = getDrawableFromName(context, DEFAULT_IMAGE_PATH_DRAWABLE + imageName);
 					}
-					imageNameBuilder.append(imagePathName);
-					imageNameBuilder.append(rawImageName);
-					try {
-						ret = getDrawableFromAssetName(context, imageNameBuilder.toString());
-					} catch (InvalidFileException e) {
-						ret = getDrawableFromAssetName(context, DEFAULT_IMAGE_PATH_IMAGES + rawImageName);
-					}
-				}
 					
+					if(ret == null){
+						String imagePathName = getImagesPathName(context);
+						String rawImageName = null;
+						StringBuilder imageNameBuilder = new StringBuilder();
+						
+						if(imageName.startsWith(DEFAULT_IMAGE_PATH_IMAGES)){
+							rawImageName = imageName.substring(DEFAULT_IMAGE_PATH_IMAGES.length());
+						}else{
+							rawImageName = imageName;
+						}
+						imageNameBuilder.append(imagePathName);
+						imageNameBuilder.append(rawImageName);
+						try {
+							ret = getDrawableFromAssetName(context, imageNameBuilder.toString());
+						} catch (InvalidFileException e) {
+							ret = getDrawableFromAssetName(context, DEFAULT_IMAGE_PATH_IMAGES + rawImageName);
+						}
+					}
+						
+				}
+				SplashActivity.getApplicationData().getCache().put(imageName, ret);
+				return SplashActivity.getApplicationData().getCache().get(imageName);
 			}
-			SplashActivity.getApplicationData().getCache().put(imageName, ret);
-			return SplashActivity.getApplicationData().getCache().get(imageName);
-		}		
+		} catch (Exception e) {
+			Log.d("ImagesUtils", "Drawable exception");
+		}
+		return null;
 	}
 	
 	
