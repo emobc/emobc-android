@@ -79,9 +79,6 @@ public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerato
 		if(item == null){
 			showAlerDialog(activity, "No se ha encontrado el NextLevel:\n" + nextLevel.toString());
 		}else{
-			//Typeface ubuntu = Typeface.createFromAsset(activity.getApplicationContext().getAssets(), "fonts/Ubuntu-Bold.ttf");
-			//Typeface arial = Typeface.createFromAsset(activity.getApplicationContext().getAssets(), "fonts/Arial.ttf");
-			
 			initializeHeader(activity, item);
 			
 			//Create Banner
@@ -105,7 +102,7 @@ public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerato
 			if(Utils.hasLength(item.getText())){
 				TextView descrText = (TextView)activity.findViewById(R.id.basic_text);
 	            descrText.setText(item.getText(), BufferType.EDITABLE); 
-				//descrText.setTypeface(arial);
+				
 	            if(height > 533){
 					ScrollView sv = (ScrollView)activity.findViewById(R.id.text_scroll);
 					LayoutParams params = sv.getLayoutParams();
@@ -114,13 +111,20 @@ public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerato
 				}			
 			}
 			
-	        LinearLayout leerMasBtn =(LinearLayout) activity.findViewById(R.id.descr_mas);
-	        leerMasBtn.setOnClickListener(new View.OnClickListener() {
-		        public void onClick(View view) {
-					showNextLevel(activity, item.getNextLevel());
-		        }
-	        });
-	        leerMasBtn.setBackgroundResource(R.drawable.mas_selector);		
+	        LinearLayout nextBtn = (LinearLayout) activity.findViewById(R.id.descr_mas);
+	        
+	        // CHECK: Check if NextLevel is null
+	        if (item.getNextLevel().getLevelId() != null && item.getNextLevel().getDataId() != null){
+		        nextBtn.setOnClickListener(new View.OnClickListener() {
+			        public void onClick(View view) {
+						showNextLevel(activity, item.getNextLevel());
+			        }
+		        });
+		        nextBtn.setBackgroundResource(R.drawable.mas_selector);		
+	        } else {
+	        	nextBtn.setVisibility(View.GONE);
+	        }
+	        }
 		}		
 	}
 

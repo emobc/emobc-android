@@ -703,7 +703,7 @@ public class CreateMenus extends Activity implements AnimationListener {
 					toast.show();					
 				}
 			} catch (InvalidFileException e) {
-			
+				Log.d("CreateMenus", "CreateMenus");
 			}  
 		} 
 	}
