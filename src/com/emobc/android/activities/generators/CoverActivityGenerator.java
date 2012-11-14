@@ -112,16 +112,20 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 			}
 		}
 		
+		ImageView titleImage = (ImageView) activity.findViewById(R.id.CoverTitle);
 		if(titleFileName != null){
 			Drawable titleDrawable;
 			try {
 				titleDrawable = ImagesUtils.getDrawable(activity, titleFileName);
-				ImageView titleImage = (ImageView) activity.findViewById(R.id.CoverTitle);
-				titleImage.setImageDrawable(titleDrawable);
+				if (titleDrawable != null) 
+					titleImage.setImageDrawable(titleDrawable);
+				
 			} catch (InvalidFileException e) {
 				Log.e("AppCoverData", e.getLocalizedMessage());
 		    	Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
 			}
+		} else {
+			titleImage.setVisibility(View.GONE);
 		}
 		
 		if(buttons != null && buttons.size() > 0){
@@ -177,10 +181,10 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 		
 		
 		/*
-		 * Add Facebook & Twitter links
+		 * Add Web, Facebook & Twitter links
 		 */
+		ImageButton wwwButton = (ImageButton)mainLayout.findViewById(R.id.wwwButton);
 		if(Utils.hasLength(wwwUrl)){
-			ImageButton wwwButton = (ImageButton)mainLayout.findViewById(R.id.wwwButton);
 			if(wwwButton != null){
 				wwwButton.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
@@ -188,9 +192,13 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 					}
 				});
 			}
+		} else {
+			if(wwwButton != null) 
+				wwwButton.setVisibility(View.GONE);
 		}
+		
+		ImageButton facebookButton = (ImageButton)mainLayout.findViewById(R.id.facebookButton);
 		if(Utils.hasLength(facebookUrl)){
-			ImageButton facebookButton = (ImageButton)mainLayout.findViewById(R.id.facebookButton);
 			if(facebookButton != null){
 				facebookButton.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
@@ -202,9 +210,13 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 					}
 				});				
 			}
+		} else {
+			if(facebookButton != null)
+				facebookButton.setVisibility(View.GONE);
 		}
-		if(Utils.hasLength(twitterUrl)){
-			ImageButton twitterButton = (ImageButton)mainLayout.findViewById(R.id.twitterButton);
+		
+		ImageButton twitterButton = (ImageButton)mainLayout.findViewById(R.id.twitterButton);
+		if(Utils.hasLength(twitterUrl)){			
 			if(twitterButton != null){
 				twitterButton.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
@@ -212,7 +224,10 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 					}
 				});				
 			}
-		}		
+		} else {
+			if(twitterButton != null) 
+				twitterButton.setVisibility(View.GONE);
+		}	
 	}
 
 	public void setTitleFileName(String titleFileName) {

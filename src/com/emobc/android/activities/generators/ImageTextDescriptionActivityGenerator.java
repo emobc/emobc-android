@@ -124,7 +124,6 @@ public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerato
 	        } else {
 	        	nextBtn.setVisibility(View.GONE);
 	        }
-	        }
 		}		
 	}
 
