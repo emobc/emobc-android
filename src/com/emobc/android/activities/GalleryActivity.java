@@ -44,7 +44,7 @@ import com.emobc.android.SearchResult;
 * 
 * @author Jonatan Alcocer Luna
 */
-public class GalleryActivity extends CoverButtonsActivity {
+public class GalleryActivity extends CoverActivity {
 	protected static final Context Activity = null;
 
 	/** Called when the activity is first created. */
