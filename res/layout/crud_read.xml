@@ -4,9 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:background="@drawable/fondo">
-
+    android:paddingRight="16dp">
   	<TextView android:id="@+id/crud_header"
 		android:scaleType="fitXY" 
 		android:textColor="#ffffff"

@@ -5,5 +5,4 @@
     android:layout_height="wrap_content"
     android:padding="8dip"
     android:textSize="24dip" >
-
 </TextView>
