@@ -4,7 +4,9 @@
     android:layout_width="fill_parent"
     android:layout_height="40dip"
     android:layout_marginTop="10dip"
-    android:orientation="horizontal" >
+    android:orientation="horizontal" 
+    android:background="#FFFFFF"
+	android:cacheColorHint="#999999">
 
 	<ImageButton android:id="@+id/coverButtonLeft"
 		android:src="@null" 

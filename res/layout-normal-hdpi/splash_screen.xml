@@ -3,7 +3,9 @@
     android:id="@+id/parent"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="#FFFFFF"
+	android:cacheColorHint="#999999">
 
     <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:id="@+id/splashImage" android:scaleType="fitXY"></ImageView>
 </LinearLayout>

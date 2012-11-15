@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/backgroundLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:background="#FFFFFF"
+	android:cacheColorHint="#999999">
 
     <LinearLayout
         android:id="@+id/bannerTopLayout"

@@ -3,8 +3,9 @@
     android:id="@+id/parent"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/fondo"
-    android:orientation="horizontal" >
+    android:orientation="horizontal" 
+    android:background="#FFFFFF"
+	android:cacheColorHint="#999999">
 
 		<ImageButton android:id="@+id/wwwButton"
 			android:layout_gravity="bottom|left"

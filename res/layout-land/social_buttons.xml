@@ -3,11 +3,15 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="horizontal"
 	android:layout_height="fill_parent"
-	android:layout_width="fill_parent" android:background="@drawable/fondo">
+	android:layout_width="fill_parent" 
+	android:background="#FFFFFF"
+	android:cacheColorHint="#999999">
 		<ImageButton android:id="@+id/wwwButton"
 			android:layout_gravity="bottom|left"
 			android:layout_marginLeft="10dip" 
-			android:background="@null" android:layout_height="0dip" android:layout_width="0dip"/>
+			android:background="@null" 
+			android:layout_height="0dip" 
+			android:layout_width="0dip"/>
 			
 		<LinearLayout android:layout_marginRight="10dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingBottom="120dip" android:layout_gravity="bottom|right">
 				<ImageButton android:background="@null"
