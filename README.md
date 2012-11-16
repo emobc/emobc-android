@@ -17,5 +17,6 @@ Soon documentation in the website and blog and new features.
 
 Download: www.emobc.com/download.php
 Blog: emobc.blogspot.com
+Mailing List: Sign in emobc-dev in Google Groups
 
 Contact information emobc in developers _at_ emobc _dot_ com
