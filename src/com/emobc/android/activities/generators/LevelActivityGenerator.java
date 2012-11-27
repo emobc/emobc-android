@@ -333,15 +333,17 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 			LevelTypeStyle levelTypeStyle = levelStyleTypeMap.get(activityType);		
 			String listFormat = levelTypeStyle.getSelectionList();
 			FormatStyle fs = formatStyleMap.get(listFormat);	
-
-			String backgroundSelectionFileName = fs.getBackgroundSelectionFileName();
-			String backgroundSelectionName = backgroundSelectionFileName.split("\\.")[0];
+			
+			if(fs != null){
+				String backgroundSelectionFileName = fs.getBackgroundSelectionFileName();
+				String backgroundSelectionName = backgroundSelectionFileName.split("\\.")[0];
+				
+				int imageResource = activity.getResources().getIdentifier(backgroundSelectionName, "drawable", activity.getPackageName());
+				Drawable backgroundSelectionDrawable = activity.getResources().getDrawable(imageResource);
+				selection.setBackgroundDrawable(backgroundSelectionDrawable);
 		
-			int imageResource = activity.getResources().getIdentifier(backgroundSelectionName, "drawable", activity.getPackageName());
-		    Drawable backgroundSelectionDrawable = activity.getResources().getDrawable(imageResource);
-			selection.setBackgroundDrawable(backgroundSelectionDrawable);
-		
-			initializeSelectionFormat(activity, selection, fs);
+				initializeSelectionFormat(activity, selection, fs);
+			}
 		} catch (Exception e) {
 			Log.e("ApplicationData","ImageFile not found");
 		}
