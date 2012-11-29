@@ -112,9 +112,7 @@
 	                android:layout_marginLeft="15dp"
 	                android:layout_marginRight="14dp"
 	                android:layout_marginTop="5dp"
-	                android:divider="@android:drawable/divider_horizontal_bright"
-	                android:gravity="left"
-	                android:paddingTop="5dp">
+	                android:gravity="left">
 	            </ListView>
 	        </LinearLayout>
 	    </RelativeLayout>

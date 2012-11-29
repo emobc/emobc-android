@@ -33,8 +33,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -132,27 +132,27 @@ public class ImageListActivityGenerator extends LevelActivityGenerator {
     	
     	@Override
     	public View getView(int position, View convertView, ViewGroup parent) {
-    		LinearLayout view = (convertView != null) ? (LinearLayout) convertView : createView(parent);
+    		RelativeLayout view = (convertView != null) ? (RelativeLayout) convertView : createView(parent);
     		final ListItemDataItem item = items.get(position);
             
-    		View.OnClickListener listener = new View.OnClickListener() {
-		        public void onClick(View view) {
-		        	showNextLevel(activity, item.getNextLevel());		        	
-		        }
-            };
-
-            
             TextView textView = (TextView)view.findViewById(R.id.list_item_text);
-            textView.setText(item.getText());
-            textView.setOnClickListener(listener);
             
-            initializeListFormat(activity, ActivityType.IMAGE_LIST_ACTIVITY, textView);
-    		
+            if(textView != null){
+	            textView.setText(item.getText());
+	    		View.OnClickListener listener = new View.OnClickListener() {
+			        public void onClick(View view) {
+			        	showNextLevel(activity, item.getNextLevel());		        	
+			        }
+	            };
+	            textView.setOnClickListener(listener);
+	            
+	            initializeListFormat(activity, ActivityType.IMAGE_LIST_ACTIVITY, textView);
+            }    		
 	    	return view;
     	 }
 
-    	 private LinearLayout createView(ViewGroup parent) {
-    		 LinearLayout item = (LinearLayout)activity.getLayoutInflater().inflate(R.layout.image_list_item, parent, false);
+    	 private RelativeLayout createView(ViewGroup parent) {
+    		 RelativeLayout item = (RelativeLayout)activity.getLayoutInflater().inflate(R.layout.image_list_item, parent, false);
     		 return item;
     	 }
     }

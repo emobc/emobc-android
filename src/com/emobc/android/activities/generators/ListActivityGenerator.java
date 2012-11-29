@@ -27,6 +27,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.emobc.android.ActivityType;
 import com.emobc.android.NextLevel;
@@ -142,10 +142,12 @@ public class ListActivityGenerator extends LevelActivityGenerator {
             };
             
             TextView textView = (TextView)vi.findViewById(R.id.list_item_text);
-            textView.setText(item.getText());
-            textView.setOnClickListener(listener);
-            
-            initializeListFormat(activity, ActivityType.LIST_ACTIVITY, textView);
+            if(textView != null){
+            	textView.setText(item.getText());
+            	textView.setOnClickListener(listener);
+            	
+            	initializeListFormat(activity, ActivityType.LIST_ACTIVITY, textView);
+            }
             
             holder.textView = textView;
             holder.image = (ImageView)vi.findViewById(R.id.list_item_img);
@@ -159,8 +161,7 @@ public class ListActivityGenerator extends LevelActivityGenerator {
 	            	try {
 						holder.image.setImageDrawable(ImagesUtils.getDrawable(activity, item.getImageFile()));
 					} catch (InvalidFileException e) {
-						e.printStackTrace();
-						Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
+						Log.e("ListActivityGenerator", e.getMessage());
 					}
 	            }
             }            

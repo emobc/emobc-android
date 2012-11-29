@@ -49,7 +49,6 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.TranslateAnimation;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -69,6 +68,7 @@ import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelDataItem;
 import com.emobc.android.levels.impl.BannerDataItem;
 import com.emobc.android.parse.ParseUtils;
+import com.emobc.android.utils.ImageLoader;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.Utils;
@@ -153,10 +153,11 @@ public class CreateMenus extends Activity implements AnimationListener {
     	private List<MenuActionDataItem> items;
     	private Activity activity;
     	private LayoutInflater inflater=null;
+    	private ImageLoader imageLoader;
     	
         public class ViewHolder{
             @SuppressWarnings("unused")
-			public Button button;
+			public TextView textView;
             public ImageView image;
         }
         
@@ -164,6 +165,7 @@ public class CreateMenus extends Activity implements AnimationListener {
     		this.items = objects;
     		this.activity = context;
     		inflater = LayoutInflater.from(context);
+    		imageLoader = new ImageLoader(activity.getApplicationContext());
 		}
     	
     	public View getView(int position, View convertView, ViewGroup parent) {
@@ -173,30 +175,40 @@ public class CreateMenus extends Activity implements AnimationListener {
             if(convertView==null){
                 vi = inflater.inflate(R.layout.list_item, null);
                 holder=new ViewHolder();
-                View.OnClickListener listener = new View.OnClickListener() {
-    		        public void onClick(View view) {
-    		        	optionSelected(item);
-    		        }
-                };
-
-                Button button = (Button)vi.findViewById(R.id.selection_list);
-                button.setText(item.getTitle());
-                button.setBackgroundResource(R.drawable.list_selector);
-                button.setOnClickListener(listener);
-                holder.button=button;
-                holder.image=(ImageView)vi.findViewById(R.id.list_img);
-                vi.setTag(holder);
-            }
-            else
+            }else{
                 holder=(ViewHolder)vi.getTag();
+            }
 
-           try {
-        	    //String resource = item.getImageName().split("\\.")[0];
-        	    //holder.image.setImageResource(getResources().getIdentifier(resource, "drawable", getPackageName()));
-        	    holder.image.setImageDrawable(ImagesUtils.getDrawable(activity, item.getImageName()));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+            View.OnClickListener listener = new View.OnClickListener() {
+		        public void onClick(View view) {
+		        	optionSelected(item);
+		        }
+            };
+
+
+            TextView textView = (TextView)vi.findViewById(R.id.list_item_text);
+            if(textView != null){
+            	textView.setText(item.getTitle());
+            	textView.setBackgroundResource(R.drawable.list_selector);
+            	textView.setOnClickListener(listener);
+            }
+            
+            holder.textView = textView;
+            holder.image = (ImageView)vi.findViewById(R.id.list_item_img);
+            vi.setTag(holder);
+
+            if(Utils.hasLength(item.getImageName())){
+	            if (Utils.isUrl(item.getImageName())){
+	            	holder.image.setTag(item.getImageName());
+	            	imageLoader.DisplayImage(item.getImageName(), activity, holder.image);
+	            }else{
+	            	try {
+						holder.image.setImageDrawable(ImagesUtils.getDrawable(activity, item.getImageName()));
+					} catch (InvalidFileException e) {
+						Log.e("CreateMenu", e.getMessage());
+					}
+	            }            	
+            }
             
             return vi;
     	 }
