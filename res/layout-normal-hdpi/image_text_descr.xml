@@ -105,7 +105,6 @@
     	        android:paddingRight="10dp"
     	        android:text="@null" />
     	</ScrollView>
-
     	<ImageView
     	    android:id="@+id/descr_image"
     	    android:layout_width="match_parent"
