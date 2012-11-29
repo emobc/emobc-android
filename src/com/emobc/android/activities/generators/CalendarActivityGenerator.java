@@ -190,10 +190,11 @@ public class CalendarActivityGenerator extends LevelActivityGenerator {
 		        }
             };
 
-            Button button = (Button)view.findViewById(R.id.selection_list);
-            button.setText(item.getTime()+"    "+item.getTitle());
-            button.setOnClickListener(listener);
-            initializeListFormat(activity, ActivityType.CALENDAR_ACTIVITY, button);
+            TextView textView = (TextView)view.findViewById(R.id.list_item_text);
+            textView.setText(item.getTime()+"    "+item.getTitle());
+            textView.setOnClickListener(listener);
+            
+            initializeListFormat(activity, ActivityType.CALENDAR_ACTIVITY, textView);
             
 	    	return view;
     	 }

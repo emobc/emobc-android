@@ -33,7 +33,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.util.TypedValue;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -262,15 +261,15 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * Initialize the list's components (textColor, textSize, textStyle, typeFace, cacheColorHint)  
 	 * with the XML content.
 	 * @param activity
-	 * @param v
+	 * @param textView
 	 * @param fs
 	 */
-	private void initializeSelectionFormat(Activity activity, Button v, FormatStyle fs){
+	private void initializeSelectionFormat(Activity activity, TextView textView, FormatStyle fs){
 		try{
 			ListView list = (ListView) activity.findViewById(R.id.list);
 			list.setCacheColorHint(Color.parseColor(fs.getCacheColorHint()));
 			list.setBackgroundColor(Color.parseColor(fs.getBackgroundColor()));
-			v.setTextColor(Color.parseColor(fs.getTextColor()));
+			textView.setTextColor(Color.parseColor(fs.getTextColor()));
 			
 			String complexSize = fs.getTextSize();
 			int sep = getSeparation(0, complexSize);		
@@ -286,7 +285,7 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 			}else//default
 				unit = TypedValue.COMPLEX_UNIT_SP;
 			
-			v.setTextSize(unit, size);
+			textView.setTextSize(unit, size);
 			
 			String complexStyle = fs.getTextStyle();
 			int style;
@@ -308,7 +307,7 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 			try{
 				Typeface tfAux = Typeface.createFromAsset(activity.getApplicationContext().getAssets(), "fonts/"+type+".ttf");
 				tf = Typeface.create(tfAux, style);	
-				v.setTypeface(tf);
+				textView.setTypeface(tf);
 			}catch(Exception e2){
 				Log.e("ApplicationData","Impossible to apply any typeface");
 			}
@@ -323,9 +322,9 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * depending on a specific screen type.
 	 * @param activity
 	 * @param activityType
-	 * @param selection
+	 * @param textView
 	 */
-	public void initializeListFormat(Activity activity, ActivityType activityType, Button selection){
+	public void initializeListFormat(Activity activity, ActivityType activityType, TextView textView){
 		try {
 			Map<ActivityType, LevelTypeStyle> levelStyleTypeMap = SplashActivity.getApplicationData().getLevelStyleTypeMap();
 			Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap();
@@ -340,9 +339,9 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 				
 				int imageResource = activity.getResources().getIdentifier(backgroundSelectionName, "drawable", activity.getPackageName());
 				Drawable backgroundSelectionDrawable = activity.getResources().getDrawable(imageResource);
-				selection.setBackgroundDrawable(backgroundSelectionDrawable);
+				textView.setBackgroundDrawable(backgroundSelectionDrawable);
 		
-				initializeSelectionFormat(activity, selection, fs);
+				initializeSelectionFormat(activity, textView, fs);
 			}
 		} catch (Exception e) {
 			Log.e("ApplicationData","ImageFile not found");

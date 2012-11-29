@@ -32,10 +32,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.emobc.android.ActivityType;
@@ -141,10 +141,12 @@ public class ImageListActivityGenerator extends LevelActivityGenerator {
 		        }
             };
 
-            Button button = (Button)view.findViewById(R.id.selection_list);
-            button.setText(item.getText().toUpperCase());
-            button.setOnClickListener(listener);
-            initializeListFormat(activity, ActivityType.IMAGE_LIST_ACTIVITY, button);       
+            
+            TextView textView = (TextView)view.findViewById(R.id.list_item_text);
+            textView.setText(item.getText());
+            textView.setOnClickListener(listener);
+            
+            initializeListFormat(activity, ActivityType.IMAGE_LIST_ACTIVITY, textView);
     		
 	    	return view;
     	 }

@@ -102,6 +102,7 @@ public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerato
 			    	Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
 				}			
 			}
+			//TODO: ¿por qué está esto así?
 			if(Utils.hasLength(item.getText())){
 				TextView descrText = (TextView)activity.findViewById(R.id.basic_text);
 	            descrText.setText(item.getText(), BufferType.EDITABLE); 

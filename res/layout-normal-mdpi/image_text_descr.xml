@@ -19,7 +19,7 @@
     <ListView
         android:id="@+id/sideMenuList"
         android:layout_width="match_parent"
-        android:layout_height="394dp"
+        android:layout_height="0dp"
         android:layout_weight="1.21"
         android:background="#FFFFFF"
         android:cacheColorHint="#999999"
@@ -72,16 +72,17 @@
         android:layout_below="@+id/topLayout"
         android:layout_above="@+id/bottomLayout" >
 
-	<TextView android:text="normal-port"
+	<TextView android:text="normal-mdpi"
 		android:id="@+id/header"
 		android:scaleType="fitXY" 
 		android:layout_width="fill_parent" 
     	android:layout_height="45dp" 
     	android:paddingTop="10dp" 
-    	android:gravity="center_vertical|center_horizontal" 
+    	android:gravity="center_vertical" 
+    	android:background="@android:color/transparent"
     	android:paddingLeft="20dp">
 	</TextView>
-
+
     	<ScrollView
     	    android:id="@+id/text_scroll"
     	    android:layout_width="fill_parent"
@@ -104,17 +105,17 @@
     	        android:paddingRight="10dp"
     	        android:text="@null" />
     	</ScrollView>
-
-    	<ImageView
-    	    android:id="@+id/descr_image"
-    	    android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
-    	    android:layout_alignParentBottom="true"
-    	    android:layout_centerHorizontal="true"
-    	    android:contentDescription="@null"
-    	    android:padding="5dp"
-    	    android:scaleType="fitXY"
-    	    android:src="@drawable/imagen1" />
+
+     	<ImageView
+     	    android:id="@+id/descr_image"
+     	    android:layout_width="match_parent"
+     	    android:layout_height="150dp"
+     	    android:layout_alignParentBottom="true"
+     	    android:layout_centerHorizontal="true"
+     	    android:contentDescription="@null"
+     	    android:padding="5dp"
+     	    android:scaleType="fitCenter"
+     	    android:src="@drawable/imagen1" />
 
     	<LinearLayout
     	    android:id="@+id/descr_mas"
@@ -129,7 +130,7 @@
     	        android:layout_width="wrap_content"
     	        android:layout_height="33dp"
     	        android:layout_marginLeft="13dp"
-    	        android:layout_marginRight="12dip"
+    	        android:layout_marginRight="12dp"
     	        android:paddingLeft="10dp"
     	        android:text="Recorre"/>
     	</LinearLayout>

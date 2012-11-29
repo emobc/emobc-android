@@ -64,49 +64,40 @@
             android:text="normal-mdpi">
         </TextView>
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="fill_parent"
-            android:layout_height="430dip"
-            android:layout_above="@+id/descr_image"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/header"
-            android:layout_weight="1"
-            android:orientation="vertical" >
-
-            <ListView
-                android:id="@+id/list"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="bottom|left"
-                android:layout_marginLeft="15dip"
-                android:layout_marginRight="14dip"
-                android:layout_marginTop="5dip"
-                android:divider="#FFFFFF"
-                android:dividerHeight="5dip"
-                android:gravity="left"
-                android:paddingTop="5dip">
-            </ListView>
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/descr_image"
-            android:layout_width="fill_parent"
-            android:layout_height="130dip"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:paddingTop="5dip"
-            android:scaleType="fitXY"
-            android:src="@null" />
-
-        <LinearLayout
-            android:id="@+id/descr_mas"
-            android:layout_width="fill_parent"
-            android:layout_height="34dip"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/descr_image" >
-        </LinearLayout>
-
+	        <ImageView
+	            android:id="@+id/descr_image"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@+id/header"
+	            android:layout_centerHorizontal="true"
+	            android:contentDescription="@null"
+	            android:maxHeight="160dp"
+	            android:paddingTop="5dp"
+	            android:scaleType="fitXY"
+	            android:src="@drawable/imagen1" />
+        
+	        <LinearLayout
+	            android:id="@+id/linearLayout1"
+	            android:layout_width="fill_parent"
+	            android:layout_height="270dp"
+	            android:layout_alignParentBottom="true"
+	            android:layout_below="@+id/descr_image"
+	            android:orientation="vertical" >
+	
+	            <ListView
+	                android:id="@+id/list"
+	                android:layout_width="fill_parent"
+	                android:layout_height="fill_parent"
+	                android:layout_gravity="bottom|left"
+	                android:layout_marginLeft="15dp"
+	                android:layout_marginRight="14dp"
+	                android:layout_marginTop="5dp"
+	                android:divider="@android:drawable/divider_horizontal_bright"
+	                android:gravity="left"
+	                android:paddingTop="5dp">
+	            </ListView>
+	        </LinearLayout>
+	        
     </RelativeLayout>
 
     <RelativeLayout

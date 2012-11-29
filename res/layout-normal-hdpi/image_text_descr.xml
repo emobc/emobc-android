@@ -19,7 +19,7 @@
     <ListView
         android:id="@+id/sideMenuList"
         android:layout_width="match_parent"
-        android:layout_height="394dp"
+        android:layout_height="0dp"
         android:layout_weight="1.21"
         android:background="#FFFFFF"
         android:cacheColorHint="#999999"
@@ -76,13 +76,13 @@
 		android:id="@+id/header"
 		android:scaleType="fitXY" 
 		android:layout_width="fill_parent" 
-    	android:layout_height="45dip" 
-    	android:paddingTop="10dip" 
+    	android:layout_height="45dp" 
+    	android:paddingTop="10dp" 
     	android:gravity="center_vertical" 
     	android:background="@android:color/transparent"
-    	android:paddingLeft="20dip">
+    	android:paddingLeft="20dp">
 	</TextView>
-
+
     	<ScrollView
     	    android:id="@+id/text_scroll"
     	    android:layout_width="fill_parent"
@@ -90,7 +90,6 @@
     	    android:layout_above="@+id/descr_mas"
     	    android:layout_alignParentLeft="true"
     	    android:layout_below="@+id/header"
-    	    android:layout_weight="1"
     	    android:fillViewport="true"
     	    android:isScrollContainer="true" >
 
@@ -99,23 +98,24 @@
     	        android:layout_width="wrap_content"
     	        android:layout_height="296dp"
     	        android:layout_gravity="center_horizontal"
-    	        android:layout_marginLeft="13dip"
-    	        android:layout_marginRight="12dip"
+    	        android:layout_marginLeft="13dp"
+    	        android:layout_marginRight="12dp"
     	        android:background="#00000000"
-    	        android:paddingLeft="10dip"
-    	        android:paddingRight="10dip"
+    	        android:paddingLeft="10dp"
+    	        android:paddingRight="10dp"
     	        android:text="@null" />
     	</ScrollView>
-
+
     	<ImageView
     	    android:id="@+id/descr_image"
-    	    android:layout_width="fill_parent"
-    	    android:layout_height="190px"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="150dp"
     	    android:layout_alignParentBottom="true"
-    	    android:layout_alignParentLeft="true"
-    	    android:padding="15dip"
-    	    android:scaleType="fitXY"
-    	    android:src="@null" />
+    	    android:layout_centerHorizontal="true"
+    	    android:contentDescription="@null"
+    	    android:padding="5dp"
+    	    android:scaleType="fitCenter"
+    	    android:src="@drawable/imagen1" />
 
     	<LinearLayout
     	    android:id="@+id/descr_mas"
