@@ -116,12 +116,17 @@ public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerato
 			}
 			
 	        LinearLayout leerMasBtn =(LinearLayout) activity.findViewById(R.id.descr_mas);
-	        leerMasBtn.setOnClickListener(new View.OnClickListener() {
-		        public void onClick(View view) {
-					showNextLevel(activity, item.getNextLevel());
-		        }
-	        });
-	        leerMasBtn.setBackgroundResource(R.drawable.mas_selector);		
+	        
+	        if(item.getNextLevel() != null && item.getNextLevel().isDefined()){
+		        leerMasBtn.setOnClickListener(new View.OnClickListener() {
+			        public void onClick(View view) {
+						showNextLevel(activity, item.getNextLevel());
+			        }
+		        });
+		        leerMasBtn.setBackgroundResource(R.drawable.mas_selector);	        	
+	        }else{
+	        	leerMasBtn.setVisibility(View.INVISIBLE);
+	        }
 		}		
 	}
 
