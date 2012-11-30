@@ -3,7 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="horizontal"
 	android:layout_height="fill_parent"
-	android:layout_width="fill_parent" android:background="@drawable/fondo">
+	android:layout_width="fill_parent" android:background="@drawable/background">
 		<ImageButton android:id="@+id/wwwButton"
 			android:layout_gravity="bottom|left"
 			android:layout_marginLeft="10dip" 

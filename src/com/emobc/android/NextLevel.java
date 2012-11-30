@@ -144,6 +144,15 @@ public class NextLevel implements Serializable {
 		return builder.toString();
 	}
 
+	/**
+	 * @return true is the Next Level is Defined
+	 */
+	public boolean isDefined(){
+		return ((this.levelId != null && !this.levelId.isEmpty()) && (this.dataId != null && !this.dataId.isEmpty())) ||
+			   (this.levelNumber != NO_LEVEL && this.dataNumber != NO_LEVEL);
+				
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

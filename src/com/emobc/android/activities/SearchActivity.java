@@ -28,7 +28,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +37,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.emobc.android.ApplicationData;
@@ -127,21 +127,19 @@ public class SearchActivity extends CreateMenus {
     		RelativeLayout view = (convertView != null) ? (RelativeLayout) convertView : createView(parent);
     		final SearchResult item = items.get(position);
             
-    		View.OnClickListener listener = new View.OnClickListener() {
-		        public void onClick(View view) {
-		        	showNextLevel(activity, item.getNextLevel());		        	
-		        }
-            };
-
-            Button button = (Button)view.findViewById(R.id.selection_list);
-            button.setText(item.getText().toUpperCase());
-            button.setBackgroundResource(R.drawable.list_selector);
-            button.setOnClickListener(listener);
-            
-            // Set font
-            Typeface ubuntu = Typeface.createFromAsset(activity.getApplicationContext().getAssets(), "fonts/Ubuntu-Medium.ttf");
-    		button.setTypeface(ubuntu);
-    		
+            TextView textView = (TextView)view.findViewById(R.id.list_item_text);
+            if(textView != null){
+	            textView.setText(item.getText());
+	            textView.setBackgroundResource(R.drawable.list_selector);
+	    		View.OnClickListener listener = new View.OnClickListener() {
+			        public void onClick(View view) {
+			        	showNextLevel(activity, item.getNextLevel());		        	
+			        }
+	            };	            
+	            textView.setOnClickListener(listener);
+	            
+            }    		
+                		
 	    	return view;
     	 }
     	

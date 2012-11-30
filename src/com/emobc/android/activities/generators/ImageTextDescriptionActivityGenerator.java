@@ -99,6 +99,7 @@ public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerato
 			    	Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
 				}			
 			}
+			//TODO: ¿por qué está esto así?
 			if(Utils.hasLength(item.getText())){
 				TextView descrText = (TextView)activity.findViewById(R.id.basic_text);
 	            descrText.setText(item.getText(), BufferType.EDITABLE); 
@@ -113,8 +114,7 @@ public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerato
 			
 	        LinearLayout nextBtn = (LinearLayout) activity.findViewById(R.id.descr_mas);
 	        
-	        // CHECK: Check if NextLevel is null
-	        if (item.getNextLevel().getLevelId() != null && item.getNextLevel().getDataId() != null){
+			if(item.getNextLevel() != null && item.getNextLevel().isDefined()){
 		        nextBtn.setOnClickListener(new View.OnClickListener() {
 			        public void onClick(View view) {
 						showNextLevel(activity, item.getNextLevel());

@@ -27,15 +27,15 @@ import java.util.Comparator;
 import java.util.List;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.emobc.android.ActivityType;
 import com.emobc.android.NextLevel;
@@ -111,8 +111,8 @@ public class ListActivityGenerator extends LevelActivityGenerator {
         public ImageLoader imageLoader;
     	
         public class ViewHolder{
-            @SuppressWarnings("unused")
-			public Button button;
+			@SuppressWarnings("unused")
+			public TextView textView;
             public ImageView image;
         }
         
@@ -130,10 +130,9 @@ public class ListActivityGenerator extends LevelActivityGenerator {
             if(convertView==null){
                 vi = inflater.inflate(R.layout.list_item, null);
                 holder=new ViewHolder();
-               // button.setText(item.getText().toUpperCase());            
-            }
-            else
+            } else {
                 holder=(ViewHolder)vi.getTag();
+            }
             
             
             View.OnClickListener listener = new View.OnClickListener() {
@@ -141,28 +140,31 @@ public class ListActivityGenerator extends LevelActivityGenerator {
 		        	showNextLevel(activity, item.getNextLevel());		        	
 		        }
             };
-
-            Button button = (Button)vi.findViewById(R.id.selection_list);
-            button.setText(item.getText());
-            button.setOnClickListener(listener);
-            initializeListFormat(activity, ActivityType.LIST_ACTIVITY, button);
-            holder.button=button;
-            holder.image=(ImageView)vi.findViewById(R.id.list_img);
-            vi.setTag(holder);
             
-            
-            if (Utils.isUrl(item.getImageFile())){
-            	holder.image.setTag(item.getImageFile());
-            	imageLoader.DisplayImage(item.getImageFile(), activity, holder.image);
-            }else{
-            	try {
-					holder.image.setImageDrawable(ImagesUtils.getDrawable(activity, item.getImageFile()));
-				} catch (InvalidFileException e) {
-					e.printStackTrace();
-					Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
-				}
+            TextView textView = (TextView)vi.findViewById(R.id.list_item_text);
+            if(textView != null){
+            	textView.setText(item.getText());
+            	textView.setOnClickListener(listener);
+            	
+            	initializeListFormat(activity, ActivityType.LIST_ACTIVITY, textView);
             }
             
+            holder.textView = textView;
+            holder.image = (ImageView)vi.findViewById(R.id.list_item_img);
+            vi.setTag(holder);
+            
+            if(Utils.hasLength(item.getImageFile())){
+	            if (Utils.isUrl(item.getImageFile())){
+	            	holder.image.setTag(item.getImageFile());
+	            	imageLoader.DisplayImage(item.getImageFile(), activity, holder.image);
+	            }else{
+	            	try {
+						holder.image.setImageDrawable(ImagesUtils.getDrawable(activity, item.getImageFile()));
+					} catch (InvalidFileException e) {
+						Log.e("ListActivityGenerator", e.getMessage());
+					}
+	            }
+            }            
             return vi;
     	 }
 

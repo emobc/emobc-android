@@ -182,19 +182,21 @@ public class CalendarActivityGenerator extends LevelActivityGenerator {
     	@Override
     	public View getView(int position, View convertView, ViewGroup parent) {
     		RelativeLayout view = (convertView != null) ? (RelativeLayout) convertView : createView(parent);
-    		final EventDataItem item = items.get(position);
-            
-    		View.OnClickListener listener = new View.OnClickListener() {
-		        public void onClick(View view) {
-		        	showNextLevel(activity, item.getNextLevel());		        	
-		        }
-            };
+    		final EventDataItem item = items.get(position);            
 
-            Button button = (Button)view.findViewById(R.id.selection_list);
-            button.setText(item.getTime()+"    "+item.getTitle());
-            button.setOnClickListener(listener);
-            initializeListFormat(activity, ActivityType.CALENDAR_ACTIVITY, button);
+            TextView textView = (TextView)view.findViewById(R.id.list_item_text);
             
+            if(textView != null){
+	            textView.setText(item.getTime()+"    "+item.getTitle());
+	    		View.OnClickListener listener = new View.OnClickListener() {
+			        public void onClick(View view) {
+			        	showNextLevel(activity, item.getNextLevel());		        	
+			        }
+	            };
+	            textView.setOnClickListener(listener);
+	            
+	            initializeListFormat(activity, ActivityType.CALENDAR_ACTIVITY, textView);
+            }            
 	    	return view;
     	 }
 
