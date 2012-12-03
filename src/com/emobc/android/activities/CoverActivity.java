@@ -69,11 +69,7 @@ public class CoverActivity extends CreateMenus {
 			 * Else, load an Activity with the NextLevel
 			 */
 			setTitle(applicationData.getTitle());
-			
-			EntryPoint entryP = applicationData.getEntryPoint();
-			String pointLevelId = entryP.getLevelId();
-			String pointDataId = entryP.getDataId();
-			
+						
 			//GCM
 			final ServerPushDataItem serverPushData = applicationData.getServerPush();
 			if (serverPushData != null){
@@ -129,10 +125,11 @@ public class CoverActivity extends CreateMenus {
 				}
 			}
 			
+			EntryPoint entryPoint = applicationData.getEntryPoint();
+			
 	        //Show next level
-			if(pointLevelId!=null & pointDataId!=null){
-				NextLevel nl = new NextLevel (pointLevelId, pointDataId);
-		        showNextLevel(this, nl);
+			if(entryPoint.isDefined()){
+		        showNextLevel(this, entryPoint);
 			}else{
 				ActivityGenerator generator = applicationData.getAppCoverData(this);
 				generator.initializeActivity(this);

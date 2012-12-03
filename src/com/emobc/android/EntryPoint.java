@@ -29,26 +29,10 @@ package com.emobc.android;
  * @version 0.1
  * @sine 1.0
  */
-public class EntryPoint {
-	private String levelId;
-	private String dataId;
-	
-	public EntryPoint(){
-		levelId=null;
-		dataId=null;
-	}
-	
-	public String getLevelId() {
-		return levelId;
-	}
-	public void setLevelId(String levelId) {
-		this.levelId = levelId;
-	}
-	public String getDataId() {
-		return dataId;
-	}
-	public void setDataId(String dataId) {
-		this.dataId = dataId;
-	}
-	
+public class EntryPoint extends NextLevel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6505075761120652930L;	
 }
