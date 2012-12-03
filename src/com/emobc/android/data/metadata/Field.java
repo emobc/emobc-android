@@ -60,4 +60,9 @@ public class Field implements Serializable {
 	public boolean isKey() {
 		return key;
 	}
+
+	public String toString(){
+		return "[field = "+name+"]";
+	}
+	
 }

@@ -694,7 +694,7 @@ public class CreateMenus extends Activity implements AnimationListener {
 	 * @param nextLevel
 	 */
 	protected void showNextLevel(Context context, NextLevel nextLevel) {
-		if(nextLevel != null && nextLevel.getLevelId() != null && nextLevel.getDataId() != null){
+		if(nextLevel != null && nextLevel.isDefined()){
 			ApplicationData appData;
 			try {
 				appData = ApplicationData.readApplicationData(context);

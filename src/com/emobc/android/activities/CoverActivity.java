@@ -128,7 +128,7 @@ public class CoverActivity extends CreateMenus {
 			EntryPoint entryPoint = applicationData.getEntryPoint();
 			
 	        //Show next level
-			if(entryPoint.isDefined()){
+			if(entryPoint != null && entryPoint.isDefined()){
 		        showNextLevel(this, entryPoint);
 			}else{
 				ActivityGenerator generator = applicationData.getAppCoverData(this);
@@ -144,7 +144,7 @@ public class CoverActivity extends CreateMenus {
     }
     
 	protected void showNextLevel(Context context, NextLevel nextLevel) {
-		if(nextLevel != null && nextLevel.getLevelId() != null && nextLevel.getDataId() != null){
+		if(nextLevel != null && nextLevel.isDefined()){
 			ApplicationData applicationData = SplashActivity.getApplicationData();
 			AppLevel level = applicationData.getNextAppLevel(nextLevel, context);
 			if(level != null){

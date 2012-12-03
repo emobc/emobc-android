@@ -9,7 +9,7 @@
 	android:cacheColorHint="#999999">
   	<TextView android:id="@+id/crud_header"
 		android:scaleType="fitXY" 
-		android:textColor="#ffffff"
+		android:textColor="#ff00ff"
 		android:textSize="20sp" 
 		android:textStyle="bold" 
 		android:typeface="sans" 
