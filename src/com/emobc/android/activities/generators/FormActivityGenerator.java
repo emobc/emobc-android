@@ -49,6 +49,7 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Parcelable;
 import android.provider.MediaStore;
@@ -75,8 +76,11 @@ import com.emobc.android.levels.AppLevelData;
 import com.emobc.android.levels.impl.FormDataItem;
 import com.emobc.android.levels.impl.FormLevelDataItem;
 import com.emobc.android.menu.CreateMenus;
+import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.ImagesUtils.FlushedInputStream;
+import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.RetreiveFileContentTask;
+import com.emobc.android.utils.Utils;
 
 /**
  * Screen generator, responsible for specific components to initialize the 
@@ -122,13 +126,25 @@ public class FormActivityGenerator extends LevelActivityGenerator {
 		}
 		
 		Button submit = new Button(activity);
-		submit.setText(R.string.form_submit_buttom);
 		submit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				processSubmit(activity);
 			}
 		});
+		
+		if(Utils.hasLength(item.getSubmitImage())){
+			Drawable drawable;
+			try {
+				drawable = ImagesUtils.getDrawable(activity, item.getSubmitImage());
+				submit.setBackgroundDrawable(drawable);
+			} catch (InvalidFileException e) {
+				Log.e("FormActivityGenerator", e.getLocalizedMessage());
+			}						
+		}else{
+			submit.setText(R.string.form_submit_buttom);			
+		}
+		
 		formLayout.addView(submit);
 		((FormActivity) activity).setControlsMap(controlsMap);
 	}

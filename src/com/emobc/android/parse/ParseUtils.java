@@ -107,6 +107,7 @@ public class ParseUtils {
 	private static final String _FIELD_LABEL_TAG_ = "fieldLabel";
 	private static final String _FIELD_TYPE_TAG_ = "fieldType";
 	private static final String _ACTION_URL_TAG_ = "actionUrl";
+	private static final String _SUBMIT_IMAGE_TAG_ = "submitImage";
 	private static final String _FIELD_TAG_ = "field";
 	private static final String _FORM_TAG_ = "form";
 	private static final String _BUTTONS_TAG_ = "buttons";
@@ -1663,6 +1664,8 @@ public class ParseUtils {
 							currItem.setHeaderImageFile(text);
 						}else if(currentField.equals(_HEADER_TEXT_TAG_)){
 							currItem.setHeaderText(text);
+						}else if(currentField.equals(_SUBMIT_IMAGE_TAG_)){
+							currItem.setSubmitImage(text);
 						}else if(currentField.equals(_FORM_TAG_)){
 							currList = new ArrayList<FormDataItem>();
 							currItem.setList(currList);

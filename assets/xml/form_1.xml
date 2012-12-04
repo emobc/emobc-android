@@ -3,6 +3,7 @@
 	<data>
 		<dataId>Formulario1</dataId>
 		<headerText>Solicita un proyecto</headerText>
+		<submitImage>images/form/enviar.png</submitImage>
 		<nextLevel>
 			<nextLevelLevelId>envio</nextLevelLevelId>
 			<nextLevelDataId>ok</nextLevelDataId>
