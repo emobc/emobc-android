@@ -22,7 +22,7 @@
 */
 package com.emobc.android.activities;
 
-import java.util.Iterator;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -182,17 +182,16 @@ public class QuizQuestionsActivity extends CreateMenus {
         RadioGroup ansRadioGroup = (RadioGroup) findViewById(R.id.answersRadioGroup);
         ansRadioGroup.removeAllViews();
         //Answers
-        Iterator<String> i = quizController.getAnswers().iterator();
-        int idButton = 0;
-        while (i.hasNext()){
-        	RadioButton r = new RadioButton(getApplicationContext());
-        	String a = i.next();
-        	r.setText(a);
-        	r.setId(idButton);	
-        	ansRadioGroup.addView(r);
-        	idButton++;
+        List<String> answers = quizController.getAnswers();
+        if(answers != null){
+	        int idButton = 0;
+	        for(String answer : answers) {
+	        	RadioButton r = new RadioButton(getApplicationContext());
+	        	r.setText(answer);
+	        	r.setId(idButton);	
+	        	ansRadioGroup.addView(r);
+	        	idButton++;
+	        }
         }
-	}
-
-    
+	}    
 }

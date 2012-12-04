@@ -134,19 +134,22 @@ public class ImageListActivityGenerator extends LevelActivityGenerator {
     	public View getView(int position, View convertView, ViewGroup parent) {
     		RelativeLayout view = (convertView != null) ? (RelativeLayout) convertView : createView(parent);
     		final ListItemDataItem item = items.get(position);
-            
+                		
             TextView textView = (TextView)view.findViewById(R.id.list_item_text);
             
             if(textView != null){
-	            textView.setText(item.getText());
-	    		View.OnClickListener listener = new View.OnClickListener() {
-			        public void onClick(View view) {
-			        	showNextLevel(activity, item.getNextLevel());		        	
-			        }
-	            };
-	            textView.setOnClickListener(listener);
-	            
-	            initializeListFormat(activity, ActivityType.IMAGE_LIST_ACTIVITY, textView);
+        		if(item != null){
+	            	textView.setText(item.getText());
+	        		if(item.getNextLevel() == null && item.getNextLevel().isDefined()){
+			    		View.OnClickListener listener = new View.OnClickListener() {
+					        public void onClick(View view) {
+					        	showNextLevel(activity, item.getNextLevel());		        	
+					        }
+			            };
+			            textView.setOnClickListener(listener);
+	        		}		            
+		            initializeListFormat(activity, ActivityType.IMAGE_LIST_ACTIVITY, textView);
+        		}
             }    		
 	    	return view;
     	 }

@@ -156,6 +156,9 @@ public class QuizController implements Serializable {
 	 */
 	public void next(){
 		//Saves answer results
+		if(currQuestion == null)
+			return;
+		
 		QuizAnswerDataItem answer = currQuestion.getAnswers().get(currAnswer);
 		if (answer.isCorrect()){
 			this.results.setAnswer(currQuestion.getWeight(), true);
@@ -191,7 +194,9 @@ public class QuizController implements Serializable {
 	 * @return
 	 */
 	public String getQuestion(){
-		return currQuestion.getText();	
+		if(currQuestion != null)
+			return currQuestion.getText();
+		return "";
 	}
 	
 	/**
@@ -199,7 +204,9 @@ public class QuizController implements Serializable {
 	 * @return The path or url of the image.
 	 */
 	public String getImage(){
-		return currQuestion.getImage();
+		if(currQuestion != null)
+			return currQuestion.getImage();
+		return "";
 	}
 	
 	/**
@@ -207,6 +214,8 @@ public class QuizController implements Serializable {
 	 * @return
 	 */
 	public List<String> getAnswers(){
+		if(currAnswers == null)
+			return null;
 		Iterator<QuizAnswerDataItem> i = currAnswers.iterator();
 		List<String> toReturn = new ArrayList<String>();
 		while (i.hasNext()){
