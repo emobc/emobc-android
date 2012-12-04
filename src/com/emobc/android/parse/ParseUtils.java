@@ -251,6 +251,7 @@ public class ParseUtils {
 	private static final String _ANSWER_TAG_ = "answer";
 	private static final String _CORRECT_TAG_ = "correct";
 	private static final String _NEXT_TAG_ = "next";
+	private static final String _DESCRIPTION_IMAGE_TAG_ = "descriptionImage";
 	
 	/*-------------PROFILE CONSTANTS----------------------------*/
 	private static final String _PROFILE_TAG_ = "profile";
@@ -1364,6 +1365,8 @@ public class ParseUtils {
                             currItem.setTime(text);
                         }else if(currentField.equals(_FIRST_TAG_)){
                             currItem.setFirst(text);
+                        }else if(currentField.equals(_DESCRIPTION_IMAGE_TAG_)){
+                        	currItem.setDescriptionImage(text);
                         }else if(currentField.equals(_QUESTIONS_TAG_)){
                             //currQuestionsList = new ArrayList<QuestionDataItem>();
                             //currItem.setQuestions(currQuestionsList);

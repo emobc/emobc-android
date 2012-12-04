@@ -5,7 +5,8 @@
 		<headerText>Quiz</headerText>
 		<description>Este es un quiz de prueba. Las preguntas tienen diferente peso según su dificultad. El quiz tiene un peso total de 9 que en los resultados serían 9000 puntos. Según las respuestas podrás conseguir de 0 a 9000 puntos.</description>
 		<time>1</time>
-		<first></first> 
+		<first></first>
+		<descriptionImage>images/form/enviar.png</descriptionImage> 
 		<questions>
             <question>
                 <id>santiago</id>

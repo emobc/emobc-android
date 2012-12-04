@@ -23,6 +23,8 @@
 package com.emobc.android.activities.generators;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.emobc.android.ActivityType;
@@ -33,6 +35,9 @@ import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelData;
 import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
 import com.emobc.android.menu.CreateMenus;
+import com.emobc.android.utils.ImagesUtils;
+import com.emobc.android.utils.InvalidFileException;
+import com.emobc.android.utils.Utils;
 
 /**
  * Screen generator, responsible for specific components to initialize the 
@@ -57,8 +62,22 @@ public class QuizActivityGenerator extends LevelActivityGenerator {
 		CreateMenus c = (CreateMenus)activity;
 		c.createBanner();
 		((QuizActivity)activity).setQuiz(item);
+				
 		TextView description = (TextView) activity.findViewById(R.id.quizDescription);
-		description.setText(item.getDescription());
+		
+		if(Utils.hasLength(item.getDescriptionImage())){
+			Drawable drawable;
+			try {
+				drawable = ImagesUtils.getDrawable(activity, item.getDescriptionImage());
+				description.setBackgroundDrawable(drawable);
+			} catch (InvalidFileException e) {
+				Log.e("FormActivityGenerator", e.getLocalizedMessage());
+			}						
+		}else{
+			description.setText(item.getDescription());			
+		}
+		
+		
 	}
 
 	@Override

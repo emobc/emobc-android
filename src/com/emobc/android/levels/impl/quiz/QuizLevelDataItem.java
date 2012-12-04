@@ -46,6 +46,7 @@ public class QuizLevelDataItem extends AppLevelDataItem {
 	private boolean adventureMode = false;
 	private int time;
 	private String first;
+	private String descriptionImage;
 	
 	public boolean isAdventureMode() {
 		return adventureMode;
@@ -118,5 +119,13 @@ public class QuizLevelDataItem extends AppLevelDataItem {
 	public void addQuestion(QuestionDataItem question) {
 		this.questions.put(question.getId(), question);
 		
+	}
+
+	public String getDescriptionImage() {
+		return descriptionImage;
+	}
+
+	public void setDescriptionImage(String descriptionImage) {
+		this.descriptionImage = descriptionImage;
 	}
 }
