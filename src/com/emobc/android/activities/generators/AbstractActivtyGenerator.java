@@ -121,7 +121,7 @@ public abstract class AbstractActivtyGenerator implements ActivityGenerator {
 	 * @param nextLevel
 	 */
 	public static void showNextLevel(Context context, NextLevel nextLevel) {
-		if(nextLevel != null && nextLevel.getLevelId() != null && nextLevel.getDataId() != null){
+		if(nextLevel != null && nextLevel.isDefined()){
 			ApplicationData applicationData = SplashActivity.getApplicationData();
 			AppLevel level = applicationData.getNextAppLevel(nextLevel, context);
 			if(level != null){

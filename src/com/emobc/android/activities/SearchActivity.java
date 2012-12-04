@@ -144,7 +144,7 @@ public class SearchActivity extends CreateMenus {
     	 }
     	
     	public void showNextLevel(Context context, NextLevel nextLevel) {
-    		if(nextLevel != null && nextLevel.getLevelId() != null && nextLevel.getDataId() != null){
+    		if(nextLevel != null && nextLevel.isDefined()){
 				ApplicationData applicationData = SplashActivity.getApplicationData();
 				AppLevel level = applicationData.getNextAppLevel(nextLevel, context);
 				if(level != null){

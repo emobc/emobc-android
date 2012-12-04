@@ -32,7 +32,6 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.emobc.android.ApplicationData;
-import com.emobc.android.EntryPoint;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.ActivityGenerator;
 import com.emobc.android.levels.AppLevel;
@@ -69,11 +68,7 @@ public class CoverActivity extends CreateMenus {
 			 * Else, load an Activity with the NextLevel
 			 */
 			setTitle(applicationData.getTitle());
-			
-			EntryPoint entryP = applicationData.getEntryPoint();
-			String pointLevelId = entryP.getLevelId();
-			String pointDataId = entryP.getDataId();
-			
+						
 			//GCM
 			final ServerPushDataItem serverPushData = applicationData.getServerPush();
 			if (serverPushData != null){
@@ -129,10 +124,11 @@ public class CoverActivity extends CreateMenus {
 				}
 			}
 			
+			NextLevel entryPoint = applicationData.getEntryPoint();
+			
 	        //Show next level
-			if(pointLevelId!=null & pointDataId!=null){
-				NextLevel nl = new NextLevel (pointLevelId, pointDataId);
-		        showNextLevel(this, nl);
+			if(entryPoint != null && entryPoint.isDefined()){
+		        showNextLevel(this, entryPoint);
 			}else{
 				ActivityGenerator generator = applicationData.getAppCoverData(this);
 				generator.initializeActivity(this);
@@ -147,7 +143,7 @@ public class CoverActivity extends CreateMenus {
     }
     
 	protected void showNextLevel(Context context, NextLevel nextLevel) {
-		if(nextLevel != null && nextLevel.getLevelId() != null && nextLevel.getDataId() != null){
+		if(nextLevel != null && nextLevel.isDefined()){
 			ApplicationData applicationData = SplashActivity.getApplicationData();
 			AppLevel level = applicationData.getNextAppLevel(nextLevel, context);
 			if(level != null){

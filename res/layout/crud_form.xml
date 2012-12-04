@@ -10,12 +10,13 @@
 
   	<TextView android:id="@+id/crud_header"
 		android:scaleType="fitXY" 
-		android:textColor="#ffffff"
+		android:textColor="#ff00ff"
 		android:textSize="20sp" 
 		android:textStyle="bold" 
 		android:typeface="sans" 
 		android:layout_width="fill_parent" 
-    	android:layout_height="45dip" 
+    	android:layout_height="45dip"
+    	android:text="CRUD FORM" 
     	android:gravity="center_vertical|center_horizontal">
 	</TextView>
 
