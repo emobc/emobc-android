@@ -82,7 +82,7 @@ public class ApplicationData {
 	private String stylesFileName;
 	private String formatsFileName;
 	private String profileFileName;
-	private EntryPoint entryP = new EntryPoint();
+	private NextLevel entryPoint;
 	private ActiveMenus menu = new ActiveMenus();
 	private String rotation;
 	private BannerDataItem banner;
@@ -405,12 +405,12 @@ public class ApplicationData {
 	}
 	
 	
-	public EntryPoint getEntryPoint() {
-		return entryP;
+	public NextLevel getEntryPoint() {
+		return entryPoint;
 	}
 
-	public void setEntryPoint(EntryPoint home) {
-		this.entryP = home;
+	public void setEntryPoint(NextLevel entryPoint) {
+		this.entryPoint = entryPoint;
 	}
 	
 	public ActiveMenus getMenu() {

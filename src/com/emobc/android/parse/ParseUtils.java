@@ -53,7 +53,6 @@ import android.util.Log;
 import com.emobc.android.ActivityType;
 import com.emobc.android.AppButton;
 import com.emobc.android.ApplicationData;
-import com.emobc.android.EntryPoint;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.CoverActivityGenerator;
 import com.emobc.android.config.ApplicationConfiguration;
@@ -330,7 +329,7 @@ public class ParseUtils {
 		
 		NwXmlStandarParser parser = new NwXmlStandarParser(xpp, 
 				new NwXmlStandarParserTextHandler() {
-					private EntryPoint entryP;
+					private NextLevel entryPoint;
 					private ActiveMenus activeMenus;
 					private AppLevel currLevel = null;
 					private LevelTypeStyle currLevTypeStyle;
@@ -342,12 +341,12 @@ public class ParseUtils {
 					public void handleText(String currentField, String text) {
 						
 						if(currentField.equals(_ENTRY_POINT_TAG_)){
-							entryP = new EntryPoint();
-							ret.put(currentField, entryP);
+							entryPoint = new NextLevel();
+							ret.put(currentField, entryPoint);
 						}else if(currentField.equals(_POINT_LEVEL_ID_TAG_)){
-							entryP.setLevelId(text);
+							entryPoint.setLevelId(text);
 						}else if(currentField.equals(_POINT_DATA_ID_TAG_)){
-							entryP.setDataId(text);
+							entryPoint.setDataId(text);
 						}else 
 						
 						if(currentField.equals(_MENU_TAG_)){
@@ -455,7 +454,7 @@ public class ParseUtils {
 		}else {
 			ret = new ApplicationData();
 		}
-		ret.setEntryPoint((EntryPoint)data.get(_ENTRY_POINT_TAG_));
+		ret.setEntryPoint((NextLevel)data.get(_ENTRY_POINT_TAG_));
 		
 		ret.setMenu((ActiveMenus)data.get(_MENU_TAG_));
 
@@ -594,8 +593,7 @@ public class ParseUtils {
 		} catch (InterruptedException e) {
 			Log.e("ParseUtils", "InterruptedException: " + e.getLocalizedMessage());
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e("ParseUtils", "ExecutionException: " + e.getLocalizedMessage());
 		}
 		return is;
 	}
