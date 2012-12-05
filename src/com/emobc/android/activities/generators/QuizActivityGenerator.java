@@ -67,12 +67,12 @@ public class QuizActivityGenerator extends LevelActivityGenerator {
 		TextView description = (TextView) activity.findViewById(R.id.quizDescription);
 		description.setText(item.getDescription());			
 		
-		if(Utils.hasLength(item.getDescriptionImage())){
+		if(Utils.hasLength(item.getStartImage())){
 			Button startQuiz = (Button) activity.findViewById(R.id.startQuizButton);
 			
 			Drawable drawable;
 			try {
-				drawable = ImagesUtils.getDrawable(activity, item.getDescriptionImage());
+				drawable = ImagesUtils.getDrawable(activity, item.getStartImage());
 				startQuiz.setBackgroundDrawable(drawable);
 			} catch (InvalidFileException e) {
 				Log.e("FormActivityGenerator", e.getLocalizedMessage());

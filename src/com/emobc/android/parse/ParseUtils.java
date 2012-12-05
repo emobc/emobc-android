@@ -108,6 +108,7 @@ public class ParseUtils {
 	private static final String _FIELD_TYPE_TAG_ = "fieldType";
 	private static final String _ACTION_URL_TAG_ = "actionUrl";
 	private static final String _SUBMIT_IMAGE_TAG_ = "submitImage";
+	private static final String _CAMERA_IMAGE_TAG_ = "cameraImage";
 	private static final String _FIELD_TAG_ = "field";
 	private static final String _FORM_TAG_ = "form";
 	private static final String _BUTTONS_TAG_ = "buttons";
@@ -144,8 +145,6 @@ public class ParseUtils {
 	private static final String _ACTION_IMAGE_NAME_TAG_ = "actionImageName";
 	private static final String _SYSTEM_ACTION_TAG_ = "systemAction";
 	private static final String _LEFT_MARGIN_TAG_ = "leftMargin";
-	private static final String _WIDTH_BUTTON_TAG_ = "widthButton";
-	private static final String _HEIGHT_BUTTON_TAG_ = "heightButton";
 	
 	private static final String _STYLES_TAG_ = "styles";
 	private static final String _TYPEID_TAG_ = "typeId";
@@ -251,7 +250,9 @@ public class ParseUtils {
 	private static final String _ANSWER_TAG_ = "answer";
 	private static final String _CORRECT_TAG_ = "correct";
 	private static final String _NEXT_TAG_ = "next";
-	private static final String _DESCRIPTION_IMAGE_TAG_ = "descriptionImage";
+	private static final String _START_IMAGE_TAG_ = "startImage";
+	private static final String _NEXT_IMAGE_TAG_ = "nextImage";
+	
 	
 	/*-------------PROFILE CONSTANTS----------------------------*/
 	private static final String _PROFILE_TAG_ = "profile";
@@ -753,10 +754,6 @@ public class ParseUtils {
 							currItem.setSystemAction(text);
 						}else if(currentField.equals(_LEFT_MARGIN_TAG_)){
 							currItem.setLeftMargin(Integer.parseInt(text));
-						}else if(currentField.equals(_WIDTH_BUTTON_TAG_)){
-							currItem.setWidthButton(Integer.parseInt(text));
-						}else if(currentField.equals(_HEIGHT_BUTTON_TAG_)){
-							currItem.setHeightButton(Integer.parseInt(text));
 						}else if(currentField.equals(_NEXT_LEVEL_TAG_)){
 							nextLevel = new NextLevel();
 							currItem.setNextLevel(nextLevel);
@@ -1365,8 +1362,10 @@ public class ParseUtils {
                             currItem.setTime(text);
                         }else if(currentField.equals(_FIRST_TAG_)){
                             currItem.setFirst(text);
-                        }else if(currentField.equals(_DESCRIPTION_IMAGE_TAG_)){
-                        	currItem.setDescriptionImage(text);
+                        }else if(currentField.equals(_START_IMAGE_TAG_)){
+                        	currItem.setStartImage(text);
+                        }else if(currentField.equals(_NEXT_IMAGE_TAG_)){
+                        	currItem.setNextImage(text);
                         }else if(currentField.equals(_QUESTIONS_TAG_)){
                             //currQuestionsList = new ArrayList<QuestionDataItem>();
                             //currItem.setQuestions(currQuestionsList);
@@ -1669,6 +1668,8 @@ public class ParseUtils {
 							currItem.setHeaderText(text);
 						}else if(currentField.equals(_SUBMIT_IMAGE_TAG_)){
 							currItem.setSubmitImage(text);
+						}else if(currentField.equals(_CAMERA_IMAGE_TAG_)){
+							currItem.setCameraImage(text);
 						}else if(currentField.equals(_FORM_TAG_)){
 							currList = new ArrayList<FormDataItem>();
 							currItem.setList(currList);

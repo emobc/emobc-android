@@ -47,7 +47,7 @@ import com.emobc.android.utils.InvalidFileException;
  */
 public class QuizActivity extends CreateMenus {
 	private QuizController quizController;
-	
+	private NextLevel nextLevel; 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +60,7 @@ public class QuizActivity extends CreateMenus {
 				Intent intent = getIntent();
 				isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
 				isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
-				NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
+				nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
 				ActivityGenerator generator = applicationData.getFromNextLevel(this, nextLevel);
 				generator.initializeActivity(this);
 				
@@ -82,6 +82,7 @@ public class QuizActivity extends CreateMenus {
 			@Override
 			public void onClick(View v) {
 				Intent launchActivity = new Intent (getApplicationContext(), QuizQuestionsActivity.class);
+				launchActivity.putExtra(ApplicationData.NEXT_LEVEL_TAG, nextLevel);	
 				launchActivity.putExtra(QuizController.QUIZ_CONTROLLER_TAG, quizController);	
 				startActivity(launchActivity);
 			}

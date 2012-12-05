@@ -338,6 +338,17 @@ public class FormActivityGenerator extends LevelActivityGenerator {
 	private View insertImageField(final Activity activity, FormDataItem dataItem) {
 		Button imageButton = new Button(activity);
 		imageButton.setText("Imagen");
+		
+		if(Utils.hasLength(item.getCameraImage())){
+			Drawable drawable;
+			try {
+				drawable = ImagesUtils.getDrawable(activity, item.getCameraImage());
+				imageButton.setBackgroundDrawable(drawable);
+			} catch (InvalidFileException e) {
+				Log.e("FormActivityGenerator", e.getLocalizedMessage());
+			}
+		}
+		
 		imageButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

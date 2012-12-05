@@ -43,6 +43,7 @@ import com.emobc.android.menu.CreateMenus;
 public class QuizResultsActivity extends CreateMenus {
 	private QuizController quizController;
 	private QuizResults results;
+	
 	//timer for the progress bar
     Handler handler = new Handler();
     
@@ -56,7 +57,8 @@ public class QuizResultsActivity extends CreateMenus {
 			
 		}
 	};
-    @Override
+
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_results_layouts);
@@ -65,6 +67,7 @@ public class QuizResultsActivity extends CreateMenus {
         
         Intent intent = getIntent();
         this.quizController = (QuizController)intent.getSerializableExtra(QuizController.QUIZ_CONTROLLER_TAG);
+        
         if(this.quizController != null){
 	        this.results = this.quizController.getResult();
 	        Button ok = (Button) findViewById(R.id.ok);

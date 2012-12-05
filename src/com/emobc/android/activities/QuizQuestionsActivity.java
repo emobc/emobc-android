@@ -30,6 +30,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -37,10 +38,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.emobc.android.ApplicationData;
+import com.emobc.android.NextLevel;
+import com.emobc.android.levels.AppLevel;
+import com.emobc.android.levels.AppLevelData;
 import com.emobc.android.levels.impl.quiz.QuizController;
+import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
 import com.emobc.android.menu.CreateMenus;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
+import com.emobc.android.utils.Utils;
 
 /**
  * @author Jorge E. Villaverde
@@ -60,6 +67,26 @@ public class QuizQuestionsActivity extends CreateMenus {
 
         Intent intent = getIntent();
         this.quizController = (QuizController)intent.getSerializableExtra(QuizController.QUIZ_CONTROLLER_TAG);
+        
+        NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
+
+        ApplicationData applicationData = SplashActivity.getApplicationData();
+		AppLevel appLevel = applicationData.getNextAppLevel(nextLevel, this);
+		AppLevelData data = appLevel.getData(this);
+        final QuizLevelDataItem  item = (QuizLevelDataItem) data.findByNextLevel(nextLevel);        
+      
+		if(Utils.hasLength(item.getNextImage())){
+			Button startQuiz = (Button) findViewById(R.id.startQuizButton);
+			
+			Drawable drawable;
+			try {
+				drawable = ImagesUtils.getDrawable(this, item.getNextImage());
+				startQuiz.setBackgroundDrawable(drawable);
+			} catch (InvalidFileException e) {
+				Log.e("QuizQuestionsActivity", e.getLocalizedMessage());
+			}
+		}
+        
         if(this.quizController != null){        
 	        quizController.start(0);
 	        

@@ -44,6 +44,7 @@ public class FormLevelDataItem extends AppLevelDataItem {
 	private String actionUrl;
 	private NextLevel nextLevel;
 	private String submitImage;
+	private String cameraImage;
 	
 	public List<FormDataItem> getList() {
 		return list;
@@ -68,5 +69,11 @@ public class FormLevelDataItem extends AppLevelDataItem {
 	}
 	public void setSubmitImage(String submitImage) {
 		this.submitImage = submitImage;
+	}
+	public String getCameraImage() {
+		return cameraImage;
+	}
+	public void setCameraImage(String cameraImage) {
+		this.cameraImage = cameraImage;
 	}
 }

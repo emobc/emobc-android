@@ -45,6 +45,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.TranslateAnimation;
@@ -354,10 +355,8 @@ public class CreateMenus extends Activity implements AnimationListener {
 					
 					//Ancho y alto del boton
 					RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-							action.getWidthButton(),
-							action.getHeightButton());
-//							/*action.getWidthButton()*/LayoutParams.WRAP_CONTENT, 
-//							/*action.getHeightButton()*/LayoutParams.WRAP_CONTENT);
+							LayoutParams.WRAP_CONTENT, 
+							LayoutParams.WRAP_CONTENT);
 					OnClickListener cl;
 					if(action.getSystemAction().equals("sideMenu")){
 						lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
@@ -378,7 +377,7 @@ public class CreateMenus extends Activity implements AnimationListener {
 							int width = imageButton.getIntrinsicWidth();
 							realMargin= width * i + action.getLeftMargin()*(i+1);
 						}else{
-							realMargin= action.getWidthButton()*i + action.getLeftMargin()*(i+1);
+							realMargin =  action.getLeftMargin()*(i+1);
 						}
 						
 						lp.setMargins(0, 0, realMargin, 10);
@@ -425,9 +424,9 @@ public class CreateMenus extends Activity implements AnimationListener {
 				showShare();
 			}else if(systemAction.equals("map")){
 				showMap();
-			}else
+			}else{
 				Log.e("CreateMenus", "No se encuentra el el tipo de menu: " + systemAction);
-			
+			}
 		}else{
 			NextLevel nextLevel = action.getNextLevel();
 			showNextLevel(this, nextLevel);
