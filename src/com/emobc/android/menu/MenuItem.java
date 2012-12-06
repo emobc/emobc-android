@@ -24,14 +24,14 @@ package com.emobc.android.menu;
 
 import java.io.Serializable;
 
-import com.emobc.android.NextLevel;
+import android.app.Activity;
 
 /**
  * @author Jorge E. Villaverde
  * @since 0.1
  * @version 0.1
  */
-public class MenuItem implements Serializable {
+public abstract class MenuItem implements Serializable {
 
 	/**
 	 * 
@@ -40,16 +40,12 @@ public class MenuItem implements Serializable {
 
 	private final String title;
 	private final String imageFileName;
-	private final NextLevel nextLevel;
+
 	
-	public MenuItem(String title, String imageFileName, NextLevel nextLevel) {
+	public MenuItem(String title, String imageFileName) {
 		super();
-		if(nextLevel == null || !nextLevel.isDefined())
-			throw new IllegalArgumentException("Invalid NextLevel: " + String.valueOf(nextLevel));
-		
 		this.title = title;
 		this.imageFileName = imageFileName;
-		this.nextLevel = nextLevel;
 	}
 
 	public String toString(){
@@ -64,7 +60,5 @@ public class MenuItem implements Serializable {
 		return imageFileName;
 	}
 
-	public NextLevel getNextLevel() {
-		return nextLevel;
-	}
+	public abstract void executeMenuItem(Activity context);
 }

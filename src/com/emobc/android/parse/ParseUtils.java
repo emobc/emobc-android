@@ -84,7 +84,6 @@ import com.emobc.android.levels.impl.WebLevelDataItem;
 import com.emobc.android.levels.impl.quiz.QuestionDataItem;
 import com.emobc.android.levels.impl.quiz.QuizAnswerDataItem;
 import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
-import com.emobc.android.menu.ActiveMenus;
 import com.emobc.android.menu.MenuActionDataItem;
 import com.emobc.android.menu.MenuActions;
 import com.emobc.android.profiling.Profile;
@@ -333,7 +332,6 @@ public class ParseUtils {
 		NwXmlStandarParser parser = new NwXmlStandarParser(xpp, 
 				new NwXmlStandarParserTextHandler() {
 					private NextLevel entryPoint;
-					private ActiveMenus activeMenus;
 					private AppLevel currLevel = null;
 					private LevelTypeStyle currLevTypeStyle;
 					private List<AppLevel> levels = null;
@@ -350,22 +348,15 @@ public class ParseUtils {
 							entryPoint.setLevelId(text);
 						}else if(currentField.equals(_POINT_DATA_ID_TAG_)){
 							entryPoint.setDataId(text);
-						}else 
-						
-						if(currentField.equals(_MENU_TAG_)){
-							activeMenus = new ActiveMenus();
-							ret.put(currentField, activeMenus);
 						}else if(currentField.equals(_TOP_MENU_TAG_)){
-							activeMenus.setTopMenu(text);
+							ret.put(currentField, text);
 						}else if(currentField.equals(_BOTTOM_MENU_TAG_)){
-							activeMenus.setBottomMenu(text);
+							ret.put(currentField, text);
 						}else if(currentField.equals(_CONTEXT_MENU_TAG_)){
-							activeMenus.setContextMenu(text);
+							ret.put(currentField, text);
 						}else if(currentField.equals(_SIDE_MENU_TAG_)){
-							activeMenus.setSideMenu(text);
-						}else 		
-								
-						if(currentField.equals(_STYLES_FILE_NAME_TAG_)){
+							ret.put(currentField, text);
+						}else if(currentField.equals(_STYLES_FILE_NAME_TAG_)){
 							ret.put(currentField, text);
 						}else if(currentField.equals(_FORMATS_FILE_NAME_TAG_)){
 							ret.put(currentField, text);
@@ -459,7 +450,6 @@ public class ParseUtils {
 		}
 		ret.setEntryPoint((NextLevel)data.get(_ENTRY_POINT_TAG_));
 		
-		ret.setMenu((ActiveMenus)data.get(_MENU_TAG_));
 
 		//Banner
 		ret.setBanner((BannerDataItem) data.get(_BANNER_TAG_));
@@ -473,6 +463,12 @@ public class ParseUtils {
 		ret.setStylesFileName((String)data.get(_STYLES_FILE_NAME_TAG_));
 		ret.setFormatsFileName((String)data.get(_FORMATS_FILE_NAME_TAG_));
 		ret.setProfileFileName((String)data.get(_PROFILE_FILE_NAME_TAG_));
+		// Menues
+		ret.setTopMenu((String)data.get(_TOP_MENU_TAG_));
+		ret.setBottomMenu((String)data.get(_BOTTOM_MENU_TAG_));
+		ret.setSideMenu((String)data.get(_SIDE_MENU_TAG_));
+		ret.setContextMenu((String)data.get(_CONTEXT_MENU_TAG_));
+		
 		List<AppLevel> parsedLevels = (List<AppLevel>)data.get(_LEVELS_TAG_);
 		
 		if(parsedLevels != null){

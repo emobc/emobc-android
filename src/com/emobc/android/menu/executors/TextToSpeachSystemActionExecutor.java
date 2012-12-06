@@ -3,7 +3,7 @@
 *
 * This file is part of eMobc.
 *
-* SystemAction.java
+* TextToSpeachSystemActionExecutor.java
 * eMobc Android Framework
 *
 * eMobc is free software: you can redistribute it and/or modify
@@ -20,35 +20,31 @@
 * along with eMobc. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.emobc.android.menu;
+package com.emobc.android.menu.executors;
+
+import com.emobc.android.menu.SystemAction;
+
+import android.app.Activity;
 
 /**
  * @author Jorge E. Villaverde
  * @since 0.1
  * @version 0.1
  */
-public enum SystemAction {
-	GO_HOME,
-	GO_BACK,
-	TTS,       // Text to Speach
-	SHARE,     // Share Content
-	COPY,      // Copy Content
-	EMAIL      // Email Content
-	;     
+public class TextToSpeachSystemActionExecutor extends
+		ContentAwareSystemActionExecutor {
 
-	public static SystemAction parseText(String text) {
-		if("home".equals(text))
-			return GO_HOME;
-		if("back".equals(text))
-			return GO_BACK;
-		if("tts".equals(text))
-			return TTS;
-		if("share".equals(text))
-			return SHARE;
-		if("copy".equals(text))
-			return COPY;
-		if("email".equals(text))
-			return EMAIL;
-		return null;
-	}     
+	/**
+	 * @param context
+	 */
+	public TextToSpeachSystemActionExecutor(Activity context) {
+		super(context, SystemAction.TTS);
+	}
+
+	@Override
+	protected void executeContentAwareSystemAction(String activityContent) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

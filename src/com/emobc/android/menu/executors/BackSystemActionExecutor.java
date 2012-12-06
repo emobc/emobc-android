@@ -3,7 +3,7 @@
 *
 * This file is part of eMobc.
 *
-* SystemAction.java
+* HomeSystemActionExecutor.java
 * eMobc Android Framework
 *
 * eMobc is free software: you can redistribute it and/or modify
@@ -20,35 +20,25 @@
 * along with eMobc. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.emobc.android.menu;
+package com.emobc.android.menu.executors;
+
+import com.emobc.android.menu.SystemAction;
+
+import android.app.Activity;
 
 /**
  * @author Jorge E. Villaverde
  * @since 0.1
  * @version 0.1
  */
-public enum SystemAction {
-	GO_HOME,
-	GO_BACK,
-	TTS,       // Text to Speach
-	SHARE,     // Share Content
-	COPY,      // Copy Content
-	EMAIL      // Email Content
-	;     
-
-	public static SystemAction parseText(String text) {
-		if("home".equals(text))
-			return GO_HOME;
-		if("back".equals(text))
-			return GO_BACK;
-		if("tts".equals(text))
-			return TTS;
-		if("share".equals(text))
-			return SHARE;
-		if("copy".equals(text))
-			return COPY;
-		if("email".equals(text))
-			return EMAIL;
-		return null;
-	}     
+public class BackSystemActionExecutor extends AbstractSystemActionExecutor {
+	
+	public BackSystemActionExecutor(Activity context){
+		super(context, SystemAction.GO_BACK);
+	}
+	
+	@Override
+	public void executeSystemAction() {
+		context.onBackPressed();	
+	}
 }

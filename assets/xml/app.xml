@@ -5,14 +5,12 @@
 	<stylesFileName>style.xml</stylesFileName>
 	<formatsFileName>format.xml</formatsFileName>
 	<profileFileName>profile.xml</profileFileName>
-	<entryPoint>
-		<pointLevelId></pointLevelId>
-		<pointDataId></pointDataId>
-	</entryPoint>
+	<entryPoint/>
 	<menu>
 		<topMenu>top_menu.xml</topMenu>
 		<bottomMenu>bottom_menu.xml</bottomMenu>
 		<backgroundMenu>images/menu/backgroundMenu.png</backgroundMenu>
+		<contextMenu>context-menu.xml</contextMenu>
 	</menu>
 	<banner>
 		<type>admob</type>

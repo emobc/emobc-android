@@ -15,13 +15,14 @@
  */
 package com.emobc.android.activities;
 
-import com.emobc.android.ApplicationData;
-import com.emobc.android.NextLevel;
-import com.emobc.android.activities.generators.ActivityGenerator;
-import com.emobc.android.menu.CreateMenus;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.emobc.android.ApplicationData;
+import com.emobc.android.NextLevel;
+import com.emobc.android.activities.generators.ImageTextDescriptionActivityGenerator;
+import com.emobc.android.menu.CreateMenus;
+import com.emobc.android.menu.SystemAction;
 
 /** 
 * Defines an activity of type IMAGE_TEXT_DESCRIPTION_ACTIVITY, and 
@@ -31,8 +32,12 @@ import android.os.Bundle;
 * @author Jonatan Alcocer Luna
 * @author Jorge E. Villaverde
 */
-public class ImageTextDescriptionActivity extends CreateMenus {
+public class ImageTextDescriptionActivity extends CreateMenus 
+	implements ContentAwareActivity {
     /** Called when the activity is first created. */
+	
+	private ImageTextDescriptionActivityGenerator generator;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +49,8 @@ public class ImageTextDescriptionActivity extends CreateMenus {
 			Intent intent = getIntent();
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
-			ActivityGenerator generator = applicationData.getFromNextLevel(this, nextLevel);
-			
-			generator.initializeActivity(this);
+			this.generator = (ImageTextDescriptionActivityGenerator)applicationData.getFromNextLevel(this, nextLevel);			
+			this.generator.initializeActivity(this);
 		}else{
 			Intent i = new Intent (this, SplashActivity.class);
 			startActivity(i);
@@ -54,6 +58,14 @@ public class ImageTextDescriptionActivity extends CreateMenus {
 		}
 		//createToolBar(isEntryPoint);
 		createMenus(this, isEntryPoint);
-    }    
+    }
+
+	@Override
+	public String getActivityContent(SystemAction systemAction) {
+		if(generator == null)
+			return null;
+		
+		return generator.getItem().getText();		
+	}    
 
 }

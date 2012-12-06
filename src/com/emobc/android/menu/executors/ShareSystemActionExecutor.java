@@ -3,7 +3,7 @@
 *
 * This file is part of eMobc.
 *
-* SystemAction.java
+* ShareSystemActionExecutor.java
 * eMobc Android Framework
 *
 * eMobc is free software: you can redistribute it and/or modify
@@ -20,35 +20,33 @@
 * along with eMobc. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.emobc.android.menu;
+package com.emobc.android.menu.executors;
+
+import com.emobc.android.menu.SystemAction;
+
+import android.app.Activity;
+import android.content.Intent;
 
 /**
  * @author Jorge E. Villaverde
  * @since 0.1
  * @version 0.1
  */
-public enum SystemAction {
-	GO_HOME,
-	GO_BACK,
-	TTS,       // Text to Speach
-	SHARE,     // Share Content
-	COPY,      // Copy Content
-	EMAIL      // Email Content
-	;     
+public class ShareSystemActionExecutor extends ContentAwareSystemActionExecutor {
 
-	public static SystemAction parseText(String text) {
-		if("home".equals(text))
-			return GO_HOME;
-		if("back".equals(text))
-			return GO_BACK;
-		if("tts".equals(text))
-			return TTS;
-		if("share".equals(text))
-			return SHARE;
-		if("copy".equals(text))
-			return COPY;
-		if("email".equals(text))
-			return EMAIL;
-		return null;
-	}     
+	/**
+	 * @param context
+	 */
+	public ShareSystemActionExecutor(Activity context) {
+		super(context, SystemAction.SHARE);
+	}
+
+	@Override
+	protected void executeContentAwareSystemAction(String activityContent) {
+		Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_TEXT, activityContent);
+		context.startActivity(Intent.createChooser(intent, "Compartir"));
+	}
+
 }
