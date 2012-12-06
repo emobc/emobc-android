@@ -23,8 +23,8 @@
 package com.emobc.android.menu;
 
 
-import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -68,6 +68,7 @@ import com.emobc.android.levels.AppDataItemText;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelDataItem;
 import com.emobc.android.levels.impl.BannerDataItem;
+import com.emobc.android.menu.parse.MenuParser;
 import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.utils.ImageLoader;
 import com.emobc.android.utils.ImagesUtils;
@@ -93,7 +94,7 @@ public class CreateMenus extends Activity implements AnimationListener {
 	private static final String ROTATION_PORTRAIT = "portrait";
 	private static final String ROTATION_BOTH = "both";
 	private String contextMenuXmlFileName;
-	private List<MenuActionDataItem> listContextualActions;
+	private com.emobc.android.menu.Menu contextMenu;
 	
 	private TextToSpeechBeta myTts;
 	private boolean isEntryPoint;
@@ -182,7 +183,8 @@ public class CreateMenus extends Activity implements AnimationListener {
 
             View.OnClickListener listener = new View.OnClickListener() {
 		        public void onClick(View view) {
-		        	optionSelected(item);
+		        	//TODO
+//		        	optionSelected(item);
 		        }
             };
 
@@ -290,30 +292,33 @@ public class CreateMenus extends Activity implements AnimationListener {
 		this.activity = activity;
 		
 		ApplicationData applicationData = SplashActivity.getApplicationData();
-		ActiveMenus activeMenus = applicationData.getMenu();
 		
 		//TOP MENU
-		if(activeMenus.getTopMenu() != null){
+		final String topMenu = applicationData.getTopMenu();
+		if(Utils.hasLength(topMenu)){
 			RelativeLayout topLayout = (RelativeLayout) findViewById(R.id.topLayout);
-			createCurrentMenu(topLayout, activeMenus.getTopMenu());
+			createCurrentMenu(topLayout, topMenu);
 		}
 		
 		//BOTTOM MENU
-		RelativeLayout bottomLayout = (RelativeLayout) findViewById(R.id.bottomLayout);	
-		if(activeMenus.getBottomMenu() != null){
-			createCurrentMenu(bottomLayout, activeMenus.getBottomMenu());
+		RelativeLayout bottomLayout = (RelativeLayout) findViewById(R.id.bottomLayout);
+		final String bottomMenu = applicationData.getBottomMenu(); 
+		if(Utils.hasLength(bottomMenu)){
+			createCurrentMenu(bottomLayout, bottomMenu);
 		}else{
-			bottomLayout.setVisibility(0);
+			bottomLayout.setVisibility(View.GONE);
 		}
 		
 		//CONTEXT MENU
-		if(activeMenus.getContextMenu() != null){
-			this.contextMenuXmlFileName = activeMenus.getContextMenu();
+		final String contextMenu = applicationData.getContextMenu();
+		if(Utils.hasLength(contextMenu)){
+			this.contextMenuXmlFileName = contextMenu;
 		}
 		
 		//SIDE MENU
-		if(activeMenus.getSideMenu() != null){
-			initializeSideMenuList(activeMenus.getSideMenu());
+		final String sideMenu = applicationData.getSideMenu();
+		if(Utils.hasLength(sideMenu)){
+			initializeSideMenuList(sideMenu);
 		}
 	}
 	
@@ -384,7 +389,8 @@ public class CreateMenus extends Activity implements AnimationListener {
 					
 						cl= new View.OnClickListener() {
 					        public void onClick(View view) {
-					        	optionSelected(action);
+					        	//TODO
+//					        	optionSelected(action);
 					        }
 				        };
 					}
@@ -406,7 +412,7 @@ public class CreateMenus extends Activity implements AnimationListener {
 	 * If option selected its different from system action,
 	 * the application start new activity with the nextlevel associated
 	 * @param action
-	 */
+	 */	
 	private void optionSelected(MenuActionDataItem action){
 		String systemAction = action.getSystemAction();
 		if(!systemAction.equals("")){
@@ -439,26 +445,27 @@ public class CreateMenus extends Activity implements AnimationListener {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	 
-		 if(this.contextMenuXmlFileName!=null){
+		 if(Utils.hasLength(contextMenuXmlFileName)){
 			 createContextMenu(menu);
 		 }else{
-			 Log.e("CreateMenus", "No existe menu contextual");
-		 }
-			 
+			 Log.i("CreateMenus", "No existe menu contextual");
+		 }			 
 	     return true;
 	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		
 		int selection = item.getItemId();
 		
-		MenuActionDataItem action = this.listContextualActions.get(selection);
+		if(selection >= 0 && selection < this.contextMenu.getItems().size()){
+			com.emobc.android.menu.MenuItem itemSelected = this.contextMenu.getItems().get(selection);
 		
-		optionSelected(action);
-		
-		return true;
+			if(itemSelected != null){
+				itemSelected.executeMenuItem(this);
+				return true;				
+			}
+		}		
+		return false;
 						
 	}
 	
@@ -469,32 +476,59 @@ public class CreateMenus extends Activity implements AnimationListener {
 	 * action is necessary to override the system selection methods.
 	 * @param contextMenu
 	 */
-	private void createContextMenu(Menu contextMenu) {	
-		MenuActions menuActions;
-		try {
-			menuActions = ParseUtils.parseMenuData(this, this.contextMenuXmlFileName);
-			this.listContextualActions = menuActions.getList();
-			
-			Iterator<MenuActionDataItem> itContextualActions = this.listContextualActions.iterator();
-			
-			int i = 0;
-			while(itContextualActions.hasNext()){
-				final MenuActionDataItem action = itContextualActions.next();
+	private void createContextMenu(Menu contextMenu) {
+		// Create Menu Parser
+		MenuParser menuParser = new MenuParser(ParseUtils.createXpp(
+    			this, 
+    			Locale.getDefault(), 
+    			contextMenuXmlFileName, 
+    			false));
+		// Parse Context Menu File
+		this.contextMenu = menuParser.parse();
+		
+		if(this.contextMenu != null){
+			// Add Menu Items to Android Context Menu
+			List<com.emobc.android.menu.MenuItem> items = this.contextMenu.getItems();
+			for(int i=0; i < items.size(); i++){
+				com.emobc.android.menu.MenuItem item = items.get(i);
 				
-				if( this.isEntryPoint == false || (
-						(this.isEntryPoint == true & ( !action.getSystemAction().equals("home") && 
-						!action.getSystemAction().equals("back") ) ) ) ){
+				MenuItem menuItem = contextMenu.add(Menu.NONE, i, Menu.NONE, item.getTitle());
 				
-				String resource = "drawable/" + action.getImageName().split("\\.")[0];
-				int idImage = getResources().getIdentifier(resource, null, getPackageName());
-				
-				contextMenu.add(Menu.NONE, i, Menu.NONE, action.getTitle()).setIcon(idImage);
-				i++;
+				if(Utils.hasLength(item.getImageFileName())){
+					Drawable icon;
+					try {
+						icon = ImagesUtils.getDrawable(this, item.getImageFileName());
+						menuItem.setIcon(icon);
+					} catch (InvalidFileException e) {
+						Log.e("CreateMenus", e.getLocalizedMessage());
+					}						
 				}
-			}
-		} catch (InvalidFileException e) {
-			Log.e("createContextMenu", e.getMessage());
-		}	
+			}				
+		}
+			
+//			menuActions = ParseUtils.parseMenuData(this, this.contextMenuXmlFileName);
+//			this.listContextualActions = menuActions.getList();
+//			
+//			Iterator<MenuActionDataItem> itContextualActions = this.listContextualActions.iterator();
+//			
+//			int i = 0;
+//			while(itContextualActions.hasNext()){
+//				final MenuActionDataItem action = itContextualActions.next();
+//				
+//				if( this.isEntryPoint == false || (
+//						(this.isEntryPoint == true & ( !action.getSystemAction().equals("home") && 
+//						!action.getSystemAction().equals("back") ) ) ) ){
+//				
+//				String resource = "drawable/" + action.getImageName().split("\\.")[0];
+//				int idImage = getResources().getIdentifier(resource, null, getPackageName());
+//				
+//				contextMenu.add(Menu.NONE, i, Menu.NONE, action.getTitle()).setIcon(idImage);
+//				i++;
+//				}
+//			}
+//		} catch (InvalidFileException e) {
+//			Log.e("createContextMenu", e.getMessage());
+//		}	
 	}
 	
 	//  -- Side_Menu methods

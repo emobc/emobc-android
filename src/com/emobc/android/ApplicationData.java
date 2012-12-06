@@ -41,7 +41,6 @@ import com.emobc.android.levels.AppLevelData;
 import com.emobc.android.levels.AppLevelDataItem;
 import com.emobc.android.levels.impl.BannerDataItem;
 import com.emobc.android.levels.impl.ServerPushDataItem;
-import com.emobc.android.menu.ActiveMenus;
 import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.themes.FormatStyle;
@@ -83,7 +82,13 @@ public class ApplicationData {
 	private String formatsFileName;
 	private String profileFileName;
 	private NextLevel entryPoint;
-	private ActiveMenus menu = new ActiveMenus();
+	
+	// Menues
+	private String topMenu;
+	private String bottomMenu;
+	private String contextMenu;
+	private String sideMenu;
+	
 	private String rotation;
 	private BannerDataItem banner;
 	private ServerPushDataItem serverPush; 
@@ -413,14 +418,6 @@ public class ApplicationData {
 		this.entryPoint = entryPoint;
 	}
 	
-	public ActiveMenus getMenu() {
-		return menu;
-	}
-
-	public void setMenu(ActiveMenus menu) {
-		this.menu = menu;
-	}
-
 	public String getRotation() {
 		return rotation;
 	}
@@ -428,7 +425,6 @@ public class ApplicationData {
 	public void setRotation(String rotation) {
 		this.rotation = rotation;
 	}
-	
 	
 	public void setLevels(List<AppLevel> levels) {
 		this.levels = levels;
@@ -546,8 +542,41 @@ public class ApplicationData {
 		return remote;
 	}
 
-
+	// ---------------- Menues --------------------------
 	public String getRemoteApplicationFileUrl() {
 		return remoteApplicationFileUrl;
 	}
+
+	public void setTopMenu(String topMenu) {
+		this.topMenu = topMenu;
+	}
+
+	public void setBottomMenu(String bottomMenu) {
+		this.bottomMenu = bottomMenu;
+	}
+
+	public void setContextMenu(String contextMenu) {
+		this.contextMenu = contextMenu;
+	}
+
+	public void setSideMenu(String sideMenu) {
+		this.sideMenu = sideMenu;
+	}
+
+
+	public String getTopMenu() {
+		return topMenu;
+	}
+
+	public String getBottomMenu() {
+		return bottomMenu;
+	}
+
+	public String getContextMenu() {
+		return contextMenu;
+	}
+
+	public String getSideMenu() {
+		return sideMenu;
+	}	
 }

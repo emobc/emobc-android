@@ -57,6 +57,7 @@ import com.emobc.android.utils.Utils;
  * @since 0.1
  */
 public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerator {
+	private ImageTextDescriptionLevelDataItem item;
 	
 	public ImageTextDescriptionActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
 		super(appLevel, nextLevel);
@@ -74,7 +75,7 @@ public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerato
 
 	@Override
 	protected void loadAppLevelData(final Activity activity, final AppLevelData data) {
-		final ImageTextDescriptionLevelDataItem item = (ImageTextDescriptionLevelDataItem)data.findByNextLevel(nextLevel);
+		item = (ImageTextDescriptionLevelDataItem)data.findByNextLevel(nextLevel);
 		
 		if(item == null){
 			showAlerDialog(activity, "No se ha encontrado el NextLevel:\n" + nextLevel.toString());
@@ -130,5 +131,9 @@ public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerato
 	@Override
 	protected ActivityType getActivityGeneratorType() {
 		return ActivityType.IMAGE_TEXT_DESCRIPTION_ACTIVITY;
+	}
+
+	public ImageTextDescriptionLevelDataItem getItem() {
+		return item;
 	}
 }

@@ -3,7 +3,7 @@
 *
 * This file is part of eMobc.
 *
-* MenuItem.java
+* NextLevelMenuItem.java
 * eMobc Android Framework
 *
 * eMobc is free software: you can redistribute it and/or modify
@@ -22,43 +22,44 @@
 */
 package com.emobc.android.menu;
 
-import java.io.Serializable;
-
 import android.app.Activity;
+
+import com.emobc.android.NextLevel;
+import com.emobc.android.activities.generators.AbstractActivtyGenerator;
 
 /**
  * @author Jorge E. Villaverde
  * @since 0.1
  * @version 0.1
  */
-public abstract class MenuItem implements Serializable {
-
+public class NextLevelMenuItem extends MenuItem {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2773697802000273424L;
+	private static final long serialVersionUID = -2307492400247060866L;
+	private final NextLevel nextLevel;
 
-	private final String title;
-	private final String imageFileName;
-
+	/**
+	 * @param title
+	 * @param imageFileName
+	 * @param nextLevel
+	 * @param systemAction
+	 */
+	public NextLevelMenuItem(String title, String imageFileName, NextLevel nextLevel) {
+		super(title, imageFileName);
+		
+		if(nextLevel == null || !nextLevel.isDefined()) 
+			throw new IllegalArgumentException("Invalid NextLevel: " + String.valueOf(nextLevel));
+		
+		this.nextLevel = nextLevel;
+	}
 	
-	public MenuItem(String title, String imageFileName) {
-		super();
-		this.title = title;
-		this.imageFileName = imageFileName;
+	public NextLevel getNextLevel() {
+		return nextLevel;
 	}
 
-	public String toString(){
-		return "[menu = " + title + "]";
+	@Override
+	public void executeMenuItem(Activity context) {
+		AbstractActivtyGenerator.showNextLevel(context, nextLevel);		
 	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public String getImageFileName() {
-		return imageFileName;
-	}
-
-	public abstract void executeMenuItem(Activity context);
 }
