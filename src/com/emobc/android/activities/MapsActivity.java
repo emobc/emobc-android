@@ -22,8 +22,6 @@
 */
 package com.emobc.android.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -39,6 +37,7 @@ import android.widget.TextView.BufferType;
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.ActivityGenerator;
+import com.emobc.android.activities.generators.MapActivityGenerator;
 import com.emobc.android.levels.AppDataItemText;
 import com.emobc.android.levels.AppLevelDataItem;
 import com.emobc.android.menu.CreateMenus;
@@ -46,8 +45,6 @@ import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.Utils;
 import com.google.android.maps.MapActivity;
-import com.google.tts.TextToSpeechBeta;
-import com.google.tts.TextToSpeechBeta.OnInitListener;
 
 /** 
  * Defines an activity of type MAP_ACTIVITY. In its 
@@ -60,14 +57,6 @@ import com.google.tts.TextToSpeechBeta.OnInitListener;
  * @since 0.1
  */
 public class MapsActivity extends MapActivity {
-	private TextToSpeechBeta myTts;
-	
-	@SuppressWarnings("unused")
-	private OnInitListener ttsInitListener = new OnInitListener() {
-		@Override
-		public void onInit(int arg0, int arg1) {
-		}
-      };
 
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -171,51 +160,6 @@ public class MapsActivity extends MapActivity {
 			Log.e("AppCoverData", e.getLocalizedMessage());
 		}
 
-	}
-
-	protected void showSearch() {
-
-		setContentView(R.layout.search_screen);
-	}
-
-	protected void textToSeach() {
-		ApplicationData applicationData;
-		try {
-			applicationData = ApplicationData.readApplicationData(this);
-			if (applicationData != null) {
-				Intent intent = getIntent();
-				NextLevel nextLevel = (NextLevel) intent
-						.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
-				AppLevelDataItem item = applicationData.getDataItem(this,
-						nextLevel);
-				AppDataItemText textItem;
-				try {
-					textItem = (AppDataItemText) item;
-					myTts.speak(textItem.getItemText(), 0, null);
-
-					new AlertDialog.Builder(this)
-							.setIcon(android.R.drawable.ic_dialog_alert)
-							.setMessage(R.string.reading)
-							.setPositiveButton(R.string.reading_stop,
-									new DialogInterface.OnClickListener() {
-
-										@Override
-										public void onClick(
-												DialogInterface dialog,
-												int which) {
-											myTts.stop();
-											finish();
-										}
-
-									})
-							.setNegativeButton(R.string.reading_continue, null)
-							.show();
-
-				} catch (ClassCastException e) {
-				}
-			}
-		} catch (InvalidFileException e) {
-		}
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -22,18 +22,31 @@
 */
 package com.emobc.android.menu.executors;
 
-import com.emobc.android.menu.SystemAction;
-
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.emobc.android.activities.R;
+import com.emobc.android.menu.SystemAction;
+import com.google.tts.TextToSpeechBeta;
 
 /**
  * @author Jorge E. Villaverde
  * @since 0.1
  * @version 0.1
  */
-public class TextToSpeachSystemActionExecutor extends
-		ContentAwareSystemActionExecutor {
+public class TextToSpeachSystemActionExecutor extends ContentAwareSystemActionExecutor
+	implements TextToSpeechBeta.OnInitListener{
 
+	protected static final String LOG_TAG = "TextToSpeachSystemActionExecutor";
+	
+	/**
+     * The TTS engine. Only one of this and mTtsExtended will be non-null at a time.
+     */
+    private TextToSpeechBeta mTts = null;
+	
 	/**
 	 * @param context
 	 */
@@ -41,10 +54,41 @@ public class TextToSpeachSystemActionExecutor extends
 		super(context, SystemAction.TTS);
 	}
 
+	
 	@Override
 	protected void executeContentAwareSystemAction(String activityContent) {
-		// TODO Auto-generated method stub
-
+        
+        mTts = new TextToSpeechBeta(context, this);
+		
+		int result = mTts.speak(activityContent, 0, null);					
+		
+		if(result == TextToSpeechBeta.SUCCESS){
+	        new AlertDialog.Builder(context)
+	        .setIcon(android.R.drawable.ic_dialog_alert)
+	        .setMessage(R.string.reading)
+	        .setPositiveButton(R.string.reading_stop, new DialogInterface.OnClickListener() {
+	
+	            @Override
+	            public void onClick(DialogInterface dialog, int which) {
+	            	mTts.stop();
+					context.finish();
+	            }
+	
+	        })
+	        .setNegativeButton(R.string.reading_continue, null)
+	        .show();
+		}else{
+			Toast toast = Toast.makeText(context, "TTS Error", Toast.LENGTH_SHORT);
+			toast.show();					
+		}
 	}
 
+
+    @Override
+    public void onInit(int status, int version) {
+        if (status != TextToSpeechBeta.SUCCESS) {
+            Log.e(LOG_TAG, "TTS extended init failed.");
+            return;
+        }
+    }
 }

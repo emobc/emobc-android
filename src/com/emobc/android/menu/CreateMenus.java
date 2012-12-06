@@ -27,9 +27,7 @@ import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
@@ -60,7 +58,6 @@ import android.widget.Toast;
 
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
-import com.emobc.android.activities.CoverActivity;
 import com.emobc.android.activities.R;
 import com.emobc.android.activities.SearchActivity;
 import com.emobc.android.activities.SplashActivity;
@@ -77,8 +74,6 @@ import com.emobc.android.utils.Utils;
 import com.google.ads.AdRequest;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
-import com.google.tts.TextToSpeechBeta;
-import com.google.tts.TextToSpeechBeta.OnInitListener;
 
 
 /**
@@ -96,7 +91,6 @@ public class CreateMenus extends Activity implements AnimationListener {
 	private String contextMenuXmlFileName;
 	private com.emobc.android.menu.Menu contextMenu;
 	
-	private TextToSpeechBeta myTts;
 	private boolean isEntryPoint;
 	private Activity activity;
 	
@@ -238,12 +232,6 @@ public class CreateMenus extends Activity implements AnimationListener {
 		}
     }
 		
-	@SuppressWarnings("unused")
-	private OnInitListener ttsInitListener = new OnInitListener() {
-		@Override
-		public void onInit(int arg0, int arg1) {
-		}
-    };
     
     @Override
     protected void onDestroy(){
@@ -285,9 +273,7 @@ public class CreateMenus extends Activity implements AnimationListener {
      * @param isEntryPoint
      */
 	protected void createMenus(Activity activity, boolean isEntryPoint){
-		
-		//myTts = new TextToSpeechBeta(this, ttsInitListener);
-		
+				
 		this.isEntryPoint = isEntryPoint;
 		this.activity = activity;
 		
@@ -407,39 +393,6 @@ public class CreateMenus extends Activity implements AnimationListener {
 		}		
 	}
 	
-	/**
-	 * Start an event depending to option selected.
-	 * If option selected its different from system action,
-	 * the application start new activity with the nextlevel associated
-	 * @param action
-	 */	
-	private void optionSelected(MenuActionDataItem action){
-		String systemAction = action.getSystemAction();
-		if(!systemAction.equals("")){
-			
-			if(systemAction.equals("back")){
-				onBackPressed();
-			}else if(systemAction.equals("home")){
-				Intent launchHome = new Intent(this, CoverActivity.class);	
-				startActivity(launchHome);
-			}else if(systemAction.equals("tts")){
-				textToSearch();
-			}else if(systemAction.equals("search")){
-				showSearch();
-			}else if(systemAction.equals("share")){
-				showShare();
-			}else if(systemAction.equals("map")){
-				showMap();
-			}else{
-				Log.e("CreateMenus", "No se encuentra el el tipo de menu: " + systemAction);
-			}
-		}else{
-			NextLevel nextLevel = action.getNextLevel();
-			showNextLevel(this, nextLevel);
-			
-		}
-		
-	}
 	
 	//  -- Context_Menu methods
 	
@@ -607,58 +560,6 @@ public class CreateMenus extends Activity implements AnimationListener {
 			Log.e("initializeSideMenuList", e.getMessage());
 		}
     }
-
-	//  -- All show methods
-
-	protected void textToSearch(){
-		ApplicationData applicationData = SplashActivity.getApplicationData();
-		if(applicationData != null){
-			Intent intent = getIntent();
-			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
-			if (nextLevel != null) {
-			AppLevelDataItem item = applicationData.getDataItem(this, nextLevel);
-			AppDataItemText textItem;
-			try {
-				textItem = (AppDataItemText)item;
-				if (textItem != null) {
-				myTts.speak(textItem.getItemText(), 0, null);					
-				
-		        new AlertDialog.Builder(this)
-		        .setIcon(android.R.drawable.ic_dialog_alert)
-		        .setMessage(R.string.reading)
-		        .setPositiveButton(R.string.reading_stop, new DialogInterface.OnClickListener() {
-
-		            @Override
-		            public void onClick(DialogInterface dialog, int which) {
-						myTts.stop();
-						finish();
-		            }
-
-		        })
-		        .setNegativeButton(R.string.reading_continue, null)
-		        .show();
-				} 
-			
-			} catch (ClassCastException e) {
-			}
-		
-		} else { 
-			new AlertDialog.Builder(this)
-		    .setIcon(android.R.drawable.ic_dialog_alert)
-		    .setMessage(R.string.readingempty)
-		    .setPositiveButton(R.string.readingback, new DialogInterface.OnClickListener() {
-
-		        @Override
-		        public void onClick(DialogInterface dialog, int which) {					
-					dialog.cancel();
-		        }
-
-		    })		     
-		    .show();
-		}
-		}
-		
-	}
 	
 	/**
 	 * Shows the share screen
