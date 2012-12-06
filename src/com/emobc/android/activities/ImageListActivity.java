@@ -62,7 +62,10 @@ public class ImageListActivity extends CreateMenus {
 			startActivity(i);
 			finish();
 		}
-		createMenus(this, isEntryPoint == null ? false : isEntryPoint.booleanValue());
+		
+		setEntryPoint(isEntryPoint == null ? false : isEntryPoint.booleanValue());
+		
+		createMenus();
     }
 
 }

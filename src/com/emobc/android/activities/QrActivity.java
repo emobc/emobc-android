@@ -63,7 +63,9 @@ public class QrActivity extends CreateMenus {
 			finish();
 		}
       //createToolBar(isEntryPoint);
-		createMenus(this, isEntryPoint);
+		setEntryPoint(isEntryPoint);
+		
+		createMenus();
     }
 
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {

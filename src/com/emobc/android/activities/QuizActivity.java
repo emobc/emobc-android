@@ -69,8 +69,9 @@ public class QuizActivity extends CreateMenus {
 				startActivity(i);
 				finish();
 			}
-	        createMenus(this, isEntryPoint);
+			setEntryPoint(isEntryPoint);
 			
+			createMenus();			
 		} catch (InvalidFileException e) {
 			Log.e("QuizActivity", e.getLocalizedMessage());
 	    	Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

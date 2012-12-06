@@ -65,7 +65,9 @@ public class WebActivity extends CreateMenus {
 			startActivity(i);
 			finish();
 		}
-		createMenus(this, isEntryPoint);
+		setEntryPoint(isEntryPoint);
+		
+		createMenus();
     }
         
     @Override

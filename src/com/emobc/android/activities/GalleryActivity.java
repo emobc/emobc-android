@@ -68,8 +68,7 @@ public class GalleryActivity extends CoverActivity {
 
 		ApplicationData applicationData = SplashActivity.getApplicationData();
 
-		final List<SearchResult> listaImagenes = applicationData
-				.findAllLevelsImages(this);
+		final List<SearchResult> listaImagenes = applicationData.findAllLevelsImages(this);
 
 		g.setAdapter(new ImageAdapter(this, listaImagenes));
 
@@ -96,7 +95,10 @@ public class GalleryActivity extends CoverActivity {
 			}
 		});
 		//createToolBar(isEntryPoint);
-		createMenus(this, isEntryPoint);
+
+		setEntryPoint(isEntryPoint);
+		
+		createMenus();
 	}
 	
 	public class ImageAdapter extends BaseAdapter {

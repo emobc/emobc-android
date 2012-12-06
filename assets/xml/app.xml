@@ -6,12 +6,13 @@
 	<formatsFileName>format.xml</formatsFileName>
 	<profileFileName>profile.xml</profileFileName>
 	<entryPoint/>
+	
 	<menu>
-		<topMenu>top_menu.xml</topMenu>
-		<bottomMenu>bottom_menu.xml</bottomMenu>
-		<backgroundMenu>images/menu/backgroundMenu.png</backgroundMenu>
+		<topMenu>top-menu.xml</topMenu>
+		<bottomMenu>bottom-menu.xml</bottomMenu>
 		<contextMenu>context-menu.xml</contextMenu>
 	</menu>
+	
 	<banner>
 		<type>admob</type>
 		<position>top</position>

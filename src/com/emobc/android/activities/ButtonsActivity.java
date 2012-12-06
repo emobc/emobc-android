@@ -58,7 +58,12 @@ public class ButtonsActivity extends CreateMenus{
 			ActivityGenerator generator = applicationData.getFromNextLevel(this, nextLevel);
 			
 			generator.initializeActivity(this);
+		}else{
+			Intent i = new Intent (this, SplashActivity.class);
+			startActivity(i);
+			finish();
 		}
-		createMenus(this, isEntryPoint);
+		setEntryPoint(isEntryPoint);
+		createMenus();
     }  
 }

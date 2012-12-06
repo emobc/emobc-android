@@ -33,8 +33,8 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.emobc.android.ActivityType;
@@ -132,7 +132,7 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 		
 		String backgroundFileName = levelTypeStyle.getBackground();
 		//String backgroundName = backgroundFileName.split("\\.")[0];
-		RelativeLayout backgroundLayout = (RelativeLayout)activity.findViewById(R.id.backgroundLayout);
+		ViewGroup backgroundLayout = (ViewGroup)activity.findViewById(R.id.backgroundLayout);
 		
 		try {
 			//int imageResource = activity.getResources().getIdentifier(backgroundName, "drawable", activity.getPackageName());

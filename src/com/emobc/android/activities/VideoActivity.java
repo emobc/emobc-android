@@ -58,8 +58,10 @@ public class VideoActivity extends CreateMenus {
         ApplicationData applicationData = SplashActivity.getApplicationData();
 		if(applicationData != null){
 			Intent intent = getIntent();
-			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
-			NextLevel nextLevel = new NextLevel("listas", "videos");
+			isEntryPoint= (Boolean) intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
+			//FIXME Why is this wired up? 
+//			NextLevel nextLevel = new NextLevel("listas", "videos");
+			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);			
 			ActivityGenerator generator = applicationData.getFromNextLevel(this, nextLevel);
 			generator.initializeActivity(this);
 		}else{
@@ -68,7 +70,8 @@ public class VideoActivity extends CreateMenus {
 			finish();
 		}
 		//createToolBar(isEntryPoint);
-		createMenus(this, isEntryPoint);
-        
+		setEntryPoint(isEntryPoint);
+		
+		createMenus();        
     }
 }

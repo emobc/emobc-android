@@ -30,7 +30,7 @@
 	
 	</LinearLayout>
 
-	<RelativeLayout
+	<LinearLayout
 	  xmlns:android="http://schemas.android.com/apk/res/android"
 	  android:id="@+id/backgroundLayout"
 	  android:orientation="vertical"
@@ -41,39 +41,19 @@
 	        android:id="@+id/bannerTopLayout"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:orientation="vertical"
-	        android:layout_alignParentTop="true">
+	        android:orientation="vertical">
 	    </LinearLayout>
 	    
 	    <RelativeLayout
 	        android:id="@+id/topLayout"
 	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-			android:layout_below="@id/bannerTopLayout">
+	        android:layout_height="wrap_content">
 	    </RelativeLayout>
-	    
-	    <RelativeLayout
-	        android:id="@+id/bottomLayout"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_above="@+id/bannerBottomLayout">
-	    </RelativeLayout>
-	    
-	    <LinearLayout
-	        android:id="@id/bannerBottomLayout"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:orientation="vertical"
-	        android:layout_alignParentBottom="true">
-	    </LinearLayout>
-	
 	    
 	    <RelativeLayout
 	        android:id="@+id/contentLayout"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/topLayout"
-	        android:layout_above="@+id/bottomLayout" >
+	        android:layout_height="wrap_content">
 	
 	        <TextView
 	            android:id="@+id/header"
@@ -119,6 +99,19 @@
 	        </LinearLayout>
 	    </RelativeLayout>
 	
-	</RelativeLayout>
+	    <RelativeLayout
+	        android:id="@+id/bottomLayout"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content">
+	    </RelativeLayout>
+	    
+	    <LinearLayout
+	        android:id="@id/bannerBottomLayout"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+	    </LinearLayout>
+	    	    
+	</LinearLayout>
 
 </FrameLayout>

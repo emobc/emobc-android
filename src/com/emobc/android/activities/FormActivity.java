@@ -85,8 +85,10 @@ public class FormActivity extends CreateMenus {
 			finish();
 		}
 		
+		setEntryPoint(isEntryPoint);
+		
 		if(isProfile == null || Boolean.FALSE.equals(isProfile))
-			createMenus(this, isEntryPoint);
+			createMenus();
 		
 		if (savedInstanceState!=null){
 			restoreAllInstances(savedInstanceState);

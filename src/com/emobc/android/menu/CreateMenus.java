@@ -65,6 +65,8 @@ import com.emobc.android.levels.AppDataItemText;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelDataItem;
 import com.emobc.android.levels.impl.BannerDataItem;
+import com.emobc.android.menu.builders.MenuBuilder;
+import com.emobc.android.menu.builders.HorizontalMenuBuilder;
 import com.emobc.android.menu.parse.MenuParser;
 import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.utils.ImageLoader;
@@ -92,7 +94,6 @@ public class CreateMenus extends Activity implements AnimationListener {
 	private com.emobc.android.menu.Menu contextMenu;
 	
 	private boolean isEntryPoint;
-	private Activity activity;
 	
 	private LinearLayout sideMenuLayout;
 	private RelativeLayout appLayout;
@@ -272,42 +273,64 @@ public class CreateMenus extends Activity implements AnimationListener {
      * @param activity
      * @param isEntryPoint
      */
-	protected void createMenus(Activity activity, boolean isEntryPoint){
-				
-		this.isEntryPoint = isEntryPoint;
-		this.activity = activity;
-		
+	protected void createMenus(){		
 		ApplicationData applicationData = SplashActivity.getApplicationData();
 		
 		//TOP MENU
-		final String topMenu = applicationData.getTopMenu();
-		if(Utils.hasLength(topMenu)){
-			RelativeLayout topLayout = (RelativeLayout) findViewById(R.id.topLayout);
-			createCurrentMenu(topLayout, topMenu);
-		}
+		LinearLayout topLayout = (LinearLayout) findViewById(R.id.topLayout);
+		final String topMenuXml = applicationData.getTopMenu();
+		
+		if(topLayout != null && Utils.hasLength(topMenuXml))
+			buildMenu(topLayout, topMenuXml, new HorizontalMenuBuilder());
 		
 		//BOTTOM MENU
-		RelativeLayout bottomLayout = (RelativeLayout) findViewById(R.id.bottomLayout);
-		final String bottomMenu = applicationData.getBottomMenu(); 
-		if(Utils.hasLength(bottomMenu)){
-			createCurrentMenu(bottomLayout, bottomMenu);
-		}else{
-			bottomLayout.setVisibility(View.GONE);
-		}
+		LinearLayout bottomLayout = (LinearLayout) findViewById(R.id.bottomLayout);
+		final String bottomMenu = applicationData.getBottomMenu();
+		
+		if(bottomLayout != null && Utils.hasLength(bottomMenu))
+			buildMenu(bottomLayout, bottomMenu, new HorizontalMenuBuilder());
 		
 		//CONTEXT MENU
 		final String contextMenu = applicationData.getContextMenu();
 		if(Utils.hasLength(contextMenu)){
 			this.contextMenuXmlFileName = contextMenu;
 		}
-		
+
 		//SIDE MENU
-		final String sideMenu = applicationData.getSideMenu();
-		if(Utils.hasLength(sideMenu)){
-			initializeSideMenuList(sideMenu);
-		}
+//		final String sideMenu = applicationData.getSideMenu();
+//		if(Utils.hasLength(sideMenu)){
+//			initializeSideMenuList(sideMenu);
+//		}
 	}
 	
+	protected void buildMenu(LinearLayout layout, String menuXmlFileName, MenuBuilder menuBuilder) {
+		// If no layout, noting to do.
+		if(layout == null)
+			return;
+		// If no xml, hide layout
+		if(!Utils.hasLength(menuXmlFileName)){
+			layout.setVisibility(View.INVISIBLE);
+		}
+		// If no menu build, nothing to do
+		if(menuBuilder == null)
+			return;
+				
+		// Create Menu Parser
+		MenuParser menuParser = new MenuParser(ParseUtils.createXpp(
+    			this, 
+    			Locale.getDefault(), 
+    			menuXmlFileName, 
+    			false));
+		// Parse Context Menu File
+		com.emobc.android.menu.Menu menu  = menuParser.parse();
+		
+		if(menu != null){
+			// Invoke the builder	
+			menuBuilder.buildMenu(this, menu, layout);
+		}else{
+			layout.setVisibility(View.INVISIBLE);
+		}
+	}
 	/**
 	 * Initialize menu elements for a specified menu. The menu is selected by
 	 * xmlFileName menu.
@@ -338,7 +361,7 @@ public class CreateMenus extends Activity implements AnimationListener {
 					//btnAction.setImageResource(getResources().getIdentifier(resource, "drawable", getPackageName()));
 					Drawable imageButton = null;
 					try {
-						imageButton = ImagesUtils.getDrawable(activity, action.getImageName());
+						imageButton = ImagesUtils.getDrawable(this, action.getImageName());
 						btnAction.setImageDrawable(imageButton);
 					} catch (InvalidFileException e) {
 						e.printStackTrace();
@@ -400,10 +423,10 @@ public class CreateMenus extends Activity implements AnimationListener {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		 if(Utils.hasLength(contextMenuXmlFileName)){
 			 createContextMenu(menu);
-		 }else{
-			 Log.i("CreateMenus", "No existe menu contextual");
-		 }			 
-	     return true;
+		     return true;
+		 }
+		 Log.i("CreateMenus", "No existe menu contextual");
+		 return false;			 
 	}
 	
 	@Override
@@ -554,7 +577,7 @@ public class CreateMenus extends Activity implements AnimationListener {
 			List<MenuActionDataItem> listActions= menu.getList();
 	    	
 	    	ListView lv = (ListView)findViewById(R.id.sideMenuList);
-	    	lv.setAdapter(new NwListAdapter(this.activity, R.layout.list_item, listActions));
+	    	lv.setAdapter(new NwListAdapter(this, R.layout.list_item, listActions));
 			lv.setTextFilterEnabled(true);
 		} catch (InvalidFileException e) {
 			Log.e("initializeSideMenuList", e.getMessage());
@@ -691,7 +714,6 @@ public class CreateMenus extends Activity implements AnimationListener {
 		ApplicationData applicationData = SplashActivity.getApplicationData();
 		String rotation = applicationData.getRotation();
 		rotateScreen(activity, rotation);
-
     }
 	
     /**
@@ -701,7 +723,7 @@ public class CreateMenus extends Activity implements AnimationListener {
      * @param activity
      */
 	private static void rotateScreen(Activity activity, String rotation){
-		if(rotation == null || rotation.isEmpty())
+		if(!Utils.hasLength(rotation))
 			return;
 		
 		if(ROTATION_BOTH.equals(rotation)){
@@ -756,4 +778,13 @@ public class CreateMenus extends Activity implements AnimationListener {
 			Log.d("CreateBanner", "Error"); 
 		}
 	}
+
+	public boolean isEntryPoint() {
+		return isEntryPoint;
+	}
+
+	public void setEntryPoint(boolean isEntryPoint) {
+		this.isEntryPoint = isEntryPoint;
+	}
 }
+

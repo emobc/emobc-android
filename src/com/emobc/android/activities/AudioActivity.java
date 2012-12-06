@@ -63,7 +63,8 @@ public class AudioActivity extends CreateMenus {
 			startActivity(i);
 			finish();
 		}
-		createMenus(this, isEntryPoint);
+		setEntryPoint(isEntryPoint);
+		createMenus();
     }
     
     @Override

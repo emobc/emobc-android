@@ -72,8 +72,8 @@ public class CalendarActivity extends CreateMenus implements CalendarView.OnCell
 			startActivity(i);
 			finish();
 		}
-		createMenus(this, isEntryPoint);
-
+		setEntryPoint(isEntryPoint);
+		createMenus();
     }
 
 	@Override

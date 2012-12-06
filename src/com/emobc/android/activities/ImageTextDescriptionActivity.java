@@ -57,7 +57,9 @@ public class ImageTextDescriptionActivity extends CreateMenus
 			finish();
 		}
 		//createToolBar(isEntryPoint);
-		createMenus(this, isEntryPoint);
+		setEntryPoint(isEntryPoint);
+		
+		createMenus();
     }
 
 	@Override
