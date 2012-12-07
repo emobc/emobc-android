@@ -53,7 +53,7 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 	private static final int TOP_MENU_MIN_WIDTH = 140;
 
 	@Override
-	public void buildMenu(final Activity context, Menu menu, LinearLayout layout) {
+	public int buildMenu(final Activity context, Menu menu, LinearLayout layout) {
 		if(context == null)
 			throw new IllegalArgumentException("Invalid Context: null");
 		if(menu == null)
@@ -144,9 +144,14 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 			layout.addView(menuBandLinearLayout);
 		}
 		
-		LayoutParams menuLayoutParams = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 
-				TOP_MENU_MIN_HEIGTH * numberOfBands);
+		int menuHeight = TOP_MENU_MIN_HEIGTH * numberOfBands; 
 		
-		layout.setLayoutParams(menuLayoutParams);		
+		LayoutParams menuLayoutParams = new LinearLayout.LayoutParams(
+				LayoutParams.FILL_PARENT, 
+				menuHeight);
+		
+		layout.setLayoutParams(menuLayoutParams);
+		
+		return menuHeight;
 	}
 }

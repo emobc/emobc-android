@@ -33,5 +33,5 @@ import com.emobc.android.menu.Menu;
  * @version 0.1
  */
 public interface MenuBuilder {
-	void buildMenu(Activity context, Menu menu, LinearLayout layout);
+	int buildMenu(Activity context, Menu menu, LinearLayout layout);
 }

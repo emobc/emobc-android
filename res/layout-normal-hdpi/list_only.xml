@@ -2,15 +2,17 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/parent"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
+    android:layout_height="fill_parent"
     android:background="#FFFFFF"
-	android:cacheColorHint="#999999">
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:cacheColorHint="#999999">
+	 
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sideMenuLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:visibility="invisible" >
 
     <TextView
         android:id="@+id/MenuHeader"
@@ -31,31 +33,23 @@
 </LinearLayout>
 
 <LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/backgroundLayout"
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
-  
-    <LinearLayout
-        android:id="@+id/bannerTopLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-    </LinearLayout>
-    
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/backgroundLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+      
     <LinearLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
     </LinearLayout>
-     
+    
     <RelativeLayout
         android:id="@+id/contentLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent" >
 
         <TextView
             android:id="@+id/header"
@@ -63,45 +57,36 @@
             android:layout_height="45dip"
             android:gravity="center_vertical|center_horizontal"
             android:scaleType="fitXY"
-            android:text="normal-hdpi">
-        </TextView>
+            android:text="normal-hdpi" />
 
         <ListView
             android:id="@+id/list"
-            android:layout_width="fill_parent"
-            android:layout_height="430dip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_above="@+id/descr_mas"
             android:layout_below="@+id/header"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginLeft="15dip"
             android:layout_marginRight="14dip"
-            android:divider="@android:drawable/divider_horizontal_bright">
-
+            android:divider="@android:drawable/divider_horizontal_bright" >
         </ListView>
 
         <LinearLayout
-		    android:id="@+id/descr_mas"
-		    android:layout_width="fill_parent"
-		    android:layout_height="34dip"
-		    android:layout_alignParentBottom="true"
-		    android:layout_alignParentLeft="true" >
-		</LinearLayout>    
+            android:id="@+id/descr_mas"
+            android:layout_width="fill_parent"
+            android:layout_height="34dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true" >
+        </LinearLayout>
     </RelativeLayout>
     
     <LinearLayout
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@android:color/background_dark"
+        android:orientation="vertical" >
     </LinearLayout>
-        
-    <LinearLayout
-        android:id="@id/bannerBottomLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    </LinearLayout>
-    
 </LinearLayout>
 
 </FrameLayout>

@@ -84,8 +84,6 @@ import com.emobc.android.levels.impl.WebLevelDataItem;
 import com.emobc.android.levels.impl.quiz.QuestionDataItem;
 import com.emobc.android.levels.impl.quiz.QuizAnswerDataItem;
 import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
-import com.emobc.android.menu.MenuActionDataItem;
-import com.emobc.android.menu.MenuActions;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.themes.FormatStyle;
 import com.emobc.android.themes.LevelTypeStyle;
@@ -132,18 +130,10 @@ public class ParseUtils {
 	
 	private static final String _ROTATION_TAG_ = "rotation";
 	
-	private static final String _MENU_TAG_ = "menu";
 	private static final String _TOP_MENU_TAG_ = "topMenu";
 	private static final String _BOTTOM_MENU_TAG_ = "bottomMenu";
 	private static final String _CONTEXT_MENU_TAG_ = "contextMenu";
 	private static final String _SIDE_MENU_TAG_ = "sideMenu";
-	
-	private static final String _MENU_ACTIONS_TAG_ = "menuActions";
-	private static final String _ACTION_TAG_ = "action";
-	private static final String _ACTION_TITLE_TAG_ = "actionTitle";
-	private static final String _ACTION_IMAGE_NAME_TAG_ = "actionImageName";
-	private static final String _SYSTEM_ACTION_TAG_ = "systemAction";
-	private static final String _LEFT_MARGIN_TAG_ = "leftMargin";
 	
 	private static final String _STYLES_TAG_ = "styles";
 	private static final String _TYPEID_TAG_ = "typeId";
@@ -703,93 +693,6 @@ public class ParseUtils {
 	}
 	
 	
-	// -- MENU --
-	
-	/**
-	 * This method is used to make the ride home file "top_menu|bottom_menu|
-	 * context_menu|side_menu" 
-	 * passed in the parameter xmlFileName.
-	 * @param context
-	 * @param xmlFileName
-	 * @return
-	 */
-	public static MenuActions parseMenuData(Context context, String xmlFileName) throws InvalidFileException {
-		XmlPullParser xpp = createXpp(context, Locale.getDefault(), xmlFileName, false);
-		if(xpp == null)
-			throw new InvalidFileException(String.format("File %s does not exits", xmlFileName));
-		Map<String, Object> data = parseMenuDataFile(xpp);  
-		return fromMenuData(data);
-	}
-	
-	/**
-	 * Generate a table of the elements of XmlPullParser useful for the menu
-	 * @param xpp
-	 * @return
-	 */
-	private static Map<String, Object> parseMenuDataFile(XmlPullParser xpp) {
-		final Map<String, Object> ret = new HashMap<String, Object>();
-		NwXmlStandarParser parser = new NwXmlStandarParser(xpp,
-				new NwXmlStandarParserTextHandler() {
-					private MenuActionDataItem currItem;
-					private NextLevel nextLevel;
-					private List<MenuActionDataItem> currList;
-					
-					@Override
-					public void handleText(String currentField, String text) {
-						if(currentField.equals(_MENU_ACTIONS_TAG_)){
-							currList = new ArrayList<MenuActionDataItem>();
-							ret.put(_MENU_ACTIONS_TAG_, currList);
-						}else if(currentField.equals(_ACTION_TAG_)){
-							currItem = new MenuActionDataItem();
-							currList.add(currItem);
-						}else if(currentField.equals(_ACTION_TITLE_TAG_)){
-							currItem.setTitle(text);
-						}else if(currentField.equals(_ACTION_IMAGE_NAME_TAG_)){
-							currItem.setImageName(text);
-						}else if(currentField.equals(_SYSTEM_ACTION_TAG_)){
-							currItem.setSystemAction(text);
-						}else if(currentField.equals(_LEFT_MARGIN_TAG_)){
-							currItem.setLeftMargin(Integer.parseInt(text));
-						}else if(currentField.equals(_NEXT_LEVEL_TAG_)){
-							nextLevel = new NextLevel();
-							currItem.setNextLevel(nextLevel);
-						}else if(currentField.equals(_NL_LEVEL_ID_TAG_)){
-							nextLevel.setLevelId(text);
-						}else if(currentField.equals(_NL_DATA_ID_TAG_)){
-							nextLevel.setDataId(text);
-						}else{
-							ret.put(currentField, text);
-						}
-					}
-					
-					@Override
-					public void handleEndTag(String currentField) {
-					}
-					
-					@Override
-					public void handleBeginTag(String currentField) {
-					}
-				}
-		, _MENU_TAG_);
-		
-		parser.startParsing();
-		
-		return ret;
-	}
-	
-	/**
-	 * Based on the mapping of XmlPullParser, returns the value MENU_ACTIONS
-	 * @param data
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	private static MenuActions fromMenuData(Map<String, Object> data) {
-		MenuActions ret = new MenuActions();
-				
-		ret.setList((List<MenuActionDataItem>)data.get(_MENU_ACTIONS_TAG_));
-
-		return ret;
-	}
 	
 	// -- STYLES --
 	

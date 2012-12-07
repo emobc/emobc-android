@@ -31,27 +31,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.Display;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.TranslateAnimation;
-import android.widget.BaseAdapter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,17 +53,13 @@ import android.widget.Toast;
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.R;
-import com.emobc.android.activities.SearchActivity;
 import com.emobc.android.activities.SplashActivity;
-import com.emobc.android.levels.AppDataItemText;
 import com.emobc.android.levels.AppLevel;
-import com.emobc.android.levels.AppLevelDataItem;
 import com.emobc.android.levels.impl.BannerDataItem;
-import com.emobc.android.menu.builders.MenuBuilder;
 import com.emobc.android.menu.builders.HorizontalMenuBuilder;
+import com.emobc.android.menu.builders.MenuBuilder;
 import com.emobc.android.menu.parse.MenuParser;
 import com.emobc.android.parse.ParseUtils;
-import com.emobc.android.utils.ImageLoader;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.Utils;
@@ -142,96 +132,6 @@ public class CreateMenus extends Activity implements AnimationListener {
             this.bottom = bottom;
         }
     }
-	
-	/**
-	 * Class intended for the creation and initialization of listView
-	 */
-	private class NwListAdapter extends BaseAdapter {
-    	private List<MenuActionDataItem> items;
-    	private Activity activity;
-    	private LayoutInflater inflater=null;
-    	private ImageLoader imageLoader;
-    	
-        public class ViewHolder{
-            @SuppressWarnings("unused")
-			public TextView textView;
-            public ImageView image;
-        }
-        
-        public NwListAdapter(Activity context, int textViewResourceId, List<MenuActionDataItem> objects) {
-    		this.items = objects;
-    		this.activity = context;
-    		inflater = LayoutInflater.from(context);
-    		imageLoader = new ImageLoader(activity.getApplicationContext());
-		}
-    	
-    	public View getView(int position, View convertView, ViewGroup parent) {
-    		View vi=convertView;
-            ViewHolder holder;
-            final MenuActionDataItem item = items.get(position);
-            if(convertView==null){
-                vi = inflater.inflate(R.layout.list_item, null);
-                holder=new ViewHolder();
-            }else{
-                holder=(ViewHolder)vi.getTag();
-            }
-
-            View.OnClickListener listener = new View.OnClickListener() {
-		        public void onClick(View view) {
-		        	//TODO
-//		        	optionSelected(item);
-		        }
-            };
-
-
-            TextView textView = (TextView)vi.findViewById(R.id.list_item_text);
-            if(textView != null){
-            	textView.setText(item.getTitle());
-            	textView.setBackgroundResource(R.drawable.list_selector);
-            	textView.setOnClickListener(listener);
-            }
-            
-            holder.textView = textView;
-            holder.image = (ImageView)vi.findViewById(R.id.list_item_img);
-            vi.setTag(holder);
-
-            if(Utils.hasLength(item.getImageName())){
-	            if (Utils.isUrl(item.getImageName())){
-	            	holder.image.setTag(item.getImageName());
-	            	imageLoader.DisplayImage(item.getImageName(), activity, holder.image);
-	            }else{
-	            	try {
-						holder.image.setImageDrawable(ImagesUtils.getDrawable(activity, item.getImageName()));
-					} catch (InvalidFileException e) {
-						Log.e("CreateMenu", e.getMessage());
-					}
-	            }            	
-            }
-            
-            return vi;
-    	 }
-
-    	 @SuppressWarnings("unused")
-		private LinearLayout createView(ViewGroup parent) {
-    		 LinearLayout item = (LinearLayout)activity.getLayoutInflater().inflate(R.layout.list_item, parent, false);
-    		 return item;
-    	 }
-
-		@Override
-		public int getCount() {
-			return items.size();
-		}
-
-		@Override
-		public Object getItem(int arg0) {
-			return arg0;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-    }
 		
     
     @Override
@@ -276,19 +176,21 @@ public class CreateMenus extends Activity implements AnimationListener {
 	protected void createMenus(){		
 		ApplicationData applicationData = SplashActivity.getApplicationData();
 		
+		int menuHeight = 0;
+		
 		//TOP MENU
 		LinearLayout topLayout = (LinearLayout) findViewById(R.id.topLayout);
 		final String topMenuXml = applicationData.getTopMenu();
 		
 		if(topLayout != null && Utils.hasLength(topMenuXml))
-			buildMenu(topLayout, topMenuXml, new HorizontalMenuBuilder());
+			menuHeight += buildMenu(topLayout, topMenuXml, new HorizontalMenuBuilder());
 		
 		//BOTTOM MENU
 		LinearLayout bottomLayout = (LinearLayout) findViewById(R.id.bottomLayout);
 		final String bottomMenu = applicationData.getBottomMenu();
 		
 		if(bottomLayout != null && Utils.hasLength(bottomMenu))
-			buildMenu(bottomLayout, bottomMenu, new HorizontalMenuBuilder());
+			menuHeight += buildMenu(bottomLayout, bottomMenu, new HorizontalMenuBuilder());
 		
 		//CONTEXT MENU
 		final String contextMenu = applicationData.getContextMenu();
@@ -296,6 +198,16 @@ public class CreateMenus extends Activity implements AnimationListener {
 			this.contextMenuXmlFileName = contextMenu;
 		}
 
+		if(menuHeight > 0){	
+			Display display = getWindowManager().getDefaultDisplay();
+			int height = display.getHeight() - menuHeight;		
+			
+			RelativeLayout contentLayout = (RelativeLayout)findViewById(R.id.contentLayout);
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+					android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, 
+					height);
+			contentLayout.setLayoutParams(lp);
+		}
 		//SIDE MENU
 //		final String sideMenu = applicationData.getSideMenu();
 //		if(Utils.hasLength(sideMenu)){
@@ -303,17 +215,17 @@ public class CreateMenus extends Activity implements AnimationListener {
 //		}
 	}
 	
-	protected void buildMenu(LinearLayout layout, String menuXmlFileName, MenuBuilder menuBuilder) {
+	protected int buildMenu(LinearLayout layout, String menuXmlFileName, MenuBuilder menuBuilder) {
 		// If no layout, noting to do.
 		if(layout == null)
-			return;
+			return 0;
 		// If no xml, hide layout
 		if(!Utils.hasLength(menuXmlFileName)){
-			layout.setVisibility(View.INVISIBLE);
+			layout.setVisibility(View.GONE);
 		}
 		// If no menu build, nothing to do
 		if(menuBuilder == null)
-			return;
+			return 0;
 				
 		// Create Menu Parser
 		MenuParser menuParser = new MenuParser(ParseUtils.createXpp(
@@ -326,96 +238,12 @@ public class CreateMenus extends Activity implements AnimationListener {
 		
 		if(menu != null){
 			// Invoke the builder	
-			menuBuilder.buildMenu(this, menu, layout);
+			return menuBuilder.buildMenu(this, menu, layout);
 		}else{
-			layout.setVisibility(View.INVISIBLE);
+			layout.setVisibility(View.GONE);
+			return 0;
 		}
 	}
-	/**
-	 * Initialize menu elements for a specified menu. The menu is selected by
-	 * xmlFileName menu.
-	 * Note: If the current screen is the entryPoint, not generate any system button,
-	 * such as Home button, Back button...
-	 * @param layout
-	 * @param xmlFileName
-	 */
-	private void createCurrentMenu(RelativeLayout layout, String xmlFileName){
-		MenuActions menu = null;
-		try {
-			menu = ParseUtils.parseMenuData(this, xmlFileName);
-			List<MenuActionDataItem> listActions = menu.getList();
-			
-			if(listActions == null || listActions.isEmpty())
-				return;
-			
-			for(int i=0; i < listActions.size(); i++){
-				final MenuActionDataItem action = listActions.get(i);
-					
-				if( this.isEntryPoint == false || (
-						(this.isEntryPoint == true & ( !action.getSystemAction().equals("home") && 
-						!action.getSystemAction().equals("back") ) ) ) ){
-					
-					final ImageButton btnAction = new ImageButton(this);		
-
-					//String resource = action.getImageName().split("\\.")[0];
-					//btnAction.setImageResource(getResources().getIdentifier(resource, "drawable", getPackageName()));
-					Drawable imageButton = null;
-					try {
-						imageButton = ImagesUtils.getDrawable(this, action.getImageName());
-						btnAction.setImageDrawable(imageButton);
-					} catch (InvalidFileException e) {
-						e.printStackTrace();
-					}
-					
-					//Ancho y alto del boton
-					RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-							LayoutParams.WRAP_CONTENT, 
-							LayoutParams.WRAP_CONTENT);
-					OnClickListener cl;
-					if(action.getSystemAction().equals("sideMenu")){
-						lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-						
-						//Margen izquierdo
-						lp.setMargins(action.getLeftMargin(), 10, 0, 10);
-						
-			            this.sideMenuLayout = (LinearLayout) findViewById(R.id.sideMenuLayout);
-			            this.appLayout = (RelativeLayout) findViewById(R.id.backgroundLayout);
-						
-						cl= new ClickListener();
-					}else{	
-						lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-						
-						//Margen derecho
-						int realMargin;
-						if (imageButton!=null){
-							int width = imageButton.getIntrinsicWidth();
-							realMargin= width * i + action.getLeftMargin()*(i+1);
-						}else{
-							realMargin =  action.getLeftMargin()*(i+1);
-						}
-						
-						lp.setMargins(0, 0, realMargin, 10);
-					
-						cl= new View.OnClickListener() {
-					        public void onClick(View view) {
-					        	//TODO
-//					        	optionSelected(action);
-					        }
-				        };
-					}
-
-					btnAction.setLayoutParams(lp);
-					
-					//Añade la nueva opcion al menu
-					layout.addView(btnAction);
-					btnAction.setOnClickListener(cl);
-				}//End if
-			}//End While
-		} catch (InvalidFileException e) {
-			Log.e("createCurrentMenu", e.getMessage());
-		}		
-	}
-	
 	
 	//  -- Context_Menu methods
 	
@@ -481,30 +309,6 @@ public class CreateMenus extends Activity implements AnimationListener {
 				}
 			}				
 		}
-			
-//			menuActions = ParseUtils.parseMenuData(this, this.contextMenuXmlFileName);
-//			this.listContextualActions = menuActions.getList();
-//			
-//			Iterator<MenuActionDataItem> itContextualActions = this.listContextualActions.iterator();
-//			
-//			int i = 0;
-//			while(itContextualActions.hasNext()){
-//				final MenuActionDataItem action = itContextualActions.next();
-//				
-//				if( this.isEntryPoint == false || (
-//						(this.isEntryPoint == true & ( !action.getSystemAction().equals("home") && 
-//						!action.getSystemAction().equals("back") ) ) ) ){
-//				
-//				String resource = "drawable/" + action.getImageName().split("\\.")[0];
-//				int idImage = getResources().getIdentifier(resource, null, getPackageName());
-//				
-//				contextMenu.add(Menu.NONE, i, Menu.NONE, action.getTitle()).setIcon(idImage);
-//				i++;
-//				}
-//			}
-//		} catch (InvalidFileException e) {
-//			Log.e("createContextMenu", e.getMessage());
-//		}	
 	}
 	
 	//  -- Side_Menu methods
@@ -565,85 +369,7 @@ public class CreateMenus extends Activity implements AnimationListener {
     public void onAnimationStart(Animation animation) {
         Log.v("CreateMenus", "onAnimationStart");
     }
-    
-    /**
-     * Initializes the sideMenu list options
-     * @param xmlFileName
-     */
-    private void initializeSideMenuList(String xmlFileName){
-    	MenuActions menu;
-		try {
-			menu = ParseUtils.parseMenuData(this, xmlFileName);
-			List<MenuActionDataItem> listActions= menu.getList();
-	    	
-	    	ListView lv = (ListView)findViewById(R.id.sideMenuList);
-	    	lv.setAdapter(new NwListAdapter(this, R.layout.list_item, listActions));
-			lv.setTextFilterEnabled(true);
-		} catch (InvalidFileException e) {
-			Log.e("initializeSideMenuList", e.getMessage());
-		}
-    }
-	
-	/**
-	 * Shows the share screen
-	 */
-	protected void showShare() {
-		ApplicationData applicationData;
-		try {
-			applicationData = ApplicationData.readApplicationData(this);
-			if(applicationData != null){
-				Intent intent = getIntent();
-				NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
-				AppLevelDataItem item = applicationData.getDataItem(this, nextLevel);				
-				AppDataItemText textItem;
-				try {
-					textItem = (AppDataItemText)item;
-					
-					Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-					sharingIntent.setType("text/plain");
-					//sharingIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "contacto@neurowork.net" });
-					sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, textItem.getItemText());
-					startActivity(Intent.createChooser(sharingIntent,"Compartir contenido"));
-    
-				}catch (ClassCastException e) {
-				}
-			}
-		} catch (InvalidFileException e) {
-		}
-	}
-	
-	/**
-	 * Shows the map screen
-	 */
-	protected void showMap() {
-		
-		ApplicationData applicationData;
-		try {
-			applicationData = ApplicationData.readApplicationData(this);
-			if(applicationData != null){
-				Intent intent = getIntent();
-				NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
-				AppLevelDataItem item = applicationData.getDataItem(this, nextLevel);				
-				
-				if(Utils.hasLength(item.getGeoReferencia())){
-					String urlString = "http://maps.google.com/maps?q=" + item.getGeoReferencia() + "&near=Madrid,Espa�a";
-					Intent browserIntent = new Intent("android.intent.action.VIEW", 
-							Uri.parse(urlString ));
-					startActivity(browserIntent);
-				}
-			}
-		} catch (InvalidFileException e) {
-		}
-	}
-	
-	/**
-	 * Shows the search screen
-	 */
-	protected void showSearch() {
-		Intent search = new Intent(this, SearchActivity.class);				
-		this.startActivity(search);
-	}
-	
+    				
 	/**
 	 * Start a new activity in the levelId leaning and dataId of NextLevel. 
 	 * Also initializes parameters NextLevel and entrypoint 
