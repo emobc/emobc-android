@@ -30,52 +30,23 @@
 
 </LinearLayout>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/backgroundLayout"
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
 
-
-    <LinearLayout
-        android:id="@+id/bannerTopLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true">
-    </LinearLayout>
-    
     <LinearLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-		android:layout_below="@+id/bannerTopLayout">
+        android:orientation="vertical">
     </LinearLayout>
-    
-    <LinearLayout
-        android:id="@+id/bottomLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_above="@+id/bannerBottomLayout" >
-    </LinearLayout>
-    
-    <LinearLayout
-        android:id="@id/bannerBottomLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
-    </LinearLayout>
-
     
     <RelativeLayout
         android:id="@+id/contentLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/topLayout"
-        android:layout_above="@+id/bottomLayout" >
+        android:layout_height="wrap_content">
 
 		<TextView android:id="@+id/header"
 			android:scaleType="fitXY" 
@@ -93,6 +64,7 @@
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_centerInParent="true"
+		    android:contentDescription="@null"
 		    android:src="@drawable/ic_contact_picture" />
 
 		<TextView
@@ -125,7 +97,8 @@
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
-			    android:src="@drawable/ic_media_next" />
+			    android:src="@drawable/ic_media_next"
+			    android:contentDescription="@null" />
 
 			<ImageButton
 			    android:id="@+id/prevButton"
@@ -133,7 +106,8 @@
 			    android:layout_below="@+id/seekBarAudio"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:src="@drawable/ic_media_previous" />
+			    android:src="@drawable/ic_media_previous"
+			    android:contentDescription="@null" />
 
 			<ImageButton
 			    android:id="@+id/playPauseButton"
@@ -142,7 +116,8 @@
 			    android:layout_toLeftOf="@+id/nextButton"
 			    android:layout_toRightOf="@+id/prevButton"
 			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content" />
+			    android:layout_height="wrap_content" 
+			    android:contentDescription="@null"/>
 
 		</RelativeLayout>
 
@@ -158,6 +133,12 @@
 
 	</RelativeLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+		android:orientation="vertical">
+    </LinearLayout>
+</LinearLayout>
 
 </FrameLayout>

@@ -143,4 +143,7 @@
                 android:src="@drawable/icon_twitter" />
         </LinearLayout>
     </RelativeLayout>
+		
 </RelativeLayout>
+
+

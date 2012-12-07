@@ -22,13 +22,17 @@
 */
 package com.emobc.android.activities;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.ActivityGenerator;
+import com.emobc.android.activities.generators.ImageListActivityGenerator;
+import com.emobc.android.activities.generators.ListActivityGenerator;
+import com.emobc.android.levels.impl.ListItemDataItem;
 import com.emobc.android.menu.CreateMenus;
-
-import android.content.Intent;
-import android.os.Bundle;
+import com.emobc.android.menu.SystemAction;
 
 /** 
  * Defines an activity of type IMAGE_LIST_ACTIVITY, and 
@@ -39,7 +43,10 @@ import android.os.Bundle;
  * @since 0.1
  * @version 0.1
  */
-public class ImageListActivity extends CreateMenus {
+public class ImageListActivity extends CreateMenus 
+	implements ContentAwareActivity {
+	
+	private ActivityGenerator generator;
 	/** 
 	 * Called when the activity is first created. 
 	 **/
@@ -55,8 +62,8 @@ public class ImageListActivity extends CreateMenus {
 			Intent intent = getIntent();  
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
-			ActivityGenerator generator = applicationData.getFromNextLevel(this, nextLevel);
-			generator.initializeActivity(this);
+			this.generator = applicationData.getFromNextLevel(this, nextLevel);
+			this.generator.initializeActivity(this);
 		}else{
 			Intent i = new Intent (this, SplashActivity.class);
 			startActivity(i);
@@ -67,5 +74,32 @@ public class ImageListActivity extends CreateMenus {
 		
 		createMenus();
     }
+
+	@Override
+	public String getActivityContent(SystemAction systemAction) {
+		if(generator == null)
+			return null;
+		
+		StringBuilder builder = new StringBuilder();
+		String sep = "";
+		
+		if (generator instanceof ListActivityGenerator) {
+			ListActivityGenerator lag = (ListActivityGenerator) generator;
+			for(ListItemDataItem item : lag.getItem().getList()){
+				builder.append(sep);
+				builder.append(item.getText());
+				sep = "\n";
+			}			
+		}else if (generator instanceof ImageListActivityGenerator){
+			ImageListActivityGenerator ilag = (ImageListActivityGenerator) generator;
+			for(ListItemDataItem item : ilag.getItem().getList()){
+				builder.append(sep);
+				builder.append(item.getText());
+				sep = "\n";
+			}			
+		}
+		
+		return builder.toString();
+	}
 
 }

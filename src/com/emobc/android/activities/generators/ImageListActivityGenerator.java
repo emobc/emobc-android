@@ -61,6 +61,7 @@ import com.emobc.android.utils.Utils;
  * @since 0.1
  */
 public class ImageListActivityGenerator extends LevelActivityGenerator {
+	private ImageListLevelDataItem item;
 	
 	public ImageListActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
 		super(appLevel, nextLevel);
@@ -68,7 +69,7 @@ public class ImageListActivityGenerator extends LevelActivityGenerator {
 
 	@Override
 	protected void loadAppLevelData(final Activity activity, final AppLevelData data) {
-		final ImageListLevelDataItem item = (ImageListLevelDataItem)data.findByNextLevel(nextLevel);
+		item = (ImageListLevelDataItem)data.findByNextLevel(nextLevel);
 		
 		//rotateScreen(activity);
 		initializeHeader(activity, item);
@@ -163,6 +164,14 @@ public class ImageListActivityGenerator extends LevelActivityGenerator {
 	@Override
 	protected ActivityType getActivityGeneratorType() {
 		return ActivityType.IMAGE_LIST_ACTIVITY;
+	}
+
+	public ImageListLevelDataItem getItem() {
+		return item;
+	}
+
+	public void setItem(ImageListLevelDataItem item) {
+		this.item = item;
 	}
 	
 }

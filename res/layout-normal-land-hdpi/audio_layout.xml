@@ -86,7 +86,8 @@
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_centerInParent="true"
-		    android:src="@drawable/ic_contact_picture" />
+		    android:src="@drawable/ic_contact_picture"
+		    android:contentDescription="@null" />
 
 		<TextView
 		    android:id="@+id/description"
@@ -118,7 +119,8 @@
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
-			    android:src="@drawable/ic_media_next" />
+			    android:src="@drawable/ic_media_next" 
+			    android:contentDescription="@null"/>
 
 			<ImageButton
 			    android:id="@+id/prevButton"
@@ -126,7 +128,8 @@
 			    android:layout_below="@+id/seekBarAudio"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:src="@drawable/ic_media_previous" />
+			    android:src="@drawable/ic_media_previous"
+			    android:contentDescription="@null" />
 
 			<ImageButton
 			    android:id="@+id/playPauseButton"
@@ -135,7 +138,8 @@
 			    android:layout_toLeftOf="@+id/nextButton"
 			    android:layout_toRightOf="@+id/prevButton"
 			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content" />
+			    android:layout_height="wrap_content"
+			    android:contentDescription="@null" />
 
 		</RelativeLayout>
 

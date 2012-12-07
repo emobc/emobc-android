@@ -60,14 +60,15 @@ import com.emobc.android.utils.Utils;
  * @since 0.1
  */
 public class ListActivityGenerator extends LevelActivityGenerator {
-
+	private ListLevelDataItem item;
+	
 	public ListActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
 		super(appLevel, nextLevel);
 	}
 
 	@Override
 	protected void loadAppLevelData(final Activity activity, final AppLevelData data) {
-		final ListLevelDataItem item = (ListLevelDataItem)data.findByNextLevel(nextLevel);
+		this.item = (ListLevelDataItem)data.findByNextLevel(nextLevel);
 		
 		//rotateScreen(activity);
 		initializeHeader(activity, item);
@@ -193,5 +194,9 @@ public class ListActivityGenerator extends LevelActivityGenerator {
 	@Override
 	protected ActivityType getActivityGeneratorType() {
 		return ActivityType.LIST_ACTIVITY;
+	}
+
+	public ListLevelDataItem getItem() {
+		return item;
 	}
 }
