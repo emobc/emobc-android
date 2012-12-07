@@ -49,8 +49,8 @@ import com.emobc.android.utils.Utils;
  */
 public class HorizontalMenuBuilder implements MenuBuilder {
 	
-	private static final int TOP_MENU_MIN_HEIGTH = 70;
-	private static final int TOP_MENU_MIN_WIDTH = 140;
+	private static final int HORIZONTAL_MENU_MIN_HEIGTH = 70;
+	private static final int HORIZONTAL_MENU_MIN_WIDTH = 140;
 
 	@Override
 	public int buildMenu(final Activity context, Menu menu, LinearLayout layout) {
@@ -66,7 +66,14 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 		Display display = context.getWindowManager().getDefaultDisplay();
 		int width = display.getWidth();		
 		
-		int numberOfMenuItemPerBand = width / TOP_MENU_MIN_WIDTH;
+		int menuItemHeight = (int) context.getResources().getDimension(R.dimen.menu_height);
+		if(menuItemHeight <= 0)
+			menuItemHeight = HORIZONTAL_MENU_MIN_HEIGTH;
+		int menuItemMinWidth = (int) context.getResources().getDimension(R.dimen.menu_width);
+		if(menuItemMinWidth <= 0)
+			menuItemMinWidth = HORIZONTAL_MENU_MIN_WIDTH;
+		
+		int numberOfMenuItemPerBand = width / menuItemMinWidth;
 		int menuItemWidth = width / numberOfMenuItemPerBand;
 		
 		int numberOfBands = (items.size() / numberOfMenuItemPerBand);
@@ -82,7 +89,7 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 			LinearLayout menuBandLinearLayout = new LinearLayout(context);
 			menuBandLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
 			LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, TOP_MENU_MIN_HEIGTH);
+					LayoutParams.MATCH_PARENT, HORIZONTAL_MENU_MIN_HEIGTH);
 			menuBandLinearLayout.setLayoutParams(llp);
 			
 			int bandMenuItemWidth = menuItemWidth;
@@ -130,7 +137,7 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 				
 				RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 						bandMenuItemWidth, 
-						TOP_MENU_MIN_HEIGTH);
+						menuItemHeight);
 				itemView.setLayoutParams(params);
 				
 				menuBandLinearLayout.addView(itemView);
@@ -144,7 +151,7 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 			layout.addView(menuBandLinearLayout);
 		}
 		
-		int menuHeight = TOP_MENU_MIN_HEIGTH * numberOfBands; 
+		int menuHeight = menuItemHeight * numberOfBands; 
 		
 		LayoutParams menuLayoutParams = new LinearLayout.LayoutParams(
 				LayoutParams.FILL_PARENT, 

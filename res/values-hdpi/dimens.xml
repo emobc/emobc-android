@@ -10,4 +10,7 @@
     <dimen name="padding_large">16dp</dimen>
     <dimen name="padding_medium">16dp</dimen>
     <dimen name="padding_small">8dp</dimen>
+    <!-- Menu Dimmensions -->
+    <dimen name="menu_height">70px</dimen>	
+    <dimen name="menu_width">140px</dimen>	
 </resources>
