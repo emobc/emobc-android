@@ -2,9 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/parent"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
+    android:layout_height="fill_parent"
     android:background="#FFFFFF"
-	android:cacheColorHint="#999999">
+    android:cacheColorHint="#999999" >
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,7 +30,7 @@
         </ListView>
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/backgroundLayout"
         android:layout_width="fill_parent"
@@ -38,41 +38,16 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/bannerTopLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:orientation="vertical" >
-        </LinearLayout>
-
-        <RelativeLayout
             android:id="@+id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/bannerTopLayout" >
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/bottomLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/bannerBottomLayout" >
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@id/bannerBottomLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:orientation="vertical" >
         </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/contentLayout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/bottomLayout"
-            android:layout_below="@+id/topLayout" >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/header"
@@ -111,6 +86,13 @@
                 </com.google.android.maps.MapView>
             </LinearLayout>
         </RelativeLayout>
-    </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

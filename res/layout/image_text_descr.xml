@@ -44,29 +44,14 @@
         android:layout_alignParentTop="true">
     </LinearLayout>
     
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-		android:layout_below="@id/bannerTopLayout">
-    </RelativeLayout>
-    
-    <RelativeLayout
-        android:id="@+id/bottomLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bannerBottomLayout">
-    </RelativeLayout>
-    
-    <LinearLayout
-        android:id="@id/bannerBottomLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+		android:layout_below="@+id/bannerTopLayout">
     </LinearLayout>
-
-    
+       
     <RelativeLayout
         android:id="@+id/contentLayout"
         android:layout_width="wrap_content"
@@ -136,6 +121,22 @@
     	        android:text="Recorre"/>
     	</LinearLayout>
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_above="@+id/bannerBottomLayout" >
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@id/bannerBottomLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
 
 </RelativeLayout>
 

@@ -43,12 +43,13 @@
         android:orientation="vertical" >
     </LinearLayout>
     
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-		android:layout_below="@id/bannerTopLayout">
-    </RelativeLayout>
+        android:orientation="vertical"
+		android:layout_below="@+id/bannerTopLayout">
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -115,12 +116,13 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_above="@+id/bannerBottomLayout" >
-    </RelativeLayout>
+    </LinearLayout>
     
     <LinearLayout
         android:id="@id/bannerBottomLayout"

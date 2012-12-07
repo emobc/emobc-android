@@ -42,12 +42,13 @@
         android:layout_alignParentTop="true">
     </LinearLayout>
     
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-		android:layout_below="@id/bannerTopLayout">
-    </RelativeLayout>
+        android:orientation="vertical"
+		android:layout_below="@+id/bannerTopLayout">
+    </LinearLayout>
     
     <RelativeLayout
         android:id="@+id/bottomLayout"
