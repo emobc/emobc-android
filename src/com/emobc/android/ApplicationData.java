@@ -47,6 +47,8 @@ import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.themes.FormatStyle;
 import com.emobc.android.themes.LevelTypeStyle;
+import com.emobc.android.themes.parse.FormatParser;
+import com.emobc.android.themes.parse.StyleParser;
 import com.emobc.android.utils.InvalidFileException;
 
 /**
@@ -99,7 +101,7 @@ public class ApplicationData {
 	private List<AppLevel> levels = new ArrayList<AppLevel>();
 	private Map<String, AppLevel> levelMap = new HashMap<String, AppLevel>();
 	private Map<ActivityType, LevelTypeStyle> levelStyleTypeMap = new HashMap<ActivityType, LevelTypeStyle>();
-	private Map<String, FormatStyle> formatStyleMap = new HashMap<String, FormatStyle>();
+	private Map<String, FormatStyle> formatStyleMap = null;
 	
 	
 	
@@ -458,20 +460,32 @@ public class ApplicationData {
 		return levels;
 	}
 	
-	public Map<ActivityType, LevelTypeStyle> getLevelStyleTypeMap() {
+	public Map<ActivityType, LevelTypeStyle> getLevelStyleTypeMap(Context context) {
+		if(levelStyleTypeMap == null){
+			// Create Parser
+			StyleParser styleParser = new StyleParser(ParseUtils.createXpp(
+					context, 
+	    			Locale.getDefault(), 
+	    			this.stylesFileName, 
+	    			false));
+			
+			this.levelStyleTypeMap = styleParser.parse();			
+		}
 		return levelStyleTypeMap;
 	}
 
-	public void setLevelStyleTypeMap(Map<ActivityType, LevelTypeStyle> levelStyleTypeMap) {
-		this.levelStyleTypeMap = levelStyleTypeMap;
-	}
-
-	public Map<String, FormatStyle> getFormatStyleMap() {
+	public Map<String, FormatStyle> getFormatStyleMap(Context context) {
+		if(formatStyleMap == null){
+			// Create Parser
+			FormatParser formatParser = new FormatParser(ParseUtils.createXpp(
+					context, 
+	    			Locale.getDefault(), 
+	    			this.formatsFileName, 
+	    			false));
+			
+			this.formatStyleMap = formatParser.parse();
+		}		
 		return formatStyleMap;
-	}
-
-	public void setFormatStyleMap(Map<String, FormatStyle> formatStyleMap) {
-		this.formatStyleMap = formatStyleMap;
 	}
 	
 	public ServerPushDataItem getServerPush() {

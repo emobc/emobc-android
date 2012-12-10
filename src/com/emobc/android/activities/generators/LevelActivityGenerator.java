@@ -27,6 +27,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -181,13 +182,13 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param currWidget
 	 */
 	public void initializeWidgetFormat(Activity activity, LevelTypeStyle levelStyle){
-		Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap();
+		Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap(activity);
 				
 		Iterator<String> iterator = levelStyle.getListComponents().iterator();
 		
 		while(iterator.hasNext()){
 			String currWidget = iterator.next();
-			FormatStyle currFormat = getCurrentFormatWidget(levelStyle, currWidget);
+			FormatStyle currFormat = getCurrentFormatWidget(levelStyle, currWidget, activity);
 			
 			if(currFormat == null)
 				currFormat = formatStyleMap.get("default");
@@ -253,8 +254,8 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param currWidget
 	 * @return
 	 */
-	private FormatStyle getCurrentFormatWidget(LevelTypeStyle levelTypeStyle, String currWidget){		
-		Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap();
+	private FormatStyle getCurrentFormatWidget(LevelTypeStyle levelTypeStyle, String currWidget, Context context){		
+		Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap(context);
 		Map<String,String> mapFormatComponents = levelTypeStyle.getMapFormatComponents();
 		String formatName = mapFormatComponents.get(currWidget);
 		return formatStyleMap.get(formatName);
@@ -330,8 +331,8 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 */
 	public void initializeListFormat(Activity activity, ActivityType activityType, TextView textView){
 		try {
-			Map<ActivityType, LevelTypeStyle> levelStyleTypeMap = SplashActivity.getApplicationData().getLevelStyleTypeMap();
-			Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap();
+			Map<ActivityType, LevelTypeStyle> levelStyleTypeMap = SplashActivity.getApplicationData().getLevelStyleTypeMap(activity);
+			Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap(activity);
 			
 			LevelTypeStyle levelTypeStyle = levelStyleTypeMap.get(activityType);		
 			String listFormat = levelTypeStyle.getSelectionList();

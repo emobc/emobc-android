@@ -62,8 +62,6 @@ public class SplashActivity extends Activity {
 		
 		try {
 			instance = ApplicationData.readApplicationData(this);
-			instance.setLevelStyleTypeMap(ParseUtils.parseStylesData(this, instance.getStylesFileName()));
-			instance.setFormatStyleMap(ParseUtils.parseFormatData(this, instance.getFormatsFileName()));
 			instance.setProfile(ParseUtils.parseProfileData(this, instance.getProfileFileName()));
 		} catch (InvalidFileException e) {
 			Log.e("SplashActivity", e.toString());

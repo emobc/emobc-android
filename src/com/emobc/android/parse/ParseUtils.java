@@ -36,7 +36,6 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -85,7 +84,6 @@ import com.emobc.android.levels.impl.quiz.QuestionDataItem;
 import com.emobc.android.levels.impl.quiz.QuizAnswerDataItem;
 import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
 import com.emobc.android.profiling.Profile;
-import com.emobc.android.themes.FormatStyle;
 import com.emobc.android.themes.LevelTypeStyle;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.RetreiveFileContentTask;
@@ -135,22 +133,9 @@ public class ParseUtils {
 	private static final String _CONTEXT_MENU_TAG_ = "contextMenu";
 	private static final String _SIDE_MENU_TAG_ = "sideMenu";
 	
-	private static final String _STYLES_TAG_ = "styles";
-	private static final String _TYPEID_TAG_ = "typeId";
 	private static final String _BACKGROUND_FILE_NAME_TAG_ = "backgroundFileName";
 	private static final String _COMPONENTS_TAG_ = "components";
-	
-	private static final String _FORMATS_TAG_ = "formats";
-	private static final String _FORMAT_TAG_ = "format";
-	private static final String _NAME_TAG_ = "name";
-	private static final String _TEXTCOLOR_TAG_ = "textColor";
-	private static final String _TEXTSIZE_TAG_ = "textSize";
-	private static final String _TEXTSTYLE_TAG_ = "textStyle";
-	private static final String _TYPEFACE_TAG_ = "typeFace";
-	private static final String _CACHE_COLOR_HINT_TAG_ = "cacheColorHint";
-	private static final String _BACKGROUND_COLOR_TAG_ = "backgroundColor";
-	private static final String _BG_SELECTION_FILE_NAME_TAG_ = "backgroundSelectionFileName";
-	
+		
 	private static final String _LEVEL_TAG_ = "level";
 	private static final String _LEVEL_TITLE_ = "levelTitle";
 	private static final String _LEVEL_FILE_ = "levelFile";
@@ -691,190 +676,7 @@ public class ParseUtils {
 		}		
 		return ret;
 	}
-	
-	
-	
-	// -- STYLES --
-	
-	/**
-	 * This method is used to make the ride home file "styles.xml" 
-	 * passed in the parameter xmlFileName.
-	 * @param context
-	 * @param xmlFileName
-	 * @return
-	 */
-	public static Map<ActivityType, LevelTypeStyle> parseStylesData(Context context, String xmlFileName) {
-		XmlPullParser xpp = createXpp(context, Locale.getDefault(), xmlFileName, false);
-		if(xpp != null){
-
-			Map<String, Object> data = parseStylesDataFile(xpp);  
-			return fromStylesData(data);
-		}
-		return null;
-	}
-	
-	/**
-	 * Generate a table of the elements of XmlPullParser useful for the styles
-	 * @param xpp
-	 * @return
-	 */
-	private static Map<String, Object> parseStylesDataFile(XmlPullParser xpp) {
-		final Map<String, Object> ret = new HashMap<String, Object>();
-		NwXmlStandarParser parser = new NwXmlStandarParser(xpp,
-				new NwXmlStandarParserTextHandler() {
-					private LevelTypeStyle currItem;
-					private List<LevelTypeStyle> currList;
-					
-					@Override
-					public void handleText(String currentField, String text) {
-						if(currentField.equals(_STYLES_TAG_)){
-							currList = new ArrayList<LevelTypeStyle>();
-							ret.put(currentField, currList);
-						}else if(currentField.equals(_TYPE_TAG_)){
-							currItem = new LevelTypeStyle();
-							currList.add(currItem);
-						}else if(currentField.equals(_TYPEID_TAG_)){
-							try {
-								currItem.setLevelType(ActivityType.valueOf(text));
-							} catch (IllegalArgumentException e) {
-							}
-						}else if(currentField.equals(_BACKGROUND_FILE_NAME_TAG_)){
-							currItem.setBackground(text);
-						}else if(currentField.equals(_COMPONENTS_TAG_)){
-							currItem.setComponents(text);
-						}else{
-							ret.put(currentField, text);
-						}
-					}
-					
-					@Override
-					public void handleEndTag(String currentField) {
-					}
-					
-					@Override
-					public void handleBeginTag(String currentField) {
-					}
-				}
-		, _APPLICATION_TAG_);
 		
-		parser.startParsing();
-		
-		return ret;
-	}
-
-	/**
-	 * Based on the mapping of XmlPullParser, returns a map with names and LevelTypeStyle
-	 * @param data
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	private static Map<ActivityType, LevelTypeStyle> fromStylesData(Map<String, Object> data) {
-		Map<ActivityType, LevelTypeStyle> ret = new HashMap<ActivityType, LevelTypeStyle>();
-		Iterator<LevelTypeStyle> list = ((List<LevelTypeStyle>)data.get(_STYLES_TAG_)).iterator();
-				
-		while(list.hasNext()){
-			LevelTypeStyle currLevelTypeStyle = list.next();
-			ret.put(currLevelTypeStyle.getLevelType(), currLevelTypeStyle);
-		}
-		
-		return ret;
-	}
-	
-	
-	// -- FORMATS --
-	
-	/**
-	 * This method is used to make the ride home file "formats.xml" 
-	 * passed in the parameter xmlFileName.
-	 * @param context
-	 * @param xmlFileName
-	 * @return
-	 */
-	public static Map<String, FormatStyle> parseFormatData(Context context, String xmlFileName) {
-		XmlPullParser xpp = createXpp(context, Locale.getDefault(), xmlFileName, false);
-		if(xpp != null){
-
-			Map<String, Object> data = parseFormatDataFile(xpp);  
-			return fromFormatData(data);
-		}
-		return null;
-	}
-	
-	/**
-	 * Generate a table of the elements of XmlPullParser useful for the formats
-	 * @param xpp
-	 * @return
-	 */
-	private static Map<String, Object> parseFormatDataFile(XmlPullParser xpp) {
-		final Map<String, Object> ret = new HashMap<String, Object>();
-		NwXmlStandarParser parser = new NwXmlStandarParser(xpp,
-				new NwXmlStandarParserTextHandler() {
-					private FormatStyle currItem;
-					private List<FormatStyle> currList;
-					
-					@Override
-					public void handleText(String currentField, String text) {
-						if(currentField.equals(_FORMATS_TAG_)){
-							currList = new ArrayList<FormatStyle>();
-							ret.put(currentField, currList);
-						}else if(currentField.equals(_FORMAT_TAG_)){
-							currItem = new FormatStyle();
-							currList.add(currItem);
-						}else if(currentField.equals(_NAME_TAG_)){
-							currItem.setName(text);
-						}else if(currentField.equals(_TEXTCOLOR_TAG_)){
-							currItem.setTextColor(text);
-						}else if(currentField.equals(_TEXTSIZE_TAG_)){
-							currItem.setTextSize(text);
-						}else if(currentField.equals(_TEXTSTYLE_TAG_)){
-							currItem.setTextStyle(text);
-						}else if(currentField.equals(_TYPEFACE_TAG_)){
-							currItem.setTypeFace(text);
-						}else if(currentField.equals(_CACHE_COLOR_HINT_TAG_)){
-							currItem.setCacheColorHint(text);
-						}else if(currentField.equals(_BACKGROUND_COLOR_TAG_)){
-							currItem.setBackgroundColor(text);
-						}else if(currentField.equals(_BG_SELECTION_FILE_NAME_TAG_)){
-							currItem.setBackgroundSelectionFileName(text);
-						}else{
-							ret.put(currentField, text);
-						}
-					}
-					
-					@Override
-					public void handleEndTag(String currentField) {
-					}
-					
-					@Override
-					public void handleBeginTag(String currentField) {
-					}
-				}
-		, _APPLICATION_TAG_);
-		
-		parser.startParsing();
-		
-		return ret;
-	}
-	
-	/**
-	 * Based on the mapping of XmlPullParser, returns a map with names and FormatStyle
-	 * @param data
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	private static Map<String, FormatStyle> fromFormatData(Map<String, Object> data) {
-		Map<String, FormatStyle> ret = new HashMap<String, FormatStyle>();
-		Iterator<FormatStyle> list = ((List<FormatStyle>)data.get(_FORMATS_TAG_)).iterator();
-				
-		while(list.hasNext()){
-			FormatStyle currFormat = list.next();
-			ret.put(currFormat.getName(), currFormat);
-		}
-		
-		return ret;
-	}
-	
-	
 	// -- OTHER ACTIVITIES --
 		
 	/**
