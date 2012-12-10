@@ -77,7 +77,7 @@ public class MenuParser extends AbstractParser<List<Menu>> {
 		
 		NwXmlStandarParser parser = new NwXmlStandarParser(xpp, 
 			new NwXmlStandarParserTextHandler() {
-			private List<MenuItem> items = new ArrayList<MenuItem>();
+			private List<MenuItem> items = null;
 			private NextLevel nextLevel;
 			private SystemAction systemAction;
 			private String menuLevelId;
@@ -136,6 +136,7 @@ public class MenuParser extends AbstractParser<List<Menu>> {
 			public void handleBeginTag(String currentField) {
 				if(_MENU_TAG_.equals(currentField)){
 					menuLevelId = null;
+					items = new ArrayList<MenuItem>();
 				}else if(_MENU_ITEM_TAG_.equals(currentField)){
 					nextLevel = null;
 					systemAction = null;

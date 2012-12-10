@@ -5,7 +5,7 @@
 	    <menuLevel/>
 		<action>
 			<actionTitle>Copiar</actionTitle>
-	        <menu-image>images/5_content_copy.png</menu-image>
+	        <actionImageName>images/5_content_copy.png</actionImageName>
      	   	<systemAction>copy</systemAction>
 		</action>
 	</menuActions>
