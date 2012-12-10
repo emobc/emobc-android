@@ -64,14 +64,14 @@ public class VideoActivity extends CreateMenus {
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);			
 			ActivityGenerator generator = applicationData.getFromNextLevel(this, nextLevel);
 			generator.initializeActivity(this);
+
+			setEntryPoint(isEntryPoint);
+			createMenus(nextLevel.getLevelId());        
 		}else{
 			Intent i = new Intent (this, SplashActivity.class);
 			startActivity(i);
 			finish();
 		}
 		//createToolBar(isEntryPoint);
-		setEntryPoint(isEntryPoint);
-		
-		createMenus();        
     }
 }

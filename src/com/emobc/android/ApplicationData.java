@@ -41,6 +41,8 @@ import com.emobc.android.levels.AppLevelData;
 import com.emobc.android.levels.AppLevelDataItem;
 import com.emobc.android.levels.impl.BannerDataItem;
 import com.emobc.android.levels.impl.ServerPushDataItem;
+import com.emobc.android.menu.Menu;
+import com.emobc.android.menu.parse.MenuParser;
 import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.themes.FormatStyle;
@@ -99,6 +101,8 @@ public class ApplicationData {
 	private Map<ActivityType, LevelTypeStyle> levelStyleTypeMap = new HashMap<ActivityType, LevelTypeStyle>();
 	private Map<String, FormatStyle> formatStyleMap = new HashMap<String, FormatStyle>();
 	
+	
+	
 	private static ApplicationData instance = null;
 
 	/**
@@ -120,7 +124,21 @@ public class ApplicationData {
 	 * URL of the Remote Application File.
 	 */
 	private final String remoteApplicationFileUrl;
+
 	
+	/**
+	 * Menu Level Map
+	 * LevelId -> Menu
+	 * if (levelId == null) -> General Menu 
+	 */
+	private Map<String, Menu> topMenuLevelMap = null;
+	
+	private Map<String, Menu> bottomMenuLevelMap = null;
+
+	private Map<String, Menu> contextMenuLevelMap = null;
+	
+	private Map<String, Menu> sideMenuLevelMap = null;
+
 	
 	/**
 	 * Default Constructor. 
@@ -547,36 +565,80 @@ public class ApplicationData {
 		return remoteApplicationFileUrl;
 	}
 
-	public void setTopMenu(String topMenu) {
+	public void setTopMenuFileName(String topMenu) {
 		this.topMenu = topMenu;
 	}
 
-	public void setBottomMenu(String bottomMenu) {
+	public void setBottomMenuFileName(String bottomMenu) {
 		this.bottomMenu = bottomMenu;
 	}
 
-	public void setContextMenu(String contextMenu) {
+	public void setContextMenuFileName(String contextMenu) {
 		this.contextMenu = contextMenu;
 	}
 
-	public void setSideMenu(String sideMenu) {
+	public void setSideMenuFileName(String sideMenu) {
 		this.sideMenu = sideMenu;
 	}
 
-
-	public String getTopMenu() {
-		return topMenu;
+	private Map<String, Menu> loadMenuLevelMap(String xmlMenuFileName, Context context) {
+		Map<String, Menu> ret = new HashMap<String, Menu>();
+		
+		if(xmlMenuFileName != null && !xmlMenuFileName.isEmpty()){
+		
+			// Create Menu Parser
+			MenuParser menuParser = new MenuParser(ParseUtils.createXpp(
+					context, 
+	    			Locale.getDefault(), 
+	    			xmlMenuFileName, 
+	    			false));
+			
+			List<Menu> menues = menuParser.parse();
+			
+			for(Menu menu : menues){
+				ret.put(menu.getLevelId(), menu);
+			}
+		}
+		return ret;
 	}
-
-	public String getBottomMenu() {
-		return bottomMenu;
+	
+	private static Menu buildLevelMenuFromMap(String levelId, Map<String, Menu> menuLevelMap){
+		Menu generalMenu = menuLevelMap.get(null);
+		Menu menu = menuLevelMap.get(levelId);
+		
+		if(menu == null)
+			return generalMenu;
+		
+		Menu retMenu = new Menu(menu.getLevelId());
+		if(generalMenu != null)
+			retMenu.addMenuItems(generalMenu.getItems());
+		
+		retMenu.addMenuItems(menu.getItems());
+		
+		return retMenu;
+	} 
+	
+	public Menu getTopMenu(String levelId, Context context){
+		if(this.topMenuLevelMap == null)
+			this.topMenuLevelMap = loadMenuLevelMap(this.topMenu, context);
+		return buildLevelMenuFromMap(levelId, topMenuLevelMap);
 	}
-
-	public String getContextMenu() {
-		return contextMenu;
+	
+	public Menu getBottomMenu(String levelId, Context context){
+		if(this.bottomMenuLevelMap == null)
+			this.bottomMenuLevelMap = loadMenuLevelMap(this.bottomMenu, context);
+		return buildLevelMenuFromMap(levelId, bottomMenuLevelMap);
 	}
-
-	public String getSideMenu() {
-		return sideMenu;
+	
+	public Menu getContextMenu(String levelId, Context context){
+		if(this.contextMenuLevelMap == null)
+			this.contextMenuLevelMap = loadMenuLevelMap(this.contextMenu, context);
+		return buildLevelMenuFromMap(levelId, contextMenuLevelMap);
+	}
+	
+	public Menu getSideMenu(String levelId, Context context){
+		if(this.sideMenuLevelMap == null)
+			this.sideMenuLevelMap = loadMenuLevelMap(this.sideMenu, context);
+		return buildLevelMenuFromMap(levelId, sideMenuLevelMap);
 	}	
 }

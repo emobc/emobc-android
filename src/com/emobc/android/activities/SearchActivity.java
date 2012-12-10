@@ -87,8 +87,7 @@ public class SearchActivity extends CreateMenus {
         });
       //createToolBar(isEntryPoint);
 		setEntryPoint(isEntryPoint);
-		
-		createMenus();
+		createMenus(null);
     }
     
     public void locateText (String searchText){

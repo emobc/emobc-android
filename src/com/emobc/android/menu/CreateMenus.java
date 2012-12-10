@@ -24,7 +24,6 @@ package com.emobc.android.menu;
 
 
 import java.util.List;
-import java.util.Locale;
 
 import android.app.Activity;
 import android.content.Context;
@@ -58,8 +57,6 @@ import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.impl.BannerDataItem;
 import com.emobc.android.menu.builders.HorizontalMenuBuilder;
 import com.emobc.android.menu.builders.MenuBuilder;
-import com.emobc.android.menu.parse.MenuParser;
-import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.Utils;
@@ -80,7 +77,6 @@ public class CreateMenus extends Activity implements AnimationListener {
 	private static final String ROTATION_LANDSCAPE = "landscape";
 	private static final String ROTATION_PORTRAIT = "portrait";
 	private static final String ROTATION_BOTH = "both";
-	private String contextMenuXmlFileName;
 	private com.emobc.android.menu.Menu contextMenu;
 	
 	private boolean isEntryPoint;
@@ -173,30 +169,27 @@ public class CreateMenus extends Activity implements AnimationListener {
      * @param activity
      * @param isEntryPoint
      */
-	protected void createMenus(){		
+	protected void createMenus(String levelId){		
 		ApplicationData applicationData = SplashActivity.getApplicationData();
 		
 		int menuHeight = 0;
 		
 		//TOP MENU
 		LinearLayout topLayout = (LinearLayout) findViewById(R.id.topLayout);
-		final String topMenuXml = applicationData.getTopMenu();
+		com.emobc.android.menu.Menu topMenu = applicationData.getTopMenu(levelId, this);
 		
-		if(topLayout != null && Utils.hasLength(topMenuXml))
-			menuHeight += buildMenu(topLayout, topMenuXml, new HorizontalMenuBuilder());
+		if(topLayout != null && topMenu != null)
+			menuHeight += buildMenu(topLayout, topMenu, new HorizontalMenuBuilder());
 		
 		//BOTTOM MENU
 		LinearLayout bottomLayout = (LinearLayout) findViewById(R.id.bottomLayout);
-		final String bottomMenu = applicationData.getBottomMenu();
+		com.emobc.android.menu.Menu bottomMenu = applicationData.getBottomMenu(levelId, this);
 		
-		if(bottomLayout != null && Utils.hasLength(bottomMenu))
+		if(bottomLayout != null && bottomMenu != null)
 			menuHeight += buildMenu(bottomLayout, bottomMenu, new HorizontalMenuBuilder());
 		
 		//CONTEXT MENU
-		final String contextMenu = applicationData.getContextMenu();
-		if(Utils.hasLength(contextMenu)){
-			this.contextMenuXmlFileName = contextMenu;
-		}
+		this.contextMenu = applicationData.getContextMenu(levelId, this);
 
 		if(menuHeight > 0){	
 			Display display = getWindowManager().getDefaultDisplay();
@@ -215,41 +208,25 @@ public class CreateMenus extends Activity implements AnimationListener {
 //		}
 	}
 	
-	protected int buildMenu(LinearLayout layout, String menuXmlFileName, MenuBuilder menuBuilder) {
+	protected int buildMenu(LinearLayout layout, 
+			com.emobc.android.menu.Menu menu, 
+			MenuBuilder menuBuilder) {
 		// If no layout, noting to do.
 		if(layout == null)
 			return 0;
-		// If no xml, hide layout
-		if(!Utils.hasLength(menuXmlFileName)){
-			layout.setVisibility(View.GONE);
-		}
-		// If no menu build, nothing to do
-		if(menuBuilder == null)
-			return 0;
-				
-		// Create Menu Parser
-		MenuParser menuParser = new MenuParser(ParseUtils.createXpp(
-    			this, 
-    			Locale.getDefault(), 
-    			menuXmlFileName, 
-    			false));
-		// Parse Context Menu File
-		com.emobc.android.menu.Menu menu  = menuParser.parse();
-		
-		if(menu != null){
-			// Invoke the builder	
-			return menuBuilder.buildMenu(this, menu, layout);
-		}else{
+		// If no menu or menu builder is null, hide layout
+		if(menu == null || menuBuilder == null){
 			layout.setVisibility(View.GONE);
 			return 0;
 		}
+		return menuBuilder.buildMenu(this, menu, layout);
 	}
 	
 	//  -- Context_Menu methods
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		 if(Utils.hasLength(contextMenuXmlFileName)){
+		 if(contextMenu != null){
 			 createContextMenu(menu);
 		     return true;
 		 }
@@ -280,16 +257,7 @@ public class CreateMenus extends Activity implements AnimationListener {
 	 * action is necessary to override the system selection methods.
 	 * @param contextMenu
 	 */
-	private void createContextMenu(Menu contextMenu) {
-		// Create Menu Parser
-		MenuParser menuParser = new MenuParser(ParseUtils.createXpp(
-    			this, 
-    			Locale.getDefault(), 
-    			contextMenuXmlFileName, 
-    			false));
-		// Parse Context Menu File
-		this.contextMenu = menuParser.parse();
-		
+	private void createContextMenu(Menu contextMenu) {	
 		if(this.contextMenu != null){
 			// Add Menu Items to Android Context Menu
 			List<com.emobc.android.menu.MenuItem> items = this.contextMenu.getItems();

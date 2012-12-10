@@ -57,15 +57,15 @@ public class QrActivity extends CreateMenus {
 			dataItem = (QrLevelDataItem)appLevelData.findByNextLevel(nextLevel);
 			
 			generator.initializeActivity(this);
+			
+			setEntryPoint(isEntryPoint);			
+			createMenus(nextLevel.getLevelId());
 		}else{
 			Intent i = new Intent (this, SplashActivity.class);
 			startActivity(i);
 			finish();
 		}
       //createToolBar(isEntryPoint);
-		setEntryPoint(isEntryPoint);
-		
-		createMenus();
     }
 
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {

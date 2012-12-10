@@ -33,18 +33,42 @@ import java.util.List;
  * @version 0.1
  */
 public class Menu implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8054165167038397622L;
 	
+	private final String levelId;
+	
 	private final List<MenuItem> items = new ArrayList<MenuItem>();
+
+	public Menu(String levelId) {
+		super();
+		this.levelId = levelId;
+	}
 	
 	public void addMenuItem(MenuItem item){
 		this.items.add(item);
 	}
 	
+	public void addMenuItems(List<MenuItem> items){
+		this.items.addAll(items);
+	}
+	
 	public List<MenuItem> getItems(){
 		return Collections.unmodifiableList(items);
+	}
+
+	public String getLevelId() {
+		return levelId;
+	}
+	
+	public boolean isGeneral(){
+		return levelId == null || levelId.isEmpty();
+	}
+	
+	public String toString(){
+		return isGeneral() ? "Menu = general" : "Menu = " + levelId;
 	}
 }

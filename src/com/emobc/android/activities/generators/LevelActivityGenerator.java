@@ -47,6 +47,8 @@ import com.emobc.android.levels.AppLevelData;
 import com.emobc.android.themes.FormatStyle;
 import com.emobc.android.themes.LevelTypeStyle;
 import com.emobc.android.utils.ImagesUtils;
+import com.emobc.android.utils.InvalidFileException;
+import com.emobc.android.utils.Utils;
 
 /**
  * Abstract class that implements all the methods necessary for the proper 
@@ -131,16 +133,18 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 			return;
 		
 		String backgroundFileName = levelTypeStyle.getBackground();
-		//String backgroundName = backgroundFileName.split("\\.")[0];
-		ViewGroup backgroundLayout = (ViewGroup)activity.findViewById(R.id.backgroundLayout);
 		
-		try {
-			//int imageResource = activity.getResources().getIdentifier(backgroundName, "drawable", activity.getPackageName());
-		    //Drawable backgroundDrawable = activity.getResources().getDrawable(imageResource);
-			//backgroundLayout.setBackgroundDrawable(backgroundDrawable);
-			backgroundLayout.setBackgroundDrawable(ImagesUtils.getDrawable(activity, backgroundFileName));
-		} catch (Exception e) {
-			Log.e("ApplicationData","ImageFile not found");
+		if(Utils.hasLength(backgroundFileName)){									
+			ViewGroup backgroundLayout = (ViewGroup)activity.findViewById(R.id.backgroundLayout);
+			if(backgroundLayout == null)
+				return;
+			Drawable backgroundDrawable;
+			try {
+				backgroundDrawable = ImagesUtils.getDrawable(activity, backgroundFileName);
+				backgroundLayout.setBackgroundDrawable(backgroundDrawable);
+			} catch (InvalidFileException e) {
+				Log.e("LevelActivityGenerator", e.getLocalizedMessage());
+			}
 		}
 	}
 	

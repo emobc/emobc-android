@@ -8,9 +8,7 @@
 	<entryPoint/>
 	
 	<menu>
-		<topMenu>top-menu.xml</topMenu>
-		<bottomMenu>bottom-menu.xml</bottomMenu>
-		<contextMenu>context-menu.xml</contextMenu>
+		<contextMenu>context_menu.xml</contextMenu>
 	</menu>
 	
 	<banner>

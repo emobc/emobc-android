@@ -44,12 +44,13 @@ import com.emobc.android.parse.NwXmlStandarParserTextHandler;
  * @since 0.1
  * @version 0.1
  */
-public class MenuParser extends AbstractParser<Menu> {
-	
-	private static final String _MENU_TAG_ = "menu";
-	private static final String _MENU_ITEM_TAG_ = "menu-item";
-	private static final String _MENU_TITLE_TAG_ = "menu-title";
-	private static final String _MENU_IMAGE_TAG_ = "menu-image";
+public class MenuParser extends AbstractParser<List<Menu>> {
+	private static final String _MENUES_TAG = "level";
+	private static final String _MENU_LEVEL_TAG = "menuLevel";
+	private static final String _MENU_TAG_ = "menuActions";
+	private static final String _MENU_ITEM_TAG_ = "action";
+	private static final String _MENU_TITLE_TAG_ = "actionTitle";
+	private static final String _MENU_IMAGE_TAG_ = "actionImageName";
 	private static final String _SYSTEM_ACTION_TAG_ = "systemAction";
 	
 	private static final String _NEXT_LEVEL_TAG_ = "nextLevel";
@@ -61,22 +62,13 @@ public class MenuParser extends AbstractParser<Menu> {
 	}
 
 	@Override
-	protected Menu generateObjectFromParseData(Map<String, Object> data) {
-		Menu ret = null;
+	protected List<Menu> generateObjectFromParseData(Map<String, Object> data) {
 		if(data != null && !data.isEmpty()){
-			ret = new Menu();
-			
 			@SuppressWarnings("unchecked")
-			List<MenuItem> items = (List<MenuItem>)data.get(_MENU_TAG_);
-			
-			if(items != null && !items.isEmpty()){
-				for(MenuItem item : items){
-					ret.addMenuItem(item);
-				}
-			}
+			List<Menu> ret = (List<Menu>)data.get(_MENUES_TAG);
+			return ret;
 		}
-		
-		return ret;
+		return null;
 	}
 
 	@Override
@@ -88,14 +80,18 @@ public class MenuParser extends AbstractParser<Menu> {
 			private List<MenuItem> items = new ArrayList<MenuItem>();
 			private NextLevel nextLevel;
 			private SystemAction systemAction;
+			private String menuLevelId;
 			private String title;
 			private String imageFileName;
 			private String levelId;
 			private String dataId;
+			private List<Menu> menuList = new ArrayList<Menu>();
 			
 			@Override
 			public void handleText(String currentField, String text) {
-				if(_MENU_TITLE_TAG_.equals(currentField)){
+				if(_MENU_LEVEL_TAG.equals(currentField)){
+					menuLevelId = text;
+				}else if(_MENU_TITLE_TAG_.equals(currentField)){
 					title = text;					
 				}else if(_MENU_IMAGE_TAG_.equals(currentField)){
 					imageFileName = text;
@@ -113,13 +109,21 @@ public class MenuParser extends AbstractParser<Menu> {
 					
 			@Override
 			public void handleEndTag(String currentField) {
-				if(_MENU_TAG_.equals(currentField)){
-					ret.put(_MENU_TAG_, items);
+				if(_MENUES_TAG.equals(currentField)){
+					ret.put(_MENUES_TAG, menuList);
+				}else if(_MENU_TAG_.equals(currentField)){
+					Menu menu = new Menu(menuLevelId);
+					if(items != null && !items.isEmpty()){
+						for(MenuItem item : items){
+							menu.addMenuItem(item);
+						}
+					}
+					menuList.add(menu);
 				}else if(currentField.equals(_NEXT_LEVEL_TAG_)){
 					nextLevel = new NextLevel(levelId, dataId);
 				}else if(_MENU_ITEM_TAG_.equals(currentField)){
 					MenuItem menuItem = null;
-					if(nextLevel != null)
+					if(nextLevel != null && nextLevel.isDefined())
 						menuItem = new NextLevelMenuItem(title, imageFileName, nextLevel);
 					else if(systemAction != null)
 						menuItem = new SystemActionMenuItem(title, imageFileName, systemAction);
@@ -130,7 +134,9 @@ public class MenuParser extends AbstractParser<Menu> {
 			
 			@Override
 			public void handleBeginTag(String currentField) {
-				if(_MENU_ITEM_TAG_.equals(currentField)){
+				if(_MENU_TAG_.equals(currentField)){
+					menuLevelId = null;
+				}else if(_MENU_ITEM_TAG_.equals(currentField)){
 					nextLevel = null;
 					systemAction = null;
 					title = null;
@@ -141,7 +147,7 @@ public class MenuParser extends AbstractParser<Menu> {
 				}
 			}
 		}
-		, _MENU_TAG_);
+		, _MENUES_TAG);
 		
 		parser.startParsing();
 		

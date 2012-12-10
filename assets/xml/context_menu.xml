@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level>
 	<menuActions>
+	    <!-- Menu General -->
+	    <menuLevel/>
+		<action>
+			<actionTitle>Copiar</actionTitle>
+	        <menu-image>images/5_content_copy.png</menu-image>
+     	   	<systemAction>copy</systemAction>
+		</action>
+	</menuActions>
+    <menuActions>
+	    <menuLevel>Navegación</menuLevel>
 		<action>
 			<actionTitle>Boton1</actionTitle>
 			<actionImageName>images/icons/boton_menu_1.png</actionImageName>
@@ -20,10 +30,7 @@
 			<leftMargin>10</leftMargin>
 			<widthButton>50</widthButton>
 			<heightButton>28</heightButton>
-			<nextLevel>
-				<nextLevelLevelId></nextLevelLevelId>
-				<nextLevelDataId></nextLevelDataId>
-			</nextLevel>
+			<systemAction>copy</systemAction>
 		</action>
 		<action>
 			<actionTitle>Boton3</actionTitle>

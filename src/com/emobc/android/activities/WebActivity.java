@@ -60,14 +60,14 @@ public class WebActivity extends CreateMenus {
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
 			generator = (WebActivityGenerator) applicationData.getFromNextLevel(this, nextLevel);
 			generator.initializeActivity(this);
+
+			setEntryPoint(isEntryPoint);
+			createMenus(nextLevel.getLevelId());        
 		}else{
 			Intent i = new Intent (this, SplashActivity.class);
 			startActivity(i);
 			finish();
 		}
-		setEntryPoint(isEntryPoint);
-		
-		createMenus();
     }
         
     @Override

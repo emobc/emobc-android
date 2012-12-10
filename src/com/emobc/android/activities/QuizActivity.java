@@ -64,14 +64,13 @@ public class QuizActivity extends CreateMenus {
 				ActivityGenerator generator = applicationData.getFromNextLevel(this, nextLevel);
 				generator.initializeActivity(this);
 				
+				setEntryPoint(isEntryPoint);
+				createMenus(nextLevel.getLevelId());			
 			}else{
 				Intent i = new Intent (this, SplashActivity.class);
 				startActivity(i);
 				finish();
 			}
-			setEntryPoint(isEntryPoint);
-			
-			createMenus();			
 		} catch (InvalidFileException e) {
 			Log.e("QuizActivity", e.getLocalizedMessage());
 	    	Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

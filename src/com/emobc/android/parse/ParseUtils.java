@@ -454,10 +454,10 @@ public class ParseUtils {
 		ret.setFormatsFileName((String)data.get(_FORMATS_FILE_NAME_TAG_));
 		ret.setProfileFileName((String)data.get(_PROFILE_FILE_NAME_TAG_));
 		// Menues
-		ret.setTopMenu((String)data.get(_TOP_MENU_TAG_));
-		ret.setBottomMenu((String)data.get(_BOTTOM_MENU_TAG_));
-		ret.setSideMenu((String)data.get(_SIDE_MENU_TAG_));
-		ret.setContextMenu((String)data.get(_CONTEXT_MENU_TAG_));
+		ret.setTopMenuFileName((String)data.get(_TOP_MENU_TAG_));
+		ret.setBottomMenuFileName((String)data.get(_BOTTOM_MENU_TAG_));
+		ret.setSideMenuFileName((String)data.get(_SIDE_MENU_TAG_));
+		ret.setContextMenuFileName((String)data.get(_CONTEXT_MENU_TAG_));
 		
 		List<AppLevel> parsedLevels = (List<AppLevel>)data.get(_LEVELS_TAG_);
 		

@@ -72,30 +72,27 @@ public class FormActivity extends CreateMenus {
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
 			isProfile = NextLevel.PROFILE_NEXT_LEVEL.equals(nextLevel);
-			if (isProfile) {
+			if (Boolean.TRUE.equals(isProfile)) {
 				this.profileGenerator = (ProfileActivityGenerator)applicationData.getFromNextLevel(this, nextLevel);
 				profileGenerator.initializeActivity(this);
 			} else {
 				this.generator = (FormActivityGenerator)applicationData.getFromNextLevel(this, nextLevel);
 				generator.initializeActivity(this);
+				setEntryPoint(isEntryPoint);
+				createMenus(nextLevel.getLevelId());
 			}
+			
+			if (savedInstanceState!=null){
+				restoreAllInstances(savedInstanceState);
+			}
+	       // Restore preferences
+	       SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+	       restoreAllInstances(settings);
 		}else{
 			Intent i = new Intent (this, SplashActivity.class);
 			startActivity(i);
 			finish();
-		}
-		
-		setEntryPoint(isEntryPoint);
-		
-		if(isProfile == null || Boolean.FALSE.equals(isProfile))
-			createMenus();
-		
-		if (savedInstanceState!=null){
-			restoreAllInstances(savedInstanceState);
-		}
-       // Restore preferences
-       SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-       restoreAllInstances(settings);
+		}		
     }
     
     private void restoreAllInstances(SharedPreferences settings) {
