@@ -23,75 +23,70 @@
 package com.emobc.android.themes;
 
 /**
- * Component that save a unique component FORMAT. 
+ * Component that save a unique component FORMAT.
+ * 
  * @author Jonatan Alcocer Luna
  * @version 0.1
  * @since 0.1
  */
 public class FormatStyle {
-	private String name = "";
-	private String textColor = "";
-	private String textSize = "";
-	private String textStyle = "";
-	private String typeFace = "";; 
-	private String cacheColorHint = "";;
-	private String backgroundColor = "";
-	private String backgroundSelectionFileName = "";
-	
-	public FormatStyle(){
+
+	private final String name;
+	private final String textColor;
+	private final String textSize;
+	private final String textStyle;
+	private final String typeFace;;
+	private final String cacheColorHint;;
+	private final String backgroundColor;
+	private final String backgroundSelectionFileName;
+
+	public FormatStyle(String name, String textColor, String textSize,
+			String textStyle, String typeFace, String cacheColorHint,
+			String backgroundColor, String backgroundSelectionFileName) {
 		super();
+		this.name = name;
+		this.textColor = textColor;
+		this.textSize = textSize;
+		this.textStyle = textStyle;
+		this.typeFace = typeFace;
+		this.cacheColorHint = cacheColorHint;
+		this.backgroundColor = backgroundColor;
+		this.backgroundSelectionFileName = backgroundSelectionFileName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	public void setTextColor(String textColor) {
-		this.textColor = textColor;
-	}
-	public void setTextSize(String textSize) {
-		this.textSize = textSize;
-	}
-	public void setTextStyle(String textStyle) {
-		this.textStyle = textStyle;
-	}
-	public void setTypeFace(String typeFace) {
-		this.typeFace = typeFace;
-	}
-	public void setCacheColorHint(String cacheColorHint) {
-		this.cacheColorHint = cacheColorHint;
-	}
 	public String getName() {
 		return name;
 	}
+
 	public String getTextColor() {
 		return textColor;
 	}
+
 	public String getTextSize() {
 		return textSize;
 	}
+
 	public String getTextStyle() {
 		return textStyle;
 	}
+
 	public String getTypeFace() {
 		return typeFace;
 	}
+
 	public String getCacheColorHint() {
 		return cacheColorHint;
 	}
-	
+
 	public String getBackgroundColor() {
 		return backgroundColor;
 	}
 
-	public void setBackgroundColor(String backgroundColor) {
-		this.backgroundColor = backgroundColor;
-	}
-	
 	public String getBackgroundSelectionFileName() {
 		return backgroundSelectionFileName;
 	}
 
-	public void setBackgroundSelectionFileName(String backgroundSelectionFileName) {
-		this.backgroundSelectionFileName = backgroundSelectionFileName;
-	}	
+	public String toString(){
+		return "[format = " + name + "]";
+	}
 }

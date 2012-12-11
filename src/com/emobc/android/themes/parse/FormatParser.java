@@ -78,31 +78,36 @@ public class FormatParser extends AbstractParser<Map<String, FormatStyle>> {
 				new NwXmlStandarParserTextHandler() {
 					private FormatStyle currItem;
 					private List<FormatStyle> currList;
+					private String name;
+					private String textColor;
+					private String textSize;
+					private String textStyle;
+					private String typeFace;;
+					private String cacheColorHint;;
+					private String backgroundColor;
+					private String backgroundSelectionFileName;
 					
 					@Override
 					public void handleText(String currentField, String text) {
 						if(currentField.equals(_FORMATS_TAG_)){
 							currList = new ArrayList<FormatStyle>();
 							ret.put(currentField, currList);
-						}else if(currentField.equals(_FORMAT_TAG_)){
-							currItem = new FormatStyle();
-							currList.add(currItem);
 						}else if(currentField.equals(_NAME_TAG_)){
-							currItem.setName(text);
+							name = text;
 						}else if(currentField.equals(_TEXTCOLOR_TAG_)){
-							currItem.setTextColor(text);
+							textColor = text;
 						}else if(currentField.equals(_TEXTSIZE_TAG_)){
-							currItem.setTextSize(text);
+							textSize = text;
 						}else if(currentField.equals(_TEXTSTYLE_TAG_)){
-							currItem.setTextStyle(text);
+							textStyle = text;
 						}else if(currentField.equals(_TYPEFACE_TAG_)){
-							currItem.setTypeFace(text);
+							typeFace = text;
 						}else if(currentField.equals(_CACHE_COLOR_HINT_TAG_)){
-							currItem.setCacheColorHint(text);
+							cacheColorHint = text;
 						}else if(currentField.equals(_BACKGROUND_COLOR_TAG_)){
-							currItem.setBackgroundColor(text);
+							backgroundColor = text;
 						}else if(currentField.equals(_BG_SELECTION_FILE_NAME_TAG_)){
-							currItem.setBackgroundSelectionFileName(text);
+							backgroundSelectionFileName = text;
 						}else{
 							ret.put(currentField, text);
 						}
@@ -110,10 +115,31 @@ public class FormatParser extends AbstractParser<Map<String, FormatStyle>> {
 					
 					@Override
 					public void handleEndTag(String currentField) {
+						if(currentField.equals(_FORMAT_TAG_)){
+							currItem = new FormatStyle(name, 
+									textColor, 
+									textSize, 
+									textStyle, 
+									typeFace, 
+									cacheColorHint, 
+									backgroundColor, 
+									backgroundSelectionFileName);
+							currList.add(currItem);
+						}
 					}
 					
 					@Override
 					public void handleBeginTag(String currentField) {
+						if(currentField.equals(_FORMAT_TAG_)){
+							name = null;
+							textColor = null;
+							textSize = null;
+							textStyle = null;
+							typeFace = null; 
+							cacheColorHint = null; 
+							backgroundColor = null;
+							backgroundSelectionFileName = null;							
+						}
 					}
 				}
 		, _APPLICATION_TAG_);

@@ -100,7 +100,7 @@ public class ApplicationData {
 
 	private List<AppLevel> levels = new ArrayList<AppLevel>();
 	private Map<String, AppLevel> levelMap = new HashMap<String, AppLevel>();
-	private Map<ActivityType, LevelTypeStyle> levelStyleTypeMap = new HashMap<ActivityType, LevelTypeStyle>();
+	private Map<ActivityType, LevelTypeStyle> levelStyleTypeMap = null;
 	private Map<String, FormatStyle> formatStyleMap = null;
 	
 	

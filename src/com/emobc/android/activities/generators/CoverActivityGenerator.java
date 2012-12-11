@@ -101,7 +101,7 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 		
 		//rotateScreen(activity);
 		
-		if(backgroundFileName != null){
+		if(Utils.hasLength(backgroundFileName)){
 			Drawable backgroundDrawable;
 			try {
 				backgroundDrawable = ImagesUtils.getDrawable(activity, backgroundFileName);
@@ -113,7 +113,7 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 		}
 		
 		ImageView titleImage = (ImageView) activity.findViewById(R.id.CoverTitle);
-		if(titleFileName != null){
+		if(Utils.hasLength(titleFileName)){
 			Drawable titleDrawable;
 			try {
 				titleDrawable = ImagesUtils.getDrawable(activity, titleFileName);
