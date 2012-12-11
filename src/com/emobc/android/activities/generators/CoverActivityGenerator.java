@@ -56,6 +56,8 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 	private String titleFileName;
 	private String facebookUrl;
 	private String twitterUrl;
+	private String facebookImage;
+	private String twitterImage;
 	private String wwwUrl;
 	
 	private List<AppButton> buttons;
@@ -209,6 +211,16 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 							launchFacebookUrl(activity, facebookUrl);
 					}
 				});				
+				if(Utils.hasLength(facebookImage)){
+					Drawable facebookDrawable;
+					try {
+						facebookDrawable = ImagesUtils.getDrawable(activity, facebookImage);
+						if (facebookDrawable != null) 
+							facebookButton.setImageDrawable(facebookDrawable);
+					} catch (InvalidFileException e) {
+						Log.e("CoverActivityGenerator", e.getLocalizedMessage());
+					}				
+				}
 			}
 		} else {
 			if(facebookButton != null)
@@ -223,6 +235,16 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 						launchUrl(activity, twitterUrl);
 					}
 				});				
+				if(Utils.hasLength(twitterImage)){
+					Drawable twitterDrawable;
+					try {
+						twitterDrawable = ImagesUtils.getDrawable(activity, twitterImage);
+						if (twitterDrawable != null) 
+							twitterButton.setImageDrawable(twitterDrawable);
+					} catch (InvalidFileException e) {
+						Log.e("CoverActivityGenerator", e.getLocalizedMessage());
+					}				
+				}
 			}
 		} else {
 			if(twitterButton != null) 
@@ -273,5 +295,21 @@ public class CoverActivityGenerator extends AbstractActivtyGenerator {
 
 	public String getWwwUrl() {
 		return wwwUrl;
+	}
+
+	public String getFacebookImage() {
+		return facebookImage;
+	}
+
+	public void setFacebookImage(String facebookImage) {
+		this.facebookImage = facebookImage;
+	}
+
+	public String getTwitterImage() {
+		return twitterImage;
+	}
+
+	public void setTwitterImage(String twitterImage) {
+		this.twitterImage = twitterImage;
 	}
 }

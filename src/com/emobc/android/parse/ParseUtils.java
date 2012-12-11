@@ -34,7 +34,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -53,7 +52,6 @@ import com.emobc.android.ActivityType;
 import com.emobc.android.AppButton;
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
-import com.emobc.android.activities.generators.CoverActivityGenerator;
 import com.emobc.android.config.ApplicationConfiguration;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelData;
@@ -117,10 +115,6 @@ public class ParseUtils {
 	private static final String _FORMATS_FILE_NAME_TAG_ = "formatsFileName";
 	private static final String _PROFILE_FILE_NAME_TAG_ = "profileFileName";
 	
-	private static final String _FACEBOOK_TAG_ = "facebook";
-	private static final String _TWITTER_TAG_ = "twitter";
-	private static final String _WWW_TAG_ = "www";
-	
 	private static final String _ENTRY_POINT_TAG_ = "entryPoint";
 	private static final String _POINT_LEVEL_ID_TAG_ = "pointLevelId";
 	private static final String _POINT_DATA_ID_TAG_ = "pointDataId";
@@ -138,8 +132,6 @@ public class ParseUtils {
 	private static final String _LEVEL_USE_PROFILE_ = "levelUseProfile";
 	private static final String _LEVEL_TYPE_ = "levelType";
 	
-	private static final String _BG_FILE_NAME_ = "backgroundFileName";
-	private static final String _TITLE_FILE_NAME_ = "titleFileName";
 	private static final String _NEXT_LEVEL_TAG_ = "nextLevel";
 	private static final String _LEVEL_NUMBER_TAG_ = "levelNumber";
 	private static final String _LEVEL_ID_TAG_ = "levelId";
@@ -442,24 +434,6 @@ public class ParseUtils {
 		return ret;
 	}
 	
-	
-	// -- COVER ACTIVITY --
-	
-	/**
-	 * This method is used to make the ride home file "coverFileName" 
-	 * passed in the parameter xmlFileName.
-	 * @param context
-	 * @param locale
-	 * @param xmlFileName
-	 * @return CoverActivityGenerator
-	 */
-	public static CoverActivityGenerator parseAppCoverData(Context context, Locale locale, String xmlFileName) {
-		XmlPullParser xpp = createXpp(context, locale, xmlFileName, false);
-		if(xpp != null)
-			return fromAppCoverData(parseAppCoverDataFile(xpp));
-		return null;
-	}
-	
 	/**
 	 * Generates a new XmlPullParser through a String (InputStream is created 
 	 * from the input data)-Generally, this method is called in 
@@ -582,87 +556,6 @@ public class ParseUtils {
 			//Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
 		return xpp;		
-	}
-	
-	/**
-	 * Generate a table of the elements of XmlPullParser useful to cover
-	 * @param XmlPullParser xpp
-	 * @return Map<String, Object>
-	 */
-	private static Map<String, Object> parseAppCoverDataFile(XmlPullParser xpp) {
-		final Map<String, Object> ret = new HashMap<String, Object>();
-		
-		NwXmlStandarParser parser = new NwXmlStandarParser(xpp, 
-				new NwXmlStandarParserTextHandler() {
-					private List<AppButton> buttons = null;
-					private AppButton currentButton = null;
-					private NextLevel nextLevel = null;
-					@Override
-					public void handleText(String currentField, String text) {
-							
-						if(currentField.equals(_BUTTONS_TAG_)){
-							buttons = new ArrayList<AppButton>();
-							ret.put(_BUTTONS_TAG_, buttons);
-						}else if(currentField.equals(_BUTTON_TAG_)){
-							currentButton = new AppButton();
-							buttons.add(currentButton);
-						}else if(currentField.equals(_BUTTON_TITLE_TAG_)){
-							currentButton.setTitle(text);
-						}else if(currentField.equals(_BUTTON_FILE_NAME_TAG_)){
-							currentButton.setFileName(text);
-						}else if(currentField.equals(_NEXT_LEVEL_TAG_)){
-							nextLevel = new NextLevel();
-							currentButton.setNextLevel(nextLevel);
-						}else if(currentField.equals(_LEVEL_NUMBER_TAG_)){
-							nextLevel.setLevelNumber(Integer.parseInt(text));
-						}else if(currentField.equals(_NL_LEVEL_ID_TAG_)){
-							nextLevel.setLevelId(text);
-						}else if(currentField.equals(_DATA_NUMBER_TAG_)){
-							nextLevel.setDataNumber(Integer.parseInt(text));
-						}else if(currentField.equals(_NL_DATA_ID_TAG_)){
-							nextLevel.setDataId(text);
-						}else{
-							ret.put(currentField, text);
-						}
-					}
-					
-					@Override
-					public void handleEndTag(String currentField) {						
-					}
-					
-					@Override
-					public void handleBeginTag(String currentField) {						
-					}
-				}
-		, _LEVEL_TAG_);
-		
-		parser.startParsing();
-		
-		return ret;
-	}
-	
-	/**
-	 * Based on the mapping of XmlPullParser, CoverActivityGenerator returns 
-	 * the values​​: BG_FILE_NAME, TITLE_FILE_NAME, BUTTONS_TAG, FACEBOOK_TAG, 
-	 * TWITTER_TAG, WWW_TAG
-	 * @param data
-	 * @return CoverActivityGenerator
-	 */
-	@SuppressWarnings("unchecked")
-	private static CoverActivityGenerator fromAppCoverData(Map<String, Object> data) {
-		CoverActivityGenerator ret = new CoverActivityGenerator();
-
-		ret.setBackgroundFileName((String)data.get(_BG_FILE_NAME_));
-		ret.setTitleFileName((String)data.get(_TITLE_FILE_NAME_));
-		List<AppButton> buttons = (List<AppButton>)data.get(_BUTTONS_TAG_);
-		ret.setFacebookUrl((String)data.get(_FACEBOOK_TAG_));
-		ret.setTwitterUrl((String)data.get(_TWITTER_TAG_));
-		ret.setWwwUrl((String)data.get(_WWW_TAG_));
-				
-		if(buttons != null){
-			ret.setButtons(Collections.unmodifiableList(buttons));
-		}		
-		return ret;
 	}
 		
 	// -- OTHER ACTIVITIES --

@@ -43,6 +43,7 @@ import com.emobc.android.levels.impl.BannerDataItem;
 import com.emobc.android.levels.impl.ServerPushDataItem;
 import com.emobc.android.menu.Menu;
 import com.emobc.android.menu.parse.MenuParser;
+import com.emobc.android.parse.CoverParser;
 import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.themes.FormatStyle;
@@ -261,8 +262,13 @@ public class ApplicationData {
 	 * @return CoverActivityGenerator
 	 */
 	public CoverActivityGenerator getAppCoverData(Context context, Locale locale) {
-		CoverActivityGenerator ret = ParseUtils.parseAppCoverData(context, locale, coverFileName);
-		return ret;
+		CoverParser parser = new CoverParser(ParseUtils.createXpp(
+				context, 
+    			locale, 
+    			coverFileName, 
+    			false));
+		
+		return parser.parse();
 	}	
 
 	/**
