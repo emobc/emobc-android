@@ -38,6 +38,7 @@ import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.impl.ServerPushDataItem;
 import com.emobc.android.menu.CreateMenus;
 import com.emobc.android.utils.CommonUtilities;
+import com.emobc.android.utils.ServerUtilities;
 import com.google.android.gcm.GCMRegistrar;
 
 /** 
@@ -60,7 +61,7 @@ public class CoverActivity extends CreateMenus {
         Log.i("CoverActivity", "OnCreate Cover");
         //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
-        ApplicationData applicationData = SplashActivity.getApplicationData();
+        final ApplicationData applicationData = SplashActivity.getApplicationData();
 		if(applicationData != null){
 			
 			/*ENTRY POINT
@@ -98,8 +99,8 @@ public class CoverActivity extends CreateMenus {
 		
 			                    @Override
 			                    protected Void doInBackground(Void... params) {
-			                        boolean registered =
-			                                ServerUtilities.register(context, regId, serverPushData.getServerUrl());
+			                        String appId = applicationData.getServerPush().getAppName(); 
+									boolean registered = ServerUtilities.register(context, regId, appId, serverPushData.getServerUrl());
 			                        // At this point all attempts to register with the app
 			                        // server failed, so we need to unregister the device
 			                        // from GCM - the app will try to register again when

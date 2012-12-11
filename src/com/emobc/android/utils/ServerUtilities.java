@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.emobc.android.activities;
+package com.emobc.android.utils;
 
-import static com.emobc.android.utils.CommonUtilities.TAG;
 import static com.emobc.android.utils.CommonUtilities.displayMessage;
 
 import java.io.IOException;
@@ -32,7 +31,7 @@ import java.util.Random;
 import android.content.Context;
 import android.util.Log;
 
-import com.emobc.android.utils.CommonUtilities;
+import com.emobc.android.activities.R;
 import com.google.android.gcm.GCMRegistrar;
 
 /**
@@ -44,20 +43,32 @@ import com.google.android.gcm.GCMRegistrar;
  */
 public final class ServerUtilities {
 
-    private static final int MAX_ATTEMPTS = 5;
+    private static final String APP_ID = "appId";
+	private static final String REG_ID = "regId";
+	
+	private static final int MAX_ATTEMPTS = 5;
     private static final int BACKOFF_MILLI_SECONDS = 2000;
     private static final Random random = new Random();
+    
+    private static final String TAG = "ServerUtilities";
 
     /**
      * Register this account/device pair within the server.
      *
      * @return whether the registration succeeded or not.
      */
-    static boolean register(final Context context, final String regId, String url) {
+    public static boolean register(final Context context, final String regId, final String appId, String url) {
         Log.i(TAG, "registering device (regId = " + regId + ")");
-        String serverUrl = url + "/GcmServer.php";
+        
+//        String serverUrl = url + "/GcmServer.php";
+        String serverUrl = url + "/register_gcm.php";
+        
         Map<String, String> params = new HashMap<String, String>();
-        params.put("regId", regId);
+        params.put(REG_ID, regId);
+        
+        if(Utils.hasLength(appId))
+        	params.put(APP_ID, appId);
+        
         long backoff = BACKOFF_MILLI_SECONDS + random.nextInt(1000);
         // Once GCM returns a registration id, we need to register it in the
         // demo server. As the server might be down, we will retry it a couple
@@ -102,11 +113,12 @@ public final class ServerUtilities {
     /**
      * Unregister this account/device pair within the server.
      */
-    static void unregister(final Context context, final String regId, String url) {
+    public static void unregister(final Context context, final String regId, final String appId, String url) {
         Log.i(TAG, "unregistering device (regId = " + regId + ")");
         String serverUrl = url + "/unregister";
         Map<String, String> params = new HashMap<String, String>();
-        params.put("regId", regId);
+        params.put(REG_ID, regId);
+        params.put(APP_ID, appId);
         try {
             post(serverUrl, params);
             GCMRegistrar.setRegisteredOnServer(context, false);

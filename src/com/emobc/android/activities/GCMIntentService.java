@@ -26,6 +26,7 @@ import android.util.Log;
 import com.emobc.android.ApplicationData;
 import com.emobc.android.utils.CommonUtilities;
 import com.emobc.android.utils.InvalidFileException;
+import com.emobc.android.utils.ServerUtilities;
 import com.google.android.gcm.GCMBaseIntentService;
 import com.google.android.gcm.GCMRegistrar;
 
@@ -72,7 +73,12 @@ public class GCMIntentService extends GCMBaseIntentService {
     protected void onRegistered(Context context, String registrationId) {
         Log.i(TAG, "Device registered: regId = " + registrationId);
         updateData();
-        ServerUtilities.register(context, registrationId, data.getServerPush().getServerUrl());
+        
+        final String appId = data.getServerPush().getAppName();
+        ServerUtilities.register(context, 
+        		registrationId, 
+        		appId,
+        		data.getServerPush().getServerUrl());
     }
 
     @Override
@@ -80,7 +86,11 @@ public class GCMIntentService extends GCMBaseIntentService {
         Log.i(TAG, "Device unregistered");
         if (GCMRegistrar.isRegisteredOnServer(context)) {
         	updateData();
-            ServerUtilities.unregister(context, registrationId, data.getServerPush().getServerUrl());
+            final String appId = data.getServerPush().getAppName();
+            ServerUtilities.unregister(context, 
+            		registrationId,
+            		appId,
+            		data.getServerPush().getServerUrl());
         } else {
             // This callback results from the call to unregister made on
             // ServerUtilities when the registration to the server failed.

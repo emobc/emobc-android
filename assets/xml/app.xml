@@ -11,6 +11,13 @@
 		<contextMenu>context_menu.xml</contextMenu>
 	</menu>
 	
+	<!-- Push -->
+	<push>
+		<server>http://127.0.0.1/emobc-cloud/</server>
+		<sender>asda</sender>
+    	<appname>59</appname>
+	</push>
+  	
 	<banner>
 		<type>admob</type>
 		<position>top</position>
