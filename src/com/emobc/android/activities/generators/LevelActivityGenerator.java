@@ -22,7 +22,6 @@
 */
 package com.emobc.android.activities.generators;
 
-import java.util.Iterator;
 import java.util.Map;
 
 import android.app.Activity;
@@ -45,8 +44,10 @@ import com.emobc.android.activities.R;
 import com.emobc.android.activities.SplashActivity;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelData;
+import com.emobc.android.themes.ActivityTypeStyle;
 import com.emobc.android.themes.FormatStyle;
-import com.emobc.android.themes.LevelTypeStyle;
+import com.emobc.android.themes.LevelStyle;
+import com.emobc.android.themes.Style;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.Utils;
@@ -80,16 +81,10 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	@Override
 	protected void intializeSubActivity(Activity activity) {
 		AppLevelData data = appLevel.getData(activity);
-		LevelTypeStyle format = appLevel.getLevelTypeStyle();
 		if(data == null){
 			showInvalidDataAlerDialog(activity);
 		}else{
-			// Initialize Application Level
-			if(format == null || format.isCleanFormat()){				
-				initializeScreen(activity, getActivityGeneratorType());
-			}else{
-				initializeScreenWithFormat(activity, format);
-			}			
+			initializeScreen(activity, getActivityGeneratorType());
 			loadAppLevelData(activity, data);
 		}
 	}
@@ -117,10 +112,19 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 */
 	protected void initializeScreen(Activity activity, ActivityType activityType){
 		ApplicationData applicationData = SplashActivity.getApplicationData();		
-		LevelTypeStyle format = applicationData.getLevelStyle(activityType);
-		if(format != null && !format.isCleanFormat()){				
-			initializeScreenWithFormat(activity, format);
-		}			
+		ActivityTypeStyle activityTypeStyle = applicationData.getActivityTypeStyle(activityType);
+		LevelStyle levelStyle = null;
+		if(nextLevel != null && nextLevel.isDefined())
+			levelStyle = applicationData.getLevelStyle(nextLevel.getLevelId());
+				
+		// Fist try to apply ActivityType Style
+		if(activityTypeStyle != null && !activityTypeStyle.isCleanFormat()){				
+			initializeScreenWithFormat(activity, activityTypeStyle);
+		}
+		// Then try to apply Level Stype
+		if(levelStyle != null && !levelStyle.isCleanFormat()){
+			initializeScreenWithFormat(activity, levelStyle);
+		}
 	}
 	
 		
@@ -129,11 +133,11 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param activity
 	 * @param activityType
 	 */
-	public void initializeBackground(Activity activity, LevelTypeStyle levelTypeStyle){
-		if(activity == null || levelTypeStyle == null)
+	public void initializeBackground(Activity activity, Style style){
+		if(activity == null || style == null)
 			return;
 		
-		String backgroundFileName = levelTypeStyle.getBackground();
+		String backgroundFileName = style.getBackground();
 		
 		if(Utils.hasLength(backgroundFileName)){									
 			ViewGroup backgroundLayout = (ViewGroup)activity.findViewById(R.id.backgroundLayout);
@@ -155,24 +159,11 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param activity
 	 * @param levelTypeStyle
 	 */
-	protected void initializeScreenWithFormat(Activity activity, LevelTypeStyle levelTypeStyle){					
-		initializeBackground(activity, levelTypeStyle);		
-		initializeWidgetFormat(activity, levelTypeStyle);
+	protected void initializeScreenWithFormat(Activity activity, Style style){					
+		initializeBackground(activity, style);		
+		initializeWidgetFormat(activity, style);
 	}
 	
-	
-	/**
-	 * Initialize the widget's components (textColor, textSize, textStyle, typeFace) 
-	 * with the XML content, depending on a specific screen type.
-	 * @param activity
-	 * @param typeScreen
-	 * @param currWidget
-	 */
-	public void initializeWidgetFormat(Activity activity, ActivityType activityType){
-		ApplicationData applicationData = SplashActivity.getApplicationData();		
-		LevelTypeStyle levelTypeStyle = applicationData.getLevelStyle(activityType);
-		initializeWidgetFormat(activity, levelTypeStyle);
-	}
 	
 	/**
 	 * Initialize the widget's components (textColor, textSize, textStyle, typeFace)  
@@ -181,13 +172,15 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param typeScreen
 	 * @param currWidget
 	 */
-	public void initializeWidgetFormat(Activity activity, LevelTypeStyle levelStyle){
+	public void initializeWidgetFormat(Activity activity, Style levelStyle){
 		Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap(activity);
-				
-		Iterator<String> iterator = levelStyle.getListComponents().iterator();
 		
-		while(iterator.hasNext()){
-			String currWidget = iterator.next();
+		if(levelStyle == null)
+			return;
+		if(levelStyle.getListComponents() == null)
+			return;
+		
+		for(String currWidget : levelStyle.getListComponents()){
 			FormatStyle currFormat = getCurrentFormatWidget(levelStyle, currWidget, activity);
 			
 			if(currFormat == null)
@@ -254,9 +247,9 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param currWidget
 	 * @return
 	 */
-	private FormatStyle getCurrentFormatWidget(LevelTypeStyle levelTypeStyle, String currWidget, Context context){		
+	private static FormatStyle getCurrentFormatWidget(Style style, String currWidget, Context context){		
 		Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap(context);
-		Map<String,String> mapFormatComponents = levelTypeStyle.getMapFormatComponents();
+		Map<String,String> mapFormatComponents = style.getMapFormatComponents();
 		String formatName = mapFormatComponents.get(currWidget);
 		return formatStyleMap.get(formatName);
 
@@ -330,29 +323,38 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param textView
 	 */
 	public void initializeListFormat(Activity activity, ActivityType activityType, TextView textView){
-		try {
-			Map<ActivityType, LevelTypeStyle> levelStyleTypeMap = SplashActivity.getApplicationData().getLevelStyleTypeMap(activity);
-			Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap(activity);
-			
-			LevelTypeStyle levelTypeStyle = levelStyleTypeMap.get(activityType);		
-			String listFormat = levelTypeStyle.getSelectionList();
-			FormatStyle fs = formatStyleMap.get(listFormat);	
-			
-			if(fs != null){
-				String backgroundSelectionFileName = fs.getBackgroundSelectionFileName();
-				String backgroundSelectionName = backgroundSelectionFileName.split("\\.")[0];
-				
-				int imageResource = activity.getResources().getIdentifier(backgroundSelectionName, "drawable", activity.getPackageName());
-				Drawable backgroundSelectionDrawable = activity.getResources().getDrawable(imageResource);
-				textView.setBackgroundDrawable(backgroundSelectionDrawable);
+		Map<ActivityType, ActivityTypeStyle> activityTypeStyleTypeMap = SplashActivity.getApplicationData().getActivityTypeStyleTypeMap(activity);
+		Map<String, LevelStyle> levelStyleTypeMap = SplashActivity.getApplicationData().getLevelStyleTypeMap(activity);
 		
-				initializeSelectionFormat(activity, textView, fs);
-			}
-		} catch (Exception e) {
-			Log.e("ApplicationData","ImageFile not found");
+		Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap(activity);
+		ActivityTypeStyle activityTypeStyle = activityTypeStyleTypeMap.get(activityType);
+		LevelStyle levelStyle = levelStyleTypeMap.get(nextLevel.getLevelId());
+		
+		if(activityTypeStyle != null && !activityTypeStyle.isCleanFormat()){
+			applyStyle(activity, activityTypeStyle, formatStyleMap, textView);			
+		}
+		if(levelStyle != null && !levelStyle.isCleanFormat()){
+			applyStyle(activity, levelStyle, formatStyleMap, textView);
 		}
 	}
 	
+	private void applyStyle(Activity activity, Style style, Map<String, FormatStyle> formatStyleMap, TextView textView) {
+		String listFormat = style.getSelectionList();
+		FormatStyle fs = formatStyleMap.get(listFormat);	
+		
+		if(fs != null){
+			String backgroundSelectionFileName = fs.getBackgroundSelectionFileName();
+			String backgroundSelectionName = backgroundSelectionFileName.split("\\.")[0];
+			
+			int imageResource = activity.getResources().getIdentifier(backgroundSelectionName, "drawable", activity.getPackageName());
+			Drawable backgroundSelectionDrawable = activity.getResources().getDrawable(imageResource);
+			textView.setBackgroundDrawable(backgroundSelectionDrawable);
+	
+			initializeSelectionFormat(activity, textView, fs);
+		}
+		
+	}
+
 	/**
 	 * Recursive method witch returns the position between number and character
 	 * @param i

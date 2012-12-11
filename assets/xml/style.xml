@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
   <styles>
+    <type>
+      <levelId>Navegación</levelId>
+      <backgroundFileName>images/cover/background.png</backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;selection_list=list1;</components>
+    </type>
       
     <type>
       <typeId>CALENDAR_ACTIVITY</typeId>

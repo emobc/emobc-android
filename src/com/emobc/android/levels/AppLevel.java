@@ -45,7 +45,6 @@ import com.emobc.android.activities.QuizActivity;
 import com.emobc.android.activities.SearchActivity;
 import com.emobc.android.activities.WebActivity;
 import com.emobc.android.parse.ParseUtils;
-import com.emobc.android.themes.LevelTypeStyle;
 
 /**
  * Application Level
@@ -68,7 +67,6 @@ public class AppLevel {
 	private ActivityType activityType;
 	private AppLevelData levelData = null;
 	private String xib;
-	private LevelTypeStyle levelTypeStyle;
 	private boolean useProfile = false;
 
 	public static final AppLevel COVER_APP_LEVEL;
@@ -228,14 +226,6 @@ public class AppLevel {
 
 	public void setXib(String xib) {
 		this.xib = xib;
-	}
-
-	public LevelTypeStyle getLevelTypeStyle() {
-		return levelTypeStyle;
-	}
-
-	public void setLevelTypeStyle(LevelTypeStyle levelTypeStyle) {
-		this.levelTypeStyle = levelTypeStyle;
 	}
 
 	public boolean isUseProfile() {

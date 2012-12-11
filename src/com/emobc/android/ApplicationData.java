@@ -46,9 +46,11 @@ import com.emobc.android.menu.parse.MenuParser;
 import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.themes.FormatStyle;
-import com.emobc.android.themes.LevelTypeStyle;
+import com.emobc.android.themes.ActivityTypeStyle;
+import com.emobc.android.themes.LevelStyle;
 import com.emobc.android.themes.parse.FormatParser;
 import com.emobc.android.themes.parse.StyleParser;
+import com.emobc.android.themes.parse.StyleResult;
 import com.emobc.android.utils.InvalidFileException;
 
 /**
@@ -100,7 +102,7 @@ public class ApplicationData {
 
 	private List<AppLevel> levels = new ArrayList<AppLevel>();
 	private Map<String, AppLevel> levelMap = new HashMap<String, AppLevel>();
-	private Map<ActivityType, LevelTypeStyle> levelStyleTypeMap = null;
+	private StyleResult styleResult = null;
 	private Map<String, FormatStyle> formatStyleMap = null;
 	
 	
@@ -460,8 +462,8 @@ public class ApplicationData {
 		return levels;
 	}
 	
-	public Map<ActivityType, LevelTypeStyle> getLevelStyleTypeMap(Context context) {
-		if(levelStyleTypeMap == null){
+	public Map<ActivityType, ActivityTypeStyle> getActivityTypeStyleTypeMap(Context context) {
+		if(styleResult == null){
 			// Create Parser
 			StyleParser styleParser = new StyleParser(ParseUtils.createXpp(
 					context, 
@@ -469,9 +471,23 @@ public class ApplicationData {
 	    			this.stylesFileName, 
 	    			false));
 			
-			this.levelStyleTypeMap = styleParser.parse();			
+			styleResult = styleParser.parse();			
 		}
-		return levelStyleTypeMap;
+		return styleResult.getActivityTypeStyleMap();
+	}
+
+	public Map<String, LevelStyle> getLevelStyleTypeMap(Context context) {
+		if(styleResult == null){
+			// Create Parser
+			StyleParser styleParser = new StyleParser(ParseUtils.createXpp(
+					context, 
+	    			Locale.getDefault(), 
+	    			this.stylesFileName, 
+	    			false));
+			
+			styleResult = styleParser.parse();			
+		}
+		return styleResult.getLevelStyleMap();
 	}
 
 	public Map<String, FormatStyle> getFormatStyleMap(Context context) {
@@ -563,12 +579,17 @@ public class ApplicationData {
 		return true;
 	}
 
-	public LevelTypeStyle getLevelStyle(ActivityType activityType) {
-		if(levelStyleTypeMap != null)
-			return levelStyleTypeMap.get(activityType);
+	public ActivityTypeStyle getActivityTypeStyle(ActivityType activityType) {
+		if(styleResult != null)
+			return styleResult.getActivityTypeStyleMap().get(activityType);
 		return null;
 	}
 
+	public LevelStyle getLevelStyle(String levelId) {
+		if(styleResult != null)
+			return styleResult.getLevelStyleMap().get(levelId);
+		return null;
+	}
 
 	public boolean isRemote() {
 		return remote;

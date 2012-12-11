@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.emobc.android.ApplicationData;
+import com.emobc.android.levels.impl.ServerPushDataItem;
 import com.emobc.android.utils.CommonUtilities;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.ServerUtilities;
@@ -61,8 +62,16 @@ public class GCMIntentService extends GCMBaseIntentService {
     	
     	try {
 			data = ApplicationData.readApplicationData(this);
-			if(data != null && data.getServerPush() != null)
-				mSenderIds[0] = data.getServerPush().getSenderId();
+			if(data != null){
+				ServerPushDataItem serverPush = data.getServerPush();
+				if(serverPush != null){
+					if(mSenderIds == null)
+						mSenderIds = new String[1];
+					
+					mSenderIds[0] = serverPush.getSenderId();
+				}
+				
+			}
 		} catch (InvalidFileException e) {
 			e.printStackTrace();
 		}

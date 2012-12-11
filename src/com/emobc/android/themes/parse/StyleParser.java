@@ -33,38 +33,54 @@ import com.emobc.android.ActivityType;
 import com.emobc.android.parse.AbstractParser;
 import com.emobc.android.parse.NwXmlStandarParser;
 import com.emobc.android.parse.NwXmlStandarParserTextHandler;
-import com.emobc.android.themes.LevelTypeStyle;
+import com.emobc.android.themes.ActivityTypeStyle;
+import com.emobc.android.themes.LevelStyle;
+import com.emobc.android.utils.Utils;
 
 /**
  * @author Jorge E. Villaverde
  * @since 0.1
  * @version 0.1
  */
-public class StyleParser extends AbstractParser<Map<ActivityType, LevelTypeStyle>> {
+public class StyleParser extends AbstractParser<StyleResult> {
 	private static final String _APPLICATION_TAG_ = "application";
 	private static final String _STYLES_TAG_ = "styles";
 	private static final String _TYPEID_TAG_ = "typeId";
+	private static final String _LEVEL_ID_TAG_ = "levelId";
 	private static final String _TYPE_TAG_ = "type";
 	private static final String _BACKGROUND_FILE_NAME_TAG_ = "backgroundFileName";
 	private static final String _COMPONENTS_TAG_ = "components";
 
+	private static final String _AT_STYLE = "_ACTIVITY_TYPE_STYLE_";
+	private static final String _LEVEL_STYLE = "_LEVEL_STYLE_";
+	
 	public StyleParser(XmlPullParser xpp) {
 		super(xpp);
 	}
 
 	@Override
-	protected Map<ActivityType, LevelTypeStyle> generateObjectFromParseData(Map<String, Object> data) {
-		Map<ActivityType, LevelTypeStyle> ret = new HashMap<ActivityType, LevelTypeStyle>();
-
-		@SuppressWarnings("unchecked")
-		List<LevelTypeStyle> list = ((List<LevelTypeStyle>)data.get(_STYLES_TAG_));
+	protected StyleResult generateObjectFromParseData(Map<String, Object> data) {
+		Map<ActivityType, ActivityTypeStyle> atStyle = new HashMap<ActivityType, ActivityTypeStyle>();
+		Map<String, LevelStyle> lStyle = new HashMap<String, LevelStyle>();
 		
-		if(list != null && !list.isEmpty()){
-			for(LevelTypeStyle currLevelTypeStyle : list){
-				ret.put(currLevelTypeStyle.getLevelType(), currLevelTypeStyle);				
+		@SuppressWarnings("unchecked")
+		List<ActivityTypeStyle> atList = ((List<ActivityTypeStyle>)data.get(_AT_STYLE));
+		
+		if(atList != null && !atList.isEmpty()){
+			for(ActivityTypeStyle currLevelTypeStyle : atList){
+				atStyle.put(currLevelTypeStyle.getActivityType(), currLevelTypeStyle);				
 			}
 		}
-		return ret;
+		
+		@SuppressWarnings("unchecked")
+		List<LevelStyle> levelList = ((List<LevelStyle>)data.get(_LEVEL_STYLE));
+		if(levelList != null && !atList.isEmpty()){
+			for(LevelStyle levelStyle : levelList){
+				lStyle.put(levelStyle.getLevelId(), levelStyle);
+			}
+		}
+		
+		return new StyleResult(atStyle, lStyle);
 	}
 
 	@Override
@@ -72,37 +88,53 @@ public class StyleParser extends AbstractParser<Map<ActivityType, LevelTypeStyle
 		final Map<String, Object> ret = new HashMap<String, Object>();
 		NwXmlStandarParser parser = new NwXmlStandarParser(xpp,
 				new NwXmlStandarParserTextHandler() {
-					private LevelTypeStyle currItem;
-					private List<LevelTypeStyle> currList;
+					private List<ActivityTypeStyle> atList;
+					private List<LevelStyle> leveList;
+					private ActivityType activityType;
+					private String levelId;
+					private String background;
+					private String components;
 					
 					@Override
 					public void handleText(String currentField, String text) {
-						if(currentField.equals(_STYLES_TAG_)){
-							currList = new ArrayList<LevelTypeStyle>();
-							ret.put(currentField, currList);
-						}else if(currentField.equals(_TYPE_TAG_)){
-							currItem = new LevelTypeStyle();
-							currList.add(currItem);
+						if(currentField.equals(_LEVEL_ID_TAG_)){
+							levelId = text;
 						}else if(currentField.equals(_TYPEID_TAG_)){
 							try {
-								currItem.setLevelType(ActivityType.valueOf(text));
+								activityType = ActivityType.valueOf(text);
 							} catch (IllegalArgumentException e) {
 							}
 						}else if(currentField.equals(_BACKGROUND_FILE_NAME_TAG_)){
-							currItem.setBackground(text);
+							background = text;
 						}else if(currentField.equals(_COMPONENTS_TAG_)){
-							currItem.setComponents(text);
-						}else{
-							ret.put(currentField, text);
+							components = text;
 						}
 					}
 					
 					@Override
 					public void handleEndTag(String currentField) {
+						if(currentField.equals(_TYPE_TAG_)){
+							if(activityType != null){
+								atList.add(new ActivityTypeStyle(background, components, activityType));
+							}else if(Utils.hasLength(levelId)){
+								leveList.add(new LevelStyle(background, components, levelId));
+							}							
+						}
 					}
 					
 					@Override
 					public void handleBeginTag(String currentField) {
+						if(_STYLES_TAG_.equals(currentField)){
+							atList = new ArrayList<ActivityTypeStyle>();
+							leveList = new ArrayList<LevelStyle>();
+							ret.put(_AT_STYLE, atList);
+							ret.put(_LEVEL_STYLE, leveList);
+						}else if(_TYPE_TAG_.equals(currentField)){
+							levelId = null;
+							activityType = null;
+							background = null;
+							components = null;
+						}
 					}
 				}
 		, _APPLICATION_TAG_);

@@ -84,7 +84,6 @@ import com.emobc.android.levels.impl.quiz.QuestionDataItem;
 import com.emobc.android.levels.impl.quiz.QuizAnswerDataItem;
 import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
 import com.emobc.android.profiling.Profile;
-import com.emobc.android.themes.LevelTypeStyle;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.RetreiveFileContentTask;
 
@@ -133,9 +132,6 @@ public class ParseUtils {
 	private static final String _CONTEXT_MENU_TAG_ = "contextMenu";
 	private static final String _SIDE_MENU_TAG_ = "sideMenu";
 	
-	private static final String _BACKGROUND_FILE_NAME_TAG_ = "backgroundFileName";
-	private static final String _COMPONENTS_TAG_ = "components";
-		
 	private static final String _LEVEL_TAG_ = "level";
 	private static final String _LEVEL_TITLE_ = "levelTitle";
 	private static final String _LEVEL_FILE_ = "levelFile";
@@ -308,7 +304,6 @@ public class ParseUtils {
 				new NwXmlStandarParserTextHandler() {
 					private NextLevel entryPoint;
 					private AppLevel currLevel = null;
-					private LevelTypeStyle currLevTypeStyle;
 					private List<AppLevel> levels = null;
 					private BannerDataItem currBanner;
 					private ServerPushDataItem currpushServer;
@@ -337,16 +332,9 @@ public class ParseUtils {
 							ret.put(currentField, text);
 						}else if (_PROFILE_FILE_NAME_TAG_.equals(currentField)) {
 							ret.put(currentField, text);
-						}else if (currentField.equals("levelFormat")) {
-							currLevTypeStyle = new LevelTypeStyle();
-							currLevel.setLevelTypeStyle(currLevTypeStyle);
-						}else if(currentField.equals(_BACKGROUND_FILE_NAME_TAG_)){
-							currLevTypeStyle.setBackground(text);
-						}else if(currentField.equals(_COMPONENTS_TAG_)){
-							currLevTypeStyle.setComponents(text);
-						}else 
+
 							//---------------Banner-----------------//
-						if(currentField.equals(_BANNER_TAG_)){
+						}else if(currentField.equals(_BANNER_TAG_)){
 							currBanner = new BannerDataItem();
 							currBanner.setType("gcm");
 							ret.put(currentField, currBanner);

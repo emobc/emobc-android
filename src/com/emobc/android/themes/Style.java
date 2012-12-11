@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.emobc.android.ActivityType;
+import com.emobc.android.utils.Utils;
 
 
 /**
@@ -36,31 +36,25 @@ import com.emobc.android.ActivityType;
  * @version 0.1
  * @since 0.1
  */
-public class LevelTypeStyle {
-	private ActivityType levelType;
-	private String background;
+public abstract class Style {
+	private final String background;
 	private Map<String, String> mapFormatComponents = new HashMap<String, String>();
 	private List<String> listComponents = new ArrayList<String>();
 	private String selectionList;
 	
-	public ActivityType getLevelType() {
-		return levelType;
+	public Style(String background, String components){
+		super();
+		this.background = background;
+		setComponents(components);
 	}
-
-	public void setLevelType(ActivityType levelType) {
-		this.levelType = levelType;
-	}
-	
+		
 	public String getBackground() {
 		return background;
 	}
 
-	public void setBackground(String background) {
-		this.background = background;
-	}
-
-	public void setComponents(String components) {
-		
+	private void setComponents(String components) {
+		if(!Utils.hasLength(components))
+			return;
 		String[] separatedComponents = components.split(";");
 		String[] assignment;
 		for(int i = 0; i < separatedComponents.length; i++){
