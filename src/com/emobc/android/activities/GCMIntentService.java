@@ -61,7 +61,7 @@ public class GCMIntentService extends GCMBaseIntentService {
     	
     	try {
 			data = ApplicationData.readApplicationData(this);
-			if(data != null)
+			if(data != null && data.getServerPush() != null)
 				mSenderIds[0] = data.getServerPush().getSenderId();
 		} catch (InvalidFileException e) {
 			e.printStackTrace();
@@ -73,8 +73,9 @@ public class GCMIntentService extends GCMBaseIntentService {
     protected void onRegistered(Context context, String registrationId) {
         Log.i(TAG, "Device registered: regId = " + registrationId);
         updateData();
-        
-        final String appId = data.getServerPush().getAppName();
+        String appId = null;
+        if(data != null && data.getServerPush() != null)
+        	appId = data.getServerPush().getAppName();
         ServerUtilities.register(context, 
         		registrationId, 
         		appId,
@@ -86,7 +87,9 @@ public class GCMIntentService extends GCMBaseIntentService {
         Log.i(TAG, "Device unregistered");
         if (GCMRegistrar.isRegisteredOnServer(context)) {
         	updateData();
-            final String appId = data.getServerPush().getAppName();
+            String appId = null;
+            if(data != null && data.getServerPush() != null)
+            	appId = data.getServerPush().getAppName();
             ServerUtilities.unregister(context, 
             		registrationId,
             		appId,

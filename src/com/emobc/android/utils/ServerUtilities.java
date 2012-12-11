@@ -19,6 +19,7 @@ import static com.emobc.android.utils.CommonUtilities.displayMessage;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -83,6 +84,9 @@ public final class ServerUtilities {
                 String message = context.getString(R.string.server_registered);
                 CommonUtilities.displayMessage(context, message);
                 return true;
+            }catch (ConnectException e){
+                Log.e(TAG, "Failed to connect to " + url, e);
+            	break;
             } catch (IOException e) {
                 // Here we are simplifying and retrying on any error; in a real
                 // application, it should retry only on unrecoverable errors
