@@ -28,50 +28,23 @@
 
 </LinearLayout>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/backgroundLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/bannerTopLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true">
-    </LinearLayout>
-    
-    <LinearLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-		android:layout_below="@+id/bannerTopLayout">
-    </LinearLayout>
-    
-    <RelativeLayout
-        android:id="@+id/bottomLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bannerBottomLayout">
-    </RelativeLayout>
-    
-    <LinearLayout
-        android:id="@id/bannerBottomLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
-    </LinearLayout>
-
+        android:orientation="vertical">
+    </LinearLayout>    
     
     <RelativeLayout
         android:id="@+id/contentLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/topLayout"
-        android:layout_above="@+id/bottomLayout" >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/descr_image"
@@ -80,10 +53,10 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="161dp"
-            android:layout_weight="0.01"
             android:padding="15dip"
             android:scaleType="fitXY"
-            android:src="@null" />
+            android:src="@null"
+            android:contentDescription="@null" />
 
         <LinearLayout
             android:id="@+id/descr_mas"
@@ -113,7 +86,6 @@
             android:layout_above="@+id/descr_mas"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/header"
-            android:layout_weight="5"
             android:fillViewport="true"
             android:isScrollContainer="true" >
 
@@ -124,7 +96,6 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="13dip"
                 android:layout_marginRight="12dip"
-                android:layout_weight="0.18"
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip"
                 android:text="@null"
@@ -152,6 +123,13 @@
 
     </RelativeLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+
+</LinearLayout>
 
 </FrameLayout>

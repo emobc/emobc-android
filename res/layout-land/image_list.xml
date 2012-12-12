@@ -28,50 +28,24 @@
 
 </LinearLayout>
 
-<RelativeLayout
+<LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/backgroundLayout"
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
-    
-  <LinearLayout
-        android:id="@+id/bannerTopLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true">
-    </LinearLayout>
-    
-    <RelativeLayout
+        
+    <LinearLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-		android:layout_below="@id/bannerTopLayout">
-    </RelativeLayout>
-    
-    <RelativeLayout
-        android:id="@+id/bottomLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bannerBottomLayout">
-    </RelativeLayout>
-    
-    <LinearLayout
-        android:id="@id/bannerBottomLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+		android:orientation="vertical">
     </LinearLayout>
-
     
     <RelativeLayout
         android:id="@+id/contentLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/topLayout"
-        android:layout_above="@+id/bottomLayout" >
+        android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/header"
@@ -89,7 +63,7 @@
             android:layout_width="fill_parent"
             android:layout_height="130dip"
             android:layout_below="@+id/header"
-            
+            android:contentDescription="@null"
             android:paddingTop="5dip"
             android:scaleType="fitXY"
             android:src="@null" />
@@ -100,7 +74,6 @@
             android:layout_height="270dip"
             android:layout_alignParentBottom="true"
             android:layout_below="@+id/descr_image"
-            android:layout_weight="1"
             android:orientation="vertical" >
 
             <ListView
@@ -120,6 +93,13 @@
         
     </RelativeLayout>
     
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+    
+</LinearLayout>
 
 </FrameLayout>

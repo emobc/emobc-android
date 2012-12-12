@@ -54,15 +54,11 @@ import com.emobc.android.NextLevel;
 import com.emobc.android.activities.R;
 import com.emobc.android.activities.SplashActivity;
 import com.emobc.android.levels.AppLevel;
-import com.emobc.android.levels.impl.BannerDataItem;
 import com.emobc.android.menu.builders.HorizontalMenuBuilder;
 import com.emobc.android.menu.builders.MenuBuilder;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.Utils;
-import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
-import com.google.ads.AdView;
 
 
 /**
@@ -437,40 +433,40 @@ public class CreateMenus extends Activity implements AnimationListener {
 	 * If there is no information about the banner, it will not show
 	 */
 	public void createBanner(){
-		try {
-			ApplicationData applicationData = SplashActivity.getApplicationData();
-			BannerDataItem banner = applicationData.getBanner();
-			if (banner!=null){
-				LinearLayout bannerLayout;
-				
-				//Banner position
-				switch (banner.getPosition()){
-				case BannerDataItem.TOP :
-					bannerLayout = (LinearLayout) findViewById(R.id.bannerTopLayout);
-					break; 
-				case BannerDataItem.BOTTOM :
-					bannerLayout = (LinearLayout) findViewById(R.id.bannerBottomLayout);
-					break;
-				default:
-					bannerLayout = (LinearLayout) findViewById(R.id.bannerTopLayout);
-				}
-				
-				//Banner data
-				String id = banner.getId();
-				
-				AdView adView = new AdView(this, AdSize.SMART_BANNER, id);
-				bannerLayout.addView(adView);
-				
-				AdRequest request = new AdRequest();
-				
-				//Just for testing
-				request.addTestDevice(AdRequest.TEST_EMULATOR);
-				adView.loadAd(request);
-				
-			}
-		} catch (Exception e) { 
-			Log.d("CreateBanner", "Error"); 
-		}
+//		try {
+//			ApplicationData applicationData = SplashActivity.getApplicationData();
+//			BannerDataItem banner = applicationData.getBanner();
+//			if (banner!=null){
+//				LinearLayout bannerLayout;
+//				
+//				//Banner position
+//				switch (banner.getPosition()){
+//				case BannerDataItem.TOP :
+//					bannerLayout = (LinearLayout) findViewById(R.id.bannerTopLayout);
+//					break; 
+//				case BannerDataItem.BOTTOM :
+//					bannerLayout = (LinearLayout) findViewById(R.id.bannerBottomLayout);
+//					break;
+//				default:
+//					bannerLayout = (LinearLayout) findViewById(R.id.bannerTopLayout);
+//				}
+//				
+//				//Banner data
+//				String id = banner.getId();
+//				
+//				AdView adView = new AdView(this, AdSize.SMART_BANNER, id);
+//				bannerLayout.addView(adView);
+//				
+//				AdRequest request = new AdRequest();
+//				
+//				//Just for testing
+//				request.addTestDevice(AdRequest.TEST_EMULATOR);
+//				adView.loadAd(request);
+//				
+//			}
+//		} catch (Exception e) { 
+//			Log.d("CreateBanner", "Error"); 
+//		}
 	}
 
 	public boolean isEntryPoint() {

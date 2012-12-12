@@ -4,9 +4,11 @@
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
-    <ImageView android:layout_width="fill_parent" 
+    <ImageView 
+        android:layout_width="fill_parent" 
         android:layout_height="fill_parent" 
         android:id="@+id/splashImage" 
-        android:scaleType="fitXY">
+        android:scaleType="fitXY"
+        android:contentDescription="@null">
     </ImageView>
 </LinearLayout>

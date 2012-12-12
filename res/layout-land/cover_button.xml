@@ -13,5 +13,6 @@
 		android:scaleType="fitXY" 
 		android:layout_width="150dip" 
 		android:padding="0dip" 
-		android:layout_height="120dip"/>
+		android:layout_height="120dip"
+		android:contentDescription="@null"/>
 </FrameLayout>
