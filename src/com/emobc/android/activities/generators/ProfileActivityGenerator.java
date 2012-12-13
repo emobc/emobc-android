@@ -128,6 +128,9 @@ public class ProfileActivityGenerator extends AbstractActivtyGenerator {
 		case INPUT_PICKER:
 			control = insertPickerField(activity, dataItem);
 			break;
+		case INPUT_TEXTVIEW:
+			control = insertTextViewField(activity, dataItem);
+			break;
 		default:
 			break;
 		}
@@ -138,6 +141,13 @@ public class ProfileActivityGenerator extends AbstractActivtyGenerator {
 		}
 	}
 
+	private View insertTextViewField(Activity context, FormDataItem dataItem) {
+		EditText txt = insertTextField(context, dataItem);
+		txt.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+		txt.setSingleLine(false);
+		return txt;
+	}
+	
 	private View insertPickerField(Activity activity, FormDataItem dataItem) {
 	    Spinner spinner = new Spinner(activity);
 	    

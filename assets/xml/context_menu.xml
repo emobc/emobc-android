@@ -8,6 +8,14 @@
 	        <actionImageName>images/5_content_copy.png</actionImageName>
      	   	<systemAction>copy</systemAction>
 		</action>
+		<action>
+			<actionTitle>Perfil</actionTitle>
+	        <actionImageName>images/6_social_person.png</actionImageName>
+			<nextLevel>
+				<nextLevelLevelId>emobc</nextLevelLevelId>
+				<nextLevelDataId>profile</nextLevelDataId>
+			</nextLevel>
+		</action>
 	</menuActions>
     <menuActions>
 	    <menuLevel>Navegación</menuLevel>

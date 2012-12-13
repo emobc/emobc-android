@@ -63,20 +63,20 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_above="@+id/descr_mas"
-                android:layout_below="@+id/header"
-                android:layout_weight="1" >
+                android:layout_below="@+id/header">
 
                 <HorizontalScrollView
                     android:id="@+id/horizontalScrollView1"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent" >
+                    android:layout_height="wrap_content" >
 
                     <ImageView
                         android:id="@+id/planoImage"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical|center_horizontal"
                         android:isScrollContainer="true"
+                        android:contentDescription="@null"
                         android:src="@drawable/icon" >
                     </ImageView>
                 </HorizontalScrollView>

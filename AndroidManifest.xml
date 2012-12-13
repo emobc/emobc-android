@@ -55,7 +55,8 @@
 
         <service android:name=".GCMIntentService" />
         
-		<activity android:name=".CalendarActivity" >
+		<activity android:name=".CalendarActivity"
+		    android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.PICK" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -68,7 +69,8 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".ToolbarActivity" >
+        <activity android:name=".ToolbarActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -86,7 +88,8 @@
         <activity
             android:name=".ImageTextDescriptionActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -96,7 +99,8 @@
         <activity 
             android:name=".ImageListActivitygeListActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -106,7 +110,8 @@
         <activity 
             android:name=".ImageListActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -115,7 +120,8 @@
         
         <activity 
             android:name=".CoverActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -124,54 +130,62 @@
 
         <activity 
             android:name=".FormActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 		</activity>    
-		<activity android:name=".MapsActivity">
+		<activity android:name=".MapsActivity"
+		    android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 		</activity>    
-		<activity android:name="..GalleryActivity">
+		<activity android:name="..GalleryActivity"
+		    android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 		</activity>
 		
-        <activity android:name=".AudioActivity" >
+        <activity android:name=".AudioActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".WebActivity" >
+        <activity android:name=".WebActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         
-        <activity android:name=".SearchActivity">            
+        <activity android:name=".SearchActivity"
+            android:exported="false">            
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>    
         
-        <activity android:name=".VideoActivity">
+        <activity android:name=".VideoActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>    
  		
- 		<activity android:name=".ButtonsActivity">
+ 		<activity android:name=".ButtonsActivity"
+ 		    android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -180,7 +194,8 @@
         
         <activity
             android:name=".QrActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -189,7 +204,8 @@
 
         <activity
             android:name=".CrudReadActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -198,7 +214,8 @@
         
         <activity
             android:name=".CrudFormActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -210,7 +227,8 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateAlwaysHidden" >
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -244,7 +262,8 @@
 
         <activity
             android:name=".QuizActivity"
-            android:label="@string/title_activity_quiz" >
+            android:label="@string/title_activity_quiz"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -253,7 +272,8 @@
         
         <activity
             android:name=".QuizQuestionsActivity"
-            android:label="@string/title_activity_quiz_questions" >
+            android:label="@string/title_activity_quiz_questions"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -262,7 +282,8 @@
 	    
 	    <activity
             android:name=".QuizResultsActivity"
-            android:label="@string/title_activity_quiz_results" >
+            android:label="@string/title_activity_quiz_results"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -274,5 +295,10 @@
             android:name=".CanvasActivity"
             android:label="@string/title_activity_canvas" >
        </activity>
+
+	    <activity
+            android:name=".ShowProfileActivity"
+            android:label="@string/view_profile" >
+        </activity>
     </application>
 </manifest>

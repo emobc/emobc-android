@@ -16,7 +16,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dip"
         android:background="@android:color/transparent"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY" 
+        android:contentDescription="@null"/>
 
     <RelativeLayout
         android:id="@+id/contentLayout"
@@ -27,7 +28,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/linearLayout4"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:orientation="vertical" >
@@ -59,7 +59,6 @@
                 android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:background="@android:color/transparent" >
 
                 <Button
@@ -120,7 +119,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dip"
                 android:background="@android:color/transparent"
-                android:src="@drawable/icon_facebook" />
+                android:src="@drawable/icon_facebook" 
+                android:contentDescription="@null"/>
 
             <ImageButton
                 android:id="@+id/twitterButton"
@@ -129,7 +129,8 @@
                 android:layout_marginTop="6dip"
                 android:background="@android:color/transparent"
                 android:padding="0dip"
-                android:src="@drawable/icon_twitter" />
+                android:src="@drawable/icon_twitter" 
+                android:contentDescription="@null"/>
         </LinearLayout>
     </RelativeLayout>
 		

@@ -43,6 +43,7 @@ import com.emobc.android.activities.MapsActivity;
 import com.emobc.android.activities.QrActivity;
 import com.emobc.android.activities.QuizActivity;
 import com.emobc.android.activities.SearchActivity;
+import com.emobc.android.activities.ShowProfileActivity;
 import com.emobc.android.activities.WebActivity;
 import com.emobc.android.parse.ParseUtils;
 
@@ -146,7 +147,7 @@ public class AppLevel {
 		case AUDIO_ACTIVITY:
 			return AudioActivity.class;
 		case PROFILE_ACTIVITY:
-			return FormActivity.class;
+			return ShowProfileActivity.class;
 		case WEB_ACTIVITY:
 			return WebActivity.class;
 		case SEARCH_ACTIVITY:

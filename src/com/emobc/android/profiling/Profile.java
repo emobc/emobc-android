@@ -52,10 +52,13 @@ public class Profile extends AppLevelDataItem {
 	private static final String PROFILE_FILLED = "_EMOBC_PROFILE_FILLED_";
 
 	private List<FormDataItem> fields = new ArrayList<FormDataItem>();
+	private String editImage;
+	private String saveImage;
 	
 	public List<FormDataItem> getFields() {
 		return fields;
 	}
+
 	public void setFields(List<FormDataItem> fields) {
 		this.fields = fields;
 	}
@@ -85,5 +88,21 @@ public class Profile extends AppLevelDataItem {
 			}			
 		}
 		return nameValuePairs;
+	}
+	
+	public void setEditImage(String editImage) {
+		this.editImage = editImage;
+	}
+	
+	public String getEditImage() {
+		return editImage;
+	}
+
+	public String getSaveImage() {
+		return saveImage;
+	}
+
+	public void setSaveImage(String saveImage) {
+		this.saveImage = saveImage;
 	}
 }

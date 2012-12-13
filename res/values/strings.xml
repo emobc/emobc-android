@@ -75,4 +75,6 @@
     <string name="crud_delete">Eliminar</string>
     <string name="crud_delete_confirm">Confirmar Borrado</string>
     <string name="crud_delete_confirm_msg">Confirma el borrado de\n%s?</string>
+    <string name="view_profile">Ver Perfil</string>
+    <string name="edit_profile">Editar Perfil</string>
 </resources>
