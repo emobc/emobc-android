@@ -106,8 +106,8 @@ public class ApplicationData {
 	private StyleResult styleResult = null;
 	private Map<String, FormatStyle> formatStyleMap = null;
 	
-	
-	
+	private String payPalCustomerId;
+
 	private static ApplicationData instance = null;
 
 	/**
@@ -681,5 +681,15 @@ public class ApplicationData {
 		if(this.sideMenuLevelMap == null)
 			this.sideMenuLevelMap = loadMenuLevelMap(this.sideMenu, context);
 		return buildLevelMenuFromMap(levelId, sideMenuLevelMap);
+	}
+	
+	
+	// PayPal
+	public String getPayPalCustomerId() {
+		return payPalCustomerId;
 	}	
+	
+	public void setPayPalCustomerId(String payPalCustomerId) {
+		this.payPalCustomerId = payPalCustomerId;
+	}
 }

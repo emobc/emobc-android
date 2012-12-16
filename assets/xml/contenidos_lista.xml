@@ -123,6 +123,15 @@
 				</nextLevel>
 				<imageFile>images/icons/boton_listado_2.png</imageFile>
 			</listItem>
+			<listItem>
+				<description>Vender (experimental)</description>
+				<text>Vender</text>
+				<nextLevel>
+					<nextLevelLevelId>sale</nextLevelLevelId>
+					<nextLevelDataId>backgammon</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/backgammon.jpg</imageFile>
+			</listItem>
 		</list>
 	</data>
 </levelData>

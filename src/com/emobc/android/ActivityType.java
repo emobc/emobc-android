@@ -66,7 +66,9 @@ package com.emobc.android;
  *  this activity is similar to <tt>FORM_ACTIVITY</tt>, but its purpose is to retrieve user profile data. 
  *  </li>
  *  <li><strong>CRUD_ACTIVITY</strong>: Define and manage CRUD operations.
- *  </li> 
+ *  </li>
+ *  <li><strong>SALE_ACTIVITY</strong>: shows a product width its description and a photograph and the possibility 
+ *  pay for it bia PayPal</li> 
  * </ul>
  * @author Jorge E. Villaverde
  * @author Manuel Mora Cuesta
@@ -93,5 +95,6 @@ public enum ActivityType {
 	CANVAS_ACTIVITY,
 	CRUD_ACTIVITY,
 	PROFILE_ACTIVITY,
-	SEARCH_ACTIVITY;
+	SEARCH_ACTIVITY,
+	SALE_ACTIVITY;
 }

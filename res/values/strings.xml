@@ -77,4 +77,6 @@
     <string name="crud_delete_confirm_msg">Confirma el borrado de\n%s?</string>
     <string name="view_profile">Ver Perfil</string>
     <string name="edit_profile">Editar Perfil</string>
+    <string name="header">Cabecera</string>
+    <string name="price">Precio: </string>
 </resources>

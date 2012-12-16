@@ -30,7 +30,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -47,6 +49,9 @@ import com.emobc.android.activities.R;
 import com.emobc.android.activities.SplashActivity;
 import com.emobc.android.levels.impl.FormDataItem;
 import com.emobc.android.profiling.Profile;
+import com.emobc.android.utils.ImagesUtils;
+import com.emobc.android.utils.InvalidFileException;
+import com.emobc.android.utils.Utils;
 
 /**
  * Initialize the Profile Activity.
@@ -56,6 +61,8 @@ import com.emobc.android.profiling.Profile;
  * @since 0.1
  */
 public class ProfileActivityGenerator extends AbstractActivtyGenerator {
+	private static final String TAG = "ProfileActivityGenerator";
+	
 	private Map<String,View> controlsMap;
 
 	@Override
@@ -81,13 +88,25 @@ public class ProfileActivityGenerator extends AbstractActivtyGenerator {
 		}
 		
 		Button submit = new Button(activity);
-		submit.setText(R.string.form_submit_buttom);
 		submit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				processSubmit(activity);
 			}
 		});
+		if(Utils.hasLength(profile.getSaveImage())){
+			Drawable drawable;
+			try {
+				drawable = ImagesUtils.getDrawable(activity, profile.getSaveImage());
+				submit.setBackgroundDrawable(drawable);
+			} catch (InvalidFileException e) {
+				Log.e(TAG, e.getLocalizedMessage());
+			}						
+		}else{
+			submit.setText(R.string.form_submit_buttom);			
+		}
+		
+		
 		formLayout.addView(submit);
 		((FormActivity) activity).setControlsMap(controlsMap);
 	}

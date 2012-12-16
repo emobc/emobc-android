@@ -543,5 +543,13 @@
 			<levelXib/>
 			<levelTransition>None</levelTransition>
 		</level>
+		<level>
+			<levelId>sale</levelId>
+			<levelTitle>Sales Example</levelTitle>	
+			<levelFile>sale.xml</levelFile>
+			<levelType>SALE_ACTIVITY</levelType>
+			<levelXib/>
+			<levelTransition>None</levelTransition>
+		</level>
 	</levels>
 </application>

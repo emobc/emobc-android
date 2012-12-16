@@ -39,6 +39,7 @@ import com.emobc.android.SimpleSearchResult;
  * @since 0.1
  */
 public abstract class AppLevelDataItem implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -48,6 +49,18 @@ public abstract class AppLevelDataItem implements Serializable {
 	private String headerText;
 	private String geoReferencia;
 	
+	public AppLevelDataItem(String id, String headerImageFile,
+			String headerText, String geoReferencia) {
+		super();
+		this.id = id;
+		this.headerImageFile = headerImageFile;
+		this.headerText = headerText;
+		this.geoReferencia = geoReferencia;
+	}
+	
+	public AppLevelDataItem(){
+		this(null, null, null, null);
+	}
 
 	public String getId() {
 		return id;

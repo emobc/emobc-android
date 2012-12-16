@@ -84,6 +84,8 @@ public abstract class ActivityGeneratorFactory {
 			return new CanvasActivityGenerator(appLevel, nextLevel);
 		case PROFILE_ACTIVITY:
 			return new ProfileActivityGenerator();
+		case SALE_ACTIVITY:
+			return new SaleActivityGenerator(appLevel, nextLevel);
 		default:
 			break;
 		}
