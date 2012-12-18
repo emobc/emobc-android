@@ -22,6 +22,8 @@
 */
 package com.emobc.android.activities.generators;
 
+import java.io.Serializable;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -51,8 +53,13 @@ import com.emobc.android.utils.Utils;
  * @version 0.1
  * @since 0.1
  */
-public abstract class AbstractActivtyGenerator implements ActivityGenerator {
+public abstract class AbstractActivtyGenerator implements ActivityGenerator, Serializable {
     
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 12484265832319941L;
+
 	public AbstractActivtyGenerator() {
 		super();
 	}

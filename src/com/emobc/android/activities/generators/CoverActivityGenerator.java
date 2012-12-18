@@ -52,6 +52,10 @@ import com.emobc.android.utils.Utils;
  * @since 0.1
  */
 public class CoverActivityGenerator extends AbstractActivtyGenerator {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1094440374180322643L;
 	private String backgroundFileName;
 	private String titleFileName;
 	private String facebookUrl;

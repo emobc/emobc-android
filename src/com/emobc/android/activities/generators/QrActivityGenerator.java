@@ -44,6 +44,11 @@ import com.google.zxing.integration.android.IntentIntegrator;
  */
 public class QrActivityGenerator extends LevelActivityGenerator {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 742319702452489028L;
+
 	public QrActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
 		super(appLevel, nextLevel);
 	}

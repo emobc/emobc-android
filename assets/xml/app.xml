@@ -23,6 +23,10 @@
 		<position>top</position>
 		<id>a14b5f8130c17ef</id>
 	</banner>
+	
+	<payPalApplicationId>APP-80W284485P519543T</payPalApplicationId>
+	<payPalRecipient>jorgevillaverde@gmail.com</payPalRecipient>
+	
 	<!-- 
 	<banner>
 		<type>yoc</type>

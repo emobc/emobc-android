@@ -42,6 +42,11 @@ import android.os.Bundle;
  * @since 0.1
  */
 public class ButtonsActivity extends CreateMenus{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3877272418158773995L;
+
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {

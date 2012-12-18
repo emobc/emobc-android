@@ -22,6 +22,7 @@
 */
 package com.emobc.android.activities;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
 
@@ -60,7 +61,11 @@ import com.emobc.android.parse.ParseUtils;
  * @since 0.1
  * @version 0.1
  */
-public class CrudReadActivity extends Activity {
+public class CrudReadActivity extends Activity implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8093189867443396173L;
 	public static final String CRUD_TABLE = "table";
 	private DataEngine engine;
 	private Model model;

@@ -60,6 +60,10 @@ import com.emobc.android.utils.Utils;
  * @since 0.1
  */
 public class ListActivityGenerator extends LevelActivityGenerator {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2744381106082695565L;
 	private ListLevelDataItem item;
 	
 	public ListActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {

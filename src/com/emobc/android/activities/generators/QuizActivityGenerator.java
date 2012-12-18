@@ -49,6 +49,11 @@ import com.emobc.android.utils.Utils;
  */
 public class QuizActivityGenerator extends LevelActivityGenerator {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8017940939655058335L;
+
 	public QuizActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
 		super(appLevel, nextLevel);
 	}

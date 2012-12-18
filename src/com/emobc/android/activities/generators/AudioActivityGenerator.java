@@ -59,6 +59,10 @@ import com.emobc.android.utils.InvalidFileException;
  */
 public class AudioActivityGenerator extends LevelActivityGenerator {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2972211420118350904L;
 	private SeekBar audioBar; 
 	private ImageButton playPause;
 	private ImageButton prev;

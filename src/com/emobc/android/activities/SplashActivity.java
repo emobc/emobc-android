@@ -22,6 +22,8 @@
 */
 package com.emobc.android.activities;
 
+import java.io.Serializable;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -47,7 +49,11 @@ import com.emobc.android.utils.InvalidFileException;
  * @version 0.1
  * @since 0.1
  */
-public class SplashActivity extends Activity {
+public class SplashActivity extends Activity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1155787620678146635L;
 	private final int SPLASH_DISPLAY_LENGHT = 5000;
 	private static ApplicationData instance = null;
 

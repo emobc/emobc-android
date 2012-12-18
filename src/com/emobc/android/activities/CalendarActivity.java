@@ -49,6 +49,10 @@ import com.emobc.android.views.Cell;
  * @since 0.1
  */
 public class CalendarActivity extends CreateMenus implements CalendarView.OnCellTouchListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8067197453599971777L;
 	public static final String MIME_TYPE = "vnd.android.cursor.dir/vnd.exina.android.calendar.date";
 	CalendarView mView = null;
 	TextView mHit;

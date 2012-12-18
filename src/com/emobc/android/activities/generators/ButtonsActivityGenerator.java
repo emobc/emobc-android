@@ -57,6 +57,11 @@ import com.emobc.android.utils.InvalidFileException;
  */
 public class ButtonsActivityGenerator extends LevelActivityGenerator{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8634526499044479216L;
+
 	public ButtonsActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
 		super(appLevel, nextLevel);
 	}

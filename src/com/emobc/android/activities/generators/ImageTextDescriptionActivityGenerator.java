@@ -57,6 +57,10 @@ import com.emobc.android.utils.Utils;
  * @since 0.1
  */
 public class ImageTextDescriptionActivityGenerator extends LevelActivityGenerator {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4968795028364590700L;
 	private ImageTextDescriptionLevelDataItem item;
 	
 	public ImageTextDescriptionActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {

@@ -23,6 +23,7 @@
 package com.emobc.android.menu;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import android.app.Activity;
@@ -39,7 +40,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -68,8 +68,12 @@ import com.emobc.android.utils.Utils;
  * @version 0.1
  * @since 0.1
  */
-public class CreateMenus extends Activity implements AnimationListener {
+public class CreateMenus extends Activity implements AnimationListener, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5139539241526551700L;
 	private static final String ROTATION_LANDSCAPE = "landscape";
 	private static final String ROTATION_PORTRAIT = "portrait";
 	private static final String ROTATION_BOTH = "both";
@@ -80,51 +84,7 @@ public class CreateMenus extends Activity implements AnimationListener {
 	private LinearLayout sideMenuLayout;
 	private RelativeLayout appLayout;
 	private boolean menuOut = false;
-    private AnimParams animParams = new AnimParams();
- 
-	/**
-	 * Class for intercept call phone.
-	 */
-	class TeleListener extends PhoneStateListener    {
-    	public void onCallStateChanged(int state, String incomingNumber){
-    		super.onCallStateChanged(state, incomingNumber);
-    		switch (state)  {
-    		case TelephonyManager.CALL_STATE_IDLE:
-    			break;
-    		case TelephonyManager.CALL_STATE_OFFHOOK:
-    			break;
-    		case TelephonyManager.CALL_STATE_RINGING:
-    			break;
-    		default:
-    			break;
-    		}
-    	}
-    }
-	
-	/**
-	 * Class for start a screen animation when a view is pressed
-	 */
-	class ClickListener implements OnClickListener {
-        @Override
-        public void onClick(View v) {
-        	startAnimationMenu();
-        }
-    }
-	
-	/**
-	 * Class that contains animation parameters
-	 */
-	static class AnimParams {
-        int left, right, top, bottom;
-
-        void init(int left, int top, int right, int bottom) {
-            this.left = left;
-            this.top = top;
-            this.right = right;
-            this.bottom = bottom;
-        }
-    }
-		
+    private AnimParams animParams = new AnimParams();		
     
     @Override
     protected void onDestroy(){
@@ -476,5 +436,48 @@ public class CreateMenus extends Activity implements AnimationListener {
 	public void setEntryPoint(boolean isEntryPoint) {
 		this.isEntryPoint = isEntryPoint;
 	}
+	
+	/**
+	 * Class for intercept call phone.
+	 */
+	private class TeleListener extends PhoneStateListener implements Serializable {
+    	/**
+		 * 
+		 */
+		private static final long serialVersionUID = 4505802614655221100L;
+
+		public void onCallStateChanged(int state, String incomingNumber){
+    		super.onCallStateChanged(state, incomingNumber);
+    		switch (state)  {
+    		case TelephonyManager.CALL_STATE_IDLE:
+    			break;
+    		case TelephonyManager.CALL_STATE_OFFHOOK:
+    			break;
+    		case TelephonyManager.CALL_STATE_RINGING:
+    			break;
+    		default:
+    			break;
+    		}
+    	}
+    }
+	
+	/**
+	 * Class that contains animation parameters
+	 */
+	static class AnimParams implements Serializable{
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		int left, right, top, bottom;
+
+        void init(int left, int top, int right, int bottom) {
+            this.left = left;
+            this.top = top;
+            this.right = right;
+            this.bottom = bottom;
+        }
+    }
+	
 }
 

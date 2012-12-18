@@ -22,6 +22,7 @@
 */
 package com.emobc.android.activities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +51,11 @@ import com.emobc.android.data.metadata.Table;
  * @since 0.1
  * @version 0.1
  */
-public class CrudFormActivity extends Activity {
+public class CrudFormActivity extends Activity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4777666912927892342L;
 	private Table table;
 	private Map<String,View> controlsMap;
 	private Entity entity;

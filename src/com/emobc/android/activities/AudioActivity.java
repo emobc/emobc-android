@@ -42,6 +42,10 @@ import com.emobc.android.menu.CreateMenus;
  * @since 0.1
  */
 public class AudioActivity extends CreateMenus {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1016413714289946824L;
 	private AudioActivityGenerator generator;
 	/** Called when the activity is first created. */
     @Override

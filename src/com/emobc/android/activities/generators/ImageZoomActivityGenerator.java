@@ -52,6 +52,11 @@ import com.emobc.android.utils.Utils;
  */
 public class ImageZoomActivityGenerator extends LevelActivityGenerator {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6617451916876897553L;
+
 	public ImageZoomActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
 		super(appLevel, nextLevel);
 	}

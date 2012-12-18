@@ -37,6 +37,10 @@ import com.google.zxing.integration.android.IntentResult;
 * @author Jorge E. Villaverde
 */
 public class QrActivity extends CreateMenus {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4170400427053544052L;
 	private QrLevelDataItem dataItem;
 	
     @Override

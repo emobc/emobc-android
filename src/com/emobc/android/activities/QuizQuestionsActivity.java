@@ -56,6 +56,10 @@ import com.emobc.android.utils.Utils;
  */
 public class QuizQuestionsActivity extends CreateMenus {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3600679097783868341L;
 	private QuizController quizController;
 	
     @Override

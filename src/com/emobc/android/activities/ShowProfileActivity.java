@@ -51,6 +51,10 @@ import com.emobc.android.utils.Utils;
  * @version 0.1
  */
 public class ShowProfileActivity extends CreateMenus {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7453009669247569934L;
 	private static final String TAG = "ShowProfileActivity";
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

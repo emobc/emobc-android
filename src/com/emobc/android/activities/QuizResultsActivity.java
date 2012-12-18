@@ -41,6 +41,10 @@ import com.emobc.android.menu.CreateMenus;
  * @since 0.1
  */
 public class QuizResultsActivity extends CreateMenus {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1261813743561909305L;
 	private QuizController quizController;
 	private QuizResults results;
 	

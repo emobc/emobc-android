@@ -52,7 +52,12 @@ import com.emobc.android.levels.AppLevelData;
  * @since 0.1
  */
 public class CanvasActivityGenerator extends LevelActivityGenerator{
-    public CanvasActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5679903393500880524L;
+
+	public CanvasActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
 		super(appLevel, nextLevel);
 	}
 

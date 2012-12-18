@@ -56,6 +56,10 @@ import com.emobc.android.menu.CreateMenus;
  * @since 0.1
  */
 public class SearchActivity extends CreateMenus {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8216771674878875207L;
 	protected static final Context Activity = null;
     private EditText textResult;
     

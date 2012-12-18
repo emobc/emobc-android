@@ -65,6 +65,11 @@ public class PdfActivityGenerator extends LevelActivityGenerator {
 	//private static final String PDF_WEBVIEW_TPL = "http://docs.google.com/gview?embedded=true&url=%s";
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1787100866474268843L;
+
+	/**
 	 *  Class that prevents opening the Browser 
 	 */
     private class InsideWebViewClient extends WebViewClient {

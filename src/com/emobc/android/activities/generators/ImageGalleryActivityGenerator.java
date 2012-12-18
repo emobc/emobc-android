@@ -60,6 +60,11 @@ import com.emobc.android.utils.InvalidFileException;
  */
 public class ImageGalleryActivityGenerator extends LevelActivityGenerator {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2056279438975025288L;
+
 	public ImageGalleryActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
 		super(appLevel, nextLevel);
 	}

@@ -95,6 +95,10 @@ import com.emobc.android.utils.Utils;
  */
 public class FormActivityGenerator extends LevelActivityGenerator {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2121008326910267522L;
 	private Map<String,View> controlsMap;
 	private FormLevelDataItem item;
 	private String imageContent;

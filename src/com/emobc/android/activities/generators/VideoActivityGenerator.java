@@ -49,6 +49,11 @@ import com.emobc.android.utils.Utils;
  */
 public class VideoActivityGenerator extends LevelActivityGenerator {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4156983446642925701L;
+
 	public VideoActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
 		super(appLevel, nextLevel);
 	}

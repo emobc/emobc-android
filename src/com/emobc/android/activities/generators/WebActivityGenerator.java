@@ -50,6 +50,10 @@ import com.emobc.android.utils.Utils;
  */
 public class WebActivityGenerator extends LevelActivityGenerator {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4510477891851012186L;
 	private WebView webview;
 
 	public WebActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {

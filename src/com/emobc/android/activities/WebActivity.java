@@ -44,6 +44,10 @@ import com.emobc.android.menu.CreateMenus;
  * @since 0.1
  */
 public class WebActivity extends CreateMenus {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8878141075487817975L;
 	private WebActivityGenerator generator;
 	/** Called when the activity is first created. */
     @Override

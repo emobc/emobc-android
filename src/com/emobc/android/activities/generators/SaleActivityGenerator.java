@@ -39,6 +39,7 @@ import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.R;
 import com.emobc.android.activities.SplashActivity;
+import com.emobc.android.activities.utils.ResultDelegate;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelData;
 import com.emobc.android.levels.impl.SaleLevelDataItem;
@@ -58,11 +59,18 @@ import com.paypal.android.MEP.PayPalPayment;
  * @version 0.1
  */
 public class SaleActivityGenerator extends LevelActivityGenerator implements OnClickListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 426388775507270344L;
+
 	private static final int REQUEST_PAY = 0;
 
 	private static final String TAG = "SaleActivityGenerator";
 	
 	private SaleLevelDataItem item;
+
+
 	private Activity activity; 
 	
 	/**
@@ -160,14 +168,14 @@ public class SaleActivityGenerator extends LevelActivityGenerator implements OnC
 	}
 
 	private PayPalPayment getExampleSimplePayment() {
-		 ApplicationData applicationData = SplashActivity.getApplicationData();
+		ApplicationData applicationData = SplashActivity.getApplicationData();
 		
 		// Create a basic PayPalPayment.
 		PayPalPayment payment = new PayPalPayment();
 		// Sets the currency type for this payment.
 		payment.setCurrencyType("EUR");
 		// Sets the recipient for the payment. This can also be a phone number.
-		payment.setRecipient("example-merchant-1@paypal.com");
+		payment.setRecipient(applicationData.getPayPalRecipient());
 		// Sets the amount of the payment, not including tax and shipping
 		// amounts.
 		payment.setSubtotal(item.getItemPrice());
@@ -217,7 +225,7 @@ public class SaleActivityGenerator extends LevelActivityGenerator implements OnC
 //		payment.setDescription("Quite a simple payment");
 		// Sets the Custom ID. This is any ID that you would like to have
 		// associated with the payment.
-		payment.setCustomID(applicationData.getPayPalCustomerId());
+//		payment.setCustomID(applicationData.getPayPalCustomerId());
 		// Sets the Instant Payment Notification url. This url will be hit by
 		// the PayPal server upon completion of the payment.
 //		payment.setIpnUrl("http://www.exampleapp.com/ipn");
@@ -254,8 +262,6 @@ public class SaleActivityGenerator extends LevelActivityGenerator implements OnC
 	public class InitPayPalLibraryAsyncTask extends AsyncTask<Void, Void, Boolean> {
 		// The PayPal server to be used - can also be ENV_NONE and ENV_LIVE
 		private static final int PAYPAL_SERVER = PayPal.ENV_SANDBOX;
-		// The ID of your application that you received from PayPal
-		private static final String PAYPAL_APP_ID = "APP-80W284485P519543T";
 
 		private Activity context;
 		private OnClickListener onClickListener;
@@ -279,7 +285,9 @@ public class SaleActivityGenerator extends LevelActivityGenerator implements OnC
 				// This is the main initialization call that takes in your
 				// Context, the Application ID, and the server you would like to
 				// connect to.
-				pp = PayPal.initWithAppID(context, PAYPAL_APP_ID, PAYPAL_SERVER);
+				final String appId = SplashActivity.getApplicationData().getPayPalApplicationId();
+				
+				pp = PayPal.initWithAppID(context, appId, PAYPAL_SERVER);
 
 				// -- These are required settings.
 				pp.setLanguage("es_ES"); // Sets the language for the library.
@@ -335,5 +343,9 @@ public class SaleActivityGenerator extends LevelActivityGenerator implements OnC
 			}
 		}
 
+	}
+
+	public SaleLevelDataItem getItem() {
+		return item;
 	}
 }

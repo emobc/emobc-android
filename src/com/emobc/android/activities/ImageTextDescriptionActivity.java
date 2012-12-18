@@ -34,7 +34,11 @@ import com.emobc.android.menu.SystemAction;
 */
 public class ImageTextDescriptionActivity extends CreateMenus 
 	implements ContentAwareActivity {
-    /** Called when the activity is first created. */
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7730914120122780854L;
+	/** Called when the activity is first created. */
 	
 	private ImageTextDescriptionActivityGenerator generator;
 	

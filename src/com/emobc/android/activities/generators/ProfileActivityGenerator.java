@@ -61,6 +61,11 @@ import com.emobc.android.utils.Utils;
  * @since 0.1
  */
 public class ProfileActivityGenerator extends AbstractActivtyGenerator {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2374569028907737585L;
+
 	private static final String TAG = "ProfileActivityGenerator";
 	
 	private Map<String,View> controlsMap;

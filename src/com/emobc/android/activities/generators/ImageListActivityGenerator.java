@@ -61,6 +61,10 @@ import com.emobc.android.utils.Utils;
  * @since 0.1
  */
 public class ImageListActivityGenerator extends LevelActivityGenerator {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8853424316735747724L;
 	private ImageListLevelDataItem item;
 	
 	public ImageListActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {

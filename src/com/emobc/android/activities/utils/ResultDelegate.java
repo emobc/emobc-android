@@ -20,9 +20,11 @@
 * along with eMobc. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.emobc.android.activities.generators;
+package com.emobc.android.activities.utils;
 
 import java.io.Serializable;
+
+import android.content.Context;
 
 import com.paypal.android.MEP.PayPalResultDelegate;
 
@@ -33,23 +35,33 @@ import com.paypal.android.MEP.PayPalResultDelegate;
  */
 public class ResultDelegate implements PayPalResultDelegate,Serializable {
 
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8615267132258885663L;
 
+//	private final Context context;
+//	
+//	public ResultDelegate(Context context) {
+//		super();
+//		this.context = context;
+//	}
+	
+	
 	@Override
-	public void onPaymentCanceled(String arg0) {
+	public void onPaymentCanceled(String paymentStatus) {
 
 	}
 
 	@Override
-	public void onPaymentFailed(String arg0, String arg1, String arg2, String arg3, String arg4) {
+	public void onPaymentFailed(String paymentStatus, String correlationID,
+            String payKey, String errorID, String errorMessage) {
 
 	}
 
 	@Override
-	public void onPaymentSucceeded(String arg0, String arg1) {
+	public void onPaymentSucceeded(String payKey, String paymentStatus) {
 
 	}
 

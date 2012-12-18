@@ -44,6 +44,10 @@ import android.os.Bundle;
  * @since 0.1
  */
 public class VideoActivity extends CreateMenus {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4187653662439165263L;
 	protected static final Context Activity = null;
     /** Called when the activity is ontefirst created. */
     @Override

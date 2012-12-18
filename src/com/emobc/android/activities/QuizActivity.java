@@ -46,6 +46,10 @@ import com.emobc.android.utils.InvalidFileException;
  * @since 0.1
  */
 public class QuizActivity extends CreateMenus {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9009792913413348985L;
 	private QuizController quizController;
 	private NextLevel nextLevel; 
     @Override

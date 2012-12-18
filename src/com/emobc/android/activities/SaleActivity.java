@@ -28,14 +28,24 @@ import android.os.Bundle;
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.SaleActivityGenerator;
+import com.emobc.android.levels.impl.SaleLevelDataItem;
 import com.emobc.android.menu.CreateMenus;
+import com.emobc.android.menu.SystemAction;
+import com.emobc.android.utils.Utils;
 
 /**
  * @author Jorge E. Villaverde
  * @since 0.1
  * @version 0.1
  */
-public class SaleActivity extends CreateMenus {
+public class SaleActivity 
+	extends CreateMenus 
+	implements ContentAwareActivity{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1787095450181673703L;
 	private SaleActivityGenerator generator;
 	
 	/** Called when the activity is first created. */
@@ -61,5 +71,26 @@ public class SaleActivity extends CreateMenus {
 			finish();
 		}
     }
+
+	@Override
+	public String getActivityContent(SystemAction systemAction) {
+		if(generator == null)
+			return null;
+		
+		StringBuilder builder = new StringBuilder();
+		
+		if(generator.getItem() != null){
+			SaleLevelDataItem item = generator.getItem(); 
+			if(Utils.hasLength(item.getItemDescription())){
+				builder.append(generator.getItem());
+			}
+			if(item.getItemPrice() != null){
+				builder.append(getString(R.string.price));
+				builder.append(item.getItemPrice().toString());
+			}
+		}
+		
+		return builder.toString();		
+	}
 
 }

@@ -77,6 +77,8 @@ public class ApplicationData {
 
 	public static final String IS_SIDE_MENU_TAG = "_IS_SIDE_MENU_";
 	
+	// The ID of your application that you received from PayPal
+	private static final String PAYPAL_APP_ID = "APP-80W284485P519543T";
 	
 	public static final int SEARCH_LIMIT = 20;
 
@@ -106,8 +108,9 @@ public class ApplicationData {
 	private StyleResult styleResult = null;
 	private Map<String, FormatStyle> formatStyleMap = null;
 	
-	private String payPalCustomerId;
-
+	private String payPalRecipient;
+	private String payPalApplicationId = PAYPAL_APP_ID;
+	
 	private static ApplicationData instance = null;
 
 	/**
@@ -685,11 +688,19 @@ public class ApplicationData {
 	
 	
 	// PayPal
-	public String getPayPalCustomerId() {
-		return payPalCustomerId;
-	}	
+	public String getPayPalRecipient() {
+		return payPalRecipient;
+	}
+
+	public void setPayPalRecipient(String payPalRecipient) {
+		this.payPalRecipient = payPalRecipient;
+	}
+
+	public String getPayPalApplicationId() {
+		return payPalApplicationId;
+	}
 	
-	public void setPayPalCustomerId(String payPalCustomerId) {
-		this.payPalCustomerId = payPalCustomerId;
+	public void setPayPalApplicationId(String payPalApplicationId) {
+		this.payPalApplicationId = payPalApplicationId;
 	}
 }

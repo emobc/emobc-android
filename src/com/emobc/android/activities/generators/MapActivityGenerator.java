@@ -61,6 +61,10 @@ import com.google.android.maps.Overlay;
  * @since 0.1
  */
 public class MapActivityGenerator extends LevelActivityGenerator {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4385190410832030179L;
 	private static final double CENTER_LATITUD = 40.4170;
 	private static final double CENTER_LONGITUDE = -3.7030;
 

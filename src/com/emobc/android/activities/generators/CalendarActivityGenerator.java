@@ -63,6 +63,11 @@ import com.emobc.android.views.CalendarView.OnCellTouchListener;
  */
 public class CalendarActivityGenerator extends LevelActivityGenerator {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8756004783761905657L;
+
 	public CalendarActivityGenerator(AppLevel appLevel, NextLevel nextLevel) {
 		super(appLevel, nextLevel);
 	}

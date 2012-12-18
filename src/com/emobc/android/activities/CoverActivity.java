@@ -52,7 +52,11 @@ import com.google.android.gcm.GCMRegistrar;
  * @since 0.1
  */
 public class CoverActivity extends CreateMenus {
-    private AsyncTask<Void, Void, Void> mRegisterTask;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6350857578407577615L;
+	private AsyncTask<Void, Void, Void> mRegisterTask;
 		
 	/** Called when the activity is first created. */
     @Override

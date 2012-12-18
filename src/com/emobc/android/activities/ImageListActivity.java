@@ -46,6 +46,10 @@ import com.emobc.android.menu.SystemAction;
 public class ImageListActivity extends CreateMenus 
 	implements ContentAwareActivity {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8411848964108255329L;
 	private ActivityGenerator generator;
 	/** 
 	 * Called when the activity is first created. 

@@ -62,6 +62,10 @@ import com.emobc.android.utils.Utils;
  * @since 0.1
  */
 public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6029596069752642543L;
 	protected AppLevel appLevel;
 	protected NextLevel nextLevel;
 

@@ -50,6 +50,10 @@ import com.emobc.android.menu.CreateMenus;
  * @since 0.1
  */
 public class FormActivity extends CreateMenus {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4153042867395757676L;
 	public static final String PREFS_NAME = "FormPrefsFile";
 	public static final int PICK_IMAGE_REQUEST = 1;
 	private Map<String,View> controlsMap;

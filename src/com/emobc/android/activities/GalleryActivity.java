@@ -45,6 +45,10 @@ import com.emobc.android.SearchResult;
 * @author Jonatan Alcocer Luna
 */
 public class GalleryActivity extends CoverActivity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1387331718231365946L;
 	protected static final Context Activity = null;
 
 	/** Called when the activity is first created. */

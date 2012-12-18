@@ -224,6 +224,10 @@ public class ParseUtils {
 	private static final String _ID_QR_TAG_ = "idQr";
 	private static final String _QR_TAG_ = "qr";
 	
+	/*-------------PayPal---------------------------------------*/
+	private static final String _PAYPAL_APP_ID_TAG_ = "payPalApplicationId";
+	private static final String _PAYPAL_RECIPIENT_TAG_ = "payPalRecipient";
+	
 	// -- APPLICATION DATA --
 	
 	/**
@@ -424,6 +428,9 @@ public class ParseUtils {
 		ret.setBottomMenuFileName((String)data.get(_BOTTOM_MENU_TAG_));
 		ret.setSideMenuFileName((String)data.get(_SIDE_MENU_TAG_));
 		ret.setContextMenuFileName((String)data.get(_CONTEXT_MENU_TAG_));
+		
+		ret.setPayPalApplicationId((String)data.get(_PAYPAL_APP_ID_TAG_));
+		ret.setPayPalRecipient((String)data.get(_PAYPAL_RECIPIENT_TAG_));
 		
 		List<AppLevel> parsedLevels = (List<AppLevel>)data.get(_LEVELS_TAG_);
 		
