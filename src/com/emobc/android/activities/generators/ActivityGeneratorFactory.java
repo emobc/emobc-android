@@ -85,7 +85,7 @@ public abstract class ActivityGeneratorFactory {
 		case PROFILE_ACTIVITY:
 			return new ProfileActivityGenerator();
 		case SALE_ACTIVITY:
-			return new SaleActivityGenerator(appLevel, nextLevel);
+			return null;
 		default:
 			break;
 		}

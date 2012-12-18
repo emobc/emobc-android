@@ -115,6 +115,10 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param params
 	 */
 	protected void initializeScreen(Activity activity, ActivityType activityType){
+		initializeScreen(activity, activityType, nextLevel);
+	}
+	
+	public static void initializeScreen(Activity activity, ActivityType activityType, NextLevel nextLevel){
 		ApplicationData applicationData = SplashActivity.getApplicationData();		
 		ActivityTypeStyle activityTypeStyle = applicationData.getActivityTypeStyle(activityType);
 		LevelStyle levelStyle = null;
@@ -128,16 +132,15 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 		// Then try to apply Level Stype
 		if(levelStyle != null && !levelStyle.isCleanFormat()){
 			initializeScreenWithFormat(activity, levelStyle);
-		}
+		}		
 	}
-	
 		
 	/**
 	 * Initialize the specific background for a level
 	 * @param activity
 	 * @param activityType
 	 */
-	public void initializeBackground(Activity activity, Style style){
+	public static void initializeBackground(Activity activity, Style style){
 		if(activity == null || style == null)
 			return;
 		
@@ -163,7 +166,7 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param activity
 	 * @param levelTypeStyle
 	 */
-	protected void initializeScreenWithFormat(Activity activity, Style style){					
+	public static void initializeScreenWithFormat(Activity activity, Style style){					
 		initializeBackground(activity, style);		
 		initializeWidgetFormat(activity, style);
 	}
@@ -176,7 +179,7 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param typeScreen
 	 * @param currWidget
 	 */
-	public void initializeWidgetFormat(Activity activity, Style levelStyle){
+	public static void initializeWidgetFormat(Activity activity, Style levelStyle){
 		Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap(activity);
 		
 		if(levelStyle == null)

@@ -42,6 +42,7 @@ import com.emobc.android.activities.ImageTextDescriptionActivity;
 import com.emobc.android.activities.MapsActivity;
 import com.emobc.android.activities.QrActivity;
 import com.emobc.android.activities.QuizActivity;
+import com.emobc.android.activities.SaleActivity;
 import com.emobc.android.activities.SearchActivity;
 import com.emobc.android.activities.ShowProfileActivity;
 import com.emobc.android.activities.WebActivity;
@@ -154,6 +155,8 @@ public class AppLevel {
 			return SearchActivity.class;
 		case CRUD_ACTIVITY:
 			return CrudReadActivity.class;
+		case SALE_ACTIVITY:
+			return SaleActivity.class;
 		default:
 			Log.w("AppLevel: getActiviClass", "Asiging default Activity Class to Activity Type: " + activityType);
 			return ImageListActivity.class;

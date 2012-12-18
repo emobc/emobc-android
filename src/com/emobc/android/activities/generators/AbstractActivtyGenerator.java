@@ -149,7 +149,7 @@ public abstract class AbstractActivtyGenerator implements ActivityGenerator, Ser
 		} 
 	}
 	
-	protected void initializeHeader(Activity activity, AppLevelDataItem item){
+	public static void initializeHeader(Activity activity, AppLevelDataItem item){
 		if(item == null)
 			return;
 		

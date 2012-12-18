@@ -79,4 +79,9 @@
     <string name="edit_profile">Editar Perfil</string>
     <string name="header">Cabecera</string>
     <string name="price">Precio: </string>
+    <string name="sale_status">Estado: </string>
+    <string name="sale_pay_key">Código Compra: </string>
+    <string name="dialog_pay_error">Error en el Pago</string>
+    <string name="dialog_pay_error_id">Id Error: </string>
+    <string name="dialog_pay_error_message">Error: </string>
 </resources>

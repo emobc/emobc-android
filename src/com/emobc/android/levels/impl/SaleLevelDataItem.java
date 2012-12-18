@@ -41,15 +41,19 @@ public class SaleLevelDataItem extends AppLevelDataItem {
 	private final String itemDescription;
 	private final String itemImage;
 	private final BigDecimal itemPrice;
+	private final BigDecimal itemTax;
+	private final BigDecimal itemShipping;
 
 	public SaleLevelDataItem(String id, String headerImageFile,
 			String headerText, String geoReferencia, 
 			String itemDescription, String itemImage,
-			BigDecimal itemPrice) {
+			BigDecimal itemPrice, BigDecimal itemTax, BigDecimal itemShipping) {
 		super(id, headerImageFile, headerText, geoReferencia);
 		this.itemDescription = itemDescription;
 		this.itemImage = itemImage;
 		this.itemPrice = itemPrice;
+		this.itemTax = itemTax;
+		this.itemShipping = itemShipping;
 	}
 
 	public String getItemDescription() {
@@ -66,5 +70,13 @@ public class SaleLevelDataItem extends AppLevelDataItem {
 
 	public String toString(){
 		return "[Sale " + itemDescription + "]";
+	}
+
+	public BigDecimal getItemTax() {
+		return itemTax;
+	}
+
+	public BigDecimal getItemShipping() {
+		return itemShipping;
 	}
 }

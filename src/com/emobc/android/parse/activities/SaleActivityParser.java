@@ -43,6 +43,8 @@ public class SaleActivityParser extends ActivityLevelParser{
 	private static final String _ITEM_DESCRIPTION_TAG_ = "itemDescripcion";
 	private static final String _ITEM_IMAGE_TAG_ = "itemImageFile";
 	private static final String _ITEM_PRICE_TAG_ = "itemPrice";
+	private static final String _ITEM_TAX_TAG_ = "itemTax";
+	private static final String _ITEM_SHIPPING_TAG_ = "itemShipping";
 	
 	public SaleActivityParser(XmlPullParser xpp) {
 		super(xpp);
@@ -64,6 +66,8 @@ public class SaleActivityParser extends ActivityLevelParser{
 					private String itemDescription;
 					private String itemImage;
 					private BigDecimal itemPrice;
+					private BigDecimal itemTax;
+					private BigDecimal itemShipping;
 					
 					@Override
 					public void handleText(String currentField, String text) {
@@ -84,6 +88,16 @@ public class SaleActivityParser extends ActivityLevelParser{
 								itemPrice = new BigDecimal(text);
 							} catch (NumberFormatException e) {
 							}
+						}else if(_ITEM_TAX_TAG_.equals(currentField)){
+							try {
+								itemTax = new BigDecimal(text);
+							} catch (NumberFormatException e) {
+							}
+						}else if(_ITEM_SHIPPING_TAG_.equals(currentField)){
+							try {
+								itemShipping = new BigDecimal(text);
+							} catch (NumberFormatException e) {
+							}
 						}
 					}
 					
@@ -100,7 +114,9 @@ public class SaleActivityParser extends ActivityLevelParser{
 									geoRef,
 									itemDescription, 
 									itemImage, 
-									itemPrice);
+									itemPrice,
+									itemTax,
+									itemShipping);
 							appLevelData.addItem(currItem);
 						}
 					}

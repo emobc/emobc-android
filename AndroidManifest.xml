@@ -304,5 +304,13 @@
             android:name=".ShowProfileActivity"
             android:label="@string/view_profile" >
         </activity>
-    </application>
+		<activity
+            android:name=".SaleActivity"
+            android:label="@string/app_name" >
+		</activity>
+		<activity
+            android:name=".SaleResultActivity"
+            android:label="@string/app_name" >
+		</activity>
+	</application>
 </manifest>
