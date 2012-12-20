@@ -55,7 +55,7 @@
 
         <service android:name=".GCMIntentService" />
         
-		<activity android:name=".CalendarActivity"
+		<activity android:name="com.emobc.android.activities.CalendarActivity"
 		    android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.PICK" />
@@ -69,7 +69,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".ToolbarActivity"
+        <activity android:name="com.emobc.android.activities.ToolbarActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -77,7 +77,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".SplashActivity"
+        <activity android:name="com.emobc.android.activities.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -137,14 +137,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 		</activity>    
-		<activity android:name=".MapsActivity"
+		<activity android:name="com.emobc.android.activities.MapsActivity"
 		    android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 		</activity>    
-		<activity android:name="..GalleryActivity"
+		<activity android:name="com.emobc.android.activities..GalleryActivity"
 		    android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -152,7 +152,7 @@
             </intent-filter>
 		</activity>
 		
-        <activity android:name=".AudioActivity"
+        <activity android:name="com.emobc.android.activities.AudioActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -160,7 +160,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".WebActivity"
+        <activity android:name="com.emobc.android.activities.WebActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -168,7 +168,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".SearchActivity"
+        <activity android:name="com.emobc.android.activities.SearchActivity"
             android:exported="false">            
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -176,7 +176,7 @@
             </intent-filter>
         </activity>    
         
-        <activity android:name=".VideoActivity"
+        <activity android:name="com.emobc.android.activities.VideoActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -184,7 +184,7 @@
             </intent-filter>
         </activity>    
  		
- 		<activity android:name=".ButtonsActivity"
+ 		<activity android:name="com.emobc.android.activities.ButtonsActivity"
  		    android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -192,8 +192,7 @@
             </intent-filter>
  		</activity>    
         
-        <activity
-            android:name=".QrActivity"
+        <activity android:name="com.emobc.android.activities.QrActivity"
             android:screenOrientation="portrait"
             android:exported="false">
             <intent-filter>
@@ -202,8 +201,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".CrudReadActivity"
+        <activity android:name="com.emobc.android.activities.CrudReadActivity"
             android:screenOrientation="portrait"
             android:exported="false">
             <intent-filter>
@@ -212,8 +210,7 @@
             </intent-filter>
         </activity>
         
-        <activity
-            android:name=".CrudFormActivity"
+        <activity android:name="com.emobc.android.activities.CrudFormActivity"
             android:screenOrientation="portrait"
             android:exported="false">
             <intent-filter>
@@ -222,8 +219,7 @@
             </intent-filter>
         </activity>
         
-        <activity
-            android:name="com.google.zxing.client.android.CaptureActivity"
+        <activity android:name="com.google.zxing.client.android.CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
@@ -244,13 +240,10 @@
             android:name="com.google.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         -->
-        <activity
-            android:name="com.google.ads.AdActivity"
+        <activity android:name="com.google.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
         
-        <activity 
-            android:name="com.paypal.android.MEP.PayPalActivity"
-            />
+        <activity android:name="com.paypal.android.MEP.PayPalActivity" />
 
         <!-- GCM Receiver -->
         <receiver
@@ -264,8 +257,7 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".QuizActivity"
+        <activity android:name="com.emobc.android.activities.QuizActivity"
             android:label="@string/title_activity_quiz"
             android:exported="false" >
             <intent-filter>
@@ -274,8 +266,7 @@
             </intent-filter>
         </activity>
         
-        <activity
-            android:name=".QuizQuestionsActivity"
+        <activity android:name="com.emobc.android.activities.QuizQuestionsActivity"
             android:label="@string/title_activity_quiz_questions"
             android:exported="false" >
             <intent-filter>
@@ -284,8 +275,7 @@
             </intent-filter>
         </activity>
 	    
-	    <activity
-            android:name=".QuizResultsActivity"
+	    <activity android:name="com.emobc.android.activities.QuizResultsActivity"
             android:label="@string/title_activity_quiz_results"
             android:exported="false" >
             <intent-filter>
@@ -295,21 +285,17 @@
             </intent-filter>
         </activity>
        
-       <activity
-            android:name=".CanvasActivity"
+       <activity android:name="com.emobc.android.activities.CanvasActivity"
             android:label="@string/title_activity_canvas" >
        </activity>
 
-	    <activity
-            android:name=".ShowProfileActivity"
+	    <activity android:name="com.emobc.android.activities.ShowProfileActivity"
             android:label="@string/view_profile" >
         </activity>
-		<activity
-            android:name=".SaleActivity"
+		<activity android:name="com.emobc.android.activities.SaleActivity"
             android:label="@string/app_name" >
 		</activity>
-		<activity
-            android:name=".SaleResultActivity"
+		<activity android:name="com.emobc.android.activities.SaleResultActivity"
             android:label="@string/app_name" >
 		</activity>
 	</application>
