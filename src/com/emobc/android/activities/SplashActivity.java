@@ -50,17 +50,22 @@ import com.emobc.android.utils.InvalidFileException;
  * @since 0.1
  */
 public class SplashActivity extends Activity implements Serializable {
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1155787620678146635L;
+	
 	private final int SPLASH_DISPLAY_LENGHT = 5000;
+	
+	private static final String TAG = "SplashActivity";
+	
 	private static ApplicationData instance = null;
 
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle); 
-		Log.i("SplashActivity", "OnCreate Splash");
+		Log.i(TAG, "OnCreate Splash");
 		//overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 		
 		setContentView(R.layout.splash_screen);		
@@ -70,7 +75,7 @@ public class SplashActivity extends Activity implements Serializable {
 			instance = ApplicationData.readApplicationData(this);
 			instance.setProfile(ParseUtils.parseProfileData(this, instance.getProfileFileName()));
 		} catch (InvalidFileException e) {
-			Log.e("SplashActivity", e.toString());
+			Log.e(TAG, e.toString());
 		}
 		
 		new Handler().postDelayed(new Runnable() {
