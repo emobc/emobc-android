@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>backgammon</dataId>
+		<headerText>Juegos de Mesa</headerText>
+		<itemDescripcion>Backgammon De Lujo Attaché Maletín Forrado Con Juego</itemDescripcion>
+		<itemImageFile>images/backgammon.jpg</itemImageFile>
+		<itemPrice>219.90</itemPrice>
+		<itemTax>21.99</itemTax>
+		<itemShipping>9.99</itemShipping>
+	</data>
+</levelData>
+

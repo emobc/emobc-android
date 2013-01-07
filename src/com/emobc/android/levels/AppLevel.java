@@ -31,6 +31,7 @@ import android.util.Log;
 
 import com.emobc.android.ActivityType;
 import com.emobc.android.SearchResult;
+import com.emobc.android.activities.ArActivity;
 import com.emobc.android.activities.AudioActivity;
 import com.emobc.android.activities.ButtonsActivity;
 import com.emobc.android.activities.CalendarActivity;
@@ -157,6 +158,8 @@ public class AppLevel {
 			return CrudReadActivity.class;
 		case SALE_ACTIVITY:
 			return SaleActivity.class;
+		case AR_ACTIVITY:
+			return ArActivity.class;
 		default:
 			Log.w("AppLevel: getActiviClass", "Asiging default Activity Class to Activity Type: " + activityType);
 			return ImageListActivity.class;

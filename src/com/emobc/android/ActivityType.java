@@ -68,7 +68,8 @@ package com.emobc.android;
  *  <li><strong>CRUD_ACTIVITY</strong>: Define and manage CRUD operations.
  *  </li>
  *  <li><strong>SALE_ACTIVITY</strong>: shows a product width its description and a photograph and the possibility 
- *  pay for it bia PayPal</li> 
+ *  pay for it bia PayPal</li>
+ *  <li><strong>AR_ACTIVITY</strong>: Augmented Reality Activity. 
  * </ul>
  * @author Jorge E. Villaverde
  * @author Manuel Mora Cuesta
@@ -96,5 +97,6 @@ public enum ActivityType {
 	CRUD_ACTIVITY,
 	PROFILE_ACTIVITY,
 	SEARCH_ACTIVITY,
-	SALE_ACTIVITY;
+	SALE_ACTIVITY,
+	AR_ACTIVITY;
 }

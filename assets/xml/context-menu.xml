@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <menu-item>
+        <menu-title>Volver</menu-title>
+        <menu-image>images/1_navigation_back.png</menu-image>
+        <systemAction>back</systemAction>
+    </menu-item>
+    <menu-item>
+        <menu-title>Inicio</menu-title>
+        <menu-image>images/4_collections_view_as_list.png</menu-image>
+        <systemAction>home</systemAction>
+    </menu-item>
+    <menu-item>
+        <menu-title>Copiar</menu-title>
+        <menu-image>images/5_content_copy.png</menu-image>
+        <systemAction>copy</systemAction>
+    </menu-item>
+    <menu-item>
+        <menu-title>Enviar</menu-title>
+        <menu-image>images/5_content_email.png</menu-image>
+        <systemAction>email</systemAction>
+    </menu-item>
+    <menu-item>
+        <menu-title>Compartir</menu-title>
+        <menu-image>images/6_social_share.png</menu-image>
+        <systemAction>share</systemAction>
+	</menu-item>    
+    <menu-item>
+        <menu-title>Hablar</menu-title>
+        <menu-image>images/10_device_access_mic.png</menu-image>
+        <systemAction>tts</systemAction>
+	</menu-item>    
+</menu>

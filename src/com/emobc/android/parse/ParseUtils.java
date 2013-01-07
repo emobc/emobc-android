@@ -81,6 +81,7 @@ import com.emobc.android.levels.impl.WebLevelDataItem;
 import com.emobc.android.levels.impl.quiz.QuestionDataItem;
 import com.emobc.android.levels.impl.quiz.QuizAnswerDataItem;
 import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
+import com.emobc.android.parse.activities.ArActivityParser;
 import com.emobc.android.parse.activities.SaleActivityParser;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.utils.InvalidFileException;
@@ -589,6 +590,9 @@ public class ParseUtils {
 			case SALE_ACTIVITY:
 				parser = new SaleActivityParser(xpp);
 				return parser.parse();
+			case AR_ACTIVITY:
+				parser = new ArActivityParser(xpp);
+				return parser.parse();				
 			default:
 				Map<String, Object> data = parseLevelDataFile(xpp, activityType); 
 				return fromLevelData(data);

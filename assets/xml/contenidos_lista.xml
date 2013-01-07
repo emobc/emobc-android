@@ -132,6 +132,15 @@
 				</nextLevel>
 				<imageFile>images/backgammon.jpg</imageFile>
 			</listItem>
+			<listItem>
+				<description>Realidad Aumentada (experimental)</description>
+				<text>Realidad Aumentada</text>
+				<nextLevel>
+					<nextLevelLevelId>augmented_reality</nextLevelLevelId>
+					<nextLevelDataId>ar1</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/backgammon.jpg</imageFile>
+			</listItem>
 		</list>
 	</data>
 </levelData>

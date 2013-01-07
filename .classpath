@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="libs/GoogleAdMobAdsSdk-6.0.1.jar"/>
 	<classpathentry kind="lib" path="libs/TTS_library_stub_3.0_market.jar"/>
 	<classpathentry kind="lib" path="libs/PayPal_MPL.jar"/>
+	<classpathentry kind="lib" path="libs/QCAR.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

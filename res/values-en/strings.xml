@@ -74,4 +74,13 @@
     <string name="crud_create">Create</string>
     <string name="crud_open">Open</string>
     <string name="crud_delete">Delete</string>
+    
+    <string name="menu_flash_on">Flash On</string>
+    <string name="menu_flash_off">Flash Off</string>
+    <string name="menu_contAutofocus_on">Cont. Autofocus On</string>
+    <string name="menu_contAutofocus_off">Cont. Autofocus Off</string>
+    <string name="menu_switch_to_tarmac">Switch to Tarmac</string>
+    <string name="menu_switch_to_stone_chips">Switch to Stones &amp; Chips</string>
+    <string name="menu_camera_title">Options</string>
+    
 </resources>

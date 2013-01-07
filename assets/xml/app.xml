@@ -555,5 +555,13 @@
 			<levelXib/>
 			<levelTransition>None</levelTransition>
 		</level>
+		<level>
+			<levelId>augmented_reality</levelId>
+			<levelTitle>Augmented Reality Example</levelTitle>	
+			<levelFile>ar.xml</levelFile>
+			<levelType>AR_ACTIVITY</levelType>
+			<levelXib/>
+			<levelTransition>None</levelTransition>
+		</level>
 	</levels>
 </application>
