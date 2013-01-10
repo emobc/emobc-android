@@ -3,7 +3,7 @@
 	<data>
 		<dataId>backgammon</dataId>
 		<headerText>Juegos de Mesa</headerText>
-		<itemDescripcion>Backgammon De Lujo Attaché Maletín Forrado Con Juego</itemDescripcion>
+		<itemDescription>Backgammon De Lujo Attaché Maletín Forrado Con Juego</itemDescription>
 		<itemImageFile>images/backgammon.jpg</itemImageFile>
 		<itemPrice>219.90</itemPrice>
 		<itemTax>21.99</itemTax>

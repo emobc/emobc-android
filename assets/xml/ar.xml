@@ -3,6 +3,15 @@
 	<data>
 		<dataId>ar1</dataId>
 		<headerText>Augmented Reality</headerText>
+		<targets>
+		    <target>
+		        <targetName>target1</targetName>
+				<nextLevel>
+					<nextLevelLevelId>Texto</nextLevelLevelId>
+					<nextLevelDataId>Texto</nextLevelDataId>
+				</nextLevel>
+		    </target>
+		</targets>
 	</data>
 </levelData>
 

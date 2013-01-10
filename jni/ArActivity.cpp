@@ -2,8 +2,8 @@
             Copyright (c) 2010-2012 QUALCOMM Austria Research Center GmbH.
             All Rights Reserved.
             Qualcomm Confidential and Proprietary
-            
-@file 
+
+@file
     ArActivity.cpp
 
 @brief
@@ -85,7 +85,7 @@ bool switchDataSetAsap          = false;
 
 // Object to receive update callbacks from QCAR SDK
 class ArActivity_UpdateCallback : public QCAR::UpdateCallback
-{   
+{
     virtual void QCAR_onUpdate(QCAR::State& /*state*/)
     {
         if (switchDataSetAsap)
@@ -102,7 +102,7 @@ class ArActivity_UpdateCallback : public QCAR::UpdateCallback
                 LOG("Failed to switch data set.");
                 return;
             }
-            
+
             if (imageTracker->getActiveDataSet() == dataSetStonesAndChips)
             {
                 imageTracker->deactivateDataSet(dataSetStonesAndChips);
@@ -122,7 +122,7 @@ ArActivity_UpdateCallback updateCallback;
 JNIEXPORT int JNICALL
 Java_com_emobc_android_activities_ArActivity_getOpenGlEsVersionNative(JNIEnv *, jobject)
 {
-#ifdef USE_OPENGL_ES_1_1        
+#ifdef USE_OPENGL_ES_1_1
     return 1;
 #else
     return 2;
@@ -149,7 +149,7 @@ JNIEXPORT int JNICALL
 Java_com_emobc_android_activities_ArActivity_initTracker(JNIEnv *, jobject)
 {
     LOG("Java_com_emobc_android_activities_ArActivity_initTracker");
-    
+
     // Initialize the image tracker:
     QCAR::TrackerManager& trackerManager = QCAR::TrackerManager::getInstance();
     QCAR::Tracker* tracker = trackerManager.initTracker(QCAR::Tracker::IMAGE_TRACKER);
@@ -179,7 +179,7 @@ JNIEXPORT int JNICALL
 Java_com_emobc_android_activities_ArActivity_loadTrackerData(JNIEnv *, jobject)
 {
     LOG("Java_com_emobc_android_activities_ArActivity_loadTrackerData");
-    
+
     // Get the image tracker:
     QCAR::TrackerManager& trackerManager = QCAR::TrackerManager::getInstance();
     QCAR::ImageTracker* imageTracker = static_cast<QCAR::ImageTracker*>(
@@ -246,7 +246,7 @@ Java_com_emobc_android_activities_ArActivity_destroyTrackerData(JNIEnv *, jobjec
             " been initialized.");
         return 0;
     }
-    
+
     if (dataSetStonesAndChips != 0)
     {
         if (imageTracker->getActiveDataSet() == dataSetStonesAndChips &&
@@ -308,15 +308,15 @@ Java_com_emobc_android_activities_ar_ImageTargetsRenderer_renderFrame(JNIEnv *, 
 {
     //LOG("Java_com_qualcomm_QCARSamples_ImageTargets_GLRenderer_renderFrame");
 
-    // Clear color and depth buffer 
+    // Clear color and depth buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Get the state from QCAR and mark the beginning of a rendering section
     QCAR::State state = QCAR::Renderer::getInstance().begin();
-    
+
     // Explicitly render the Video Background
     QCAR::Renderer::getInstance().drawVideoBackground();
-       
+
 #ifdef USE_OPENGL_ES_1_1
     // Set GL11 flags:
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -325,14 +325,14 @@ Java_com_emobc_android_activities_ar_ImageTargetsRenderer_renderFrame(JNIEnv *, 
 
     glEnable(GL_TEXTURE_2D);
     glDisable(GL_LIGHTING);
-        
+
 #endif
 
     glEnable(GL_DEPTH_TEST);
 
-    // We must detect if background reflection is active and adjust the culling direction. 
+    // We must detect if background reflection is active and adjust the culling direction.
     // If the reflection is active, this means the post matrix has been reflected as well,
-    // therefore standard counter clockwise face culling will result in "inside out" models. 
+    // therefore standard counter clockwise face culling will result in "inside out" models.
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     if(QCAR::Renderer::getInstance().getVideoBackgroundConfig().mReflection == QCAR::VIDEO_BACKGROUND_REFLECTION_ON)
@@ -348,7 +348,7 @@ Java_com_emobc_android_activities_ar_ImageTargetsRenderer_renderFrame(JNIEnv *, 
         const QCAR::TrackableResult* result = state.getTrackableResult(tIdx);
         const QCAR::Trackable& trackable = result->getTrackable();
         QCAR::Matrix44F modelViewMatrix =
-            QCAR::Tool::convertPose2GLMatrix(result->getPose());        
+            QCAR::Tool::convertPose2GLMatrix(result->getPose());
 
         // Choose the texture based on the target name:
         int textureIndex;
@@ -398,18 +398,18 @@ Java_com_emobc_android_activities_ar_ImageTargetsRenderer_renderFrame(JNIEnv *, 
                                     &modelViewProjection.data[0]);
 
         glUseProgram(shaderProgramID);
-         
+
         glVertexAttribPointer(vertexHandle, 3, GL_FLOAT, GL_FALSE, 0,
                               (const GLvoid*) &teapotVertices[0]);
         glVertexAttribPointer(normalHandle, 3, GL_FLOAT, GL_FALSE, 0,
                               (const GLvoid*) &teapotNormals[0]);
         glVertexAttribPointer(textureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0,
                               (const GLvoid*) &teapotTexCoords[0]);
-        
+
         glEnableVertexAttribArray(vertexHandle);
         glEnableVertexAttribArray(normalHandle);
         glEnableVertexAttribArray(textureCoordHandle);
-        
+
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, thisTexture->mTextureID);
         glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
@@ -425,7 +425,7 @@ Java_com_emobc_android_activities_ar_ImageTargetsRenderer_renderFrame(JNIEnv *, 
 
     glDisable(GL_DEPTH_TEST);
 
-#ifdef USE_OPENGL_ES_1_1        
+#ifdef USE_OPENGL_ES_1_1
     glDisable(GL_TEXTURE_2D);
     glDisableClientState(GL_VERTEX_ARRAY);
     glDisableClientState(GL_NORMAL_ARRAY);
@@ -455,7 +455,7 @@ configureVideoBackground()
     config.mSynchronous = true;
     config.mPosition.data[0] = 0.0f;
     config.mPosition.data[1] = 0.0f;
-    
+
     if (isActivityInPortraitMode)
     {
         //LOG("configureVideoBackground PORTRAIT");
@@ -467,7 +467,7 @@ configureVideoBackground()
         {
             LOG("Correcting rendering background size to handle missmatch between screen and video aspect ratios.");
             config.mSize.data[0] = screenWidth;
-            config.mSize.data[1] = screenWidth * 
+            config.mSize.data[1] = screenWidth *
                               (videoMode.mWidth / (float)videoMode.mHeight);
         }
     }
@@ -499,11 +499,11 @@ Java_com_emobc_android_activities_ArActivity_initApplicationNative(
                             JNIEnv* env, jobject obj, jint width, jint height)
 {
     LOG("Java_com_emobc_android_activities_ArActivity_initApplicationNative");
-    
+
     // Store screen dimensions
     screenWidth = width;
     screenHeight = height;
-        
+
     // Handle to the activity class:
     jclass activityClass = env->GetObjectClass(obj);
 
@@ -515,7 +515,7 @@ Java_com_emobc_android_activities_ArActivity_initApplicationNative(
         return;
     }
 
-    textureCount = env->CallIntMethod(obj, getTextureCountMethodID);    
+    textureCount = env->CallIntMethod(obj, getTextureCountMethodID);
     if (!textureCount)
     {
         LOG("getTextureCount() returned zero.");
@@ -537,7 +537,7 @@ Java_com_emobc_android_activities_ArActivity_initApplicationNative(
     for (int i = 0; i < textureCount; ++i)
     {
 
-        jobject textureObject = env->CallObjectMethod(obj, getTextureMethodID, i); 
+        jobject textureObject = env->CallObjectMethod(obj, getTextureMethodID, i);
         if (textureObject == NULL)
         {
             LOG("GetTexture() returned zero pointer");
@@ -558,16 +558,16 @@ Java_com_emobc_android_activities_ArActivity_deinitApplicationNative(
 
     // Release texture resources
     if (textures != 0)
-    {    
+    {
         for (int i = 0; i < textureCount; ++i)
         {
             delete textures[i];
             textures[i] = NULL;
         }
-    
+
         delete[]textures;
         textures = NULL;
-        
+
         textureCount = 0;
     }
 }
@@ -578,8 +578,8 @@ Java_com_emobc_android_activities_ArActivity_startCamera(JNIEnv *,
                                                                          jobject)
 {
     LOG("Java_com_emobc_android_activities_ArActivity_startCamera");
-    
-    // Select the camera to open, set this to QCAR::CameraDevice::CAMERA_FRONT 
+
+    // Select the camera to open, set this to QCAR::CameraDevice::CAMERA_FRONT
     // to activate the front camera instead.
     QCAR::CameraDevice::CAMERA camera = QCAR::CameraDevice::CAMERA_DEFAULT;
 
@@ -626,7 +626,7 @@ Java_com_emobc_android_activities_ArActivity_stopCamera(JNIEnv *, jobject)
     QCAR::Tracker* imageTracker = trackerManager.getTracker(QCAR::Tracker::IMAGE_TRACKER);
     if(imageTracker != 0)
         imageTracker->stop();
-    
+
     QCAR::CameraDevice::getInstance().stop();
     QCAR::CameraDevice::getInstance().deinit();
 }
@@ -669,23 +669,23 @@ Java_com_emobc_android_activities_ArActivity_setFocusMode(JNIEnv*, jobject, jint
         case 0:
             qcarFocusMode = QCAR::CameraDevice::FOCUS_MODE_NORMAL;
             break;
-        
+
         case 1:
             qcarFocusMode = QCAR::CameraDevice::FOCUS_MODE_CONTINUOUSAUTO;
             break;
-            
+
         case 2:
             qcarFocusMode = QCAR::CameraDevice::FOCUS_MODE_INFINITY;
             break;
-            
+
         case 3:
             qcarFocusMode = QCAR::CameraDevice::FOCUS_MODE_MACRO;
             break;
-    
+
         default:
             return JNI_FALSE;
     }
-    
+
     return QCAR::CameraDevice::getInstance().setFocusMode(qcarFocusMode) ? JNI_TRUE : JNI_FALSE;
 }
 
@@ -698,7 +698,7 @@ Java_com_emobc_android_activities_ar_ImageTargetsRenderer_initRendering(
 
     // Define clear color
     glClearColor(0.0f, 0.0f, 0.0f, QCAR::requiresAlpha() ? 0.0f : 1.0f);
-    
+
     // Now generate the OpenGL texture objects and add settings
     for (int i = 0; i < textureCount; ++i)
     {
@@ -711,7 +711,7 @@ Java_com_emobc_android_activities_ar_ImageTargetsRenderer_initRendering(
                 (GLvoid*)  textures[i]->mData);
     }
 #ifndef USE_OPENGL_ES_1_1
-  
+
     shaderProgramID     = SampleUtils::createProgramFromBuffer(cubeMeshVertexShader,
                                                             cubeFragmentShader);
 
@@ -723,9 +723,9 @@ Java_com_emobc_android_activities_ar_ImageTargetsRenderer_initRendering(
                                                 "vertexTexCoord");
     mvpMatrixHandle     = glGetUniformLocation(shaderProgramID,
                                                 "modelViewProjectionMatrix");
-    texSampler2DHandle  = glGetUniformLocation(shaderProgramID, 
+    texSampler2DHandle  = glGetUniformLocation(shaderProgramID,
                                                 "texSampler2D");
-                                                
+
 #endif
 
 }

@@ -40,7 +40,7 @@ import com.emobc.android.parse.NwXmlStandarParserTextHandler;
  * @version 0.1
  */
 public class SaleActivityParser extends ActivityLevelParser{
-	private static final String _ITEM_DESCRIPTION_TAG_ = "itemDescripcion";
+	private static final String _ITEM_DESCRIPTION_TAG_ = "itemDescription";
 	private static final String _ITEM_IMAGE_TAG_ = "itemImageFile";
 	private static final String _ITEM_PRICE_TAG_ = "itemPrice";
 	private static final String _ITEM_TAX_TAG_ = "itemTax";

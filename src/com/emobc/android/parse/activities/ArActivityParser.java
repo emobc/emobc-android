@@ -22,14 +22,18 @@
 */
 package com.emobc.android.parse.activities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.xmlpull.v1.XmlPullParser;
 
+import com.emobc.android.NextLevel;
 import com.emobc.android.levels.AppLevelData;
 import com.emobc.android.levels.impl.ArLevelDataItem;
 import com.emobc.android.levels.impl.DefaultAppLevelData;
+import com.emobc.android.levels.impl.Target;
 import com.emobc.android.parse.NwXmlStandarParser;
 import com.emobc.android.parse.NwXmlStandarParserTextHandler;
 
@@ -40,6 +44,9 @@ import com.emobc.android.parse.NwXmlStandarParserTextHandler;
  */
 public class ArActivityParser extends ActivityLevelParser{
 	private static final String _ITEM_DESCRIPTION_TAG_ = "itemDescripcion";
+	private static final String _TARGETS_TAG_ = "targets";
+	private static final String _TARGET_TAG_ = "target";
+	private static final String _TARGET_NAME_TAG_ = "targetName";
 	
 	public ArActivityParser(XmlPullParser xpp) {
 		super(xpp);
@@ -58,6 +65,9 @@ public class ArActivityParser extends ActivityLevelParser{
 					private String headerText;
 					private String geoRef;
 					private String itemDescription;
+					private List<Target> targetList;
+					private String targetName;
+					private NextLevel nextLevel;
 					
 					@Override
 					public void handleText(String currentField, String text) {
@@ -71,21 +81,38 @@ public class ArActivityParser extends ActivityLevelParser{
 							geoRef = text;
 						}else if(_ITEM_DESCRIPTION_TAG_.equals(currentField)){
 							itemDescription = text;
+						}else if(_TARGET_NAME_TAG_.equals(currentField)){
+							targetName = text;
+						}else if(currentField.equals(_NEXT_LEVEL_TAG_)){
+							nextLevel = new NextLevel();
+						}else if(currentField.equals(_LEVEL_NUMBER_TAG_)){
+							nextLevel.setLevelNumber(Integer.parseInt(text));
+						}else if(currentField.equals(_NL_LEVEL_ID_TAG_)){
+							nextLevel.setLevelId(text);
+						}else if(currentField.equals(_DATA_NUMBER_TAG_)){
+							nextLevel.setDataNumber(Integer.parseInt(text));
+						}else if(currentField.equals(_NL_DATA_ID_TAG_)){
+							nextLevel.setDataId(text);
 						}
 					}
 					
 					@Override
 					public void handleEndTag(String currentField) {
-						if(currentField.equals(_LEVEL_DATA_TAG_)){
+						if(_LEVEL_DATA_TAG_.equals(currentField)){
 							ret.put(_LEVEL_DATA_TAG_, appLevelData);
 							appLevelData.reIndex();
-						}else if(currentField.equals(_DATA_TAG_)){
+						}else if(_TARGET_TAG_.equals(currentField)){
+							targetList.add(new Target(targetName, nextLevel));
+						}else if(_DATA_TAG_.equals(currentField)){
 							currItem = new ArLevelDataItem(
 									dataId, 
 									headerImage,  
 									headerText,
 									geoRef,
 									itemDescription);
+							if(targetList != null)
+								currItem.addAllTarget(targetList);
+							
 							appLevelData.addItem(currItem);
 						}
 					}
@@ -98,6 +125,12 @@ public class ArActivityParser extends ActivityLevelParser{
 							headerText = null;
 							geoRef = null;
 							itemDescription = null; 
+							targetList = null;
+						}else if(_TARGET_TAG_.equals(currentField)){
+							targetName = null;
+							nextLevel = null;
+						}else if(_TARGETS_TAG_.equals(currentField)){
+							targetList = new ArrayList<Target>();
 						}
 					}
 				}

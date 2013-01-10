@@ -22,6 +22,10 @@
 */
 package com.emobc.android.levels.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import com.emobc.android.levels.AppLevelDataItem;
 
 /**
@@ -37,7 +41,8 @@ public class ArLevelDataItem extends AppLevelDataItem {
 	private static final long serialVersionUID = 5549711692101967087L;
 	
 	private final String itemDescription;
-
+	private List<Target> targetList = new ArrayList<Target>();
+	
 	public ArLevelDataItem(String id, String headerImageFile,
 			String headerText, String geoReferencia, 
 			String itemDescription) {
@@ -47,6 +52,15 @@ public class ArLevelDataItem extends AppLevelDataItem {
 
 	public String getItemDescription() {
 		return itemDescription;
+	}
+	
+	public void addTarget(Target target){
+		if(!targetList.contains(target))
+			targetList.add(target);
+	}
+	
+	public void addAllTarget(Collection<Target> allTargets){
+		targetList.addAll(allTargets);
 	}
 	
 	public String toString(){
