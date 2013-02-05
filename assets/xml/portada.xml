@@ -1,59 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level>
 	<title/>
-	<backgroundFileName>images/cover/background.png</backgroundFileName>
+	<backgroundFileName>images/cover/backgroundCover.png</backgroundFileName>
 	<titleFileName>images/cover/imageCover.png</titleFileName>
-	<facebook>245462535500067</facebook>
+	<facebook>http://es-es.facebook.com/emobcapp</facebook>
+	<facebookImage>images/cover/facebook.png</facebookImage>
 	<twitter>http://twitter.com/emobcapp</twitter>
+	<twitterImage>images/cover/twitter.png</twitterImage>
 	<www></www>
 	<buttons>
-		<button>
-			<buttonTitle>Navegación</buttonTitle>
+		<button>	
+			<buttonTitle>Mi Revista</buttonTitle>
+			<buttonFileName>images/menu/backButton.png</buttonFileName>
 			<nextLevel>
-				<nextLevelLevelId>Navegación</nextLevelLevelId>
-				<nextLevelDataId>Navegación</nextLevelDataId>
+				<nextLevelLevelId>listado_portada</nextLevelLevelId>
+				<nextLevelDataId>listado_portada</nextLevelDataId>
 			</nextLevel>
-			<buttonFileName></buttonFileName>
 		</button>
 		<button>
-			<buttonTitle>Menús</buttonTitle>
+			<buttonTitle>Servicios</buttonTitle>
+			<buttonFileName>servicios.png</buttonFileName>
 			<nextLevel>
-				<nextLevelLevelId>Menús</nextLevelLevelId>
-				<nextLevelDataId>Menús</nextLevelDataId>
+				<nextLevelLevelId>servicios_taller</nextLevelLevelId>
+				<nextLevelDataId>taller</nextLevelDataId>
 			</nextLevel>
-			<buttonFileName></buttonFileName>
 		</button>
-		<button>
-			<buttonTitle>Contenidos</buttonTitle>
-			<nextLevel>
-				<nextLevelLevelId>Contenidos</nextLevelLevelId>
-				<nextLevelDataId>Contenidos</nextLevelDataId>
-			</nextLevel>
-			<buttonFileName></buttonFileName>
-		</button>
-		<button>
-			<buttonTitle>Formularios</buttonTitle>
-			<nextLevel>
-				<nextLevelLevelId>Formularios</nextLevelLevelId>
-				<nextLevelDataId>Formularios</nextLevelDataId>
-			</nextLevel>
-			<buttonFileName></buttonFileName>
-		</button>
-		<button>
-			<buttonTitle>Utilidades</buttonTitle>
-			<nextLevel>
-				<nextLevelLevelId>Utilidades</nextLevelLevelId>
-				<nextLevelDataId>Utilidades</nextLevelDataId>
-			</nextLevel>
-			<buttonFileName></buttonFileName>
-		</button>
-		<button>
-			<buttonTitle>Calendario</buttonTitle>
-			<nextLevel>
-				<nextLevelLevelId>Calendar</nextLevelLevelId>
-				<nextLevelDataId>Calendar</nextLevelDataId>
-			</nextLevel>
-			<buttonFileName></buttonFileName>
-		</button>
-	</buttons>
+    </buttons>
 </level>

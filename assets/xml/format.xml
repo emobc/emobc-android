@@ -12,8 +12,8 @@
 	    </format>
         <format>
 	        <name>title1</name>
-	        <textColor>#e4100f</textColor>
-	        <textSize>20sp</textSize>
+	        <textColor>#000000</textColor>
+	        <textSize>13sp</textSize>
 	        <textStyle>bold</textStyle>
 	        <typeFace>Ubuntu-Medium</typeFace>
 	        <cacheColorHint></cacheColorHint>
@@ -21,7 +21,7 @@
 	    </format>
 	    <format>
 	        <name>title2</name>
-	        <textColor>#e4100f</textColor>
+	        <textColor>#0000FF</textColor>
 	        <textSize>10sp</textSize>
 	        <textStyle>bold</textStyle>
 	        <typeFace>Ubuntu-Bold</typeFace>

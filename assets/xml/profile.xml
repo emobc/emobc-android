@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <profile>
+	<cameraImage></cameraImage>
+	<libraryImage></libraryImage>
+	<saveImage></saveImage>
+	<editImage></editImage>
 	<field>
 		<fieldType>INPUT_TEXT</fieldType>
 		<fieldLabel>Nombre:</fieldLabel>

@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
   <styles>
-    <type>
-      <levelId>Navegación</levelId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
-
-      <!-- Generic widgets: header, footer, basic_text, selection_list -->
-      <components>header=title1;selection_list=list1;</components>
-    </type>
       
     <type>
       <typeId>CALENDAR_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName>images/bg.png</backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;selection_list=list1;</components>
     </type>
     
     <type>
-      <typeId>COVER_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <typeId>COVER</typeId>
+      <backgroundFileName></backgroundFileName>
       
 	  <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components></components>
@@ -27,15 +20,25 @@
     
     <type>
       <typeId>BUTTONS_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>	
+      <backgroundFileName></backgroundFileName>	
       
 	  <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
     </type>
+	
+		
+	<type>
+      <levelId>FORM_PRUEBA</levelId>
+      <backgroundFileName></backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+   
     
     <type>
       <typeId>FORM_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName>images/bg.png</backgroundFileName>
       
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
@@ -43,7 +46,7 @@
     
     <type>
       <typeId>IMAGE_GALLERY_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName></backgroundFileName>
       
 	  <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
@@ -51,7 +54,7 @@
     
     <type>
       <typeId>IMAGE_LIST_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName>images/bg.png</backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;selection_list=list1;</components>
@@ -59,7 +62,7 @@
     
     <type>
       <typeId>IMAGE_TEXT_DESCRIPTION_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName>images/bg.png</backgroundFileName>
       
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;footer=text2;basic_text=text1;</components>
@@ -68,7 +71,7 @@
     
     <type>
       <typeId>IMAGE_ZOOM_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName></backgroundFileName>
       
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
@@ -76,7 +79,7 @@
     
     <type>
       <typeId>LIST_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName>images/bg.png</backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;selection_list=list1;description=title2;</components>
@@ -84,15 +87,15 @@
     
     <type>
       <typeId>MAP_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName>images/bg.png</backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
     </type>
-    
+
     <type>
       <typeId>PDF_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName>images/bg.png</backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
@@ -100,7 +103,7 @@
       
     <type>
       <typeId>QR_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName></backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
@@ -108,7 +111,7 @@
     
     <type>
       <typeId>VIDEO_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName></backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
@@ -116,7 +119,7 @@
     
     <type>
       <typeId>WEB_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName>images/bg.png</backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
@@ -124,7 +127,7 @@
 	
 	<type>
       <typeId>CANVAS_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName></backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
@@ -132,15 +135,23 @@
 	
 	<type>
       <typeId>AUDIO_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName></backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>
     </type>
 	
-		<type>
+	<type>
       <typeId>QUIZ_ACTIVITY</typeId>
-      <backgroundFileName>images/cover/background.png</backgroundFileName>
+      <backgroundFileName></backgroundFileName>
+
+      <!-- Generic widgets: header, footer, basic_text, selection_list -->
+      <components>header=title1;</components>
+    </type>
+	
+	<type>
+      <typeId>SEARCH_ACTIVITY</typeId>
+      <backgroundFileName></backgroundFileName>
 
       <!-- Generic widgets: header, footer, basic_text, selection_list -->
       <components>header=title1;</components>

@@ -1,52 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level>
 	<menuActions>
+		<menuLevel>Default</menuLevel>
 		<action>
 			<actionTitle>Boton1</actionTitle>
-			<actionImageName>images/menu/homeButton.png</actionImageName>
-			<systemAction>home</systemAction>
-			<leftMargin>0</leftMargin>
-			<widthButton>79</widthButton>
-			<heightButton>38</heightButton>
+			<actionImageName>images/menu_domicilio.png</actionImageName>
+			<systemAction></systemAction>
+			<leftMargin></leftMargin>
 			<nextLevel>
-				<nextLevelLevelId></nextLevelLevelId>
-				<nextLevelDataId></nextLevelDataId>
+				<nextLevelLevelId>listado_portada</nextLevelLevelId>
+				<nextLevelDataId>listado_portada</nextLevelDataId>
 			</nextLevel>
 		</action>
 		<action>
 			<actionTitle>Boton2</actionTitle>
-			<actionImageName>images/menu/button+.png</actionImageName>
+			<actionImageName>images/menu_reno.png</actionImageName>
 			<systemAction></systemAction>
-			<leftMargin>1</leftMargin>
-			<widthButton>79</widthButton>
-			<heightButton>38</heightButton>
+			<leftMargin></leftMargin>
 			<nextLevel>
-				<nextLevelLevelId>Texto</nextLevelLevelId>
-				<nextLevelDataId>Texto</nextLevelDataId>
+				<nextLevelLevelId>referencia</nextLevelLevelId>
+				<nextLevelDataId>referencia</nextLevelDataId>
 			</nextLevel>
 		</action>
 		<action>
 			<actionTitle>Boton3</actionTitle>
-			<actionImageName>images/menu/button+.png</actionImageName>
+			<actionImageName>images/menu_borrador.png</actionImageName>
 			<systemAction></systemAction>
-			<leftMargin>1</leftMargin>
-			<widthButton>79</widthButton>
-			<heightButton>38</heightButton>
+			<leftMargin></leftMargin>
 			<nextLevel>
-				<nextLevelLevelId>PDF</nextLevelLevelId>
-				<nextLevelDataId>PDF</nextLevelDataId>
+				<nextLevelLevelId>consulta</nextLevelLevelId>
+				<nextLevelDataId>consulta</nextLevelDataId>
 			</nextLevel>
 		</action>
 		<action>
 			<actionTitle>Boton4</actionTitle>
-			<actionImageName>images/menu/button+.png</actionImageName>
+			<actionImageName>images/menu_devolucion.png</actionImageName>
 			<systemAction></systemAction>
-			<leftMargin>1</leftMargin>
-			<widthButton>79</widthButton>
-			<heightButton>38</heightButton>
+			<leftMargin></leftMargin>
 			<nextLevel>
-				<nextLevelLevelId>Galería video</nextLevelLevelId>
-				<nextLevelDataId>Galería video</nextLevelDataId>
+				<nextLevelLevelId>servicios</nextLevelLevelId>
+				<nextLevelDataId>servicios</nextLevelDataId>
+			</nextLevel>
+		</action>
+        <action>
+			<actionTitle>Boton5</actionTitle>
+			<actionImageName>images/menu_calendario.png</actionImageName>
+			<systemAction></systemAction>
+			<leftMargin></leftMargin>
+			<nextLevel>
+				<nextLevelLevelId>Calendar</nextLevelLevelId>
+				<nextLevelDataId>Calendar</nextLevelDataId>
+			</nextLevel>
+		</action>
+		<action>
+			<actionTitle>Boton6</actionTitle>
+			<actionImageName>images/menu_mas.png</actionImageName>
+			<systemAction></systemAction>
+			<leftMargin></leftMargin>
+			<nextLevel>
+				<nextLevelLevelId>mas</nextLevelLevelId>
+				<nextLevelDataId>mas</nextLevelDataId>
 			</nextLevel>
 		</action>
 	</menuActions>
