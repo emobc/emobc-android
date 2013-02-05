@@ -101,8 +101,6 @@ public class MenuParser extends AbstractParser<List<Menu>> {
 					levelId = text;
 				}else if(currentField.equals(_NL_DATA_ID_TAG_)){
 					dataId = text;
-				}else{
-					ret.put(currentField, text);
 				}
 				
 			}

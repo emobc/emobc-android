@@ -51,6 +51,8 @@ import com.emobc.android.activities.SplashActivity;
  */
 public class ImagesUtils {
 
+	private static final String TAG = "ImagesUtils";
+	
 	private static final String DEFAULT_IMAGE_PATH_IMAGES = "images" + File.separator;
 	private static final String DEFAULT_IMAGE_PATH_DRAWABLE = "drawable" + File.separator;
 	
@@ -95,7 +97,7 @@ public class ImagesUtils {
 	 */
 	private static Drawable getDrawableFromUrl(String url) throws InvalidFileException {
 		InputStream is;
-		Log.i("ImagesUtils", "Loading Url: " + url);
+		Log.i(TAG, "Loading Url: " + url);
 		try {
 			is = (InputStream) fetch(url);
 			Bitmap bitmap = BitmapFactory.decodeStream(new FlushedInputStream(is));
@@ -121,7 +123,7 @@ public class ImagesUtils {
 			
 			Drawable ret = null;
 			if (SplashActivity.getApplicationData().getCache().get(imageName)!=null){
-				Log.i("ImagesUtils", "Loading from cache: " + imageName);
+				Log.i(TAG, "Loading from cache: " + imageName);
 				return SplashActivity.getApplicationData().getCache().get(imageName);
 			}else{
 				if(Utils.isUrl(imageName)){
@@ -158,7 +160,7 @@ public class ImagesUtils {
 				return SplashActivity.getApplicationData().getCache().get(imageName);
 			}
 		} catch (Exception e) {
-			Log.d("ImagesUtils", "Drawable exception");
+			Log.d(TAG, "Drawable exception");
 		}
 		return null;
 	}
@@ -212,7 +214,7 @@ public class ImagesUtils {
     	Drawable drawable = null;    
     	
     	try {
-    		Log.i("ImagesUtils", "Loading Image: " + imageName);
+    		Log.i(TAG, "Loading Image: " + imageName);
     		InputStream is = context.getAssets().open(imageName);
     		drawable = Drawable.createFromStream(is, "src name");
     	} catch (OutOfMemoryError e) {
@@ -243,7 +245,7 @@ public class ImagesUtils {
 		    options.inJustDecodeBounds = false;
 		    return BitmapFactory.decodeStream(is, null, options);
 		} catch (IOException e) {
-			Log.e("ImagesUtils", "IOException: " + e.getMessage());
+			Log.e(TAG, "IOException: " + e.getMessage());
 		}
 	return null;
 	}
@@ -277,7 +279,7 @@ public class ImagesUtils {
 			throw new IllegalArgumentException("Invalid imageName = null");
 		
 		Drawable drawable = null;    
-    	Log.i("ImagesUtils", "Loading Image: " + imageName);
+    	Log.i(TAG, "Loading Image: " + imageName);
     	if (imageName.contains(".")){
     		imageName = imageName.split("\\.")[0];
 
@@ -286,7 +288,7 @@ public class ImagesUtils {
     		int id = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
         	drawable = context.getResources().getDrawable(id);
     	} catch (NotFoundException e){
-    		Log.e("ImagesUtils", "Error loading Image: drawable/" + imageName);
+    		Log.w(TAG, "Error loading Image: drawable/" + imageName);
     	}
     	
     	/*try {

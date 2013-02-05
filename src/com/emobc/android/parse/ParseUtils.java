@@ -94,6 +94,8 @@ import com.emobc.android.utils.RetreiveFileContentTask;
  * @since 0.1
  **/
 public class ParseUtils {
+	private static final String TAG = "ParseUtils";
+	
 	private static final String _FIELD_PARAM_TAG_ = "fieldParam";
 	private static final String _REQUIRED_TAG_ = "required";
 	private static final String _FIELD_NAME_TAG_ = "fieldName";
@@ -281,10 +283,8 @@ public class ParseUtils {
 		InputStream is = null;
 		try {
 			is = new ByteArrayInputStream(str.getBytes("UTF-8"));
-
 		} catch (UnsupportedEncodingException e) {
-			Log.e("ApplicactionData", e.getLocalizedMessage());
-	    	//Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+			Log.e(TAG, e.getMessage());
 		}
 		return createXpp(context, is);
 	}
@@ -478,13 +478,14 @@ public class ParseUtils {
 		InputStream is = null;
 		try {
 			is = context.getAssets().open(createXmlFileName(xmlFileName, locale));
-		} catch (IOException e) {
-			Log.e("ParseUtils", e.getLocalizedMessage());
+		}catch(FileNotFoundException e){
 			try {
 				is = context.getAssets().open(createXmlFileName(xmlFileName, null));
 			} catch (IOException e1) {
-				Log.e("ParseUtils", e1.getLocalizedMessage());
+				Log.e(TAG, e1.getMessage());
 			}
+		}catch (IOException e) {
+			Log.e(TAG, e.getMessage());
 		}
 		return is;
 	}
@@ -523,21 +524,17 @@ public class ParseUtils {
 				is = new ByteArrayInputStream(text.getBytes("UTF-8"));		
 			}
 		} catch (MalformedURLException e) {
-			Log.e("ParseUtils", e.getLocalizedMessage());
-			//Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+			Log.e(TAG, e.getMessage());
 		}catch (FileNotFoundException e) {	
-			Log.e("ParseUtils", "No se puede encontrar el archivo: " + e.getLocalizedMessage());
-			//Toast.makeText(context, "No se puede encontrar el archivo: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+			Log.e(TAG, "No se puede encontrar el archivo: " + e.getMessage());
 		}catch (IOException e) {
-			Log.e("ParseUtils", e.getLocalizedMessage());
-			//Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+			Log.e(TAG, e.getMessage());
 		} catch (URISyntaxException e) {
-			Log.e("ParseUtils", "URISyntaxException: " + e.getLocalizedMessage());
-			//Toast.makeText(context, "URISyntaxException: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+			Log.e(TAG, "URISyntaxException: " + e.getMessage());
 		} catch (InterruptedException e) {
-			Log.e("ParseUtils", "InterruptedException: " + e.getLocalizedMessage());
+			Log.e(TAG, "InterruptedException: " + e.getMessage());
 		} catch (ExecutionException e) {
-			Log.e("ParseUtils", "ExecutionException: " + e.getLocalizedMessage());
+			Log.e(TAG, "ExecutionException: " + e.getMessage());
 		}
 		return is;
 	}
@@ -560,8 +557,7 @@ public class ParseUtils {
 			xpp =  factory.newPullParser();
 			xpp.setInput(is, "UTF-8");
 		}catch (XmlPullParserException e) {
-			Log.e("ParseUtils", e.getLocalizedMessage());
-			//Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+			Log.e(TAG, "XmlPullParserException: " + e.getMessage());
 		}
 		return xpp;		
 	}
@@ -640,7 +636,7 @@ public class ParseUtils {
 		default:
 			break;
 		}
-		Log.e("ParseUtils", "No se encuentre el parser para el tipo: " + activityType.toString());
+		Log.e(TAG, "No se encuentre el parser para el tipo: " + activityType.toString());
 		return null;
 	}
 

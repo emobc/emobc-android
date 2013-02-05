@@ -23,7 +23,7 @@
 package com.emobc.android.menu.builders;
 
 import android.app.Activity;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import com.emobc.android.menu.Menu;
 
@@ -33,5 +33,5 @@ import com.emobc.android.menu.Menu;
  * @version 0.1
  */
 public interface MenuBuilder {
-	int buildMenu(Activity context, Menu menu, LinearLayout layout);
+	int buildMenu(Activity context, Menu menu, ViewGroup layout);
 }

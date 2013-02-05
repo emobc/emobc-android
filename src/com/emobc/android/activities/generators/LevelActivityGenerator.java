@@ -62,6 +62,7 @@ import com.emobc.android.utils.Utils;
  * @since 0.1
  */
 public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
+	private static final String TAG = "LevelActivityGenerator";
 	/**
 	 * 
 	 */
@@ -155,7 +156,7 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 				backgroundDrawable = ImagesUtils.getDrawable(activity, backgroundFileName);
 				backgroundLayout.setBackgroundDrawable(backgroundDrawable);
 			} catch (InvalidFileException e) {
-				Log.e("LevelActivityGenerator", e.getLocalizedMessage());
+				Log.e(TAG, e.getLocalizedMessage());
 			}
 		}
 	}
@@ -198,51 +199,61 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 				
 				TextView v = (TextView) activity.findViewById(resID);
 				
-				v.setTextColor(Color.parseColor(currFormat.getTextColor())); 
+				if(v == null)
+					continue;
 				
+				if(Utils.hasLength(currFormat.getTextColor()))
+					v.setTextColor(Color.parseColor(currFormat.getTextColor())); 
 				
 				String complexSize = currFormat.getTextSize();
-				int sep = getSeparation(0, complexSize);		
-				String unitStr = complexSize.substring(sep);
-				int size = Integer.parseInt(complexSize.substring(0, sep));
-				int unit;
-				if(unitStr.equals("sp")){
-					unit = TypedValue.COMPLEX_UNIT_SP;
-				}else if(unitStr.equals("dip")){
-					unit = TypedValue.COMPLEX_UNIT_DIP;
-				}else if(unitStr.equals("px")){
-					unit = TypedValue.COMPLEX_UNIT_PX;
-				}else//default
-					unit = TypedValue.COMPLEX_UNIT_SP;
 				
-				v.setTextSize(unit, size);
-				
+				if(Utils.hasLength(complexSize)){
+					int sep = getSeparation(0, complexSize);		
+					String unitStr = complexSize.substring(sep);
+					int size = Integer.parseInt(complexSize.substring(0, sep));
+					int unit;
+					if(unitStr.equals("sp")){
+						unit = TypedValue.COMPLEX_UNIT_SP;
+					}else if(unitStr.equals("dip")){
+						unit = TypedValue.COMPLEX_UNIT_DIP;
+					}else if(unitStr.equals("px")){
+						unit = TypedValue.COMPLEX_UNIT_PX;
+					}else//default
+						unit = TypedValue.COMPLEX_UNIT_SP;
+					
+					v.setTextSize(unit, size);
+				}
 				
 				String complexStyle = currFormat.getTextStyle();
-				int style;
-				if(complexStyle.equals("normal")){
-					style = Typeface.NORMAL;
-				}else if(complexStyle.equals("bold")){
-					style = Typeface.BOLD;
-				}else if(complexStyle.equals("italic")){
-					style = Typeface.ITALIC;
-				}else//default
-					style = Typeface.NORMAL;
 				
-				String type = currFormat.getTypeFace();
-				Typeface tf;
-				//Try create a typeface with the type and the style.
-				//If it can't, it uses the specific font in assets/fonts
-				try{
-					Typeface tfAux = Typeface.createFromAsset(activity.getApplicationContext().getAssets(), "fonts/"+type+".ttf");
-					tf = Typeface.create(tfAux, style);	
-					v.setTypeface(tf);
-				}catch(Exception e){
-					Log.e("AplicationData","Impossible to apply any typeface");
-				}	
-				
+				if(Utils.hasLength(complexStyle)){
+					int style;
+					if(complexStyle.equals("normal")){
+						style = Typeface.NORMAL;
+					}else if(complexStyle.equals("bold")){
+						style = Typeface.BOLD;
+					}else if(complexStyle.equals("italic")){
+						style = Typeface.ITALIC;
+					}else//default
+						style = Typeface.NORMAL;
+					
+					String type = currFormat.getTypeFace();
+					
+					if(Utils.hasLength(type)){
+						Typeface tf;
+						//Try create a typeface with the type and the style.
+						//If it can't, it uses the specific font in assets/fonts
+						try{
+							Typeface tfAux = Typeface.createFromAsset(activity.getApplicationContext().getAssets(), "fonts/"+type+".ttf");
+							tf = Typeface.create(tfAux, style);	
+							v.setTypeface(tf);
+						}catch(Exception e){
+							Log.e(TAG, "Impossible to apply any typeface: " + e.getMessage());
+						}	
+					}					
+				}
 			}catch(Exception e){
-				Log.e("ApplicationData","Impossible to apply the format");
+				Log.e(TAG,"Impossible to apply the format: " + e.getMessage());
 			}//END Try-catch
 			
 		}//END While
@@ -272,53 +283,62 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	private void initializeSelectionFormat(Activity activity, TextView textView, FormatStyle fs){
 		try{
 			ListView list = (ListView) activity.findViewById(R.id.list);
-			list.setCacheColorHint(Color.parseColor(fs.getCacheColorHint()));
-			list.setBackgroundColor(Color.parseColor(fs.getBackgroundColor()));
-			textView.setTextColor(Color.parseColor(fs.getTextColor()));
+			
+			if(Utils.hasLength(fs.getCacheColorHint()))
+				list.setCacheColorHint(Color.parseColor(fs.getCacheColorHint()));
+			if(Utils.hasLength(fs.getBackgroundColor()))
+				list.setBackgroundColor(Color.parseColor(fs.getBackgroundColor()));
+			if(Utils.hasLength(fs.getTextColor()))
+				textView.setTextColor(Color.parseColor(fs.getTextColor()));
 			
 			String complexSize = fs.getTextSize();
-			int sep = getSeparation(0, complexSize);		
-			String unitStr = complexSize.substring(sep);
-			int size = Integer.parseInt(complexSize.substring(0, sep));
-			int unit;
-			if(unitStr.equals("sp")){
-				unit = TypedValue.COMPLEX_UNIT_SP;
-			}else if(unitStr.equals("dip")){
-				unit = TypedValue.COMPLEX_UNIT_DIP;
-			}else if(unitStr.equals("px")){
-				unit = TypedValue.COMPLEX_UNIT_PX;
-			}else//default
-				unit = TypedValue.COMPLEX_UNIT_SP;
-			
-			textView.setTextSize(unit, size);
-			
-			String complexStyle = fs.getTextStyle();
-			int style;
-			if(complexStyle.equals("normal")){
-				style = Typeface.NORMAL;
-			}else if(complexStyle.equals("bold")){
-				style = Typeface.BOLD;
-			}else if(complexStyle.equals("italic")){
-				style = Typeface.ITALIC;
-			}else//default
-				style = Typeface.NORMAL;
-			
-			String type = fs.getTypeFace();
-			Typeface tf;
+			if(Utils.hasLength(complexSize)){
+				int sep = getSeparation(0, complexSize);		
+				String unitStr = complexSize.substring(sep);
+				int size = Integer.parseInt(complexSize.substring(0, sep));
+				int unit;
+				if(unitStr.equals("sp")){
+					unit = TypedValue.COMPLEX_UNIT_SP;
+				}else if(unitStr.equals("dip")){
+					unit = TypedValue.COMPLEX_UNIT_DIP;
+				}else if(unitStr.equals("px")){
+					unit = TypedValue.COMPLEX_UNIT_PX;
+				}else//default
+					unit = TypedValue.COMPLEX_UNIT_SP;
 				
-			//Try create a typeface with the type and the style.
-			//If it can't, it uses the specific font in assets/fonts
-			
-			try{
-				Typeface tfAux = Typeface.createFromAsset(activity.getApplicationContext().getAssets(), "fonts/"+type+".ttf");
-				tf = Typeface.create(tfAux, style);	
-				textView.setTypeface(tf);
-			}catch(Exception e2){
-				Log.e("ApplicationData","Impossible to apply any typeface");
+				textView.setTextSize(unit, size);
 			}
 			
+			String complexStyle = fs.getTextStyle();
+			if(Utils.hasLength(complexStyle)){
+				int style;
+				if(complexStyle.equals("normal")){
+					style = Typeface.NORMAL;
+				}else if(complexStyle.equals("bold")){
+					style = Typeface.BOLD;
+				}else if(complexStyle.equals("italic")){
+					style = Typeface.ITALIC;
+				}else//default
+					style = Typeface.NORMAL;				
+
+				String type = fs.getTypeFace();
+				
+				if(Utils.hasLength(type)){	
+					Typeface tf;
+					//Try create a typeface with the type and the style.
+					//If it can't, it uses the specific font in assets/fonts
+					
+					try{
+						Typeface tfAux = Typeface.createFromAsset(activity.getApplicationContext().getAssets(), "fonts/"+type+".ttf");
+						tf = Typeface.create(tfAux, style);	
+						textView.setTypeface(tf);
+					}catch(Exception e){
+						Log.e(TAG,"Impossible to apply any typeface: " + e.getMessage());
+					}
+				}			
+			}			
 		}catch(Exception e){
-			Log.e("ApplicationData","Impossible to apply the format");
+			Log.e(TAG,"Impossible to apply the format: " + e.getMessage());
 		}
 	}
 

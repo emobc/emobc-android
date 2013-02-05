@@ -131,14 +131,14 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
 		int menuHeight = 0;
 		
 		//TOP MENU
-		LinearLayout topLayout = (LinearLayout) findViewById(R.id.topLayout);
+		ViewGroup topLayout = (ViewGroup) findViewById(R.id.topLayout);
 		com.emobc.android.menu.Menu topMenu = applicationData.getTopMenu(levelId, this);
 		
 		if(topLayout != null && topMenu != null)
 			menuHeight += buildMenu(topLayout, topMenu, new HorizontalMenuBuilder());
 		
 		//BOTTOM MENU
-		LinearLayout bottomLayout = (LinearLayout) findViewById(R.id.bottomLayout);
+		ViewGroup bottomLayout = (ViewGroup) findViewById(R.id.bottomLayout);
 		com.emobc.android.menu.Menu bottomMenu = applicationData.getBottomMenu(levelId, this);
 		
 		if(bottomLayout != null && bottomMenu != null)
@@ -164,7 +164,7 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
 //		}
 	}
 	
-	protected int buildMenu(LinearLayout layout, 
+	protected int buildMenu(ViewGroup layout, 
 			com.emobc.android.menu.Menu menu, 
 			MenuBuilder menuBuilder) {
 		// If no layout, noting to do.
