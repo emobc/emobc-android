@@ -38,6 +38,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
+import android.view.Surface;
+import android.view.WindowManager;
 
 import com.emobc.android.activities.SplashActivity;
 
@@ -51,15 +54,21 @@ import com.emobc.android.activities.SplashActivity;
  */
 public class ImagesUtils {
 
+	private static final String DEFAULT_DRAWABLE = "drawable";
+
 	private static final String TAG = "ImagesUtils";
 	
 	private static final String DEFAULT_IMAGE_PATH_IMAGES = "images" + File.separator;
-	private static final String DEFAULT_IMAGE_PATH_DRAWABLE = "drawable" + File.separator;
+	private static final String DEFAULT_IMAGE_PATH_DRAWABLE = DEFAULT_DRAWABLE + File.separator;
 	
 	private static final String DENSITY_LOW_IMAGE_PATH = "ldpi";
 	private static final String DENSITY_MEDIUM_IMAGE_PATH = "mdpi";
 	private static final String DENSITY_HIGH_IMAGE_PATH = "hdpi";
 	private static final String DENSITY_XHIGH_IMAGE_PATH = "xhdpi";
+
+	private static final String IMAGE_SEPARATOR = "-";
+
+	private static final Object LANDSCAPE_PATH = "land";
 	
 	
 	/**
@@ -179,23 +188,56 @@ public class ImagesUtils {
 	 * 	<li><strong>Extra High Density</strong>: <code>/assets/images/xhdpi/</code></li>
 	 * </ul>
 	 * </p>
+	 * Added landscape and portrait orientation.
 	 * @param context
 	 * @return Path to the application images directory.
 	 */
 	private static String getImagesPathName(Context context) {
+		Display display = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+		int rotation = display.getRotation();		
+		
+		StringBuilder builder = new StringBuilder();
+		
 		switch (context.getResources().getDisplayMetrics().densityDpi) {
 		case DisplayMetrics.DENSITY_LOW:
-			return DEFAULT_IMAGE_PATH_IMAGES + DENSITY_LOW_IMAGE_PATH + File.separator;
+			builder.append(DEFAULT_IMAGE_PATH_IMAGES);
+			builder.append(DENSITY_LOW_IMAGE_PATH);
+			break;
 		case DisplayMetrics.DENSITY_MEDIUM:
-			return DEFAULT_IMAGE_PATH_IMAGES + DENSITY_MEDIUM_IMAGE_PATH + File.separator;
+			builder.append(DEFAULT_IMAGE_PATH_IMAGES);
+			builder.append(DENSITY_MEDIUM_IMAGE_PATH);
+			break;
 		case DisplayMetrics.DENSITY_HIGH:
-			return DEFAULT_IMAGE_PATH_IMAGES + DENSITY_HIGH_IMAGE_PATH + File.separator;
+			builder.append(DEFAULT_IMAGE_PATH_IMAGES);
+			builder.append(DENSITY_HIGH_IMAGE_PATH);
+			break;
 		case DisplayMetrics.DENSITY_XHIGH:
-			return DEFAULT_IMAGE_PATH_IMAGES + DENSITY_XHIGH_IMAGE_PATH + File.separator;
+			builder.append(DEFAULT_IMAGE_PATH_IMAGES);
+			builder.append(DENSITY_XHIGH_IMAGE_PATH);
+			break;
 		default:
+			builder.append(DEFAULT_DRAWABLE);
 			break;		    
 		}		
-		return DEFAULT_IMAGE_PATH_DRAWABLE;
+		
+		switch (rotation) {
+		case Surface.ROTATION_0:
+		case Surface.ROTATION_180:
+			// Portrait
+			break;
+		case Surface.ROTATION_90:
+		case Surface.ROTATION_270:
+			// Landscape
+			builder.append(IMAGE_SEPARATOR);
+			builder.append(LANDSCAPE_PATH);
+			break;
+		default:
+			break;
+		}
+		
+		builder.append(File.separator);
+		
+		return builder.toString();
 	}
 
 	/**
@@ -285,7 +327,7 @@ public class ImagesUtils {
 
     	}
     	try{
-    		int id = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+    		int id = context.getResources().getIdentifier(imageName, DEFAULT_DRAWABLE, context.getPackageName());
         	drawable = context.getResources().getDrawable(id);
     	} catch (NotFoundException e){
     		Log.w(TAG, "Error loading Image: drawable/" + imageName);

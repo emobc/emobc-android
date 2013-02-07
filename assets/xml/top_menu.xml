@@ -1,35 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level>
 	<menuActions>
-		<menuLevel>listado_portada</menuLevel>
 		<action>
-			<actionTitle>Boton2</actionTitle>
-			<actionImageName>images/info.png</actionImageName>
-			<systemAction></systemAction>
-			<leftMargin>270</leftMargin>
-			<nextLevel>
-				<nextLevelLevelId>info</nextLevelLevelId>
-				<nextLevelDataId>info</nextLevelDataId>
-			</nextLevel>
-		</action>
-	</menuActions>
-	<menuActions>
-		<menuLevel>Default</menuLevel>
-		<action>
-			<actionTitle>Boton1</actionTitle>
 			<actionImageName>images/back.png</actionImageName>
 			<systemAction>back</systemAction>
-			<leftMargin>0</leftMargin>
-			<nextLevel>
-				<nextLevelLevelId></nextLevelLevelId>
-				<nextLevelDataId></nextLevelDataId>
-			</nextLevel>
 		</action>
 		<action>
-			<actionTitle>Boton2</actionTitle>
 			<actionImageName>images/info.png</actionImageName>
-			<systemAction></systemAction>
-			<leftMargin>268</leftMargin>
 			<nextLevel>
 				<nextLevelLevelId>info</nextLevelLevelId>
 				<nextLevelDataId>info</nextLevelDataId>
