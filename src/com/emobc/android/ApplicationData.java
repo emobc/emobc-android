@@ -646,20 +646,27 @@ public class ApplicationData {
 		return ret;
 	}
 	
+	/**
+	 * Alex: Los menus no tienen que agregar sobre el level. 
+	 * Si tiene defecto usa el de defecto y si tiene para su level solo el de su level (no suma con defecto). 
+	 * Ej en la portada solo se debe de ver en el top el back e info.
+	 * @param levelId
+	 * @param menuLevelMap
+	 * @return
+	 */
 	private static Menu buildLevelMenuFromMap(String levelId, Map<String, Menu> menuLevelMap){
 		Menu generalMenu = menuLevelMap.get(null);
 		Menu menu = menuLevelMap.get(levelId);
 		
 		if(menu == null)
 			return generalMenu;
-		
-		Menu retMenu = new Menu(menu.getLevelId());
-		if(generalMenu != null)
-			retMenu.addMenuItems(generalMenu.getItems());
-		
-		retMenu.addMenuItems(menu.getItems());
-		
-		return retMenu;
+		return menu;
+//		Menu retMenu = new Menu(menu.getLevelId());
+//		if(generalMenu != null)
+//			retMenu.addMenuItems(generalMenu.getItems());
+//		
+//		retMenu.addMenuItems(menu.getItems());
+//		return retMenu;
 	} 
 	
 	public Menu getTopMenu(String levelId, Context context){
