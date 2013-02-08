@@ -78,7 +78,6 @@ public class SaleActivity extends CreateMenus implements ContentAwareActivity,
 	public static final String SALE_ITEM = "sale-item";
 
 	private SaleLevelDataItem item;
-	private NextLevel nextLevel;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -95,8 +94,9 @@ public class SaleActivity extends CreateMenus implements ContentAwareActivity,
 		if (applicationData != null) {
 			Intent intent = getIntent();
 			isEntryPoint = (Boolean) intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
-			this.nextLevel = (NextLevel) intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
-
+			NextLevel nextLevel = (NextLevel) intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
+			setCurrentNextLevel(nextLevel);
+			
 			AppLevel appLevel = applicationData.getNextAppLevel(nextLevel, this);
 			AppLevelData data = appLevel.getData(this);
 			data.findByNextLevel(nextLevel);
@@ -106,7 +106,7 @@ public class SaleActivity extends CreateMenus implements ContentAwareActivity,
 			loadAppLevelData(data);
 
 			setEntryPoint(isEntryPoint);
-			createMenus(nextLevel.getLevelId());
+			createMenus();
 		} else {
 			Intent i = new Intent(this, SplashActivity.class);
 			startActivity(i);
@@ -115,7 +115,7 @@ public class SaleActivity extends CreateMenus implements ContentAwareActivity,
 	}
 
 	protected void loadAppLevelData(AppLevelData data) {
-		this.item = (SaleLevelDataItem) data.findByNextLevel(nextLevel);
+		this.item = (SaleLevelDataItem) data.findByNextLevel(getCurrentNextLevel());
 		AbstractActivtyGenerator.initializeHeader(this, item);
 
 		// Item Image

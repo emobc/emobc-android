@@ -682,7 +682,9 @@ public class ApplicationData {
 	 * @param menuLevelMap
 	 * @return
 	 */
-	private static Menu buildLevelMenuFromMap(String levelId, Map<String, Menu> menuLevelMap){
+	private static Menu buildLevelMenuFromMap(NextLevel nextLevel, Map<String, Menu> menuLevelMap){
+		String levelId = nextLevel.getLevelId();
+		
 		Menu generalMenu = menuLevelMap.get(null);
 		Menu menu = menuLevelMap.get(levelId);
 		
@@ -697,28 +699,28 @@ public class ApplicationData {
 //		return retMenu;
 	} 
 	
-	public Menu getTopMenu(String levelId, Context context){
+	public Menu getTopMenu(NextLevel nextLevel, Context context){
 		if(this.topMenuLevelMap == null)
 			this.topMenuLevelMap = loadMenuLevelMap(this.topMenu, context);
-		return buildLevelMenuFromMap(levelId, topMenuLevelMap);
+		return buildLevelMenuFromMap(nextLevel, topMenuLevelMap);
 	}
 	
-	public Menu getBottomMenu(String levelId, Context context){
+	public Menu getBottomMenu(NextLevel nextLevel, Context context){
 		if(this.bottomMenuLevelMap == null)
 			this.bottomMenuLevelMap = loadMenuLevelMap(this.bottomMenu, context);
-		return buildLevelMenuFromMap(levelId, bottomMenuLevelMap);
+		return buildLevelMenuFromMap(nextLevel, bottomMenuLevelMap);
 	}
 	
-	public Menu getContextMenu(String levelId, Context context){
+	public Menu getContextMenu(NextLevel nextLevel, Context context){
 		if(this.contextMenuLevelMap == null)
 			this.contextMenuLevelMap = loadMenuLevelMap(this.contextMenu, context);
-		return buildLevelMenuFromMap(levelId, contextMenuLevelMap);
+		return buildLevelMenuFromMap(nextLevel, contextMenuLevelMap);
 	}
 	
-	public Menu getSideMenu(String levelId, Context context){
+	public Menu getSideMenu(NextLevel nextLevel, Context context){
 		if(this.sideMenuLevelMap == null)
 			this.sideMenuLevelMap = loadMenuLevelMap(this.sideMenu, context);
-		return buildLevelMenuFromMap(levelId, sideMenuLevelMap);
+		return buildLevelMenuFromMap(nextLevel, sideMenuLevelMap);
 	}
 	
 	

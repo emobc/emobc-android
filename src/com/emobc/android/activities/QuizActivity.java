@@ -63,13 +63,13 @@ public class QuizActivity extends CreateMenus {
 			if(applicationData != null){
 				Intent intent = getIntent();
 				isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
-				isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
 				nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
+				setCurrentNextLevel(nextLevel);
 				ActivityGenerator generator = applicationData.getFromNextLevel(this, nextLevel);
 				generator.initializeActivity(this);
 				
 				setEntryPoint(isEntryPoint);
-				createMenus(nextLevel.getLevelId());			
+				createMenus();			
 			}else{
 				Intent i = new Intent (this, SplashActivity.class);
 				startActivity(i);

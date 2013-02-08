@@ -56,7 +56,7 @@ public class QrActivity extends CreateMenus {
 			Intent intent = getIntent();
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
-			
+			setCurrentNextLevel(nextLevel);
 			QrActivityGenerator generator = (QrActivityGenerator)applicationData.getFromNextLevel(this, nextLevel);
 			DefaultAppLevelData appLevelData = (DefaultAppLevelData) generator.getAppLevel().getData(this);
 			dataItem = (QrLevelDataItem)appLevelData.findByNextLevel(nextLevel);
@@ -64,7 +64,7 @@ public class QrActivity extends CreateMenus {
 			generator.initializeActivity(this);
 			
 			setEntryPoint(isEntryPoint);			
-			createMenus(nextLevel.getLevelId());
+			createMenus();
 		}else{
 			Intent i = new Intent (this, SplashActivity.class);
 			startActivity(i);

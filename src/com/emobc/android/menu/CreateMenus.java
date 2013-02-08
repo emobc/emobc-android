@@ -48,6 +48,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.emobc.android.ApplicationData;
+import com.emobc.android.NextLevel;
 import com.emobc.android.activities.EMobcApplication;
 import com.emobc.android.activities.R;
 import com.emobc.android.menu.builders.HorizontalMenuBuilder;
@@ -80,7 +81,9 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
 	private LinearLayout sideMenuLayout;
 	private RelativeLayout appLayout;
 	private boolean menuOut = false;
-    private AnimParams animParams = new AnimParams();		
+    private AnimParams animParams = new AnimParams();	
+    private NextLevel currentNextLevel;
+    
     
     @Override
     protected void onDestroy(){
@@ -126,27 +129,27 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
      * @param activity
      * @param isEntryPoint
      */
-	protected void createMenus(String levelId){		
+	protected void createMenus(){		
 		ApplicationData applicationData = getApplicationData();
 		
 		int menuHeight = 0;
 		
 		//TOP MENU
 		ViewGroup topLayout = (ViewGroup) findViewById(R.id.topLayout);
-		com.emobc.android.menu.Menu topMenu = applicationData.getTopMenu(levelId, this);
+		com.emobc.android.menu.Menu topMenu = applicationData.getTopMenu(getCurrentNextLevel(), this);
 		
 		if(topLayout != null && topMenu != null)
 			menuHeight += buildMenu(topLayout, topMenu, new HorizontalMenuBuilder());
 		
 		//BOTTOM MENU
 		ViewGroup bottomLayout = (ViewGroup) findViewById(R.id.bottomLayout);
-		com.emobc.android.menu.Menu bottomMenu = applicationData.getBottomMenu(levelId, this);
+		com.emobc.android.menu.Menu bottomMenu = applicationData.getBottomMenu(getCurrentNextLevel(), this);
 		
 		if(bottomLayout != null && bottomMenu != null)
 			menuHeight += buildMenu(bottomLayout, bottomMenu, new HorizontalMenuBuilder());
 		
 		//CONTEXT MENU
-		this.contextMenu = applicationData.getContextMenu(levelId, this);
+		this.contextMenu = applicationData.getContextMenu(getCurrentNextLevel(), this);
 
 		if(menuHeight > 0){	
 			Display display = getWindowManager().getDefaultDisplay();
@@ -406,6 +409,13 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
 		this.isEntryPoint = isEntryPoint;
 	}
 	
+	public NextLevel getCurrentNextLevel() {
+		return currentNextLevel;
+	}
+	public void setCurrentNextLevel(NextLevel currentNextLevel) {
+		this.currentNextLevel = currentNextLevel;
+	}
+
 	/**
 	 * Class for intercept call phone.
 	 */

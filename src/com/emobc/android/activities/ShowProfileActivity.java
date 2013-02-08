@@ -68,8 +68,10 @@ public class ShowProfileActivity extends CreateMenus {
 		
 		rotateScreen(this);
 		
+		setCurrentNextLevel(NextLevel.PROFILE_NEXT_LEVEL);
+		
 		setEntryPoint(false);
-		createMenus(null);
+		createMenus();
 	}
 	
 	private void showProfileData(Profile profile) {

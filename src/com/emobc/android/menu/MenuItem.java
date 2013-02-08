@@ -61,4 +61,6 @@ public abstract class MenuItem implements Serializable {
 	}
 
 	public abstract void executeMenuItem(Activity context);
+	
+	public abstract boolean isEnable(Activity context);
 }

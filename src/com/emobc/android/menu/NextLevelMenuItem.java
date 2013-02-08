@@ -62,4 +62,12 @@ public class NextLevelMenuItem extends MenuItem {
 	public void executeMenuItem(Activity context) {
 		AbstractActivtyGenerator.showNextLevel(context, nextLevel);		
 	}
+
+	@Override
+	public boolean isEnable(Activity context) {
+		NextLevel nextLevel = ((CreateMenus)context).getCurrentNextLevel();
+		if(nextLevel == null)
+			return true;
+		return !this.nextLevel.equals(nextLevel);
+	}
 }

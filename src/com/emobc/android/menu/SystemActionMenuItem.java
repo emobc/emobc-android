@@ -66,4 +66,9 @@ public class SystemActionMenuItem extends MenuItem {
 		}
 	}
 
+	@Override
+	public boolean isEnable(Activity context) {
+		return true;
+	}
+
 }

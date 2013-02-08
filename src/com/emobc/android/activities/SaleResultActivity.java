@@ -126,7 +126,7 @@ public class SaleResultActivity
 		}
 		
 		setEntryPoint(false);
-		createMenus(null);		
+		createMenus();		
     }
     
 	@Override

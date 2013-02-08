@@ -101,7 +101,7 @@ public class GalleryActivity extends CoverActivity {
 		//createToolBar(isEntryPoint);
 
 		setEntryPoint(isEntryPoint);
-		createMenus(null);
+		createMenus();
 	}
 	
 	public class ImageAdapter extends BaseAdapter {

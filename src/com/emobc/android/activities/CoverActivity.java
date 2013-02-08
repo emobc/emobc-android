@@ -129,6 +129,7 @@ public class CoverActivity extends CreateMenus {
 			}
 			
 			NextLevel entryPoint = applicationData.getEntryPoint();
+			setCurrentNextLevel(NextLevel.COVER_NEXT_LEVEL);
 			
 	        //Show next level
 			if(entryPoint != null && entryPoint.isDefined()){

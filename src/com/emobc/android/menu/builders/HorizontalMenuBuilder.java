@@ -25,6 +25,7 @@ package com.emobc.android.menu.builders;
 import java.util.List;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -33,9 +34,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.LinearLayout.LayoutParams;
 
 import com.emobc.android.activities.R;
 import com.emobc.android.menu.Menu;
@@ -64,7 +65,7 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 			throw new IllegalArgumentException("Invalid Layout: null");
 				
 		List<MenuItem> items = menu.getItems();
-		
+				
 		Display display = context.getWindowManager().getDefaultDisplay();
 		int width = display.getWidth();		
 		
@@ -111,6 +112,7 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 				
 				TextView menuItemTextView = (TextView )itemView.findViewById(R.id.menu_item_text);
 				final ImageView menuItemImageView = (ImageView) itemView.findViewById(R.id.menu_item_image);
+				menuItemImageView.setColorFilter(Color.TRANSPARENT, Mode.SRC_ATOP);
 				
 				if(Utils.hasLength(item.getTitle())){
 					menuItemTextView.setText(item.getTitle());
@@ -142,6 +144,12 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 						bandMenuItemWidth, 
 						menuItemHeight);
 				itemView.setLayoutParams(params);
+				
+				boolean enabled = item.isEnable(context);
+				itemView.setEnabled(enabled);
+				if(!enabled){
+					menuItemImageView.setColorFilter(0x77000000, Mode.SRC_ATOP);	
+				}
 				
 				menuBandLinearLayout.addView(itemView);
 				

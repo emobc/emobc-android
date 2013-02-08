@@ -73,7 +73,8 @@ public class QuizQuestionsActivity extends CreateMenus {
         this.quizController = (QuizController)intent.getSerializableExtra(QuizController.QUIZ_CONTROLLER_TAG);
         
         NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
-
+        setCurrentNextLevel(nextLevel);
+        
         ApplicationData applicationData = getApplicationData();
         
 		AppLevel appLevel = applicationData.getNextAppLevel(nextLevel, this);

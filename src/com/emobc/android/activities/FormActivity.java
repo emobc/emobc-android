@@ -76,6 +76,7 @@ public class FormActivity extends CreateMenus {
 			Intent intent = getIntent();  
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
+			setCurrentNextLevel(nextLevel);
 			isProfile = NextLevel.PROFILE_NEXT_LEVEL.equals(nextLevel);
 			if (Boolean.TRUE.equals(isProfile)) {
 				this.profileGenerator = (ProfileActivityGenerator)applicationData.getFromNextLevel(this, nextLevel);
@@ -84,7 +85,7 @@ public class FormActivity extends CreateMenus {
 				this.generator = (FormActivityGenerator)applicationData.getFromNextLevel(this, nextLevel);
 				generator.initializeActivity(this);
 				setEntryPoint(isEntryPoint);
-				createMenus(nextLevel.getLevelId());
+				createMenus();
 			}
 			
 			if (savedInstanceState!=null){

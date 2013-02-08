@@ -40,6 +40,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.emobc.android.ApplicationData;
+import com.emobc.android.NextLevel;
 import com.emobc.android.SearchResult;
 import com.emobc.android.activities.generators.AbstractActivtyGenerator;
 import com.emobc.android.menu.CreateMenus;
@@ -89,7 +90,10 @@ public class SearchActivity extends CreateMenus {
         });
       //createToolBar(isEntryPoint);
 		setEntryPoint(isEntryPoint);
-		createMenus(null);
+		setCurrentNextLevel(NextLevel.SEARCH_NEXT_LEVEL);
+		
+		createMenus();
+		
     }
     
     public void locateText (String searchText){

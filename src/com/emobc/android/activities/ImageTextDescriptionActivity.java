@@ -54,10 +54,11 @@ public class ImageTextDescriptionActivity extends CreateMenus
 			Intent intent = getIntent();
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
+			setCurrentNextLevel(nextLevel);
 			this.generator = (ImageTextDescriptionActivityGenerator)applicationData.getFromNextLevel(this, nextLevel);			
 			this.generator.initializeActivity(this);
 			setEntryPoint(isEntryPoint);
-			createMenus(nextLevel.getLevelId());
+			createMenus();
 		}else{
 			Intent i = new Intent (this, SplashActivity.class);
 			startActivity(i);
