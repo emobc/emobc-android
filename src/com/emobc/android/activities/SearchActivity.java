@@ -38,12 +38,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.emobc.android.ApplicationData;
-import com.emobc.android.NextLevel;
 import com.emobc.android.SearchResult;
-import com.emobc.android.levels.AppLevel;
+import com.emobc.android.activities.generators.AbstractActivtyGenerator;
 import com.emobc.android.menu.CreateMenus;
 
 /** 
@@ -102,7 +100,7 @@ public class SearchActivity extends CreateMenus {
 			dialog.setCancelable(false);
 			dialog.show();
 			
-			ApplicationData applicationData = SplashActivity.getApplicationData();
+			ApplicationData applicationData = getApplicationData();
 			List<SearchResult> lista = applicationData.findWidthText(this, searchText.toString());
 			if(lista != null){
 				ListView lv = (ListView) findViewById(R.id.searchList);	
@@ -138,7 +136,7 @@ public class SearchActivity extends CreateMenus {
 	            textView.setBackgroundResource(R.drawable.list_selector);
 	    		View.OnClickListener listener = new View.OnClickListener() {
 			        public void onClick(View view) {
-			        	showNextLevel(activity, item.getNextLevel());		        	
+			        	AbstractActivtyGenerator.showNextLevel(activity, item.getNextLevel());		        	
 			        }
 	            };	            
 	            textView.setOnClickListener(listener);
@@ -147,27 +145,6 @@ public class SearchActivity extends CreateMenus {
                 		
 	    	return view;
     	 }
-    	
-    	public void showNextLevel(Context context, NextLevel nextLevel) {
-    		if(nextLevel != null && nextLevel.isDefined()){
-				ApplicationData applicationData = SplashActivity.getApplicationData();
-				AppLevel level = applicationData.getNextAppLevel(nextLevel, context);
-				if(level != null){
-					Class<? extends Activity> clazz = level.getAcivityClass();
-					
-					Intent launchActivity = new Intent(context, clazz);				
-					launchActivity.putExtra(ApplicationData.NEXT_LEVEL_TAG, nextLevel);				
-					context.startActivity(launchActivity);
-				}else{
-					CharSequence text = "Invalid Next Level: " + nextLevel.toString();
-					int duration = Toast.LENGTH_SHORT;
-
-					Toast toast = Toast.makeText(context, text, duration);
-					toast.show();					
-				}  
-			} 
-		}
-
 
     	 private RelativeLayout createView(ViewGroup parent) {
     		 RelativeLayout item = (RelativeLayout)activity.getLayoutInflater().inflate(R.layout.list_item, parent, false);

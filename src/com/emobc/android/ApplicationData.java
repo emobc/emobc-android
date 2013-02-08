@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.util.LruCache;
@@ -70,12 +71,14 @@ import com.emobc.android.utils.InvalidFileException;
  * @sine 1.0
  */
 public class ApplicationData {
+	private static final String TAG = "ApplicationData";
+	
 	private static final String _APP_DATA_FILE_NAME_ = "app.xml";
 	
 	public static final String NEXT_LEVEL_TAG = "_NEXT_LEVEL_";
 	public static final String IS_ENTRY_POINT_TAG = "_IS_ENTRY_POINT_";
 
-	public static final String IS_SIDE_MENU_TAG = "_IS_SIDE_MENU_";
+//	public static final String IS_SIDE_MENU_TAG = "_IS_SIDE_MENU_";
 	
 	// The ID of your application that you received from PayPal
 	private static final String PAYPAL_APP_ID = "APP-80W284485P519543T";
@@ -328,9 +331,9 @@ public class ApplicationData {
 	 * @param NextLevel nextLevel
 	 * @return ActivityGenerator
 	 */
-	public ActivityGenerator getFromNextLevel(Context context, NextLevel nextLevel) {
+	public ActivityGenerator getFromNextLevel(Activity activity, NextLevel nextLevel) {
 		try {
-			return ActivityGeneratorFactory.createActivityGenerator(context, nextLevel);
+			return ActivityGeneratorFactory.createActivityGenerator(activity, nextLevel);
 		} catch (InvalidFileException e) {
 		}
 		return null;
@@ -511,6 +514,31 @@ public class ApplicationData {
 			this.formatStyleMap = formatParser.parse();
 		}		
 		return formatStyleMap;
+	}
+	
+	public void initStylesAndFormats(Context context){
+		if(styleResult == null){
+			// Create Parser
+			StyleParser styleParser = new StyleParser(ParseUtils.createXpp(
+					context, 
+	    			Locale.getDefault(), 
+	    			this.stylesFileName, 
+	    			false));
+			
+			styleResult = styleParser.parse();			
+		}
+		Log.i(TAG, "Styles Initialized");
+		if(formatStyleMap == null){
+			// Create Parser
+			FormatParser formatParser = new FormatParser(ParseUtils.createXpp(
+					context, 
+	    			Locale.getDefault(), 
+	    			this.formatsFileName, 
+	    			false));
+			
+			this.formatStyleMap = formatParser.parse();
+		}
+		Log.i(TAG, "Formats Initialized");
 	}
 	
 	public ServerPushDataItem getServerPush() {

@@ -68,7 +68,8 @@ public class MapsActivity extends MapActivity {
 		super.onCreate(savedInstanceState);
 		CreateMenus.rotateScreen(this);
 		
-        ApplicationData applicationData = SplashActivity.getApplicationData();
+        ApplicationData applicationData = getApplicationData();
+        
 		if(applicationData != null){
 			Intent intent = getIntent();
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
@@ -82,13 +83,18 @@ public class MapsActivity extends MapActivity {
 
 	}
 	
+	private ApplicationData getApplicationData() {
+		EMobcApplication app = (EMobcApplication)getApplication();
+		return app.getApplicationData();
+	}
+
 	protected void showHome() {
 		Intent launchHome = new Intent(this, CoverActivity.class);
 		startActivity(launchHome);
 	}
 
 	protected void showShare() {
-		ApplicationData applicationData = SplashActivity.getApplicationData();
+		ApplicationData applicationData = getApplicationData();
 		if (applicationData != null) {
 			Intent intent = getIntent();
 			NextLevel nextLevel = (NextLevel) intent

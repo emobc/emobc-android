@@ -61,7 +61,8 @@ public class ImageListActivity extends CreateMenus
         Boolean isEntryPoint = null;
         rotateScreen(this);
         
-        ApplicationData applicationData = SplashActivity.getApplicationData();
+        ApplicationData applicationData = getApplicationData();
+        
 		if(applicationData != null){
 			Intent intent = getIntent();  
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);

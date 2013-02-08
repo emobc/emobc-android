@@ -31,12 +31,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.generators.AbstractActivtyGenerator;
-import com.emobc.android.parse.ParseUtils;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
@@ -59,20 +57,11 @@ public class SplashActivity extends Activity implements Serializable {
 	protected static final String TAG = "SplashActivity";
 
 	private final int SPLASH_DISPLAY_LENGHT = 5000;
-	private static ApplicationData instance = null;
 
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		Log.i(TAG, "OnCreate Splash");
-
-		try {
-			instance = ApplicationData.readApplicationData(this);
-			instance.setProfile(ParseUtils.parseProfileData(this,
-					instance.getProfileFileName()));
-		} catch (InvalidFileException e) {
-			Log.e(TAG, e.toString());
-		}
 
 		setContentView(R.layout.splash_screen);
 
@@ -86,11 +75,14 @@ public class SplashActivity extends Activity implements Serializable {
 			Log.e(TAG, e.getMessage());
 		}
 
+        EMobcApplication app = (EMobcApplication)getApplication();
+		final ApplicationData applicationData = app.getApplicationData();
+		
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				Intent mainIntent = null;
-				if (instance.getProfile() == null
+				if (applicationData.getProfile() == null
 						|| Profile.isFilled(SplashActivity.this)) {
 					mainIntent = new Intent(SplashActivity.this,
 							CoverActivity.class);
@@ -105,9 +97,4 @@ public class SplashActivity extends Activity implements Serializable {
 		}, SPLASH_DISPLAY_LENGHT);
 
 	}
-
-	public static ApplicationData getApplicationData() {
-		return instance;
-	}
-
 }

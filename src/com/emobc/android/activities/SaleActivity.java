@@ -90,7 +90,8 @@ public class SaleActivity extends CreateMenus implements ContentAwareActivity,
 
 		setContentView(R.layout.sale_layout);
 
-		ApplicationData applicationData = SplashActivity.getApplicationData();
+		ApplicationData applicationData = getApplicationData();
+		
 		if (applicationData != null) {
 			Intent intent = getIntent();
 			isEntryPoint = (Boolean) intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
@@ -237,7 +238,7 @@ public class SaleActivity extends CreateMenus implements ContentAwareActivity,
 	}
 
 	private PayPalPayment getSimpleItemPayment() {
-		ApplicationData applicationData = SplashActivity.getApplicationData();
+		ApplicationData applicationData = getApplicationData();
 
 		// Create a basic PayPalPayment.
 		PayPalPayment payment = new PayPalPayment();
@@ -336,8 +337,7 @@ public class SaleActivity extends CreateMenus implements ContentAwareActivity,
 				// This is the main initialization call that takes in your
 				// Context, the Application ID, and the server you would like to
 				// connect to.
-				final String appId = SplashActivity.getApplicationData()
-						.getPayPalApplicationId();
+				final String appId = getApplicationData().getPayPalApplicationId();
 
 				pp = PayPal.initWithAppID(context, appId, PAYPAL_SERVER);
 

@@ -54,8 +54,9 @@ public class ButtonsActivity extends CreateMenus{
         
         boolean isEntryPoint=false;
         rotateScreen(this);
+
+        ApplicationData applicationData = getApplicationData();
         
-        ApplicationData applicationData = SplashActivity.getApplicationData();
 		if(applicationData != null){
 			Intent intent = getIntent();
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);

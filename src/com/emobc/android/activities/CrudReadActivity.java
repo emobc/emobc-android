@@ -86,7 +86,8 @@ public class CrudReadActivity extends Activity implements Serializable{
 		Intent intent = getIntent();  
 		NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
 
-		ApplicationData applicationData = SplashActivity.getApplicationData();
+		ApplicationData applicationData = getApplicationData();
+		
 		AppLevel level = applicationData.getNextAppLevel(nextLevel, this);
 		
 		ModelParser parser = new ModelParser(ParseUtils.createXpp(
@@ -111,6 +112,11 @@ public class CrudReadActivity extends Activity implements Serializable{
 		
 		registerForContextMenu(lv);
     }
+    
+	private ApplicationData getApplicationData() {
+		EMobcApplication app = (EMobcApplication)getApplication();
+		return app.getApplicationData();
+	}
     
     // Application Menu
     

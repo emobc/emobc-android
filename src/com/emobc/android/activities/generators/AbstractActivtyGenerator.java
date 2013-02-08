@@ -37,8 +37,8 @@ import android.widget.Toast;
 
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
+import com.emobc.android.activities.EMobcApplication;
 import com.emobc.android.activities.R;
-import com.emobc.android.activities.SplashActivity;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelDataItem;
 import com.emobc.android.utils.ImagesUtils;
@@ -127,28 +127,37 @@ public abstract class AbstractActivtyGenerator implements ActivityGenerator, Ser
 	 * @param context
 	 * @param nextLevel
 	 */
-	public static void showNextLevel(Context context, NextLevel nextLevel) {
+	public static void showNextLevel(Activity activity, NextLevel nextLevel) {
+		showNextLevel(activity, nextLevel, false);
+	}
+	
+	public static void showNextLevel(Activity activity, NextLevel nextLevel, boolean entryPoint) {
 		if(nextLevel != null && nextLevel.isDefined()){
-			ApplicationData applicationData = SplashActivity.getApplicationData();
-			AppLevel level = applicationData.getNextAppLevel(nextLevel, context);
+			ApplicationData applicationData = getApplicationData(activity);
+			AppLevel level = applicationData.getNextAppLevel(nextLevel, activity);
 			if(level != null){
 				Class<? extends Activity> clazz = level.getAcivityClass();
 				
-				Intent launchActivity = new Intent(context, clazz);				
-				launchActivity.putExtra(ApplicationData.NEXT_LEVEL_TAG, nextLevel);	
-				launchActivity.putExtra(ApplicationData.IS_ENTRY_POINT_TAG, false);
-								
-				context.startActivity(launchActivity);
+				Intent launchActivity = new Intent(activity, clazz);				
+				launchActivity.putExtra(ApplicationData.NEXT_LEVEL_TAG, nextLevel);
+				launchActivity.putExtra(ApplicationData.IS_ENTRY_POINT_TAG, entryPoint);	
+				
+				activity.startActivity(launchActivity);
 			}else{
 				CharSequence text = "Invalid Next Level: " + nextLevel.toString();
 				int duration = Toast.LENGTH_SHORT;
 
-				Toast toast = Toast.makeText(context, text, duration);
+				Toast toast = Toast.makeText(activity, text, duration);
 				toast.show();					
 			}  
-		} 
+		}		
 	}
 	
+	protected static ApplicationData getApplicationData(Activity activity) {
+		EMobcApplication app = (EMobcApplication)activity.getApplication();
+		return app.getApplicationData();
+	}
+
 	public static void initializeHeader(Activity activity, AppLevelDataItem item){
 		if(item == null)
 			return;

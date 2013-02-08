@@ -30,6 +30,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.InvalidParameterException;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
@@ -42,7 +43,7 @@ import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
 
-import com.emobc.android.activities.SplashActivity;
+import com.emobc.android.activities.EMobcApplication;
 
 
 /**
@@ -125,28 +126,30 @@ public class ImagesUtils {
 	 * @return
 	 * @throws InvalidFileException
 	 */
-	public static Drawable getDrawable(Context context, String imageName) throws InvalidFileException{
+	public static Drawable getDrawable(Activity activity, String imageName) throws InvalidFileException{
 		try {
 			if(imageName == null || imageName.isEmpty())
 				return null;
 			
 			Drawable ret = null;
-			if (SplashActivity.getApplicationData().getCache().get(imageName)!=null){
+			EMobcApplication app = (EMobcApplication)activity.getApplication();
+			
+			if (app.getApplicationData().getCache().get(imageName)!=null){
 				Log.i(TAG, "Loading from cache: " + imageName);
-				return SplashActivity.getApplicationData().getCache().get(imageName);
+				return app.getApplicationData().getCache().get(imageName);
 			}else{
 				if(Utils.isUrl(imageName)){
 					ret = getDrawableFromUrl(imageName);
 				}else{
 		
 					if(imageName.startsWith(DEFAULT_IMAGE_PATH_DRAWABLE)){
-						ret = getDrawableFromName(context, imageName);
+						ret = getDrawableFromName(activity, imageName);
 					}else{
-						ret = getDrawableFromName(context, DEFAULT_IMAGE_PATH_DRAWABLE + imageName);
+						ret = getDrawableFromName(activity, DEFAULT_IMAGE_PATH_DRAWABLE + imageName);
 					}
 					
 					if(ret == null){
-						String imagePathName = getImagesPathName(context);
+						String imagePathName = getImagesPathName(activity);
 						String rawImageName = null;
 						StringBuilder imageNameBuilder = new StringBuilder();
 						
@@ -158,15 +161,15 @@ public class ImagesUtils {
 						imageNameBuilder.append(imagePathName);
 						imageNameBuilder.append(rawImageName);
 						try {
-							ret = getDrawableFromAssetName(context, imageNameBuilder.toString());
+							ret = getDrawableFromAssetName(activity, imageNameBuilder.toString());
 						} catch (InvalidFileException e) {
-							ret = getDrawableFromAssetName(context, DEFAULT_IMAGE_PATH_IMAGES + rawImageName);
+							ret = getDrawableFromAssetName(activity, DEFAULT_IMAGE_PATH_IMAGES + rawImageName);
 						}
 					}
 						
 				}
-				SplashActivity.getApplicationData().getCache().put(imageName, ret);
-				return SplashActivity.getApplicationData().getCache().get(imageName);
+				app.getApplicationData().getCache().put(imageName, ret);
+				return app.getApplicationData().getCache().get(imageName);
 			}
 		} catch (Exception e) {
 			Log.d(TAG, "Drawable exception");

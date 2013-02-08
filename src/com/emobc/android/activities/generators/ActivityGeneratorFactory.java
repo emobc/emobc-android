@@ -22,14 +22,13 @@
 */
 package com.emobc.android.activities.generators;
 
+import android.app.Activity;
+import android.util.Log;
+
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
-import com.emobc.android.activities.SplashActivity;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.utils.InvalidFileException;
-
-import android.content.Context;
-import android.util.Log;
 
 /**
  * Abstract Factory of Activities Generators
@@ -42,13 +41,13 @@ public abstract class ActivityGeneratorFactory {
 	
 	/**
 	 * Returns a specific ActivityGenerator a screen depending on the requested activity
-	 * @param context
+	 * @param activity
 	 * @param nextLevel
 	 * @return ActivityGenerator
 	 */
-	public static ActivityGenerator createActivityGenerator(Context context, NextLevel nextLevel) throws InvalidFileException{
-		ApplicationData applicationData = SplashActivity.getApplicationData();
-		AppLevel appLevel = applicationData.getNextAppLevel(nextLevel, context);
+	public static ActivityGenerator createActivityGenerator(Activity activity, NextLevel nextLevel) throws InvalidFileException{
+		ApplicationData applicationData = AbstractActivtyGenerator.getApplicationData(activity);
+		AppLevel appLevel = applicationData.getNextAppLevel(nextLevel, activity);
 		switch (appLevel.getActivityType()) {
 		case IMAGE_TEXT_DESCRIPTION_ACTIVITY:
 			return new ImageTextDescriptionActivityGenerator(appLevel, nextLevel);

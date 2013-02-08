@@ -26,7 +26,6 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -41,7 +40,6 @@ import com.emobc.android.ActivityType;
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
 import com.emobc.android.activities.R;
-import com.emobc.android.activities.SplashActivity;
 import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.AppLevelData;
 import com.emobc.android.themes.ActivityTypeStyle;
@@ -120,7 +118,7 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	}
 	
 	public static void initializeScreen(Activity activity, ActivityType activityType, NextLevel nextLevel){
-		ApplicationData applicationData = SplashActivity.getApplicationData();		
+		ApplicationData applicationData = AbstractActivtyGenerator.getApplicationData(activity);		
 		ActivityTypeStyle activityTypeStyle = applicationData.getActivityTypeStyle(activityType);
 		LevelStyle levelStyle = null;
 		if(nextLevel != null && nextLevel.isDefined())
@@ -181,7 +179,7 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param currWidget
 	 */
 	public static void initializeWidgetFormat(Activity activity, Style levelStyle){
-		Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap(activity);
+		Map<String, FormatStyle> formatStyleMap = AbstractActivtyGenerator.getApplicationData(activity).getFormatStyleMap(activity);
 		
 		if(levelStyle == null)
 			return;
@@ -265,8 +263,8 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param currWidget
 	 * @return
 	 */
-	private static FormatStyle getCurrentFormatWidget(Style style, String currWidget, Context context){		
-		Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap(context);
+	private static FormatStyle getCurrentFormatWidget(Style style, String currWidget, Activity activity){		
+		Map<String, FormatStyle> formatStyleMap = AbstractActivtyGenerator.getApplicationData(activity).getFormatStyleMap(activity);
 		Map<String,String> mapFormatComponents = style.getMapFormatComponents();
 		String formatName = mapFormatComponents.get(currWidget);
 		return formatStyleMap.get(formatName);
@@ -350,10 +348,15 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param textView
 	 */
 	public void initializeListFormat(Activity activity, ActivityType activityType, TextView textView){
-		Map<ActivityType, ActivityTypeStyle> activityTypeStyleTypeMap = SplashActivity.getApplicationData().getActivityTypeStyleTypeMap(activity);
-		Map<String, LevelStyle> levelStyleTypeMap = SplashActivity.getApplicationData().getLevelStyleTypeMap(activity);
+		Map<ActivityType, ActivityTypeStyle> activityTypeStyleTypeMap = 
+				AbstractActivtyGenerator.getApplicationData(activity).getActivityTypeStyleTypeMap(activity);
 		
-		Map<String, FormatStyle> formatStyleMap = SplashActivity.getApplicationData().getFormatStyleMap(activity);
+		Map<String, LevelStyle> levelStyleTypeMap = 
+				AbstractActivtyGenerator.getApplicationData(activity).getLevelStyleTypeMap(activity);
+		
+		Map<String, FormatStyle> formatStyleMap = 
+				AbstractActivtyGenerator.getApplicationData(activity).getFormatStyleMap(activity);
+		
 		ActivityTypeStyle activityTypeStyle = activityTypeStyleTypeMap.get(activityType);
 		LevelStyle levelStyle = levelStyleTypeMap.get(nextLevel.getLevelId());
 		

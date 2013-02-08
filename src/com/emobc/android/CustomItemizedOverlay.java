@@ -26,14 +26,10 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.widget.Toast;
 
-import com.emobc.android.levels.AppLevel;
-import com.emobc.android.utils.InvalidFileException;
+import com.emobc.android.activities.generators.AbstractActivtyGenerator;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.OverlayItem;
 
@@ -46,15 +42,15 @@ public class CustomItemizedOverlay extends ItemizedOverlay<OverlayItem> {
    
    private ArrayList<CustomOverlayItem> mapOverlays = new ArrayList<CustomOverlayItem>();
    
-   private Context context;
+   private Activity activity;
    
    public CustomItemizedOverlay(Drawable defaultMarker) {
         super(boundCenterBottom(defaultMarker));
    }
    
-   public CustomItemizedOverlay(Drawable defaultMarker, Context context) {
+   public CustomItemizedOverlay(Drawable defaultMarker, Activity activity) {
         this(defaultMarker);
-        this.context = context;
+        this.activity = activity;
    }
 
    @Override
@@ -70,13 +66,12 @@ public class CustomItemizedOverlay extends ItemizedOverlay<OverlayItem> {
    @Override
    protected boolean onTap(int index) {
       final CustomOverlayItem item = mapOverlays.get(index);
-      AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+      AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
       dialog.setTitle(item.getTitle());
       dialog.setMessage(item.getSnippet());
-      final Context nContext = context;
-      dialog.setPositiveButton("M‡s informaci—n", new DialogInterface.OnClickListener() {
+      dialog.setPositiveButton("Más información", new DialogInterface.OnClickListener() {
           public void onClick(DialogInterface dialog, int id) {
-        	 showNextLevel(nContext, item.getNextLevel());
+        	 AbstractActivtyGenerator.showNextLevel(activity, item.getNextLevel());
          }
      });
      dialog.setNegativeButton("Volver", new DialogInterface.OnClickListener() {
@@ -92,38 +87,4 @@ public class CustomItemizedOverlay extends ItemizedOverlay<OverlayItem> {
       mapOverlays.add(overlay);
       this.populate();
    }
-   
-   /**
-	 * Start a new activity in the levelId leaning and dataId of NextLevel. 
-	 * Also initializes parameters NextLevel and EntryPoint 
-	 * @param context
-	 * @param nextLevel
-	 */
-	protected void showNextLevel(Context context, NextLevel nextLevel) {
-		if(nextLevel != null && nextLevel.isDefined()){
-			ApplicationData appData;
-			try {
-				appData = ApplicationData.readApplicationData(context);
-				AppLevel level = appData.getNextAppLevel(nextLevel, context);
-				if(level != null){
-					Class<? extends Activity> clazz = level.getAcivityClass();
-					
-					Intent launchActivity = new Intent(context, clazz);				
-					launchActivity.putExtra(ApplicationData.NEXT_LEVEL_TAG, nextLevel);
-					launchActivity.putExtra(ApplicationData.IS_ENTRY_POINT_TAG, false);
-																	
-					context.startActivity(launchActivity);
-				}else{
-					CharSequence text = "Invalid Next Level: " + nextLevel.toString();
-					int duration = Toast.LENGTH_SHORT;
-
-					Toast toast = Toast.makeText(context, text, duration);
-					toast.show();					
-				}
-			} catch (InvalidFileException e) {
-			
-			}  
-		} 
-	}
-
 }

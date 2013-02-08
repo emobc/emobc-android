@@ -74,7 +74,8 @@ public class QuizQuestionsActivity extends CreateMenus {
         
         NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
 
-        ApplicationData applicationData = SplashActivity.getApplicationData();
+        ApplicationData applicationData = getApplicationData();
+        
 		AppLevel appLevel = applicationData.getNextAppLevel(nextLevel, this);
 		AppLevelData data = appLevel.getData(this);
         final QuizLevelDataItem  item = (QuizLevelDataItem) data.findByNextLevel(nextLevel);        
@@ -193,7 +194,7 @@ public class QuizQuestionsActivity extends CreateMenus {
 		Drawable d;
 		if (quizController.getImage()!=null){
 			try {
-				d = ImagesUtils.getDrawable(getApplicationContext(), quizController.getImage());
+				d = ImagesUtils.getDrawable(this, quizController.getImage());
 				image.setImageDrawable(d);
 				image.setVisibility(ImageView.VISIBLE);
 			} catch (InvalidFileException e) {

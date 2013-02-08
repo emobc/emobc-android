@@ -21,6 +21,7 @@ import android.os.Bundle;
 
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
+import com.emobc.android.activities.generators.AbstractActivtyGenerator;
 import com.emobc.android.activities.generators.QrActivityGenerator;
 import com.emobc.android.levels.impl.DefaultAppLevelData;
 import com.emobc.android.levels.impl.QrLevelDataItem;
@@ -50,7 +51,7 @@ public class QrActivity extends CreateMenus {
         boolean isEntryPoint = false;
         rotateScreen(this);
         
-        ApplicationData applicationData = SplashActivity.getApplicationData();
+        ApplicationData applicationData = getApplicationData();
 		if(applicationData != null){
 			Intent intent = getIntent();
 			isEntryPoint=(Boolean)intent.getSerializableExtra(ApplicationData.IS_ENTRY_POINT_TAG);
@@ -82,7 +83,7 @@ public class QrActivity extends CreateMenus {
 				String qrCode = scanResult.getContents();
 				NextLevel nl = dataItem.getNextLevel(qrCode);
 				if(nl != null){
-					showNextLevel(this, nl);
+					AbstractActivtyGenerator.showNextLevel(this, nl);
 				}
 			}
 		}

@@ -28,7 +28,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -47,13 +46,10 @@ import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.emobc.android.ApplicationData;
-import com.emobc.android.NextLevel;
+import com.emobc.android.activities.EMobcApplication;
 import com.emobc.android.activities.R;
-import com.emobc.android.activities.SplashActivity;
-import com.emobc.android.levels.AppLevel;
 import com.emobc.android.menu.builders.HorizontalMenuBuilder;
 import com.emobc.android.menu.builders.MenuBuilder;
 import com.emobc.android.utils.ImagesUtils;
@@ -119,6 +115,11 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
         }
     }
 
+    protected ApplicationData getApplicationData() {
+		EMobcApplication app = (EMobcApplication)getApplication();
+		return app.getApplicationData();
+	}
+    
     /**
      * Creates each menu if is defined in app.xml file (if the field is empty
      * in app.xml file, simply ignore the creation.)
@@ -126,7 +127,7 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
      * @param isEntryPoint
      */
 	protected void createMenus(String levelId){		
-		ApplicationData applicationData = SplashActivity.getApplicationData();
+		ApplicationData applicationData = getApplicationData();
 		
 		int menuHeight = 0;
 		
@@ -294,39 +295,6 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
         Log.v("CreateMenus", "onAnimationStart");
     }
     				
-	/**
-	 * Start a new activity in the levelId leaning and dataId of NextLevel. 
-	 * Also initializes parameters NextLevel and entrypoint 
-	 * @param context
-	 * @param nextLevel
-	 */
-	protected void showNextLevel(Context context, NextLevel nextLevel) {
-		if(nextLevel != null && nextLevel.isDefined()){
-			ApplicationData appData;
-			try {
-				appData = ApplicationData.readApplicationData(context);
-				AppLevel level = appData.getNextAppLevel(nextLevel, context);
-				if(level != null){
-					Class<? extends Activity> clazz = level.getAcivityClass();
-					
-					Intent launchActivity = new Intent(context, clazz);				
-					launchActivity.putExtra(ApplicationData.NEXT_LEVEL_TAG, nextLevel);
-					launchActivity.putExtra(ApplicationData.IS_ENTRY_POINT_TAG, false);
-																	
-					context.startActivity(launchActivity);
-				}else{
-					CharSequence text = "Invalid Next Level: " + nextLevel.toString();
-					int duration = Toast.LENGTH_SHORT;
-
-					Toast toast = Toast.makeText(context, text, duration);
-					toast.show();					
-				}
-			} catch (InvalidFileException e) {
-				Log.d("CreateMenus", "CreateMenus");
-			}  
-		} 
-	}
-	
 	//  -- onCreate
 	
 	@Override
@@ -361,7 +329,8 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
      * @param activity
      */
     public static void rotateScreen(Activity activity){
-		ApplicationData applicationData = SplashActivity.getApplicationData();
+		EMobcApplication app = (EMobcApplication)activity.getApplication();
+		ApplicationData applicationData = app.getApplicationData();
 		String rotation = applicationData.getRotation();
 		rotateScreen(activity, rotation);
     }

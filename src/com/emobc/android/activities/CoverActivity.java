@@ -22,19 +22,17 @@
 */
 package com.emobc.android.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.Toast;
 
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
+import com.emobc.android.activities.generators.AbstractActivtyGenerator;
 import com.emobc.android.activities.generators.ActivityGenerator;
-import com.emobc.android.levels.AppLevel;
 import com.emobc.android.levels.impl.ServerPushDataItem;
 import com.emobc.android.menu.CreateMenus;
 import com.emobc.android.utils.CommonUtilities;
@@ -65,7 +63,8 @@ public class CoverActivity extends CreateMenus {
         Log.i("CoverActivity", "OnCreate Cover");
         //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
-        final ApplicationData applicationData = SplashActivity.getApplicationData();
+        final ApplicationData applicationData = getApplicationData();
+        
 		if(applicationData != null){
 			
 			/*ENTRY POINT
@@ -133,7 +132,7 @@ public class CoverActivity extends CreateMenus {
 			
 	        //Show next level
 			if(entryPoint != null && entryPoint.isDefined()){
-		        showNextLevel(this, entryPoint);
+		        AbstractActivtyGenerator.showNextLevel(this, entryPoint, true);
 			}else{
 				ActivityGenerator generator = applicationData.getAppCoverData(this);
 				generator.initializeActivity(this);
@@ -147,28 +146,6 @@ public class CoverActivity extends CreateMenus {
 
     }
     
-	protected void showNextLevel(Context context, NextLevel nextLevel) {
-		if(nextLevel != null && nextLevel.isDefined()){
-			ApplicationData applicationData = SplashActivity.getApplicationData();
-			AppLevel level = applicationData.getNextAppLevel(nextLevel, context);
-			if(level != null){
-				Class<? extends Activity> clazz = level.getAcivityClass();
-				
-				Intent launchActivity = new Intent(context, clazz);				
-				launchActivity.putExtra(ApplicationData.NEXT_LEVEL_TAG, nextLevel);
-				launchActivity.putExtra(ApplicationData.IS_ENTRY_POINT_TAG, true);	
-				launchActivity.putExtra(ApplicationData.IS_SIDE_MENU_TAG, false);	
-				context.startActivity(launchActivity);
-			}else{
-				CharSequence text = "Invalid Next Level: " + nextLevel.toString();
-				int duration = Toast.LENGTH_SHORT;
-
-				Toast toast = Toast.makeText(context, text, duration);
-				toast.show();					
-			}  
-		} 
-	}
-	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 	    if ((keyCode == KeyEvent.KEYCODE_BACK)) {

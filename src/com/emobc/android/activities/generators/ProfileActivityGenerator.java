@@ -46,7 +46,6 @@ import android.widget.TextView;
 import com.emobc.android.activities.CoverActivity;
 import com.emobc.android.activities.FormActivity;
 import com.emobc.android.activities.R;
-import com.emobc.android.activities.SplashActivity;
 import com.emobc.android.levels.impl.FormDataItem;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.utils.ImagesUtils;
@@ -77,7 +76,7 @@ public class ProfileActivityGenerator extends AbstractActivtyGenerator {
 
 	@Override
 	protected void intializeSubActivity(final Activity activity) {
-		Profile profile = SplashActivity.getApplicationData().getProfile();
+		Profile profile = getApplicationData(activity).getProfile();
 		initializeHeader(activity, profile);
 
 		controlsMap = new HashMap<String, View>();

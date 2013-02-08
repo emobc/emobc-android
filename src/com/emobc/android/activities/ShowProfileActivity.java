@@ -61,7 +61,7 @@ public class ShowProfileActivity extends CreateMenus {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.form);
-		Profile profile = SplashActivity.getApplicationData().getProfile();
+		Profile profile = getApplicationData().getProfile();
 		initializeHeader(profile.getHeaderText(), profile.getHeaderImageFile());
 		
 		showProfileData(profile);		

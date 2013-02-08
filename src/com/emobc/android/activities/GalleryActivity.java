@@ -36,6 +36,7 @@ import android.widget.ImageView;
 
 import com.emobc.android.ApplicationData;
 import com.emobc.android.SearchResult;
+import com.emobc.android.activities.generators.AbstractActivtyGenerator;
 
 /** 
 * Defines an activity of type GALLERY_ACTIVITY, and 
@@ -70,7 +71,7 @@ public class GalleryActivity extends CoverActivity {
 		final ImageView i = (ImageView) findViewById(R.id.imageGalery);
 		final AssetManager am = getAssets();
 
-		ApplicationData applicationData = SplashActivity.getApplicationData();
+		ApplicationData applicationData = getApplicationData();
 
 		final List<SearchResult> listaImagenes = applicationData.findAllLevelsImages(this);
 
@@ -89,8 +90,7 @@ public class GalleryActivity extends CoverActivity {
 					i.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View view) {
-							
-							showNextLevel(GalleryActivity.this, listaImagenes.get(position).getNextLevel());
+							AbstractActivtyGenerator.showNextLevel(GalleryActivity.this, listaImagenes.get(position).getNextLevel());
 				        }
 					});
 				} catch (IOException e) {
