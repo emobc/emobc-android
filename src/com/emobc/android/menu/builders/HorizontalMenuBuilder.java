@@ -25,6 +25,7 @@ package com.emobc.android.menu.builders;
 import java.util.List;
 
 import android.app.Activity;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Display;
@@ -109,7 +110,7 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 				itemView.setId(itemNumber+1);
 				
 				TextView menuItemTextView = (TextView )itemView.findViewById(R.id.menu_item_text);
-				ImageView menuItemImageView = (ImageView) itemView.findViewById(R.id.menu_item_image);
+				final ImageView menuItemImageView = (ImageView) itemView.findViewById(R.id.menu_item_image);
 				
 				if(Utils.hasLength(item.getTitle())){
 					menuItemTextView.setText(item.getTitle());
@@ -132,6 +133,7 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 				itemView.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
+						menuItemImageView.setColorFilter(0x77000000, Mode.SRC_ATOP);
 						item.executeMenuItem(context);
 					}
 				});
