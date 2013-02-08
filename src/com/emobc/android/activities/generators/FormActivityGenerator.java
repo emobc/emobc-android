@@ -57,6 +57,8 @@ import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -130,6 +132,11 @@ public class FormActivityGenerator extends LevelActivityGenerator {
 		}
 		
 		Button submit = new Button(activity);
+		LayoutParams buttonParams = new LayoutParams(
+				ViewGroup.LayoutParams.WRAP_CONTENT, 
+				ViewGroup.LayoutParams.WRAP_CONTENT);
+		submit.setLayoutParams(buttonParams);
+		
 		submit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
