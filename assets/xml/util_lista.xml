@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Utilidades</dataId>
+		<headerText>Utilidades</headerText>
+		<order>false</order>
+		<geoRef/>
+		<list>
+			<listItem>
+				<description>Lector QR</description>
+				<text>Lector QR</text>
+				<nextLevel>
+					<nextLevelLevelId>Lector QR</nextLevelLevelId>
+					<nextLevelDataId>Lector QR</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Contenido web html fichero local</description>
+				<text>Contenedor Web Html</text>
+				<nextLevel>
+					<nextLevelLevelId>Contenedor Web Html</nextLevelLevelId>
+					<nextLevelDataId>Contenedor Web Html</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Contenido web</description>
+				<text>Contenedor Web</text>
+				<nextLevel>
+					<nextLevelLevelId>Contenedor Web</nextLevelLevelId>
+					<nextLevelDataId>Contenedor Web</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Publicidad</description>
+				<text>Publicidad</text>
+				<nextLevel>
+					<nextLevelLevelId>Publicidad</nextLevelLevelId>
+					<nextLevelDataId>Publicidad</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Transiciones</description>
+				<text>Transiciones</text>
+				<nextLevel>
+					<nextLevelLevelId>Transiciones</nextLevelLevelId>
+					<nextLevelDataId>Transiciones</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Busca en todas las pantallas de texto.</description>
+				<text>Buscador</text>
+				<nextLevel>
+					<nextLevelLevelId>emobc</nextLevelLevelId>
+					<nextLevelDataId>search</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Editar perfil</description>
+				<text>Perfil</text>
+				<nextLevel>
+					<nextLevelLevelId>emobc</nextLevelLevelId>
+					<nextLevelDataId>profile</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+		</list>
+	</data>
+</levelData>

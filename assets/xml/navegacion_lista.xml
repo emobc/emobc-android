@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Navegación</dataId>
+		<headerText>Lista</headerText>
+		<order>false</order>
+		<geoRef/>
+		<list>
+			<listItem>
+				<description>Listado con iconos</description>
+				<text>Listado</text>
+				<nextLevel>
+					<nextLevelLevelId>Listado</nextLevelLevelId>
+					<nextLevelDataId>Listado</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_1.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Listado con imagen</description>
+				<text>Listado con imagen</text>
+				<nextLevel>
+					<nextLevelLevelId>Lista con imagen</nextLevelLevelId>
+					<nextLevelDataId>Lista con imagen</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_2.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Galeria de fotos</description>
+				<text>Galería foto</text>
+				<nextLevel>
+					<nextLevelLevelId>Galería Foto</nextLevelLevelId>
+					<nextLevelDataId>Galería Foto</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_3.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Galeria de videos</description>
+				<text>Galería video</text>
+				<nextLevel>
+					<nextLevelLevelId>Galeria video</nextLevelLevelId>
+					<nextLevelDataId>Galeria video</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_2.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Botonera</description>
+				<text>Botonera</text>
+				<nextLevel>
+					<nextLevelLevelId>Botonera</nextLevelLevelId>
+					<nextLevelDataId>Botonera</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_3.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Contenido Online</description>
+				<text>Online</text>
+				<nextLevel>
+					<nextLevelLevelId>NavegacionOnline</nextLevelLevelId>
+					<nextLevelDataId>NavegacionOnline</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/boton_listado_2.png</imageFile>
+			</listItem>
+		</list>
+	</data>
+</levelData>

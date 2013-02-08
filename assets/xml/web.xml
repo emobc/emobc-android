@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <levelData>
 	<data>
-		<dataId>web</dataId>
-		<headerImageFile>white_title.png</headerImageFile>
-		<headerText>Agencia Tributaria</headerText>
-	        <local>false</local>
-        	<webUrl>http://www.agenciatributaria.es</webUrl>
- 	</data>
+		<dataId>Contenedor Web</dataId>
+		<headerText>Contenedor Web</headerText>
+		<local>false</local>
+		<webUrl>http://www.emobc.com</webUrl>
+	</data>
 </levelData>

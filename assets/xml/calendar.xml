@@ -5,116 +5,66 @@
         <headerImageFile></headerImageFile>
         <headerText>Calendario</headerText>
         <events>
+            <event>
+                <title>titulo Evento 1</title>
+                <eventDate>17/07/2012</eventDate>
+				<time>12:00</time>
+				<text>descripcion Evento 17/07</text>
+                <nextLevel>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
 			<event>
-                <title>2 abril</title>
-                <eventDate>02/04/2013</eventDate>
-				<time>00:00</time>
-				<text>Obtención del número de referencia del Borrador y/o Datos fiscales: del 2 de abril al 1 de julio. Internet (24h)</text>
+                <title>titulo Evento 2</title>
+                <eventDate>17/07/2012</eventDate>
+				<time>15:30</time>
+				<text>descripcion Evento 17/07</text>
                 <nextLevel>
-					<nextLevelLevelId>PDF</nextLevelLevelId>
-					<nextLevelDataId>PDF</nextLevelDataId>
-				</nextLevel>
-			</event>
-            <event>
-                <title>2 abril</title>
-                <eventDate>02/04/2013</eventDate>
-				<time>00:01</time>
-				<text>Confirmación del borrador Internet,  901 12 12 24 y SMS: del 2 de abril al 1 de julio (24h).</text>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
+			<event>
+                <title>titulo Evento1</title>
+                <eventDate>19/07/2012</eventDate>
+				<time>17:00</time>
+				<text>descripcion Evento 19/07</text>
                 <nextLevel>
-					<nextLevelLevelId></nextLevelLevelId>
-					<nextLevelDataId></nextLevelDataId>
-				</nextLevel>
-			</event>
-            <event>
-                <title>2 abril</title>
-                <eventDate>02/04/2013</eventDate>
-				<time>00:02</time>
-				<text>Confirmación del borrador, Oficina Telefónica:  del 2 de abril al 1 de julio (L a V de 9 a 19 h).</text>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
+			<event>
+                <title>titulo Evento 1</title>
+                <eventDate>07/07/2012</eventDate>
+				<time>09:00</time>
+				<text>descripcion Evento 07/07</text>
                 <nextLevel>
-					<nextLevelLevelId></nextLevelLevelId>
-					<nextLevelDataId></nextLevelDataId>
-				</nextLevel>
-			</event>
-            <event>
-                <title>2 abril</title>
-                <eventDate>02/04/2013</eventDate>
-				<time>00:03</time>
-				<text>Modificación del borrador,  Internet:  del  2 de abril al 1 de julio  (24 h).</text>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
+			<event>
+                <title>titulo Evento 1</title>
+                <eventDate>05/08/2012</eventDate>
+				<time>20:00</time>
+				<text>descripcion Evento 05/08</text>
                 <nextLevel>
-					<nextLevelLevelId></nextLevelLevelId>
-					<nextLevelDataId></nextLevelDataId>
-				</nextLevel>
-			</event>
-            <event>
-                <title>2 abril</title>
-                <eventDate>02/04/2013</eventDate>
-				<time>00:04</time>
-				<text>Modificación del borrador, Oficina Telefónica:  del 2 de abril al 1 de julio (L a V de 9 a 21 h).</text>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
+			<event>
+                <title>titulo Evento 1</title>
+                <eventDate>18/07/2012</eventDate>
+				<time>22:15</time>
+				<text>descripcion Evento 18/07</text>
                 <nextLevel>
-					<nextLevelLevelId></nextLevelLevelId>
-					<nextLevelDataId></nextLevelDataId>
-				</nextLevel>
-			</event>
-            <event>
-                <title>24 abril</title>
-                <eventDate>24/04/2013</eventDate>
-				<time>00:00</time>
-				<text>Presentación de declaraciones Renta 2012, Internet: del 24 de abril al 1 de julio (24h).</text>
-                <nextLevel>
-					<nextLevelLevelId></nextLevelLevelId>
-					<nextLevelDataId></nextLevelDataId>
-				</nextLevel>
-			</event>
-            <event>
-                <title>3 mayo</title>
-                <eventDate>03/05/2013</eventDate>
-				<time>00:00</time>
-				<text>Presentación de declaraciones Renta 2012 en  Oficinas, Entidades Financieras y otras colaboradoras, del 3 de mayo al  1 de julio.</text>
-                <nextLevel>
-					<nextLevelLevelId></nextLevelLevelId>
-					<nextLevelDataId></nextLevelDataId>
-				</nextLevel>
-			</event>
-            <event>
-                <title>6 mayo</title>
-                <eventDate>06/05/2013</eventDate>
-				<time>00:00</time>
-				<text>Solicitud de Cita Previa para  atención en oficinas (modificación borrador o Programa PADRE), Internet (24h), 901 12 12 24 (24h), 901 22 33 44 (L a V de 9 a 19h), desde el 6 de mayo al 28 de junio.</text>
-                <nextLevel>
-					<nextLevelLevelId></nextLevelLevelId>
-					<nextLevelDataId></nextLevelDataId>
-				</nextLevel>
-			</event>
-            <event>
-                <title>27 junio</title>
-                <eventDate>27/06/2013</eventDate>
-				<time>00:00</time>
-				<text>Último día para presentar declaraciones a ingresar, con domiciliación.</text>
-                <nextLevel>
-					<nextLevelLevelId></nextLevelLevelId>
-					<nextLevelDataId></nextLevelDataId>
-				</nextLevel>
-			</event>
-            <event>
-                <title>28 junio</title>
-                <eventDate>28/06/2013</eventDate>
-				<time>00:00</time>
-				<text>Último día para  solicitar Cita previa para atención en oficinas.</text>
-                <nextLevel>
-					<nextLevelLevelId></nextLevelLevelId>
-					<nextLevelDataId></nextLevelDataId>
-				</nextLevel>
-			</event>
-            <event>
-                <title>1 julio</title>
-                <eventDate>01/07/2013</eventDate>
-				<time>00:00</time>
-				<text>FIN DE TODOS LOS SERVICIOS DE AYUDA</text>
-                <nextLevel>
-					<nextLevelLevelId></nextLevelLevelId>
-					<nextLevelDataId></nextLevelDataId>
-				</nextLevel>
-			</event>
+                    <nextLevelLevelId>PDF</nextLevelLevelId>
+                    <nextLevelDataId>PDF</nextLevelDataId>
+                </nextLevel>
+            </event>
 		</events>
-	</data>
+    </data>
 </levelData>

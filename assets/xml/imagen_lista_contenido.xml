@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+  <data>
+    <dataId>Listado con imagen</dataId>
+    <headerText>Listado con imagen</headerText>
+    <imageFile>images/cover/imageCover.png</imageFile>
+    <geoRef/>
+    <list>
+      <listItem>
+        <description/>
+        <text>Lorem</text>
+        <nextLevel>
+          <nextLevelLevelId/>
+          <nextLevelDataId/>
+        </nextLevel>
+      </listItem>
+      <listItem>
+        <description/>
+        <text>Ipsum</text>
+        <nextLevel>
+          <nextLevelLevelId/>
+          <nextLevelDataId/>
+        </nextLevel>
+      </listItem>
+    </list>
+  </data>
+</levelData>

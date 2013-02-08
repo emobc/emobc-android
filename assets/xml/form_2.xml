@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Formulario2</dataId>
+		<headerText>Alta bolsa de trabajo</headerText>
+		<nextLevel>
+			<nextLevelLevelId>envio</nextLevelLevelId>
+			<nextLevelDataId>ok</nextLevelDataId>
+		</nextLevel>
+		<form>
+			<actionUrl>http://www.emobc.com/demo/trabajo.php</actionUrl>
+			<field>
+				<fieldType>INPUT_TEXT</fieldType>
+				<fieldLabel>Nombre del desarrollador:</fieldLabel>
+				<fieldName>nombre</fieldName>
+				<fieldParam/>
+				<required/>
+			</field>
+			<field>
+				<fieldType>INPUT_TEXT</fieldType>
+				<fieldLabel>Estudios:</fieldLabel>
+				<fieldName>estudios</fieldName>
+			</field>
+			<field>
+				<fieldType>INPUT_PICKER</fieldType>
+				<fieldLabel>Plataforma:</fieldLabel>
+				<fieldName>plataforma</fieldName>
+				<fieldParam>IOS</fieldParam>
+				<fieldParam>Android</fieldParam>
+				<fieldParam>HTML5</fieldParam>
+				<fieldParam>Todas</fieldParam>
+			</field>
+			<field>
+				<fieldType>INPUT_EMAIL</fieldType>
+				<fieldLabel>Email:</fieldLabel>
+				<fieldName>email</fieldName>
+				<required/>
+			</field>
+			<field>
+				<fieldType>INPUT_LABEL</fieldType>
+				<fieldLabel>Perfil</fieldLabel>
+				<fieldName>perfil</fieldName>
+			</field>
+			<field>
+				<fieldType>INPUT_CHECK</fieldType>
+				<fieldLabel>Disenador:</fieldLabel>
+				<fieldName>estDis</fieldName>
+			</field>
+			<field>
+				<fieldType>INPUT_CHECK</fieldType>
+				<fieldLabel>UX</fieldLabel>
+				<fieldName>estUX</fieldName>
+			</field>
+			<field>
+				<fieldType>INPUT_CHECK</fieldType>
+				<fieldLabel>Programador:</fieldLabel>
+				<fieldName>estProg</fieldName>
+			</field>
+			<field>
+				<fieldType>INPUT_CHECK</fieldType>
+				<fieldLabel>Tester:</fieldLabel>
+				<fieldName>estTes</fieldName>
+			</field>
+			<field>
+				<fieldType>INPUT_CHECK</fieldType>
+				<fieldLabel>Documentador:</fieldLabel>
+				<fieldName>estDoc</fieldName>
+			</field>
+			<field>
+				<fieldType>INPUT_TEXT</fieldType>
+				<fieldLabel>Experiencia movil:</fieldLabel>
+				<fieldName>experiencia</fieldName>
+			</field>
+		</form>
+	</data>
+</levelData>

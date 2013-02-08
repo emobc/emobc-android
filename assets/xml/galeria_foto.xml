@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Galería Foto</dataId>
+		<headerText>Galeria</headerText>
+		<galery>
+			<image>
+				<imageFile>images/gallery/house.jpg</imageFile>
+			</image>
+			<image>
+				<imageFile>images/gallery/city.jpg</imageFile>
+			</image>
+			<image>
+				<imageFile>images/gallery/mountainRetezatu.jpg</imageFile>
+			</image>
+			<image>
+				<imageFile>images/gallery/rally.jpg</imageFile>
+			</image>
+			<image>
+				<imageFile>images/gallery/road.jpg</imageFile>
+			</image>
+			<image>
+				<imageFile>images/gallery/wall.jpg</imageFile>
+			</image>
+			<image>
+				<imageFile>images/gallery/mountain.jpg</imageFile>
+			</image>
+		</galery>
+	</data>
+</levelData>

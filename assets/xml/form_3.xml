@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Formulario3</dataId>
+		<headerText>Contacto</headerText>
+		<nextLevel>
+			<nextLevelLevelId>envio</nextLevelLevelId>
+			<nextLevelDataId>ok</nextLevelDataId>
+		</nextLevel>
+		<form>
+			<actionUrl>http://www.emobc.com/demo/contacto.php</actionUrl>
+			<field>
+				<fieldType>INPUT_TEXT</fieldType>
+				<fieldLabel>Nombre del cliente:</fieldLabel>
+				<fieldName>nombre</fieldName>
+				<required/>
+			</field>
+			<field>
+				<fieldType>INPUT_TEXT</fieldType>
+				<fieldLabel>Asunto:</fieldLabel>
+				<fieldName>asunto</fieldName>
+				<required/>
+			</field>
+			<field>
+				<fieldType>INPUT_TEXTVIEW</fieldType>
+				<fieldLabel>Descripcion:</fieldLabel>
+				<fieldName>descripcion</fieldName>
+			</field>
+			<field>
+				<fieldType>INPUT_PHONE</fieldType>
+				<fieldLabel>Telefono:</fieldLabel>
+				<fieldName>telefono</fieldName>
+			</field>
+			<field>
+				<fieldType>INPUT_EMAIL</fieldType>
+				<fieldLabel>Email:</fieldLabel>
+				<fieldName>email</fieldName>
+				<required/>
+			</field>
+			<field>
+				<fieldType>INPUT_CHECK</fieldType>
+				<fieldLabel>LLamada telefonica:</fieldLabel>
+				<fieldName>estado</fieldName>
+			</field>
+			<field>
+				<fieldType>INPUT_IMAGE</fieldType>
+				<fieldLabel>Logo empresa:</fieldLabel>
+				<fieldName>imagen</fieldName>
+			</field>
+		</form>
+	</data>
+</levelData>

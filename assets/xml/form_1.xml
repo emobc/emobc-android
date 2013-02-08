@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Formulario1</dataId>
+		<headerText>Solicita un proyecto</headerText>
+		<nextLevel>
+			<nextLevelLevelId>envio</nextLevelLevelId>
+			<nextLevelDataId>ok</nextLevelDataId>
+		</nextLevel>
+		<form>
+			<actionUrl>http://www.emobc.com/demo/solicitar.php</actionUrl>
+			<field>
+				<fieldType>INPUT_TEXT</fieldType>
+				<fieldLabel>Nombre del cliente:</fieldLabel>
+				<fieldName>nombre</fieldName>
+				<required/>
+			</field>
+			<field>
+				<fieldType>INPUT_TEXT</fieldType>
+				<fieldLabel>Nombre del proyecto:</fieldLabel>
+				<fieldName>proyecto</fieldName>
+				<required/>
+			</field>
+			<field>
+				<fieldType>INPUT_TEXTVIEW</fieldType>
+				<fieldLabel>Descripcion del proyecto:</fieldLabel>
+				<fieldName>descripcion</fieldName>
+			</field>
+			<field>
+				<fieldType>INPUT_PICKER</fieldType>
+				<fieldLabel>Plataforma:</fieldLabel>
+				<fieldName>plataforma</fieldName>
+				<fieldParam>IOS</fieldParam>
+				<fieldParam>Android</fieldParam>
+				<fieldParam>HTML5</fieldParam>
+				<fieldParam>Todas</fieldParam>
+			</field>
+			<field>
+				<fieldType>INPUT_PHONE</fieldType>
+				<fieldLabel>Telefono:</fieldLabel>
+				<fieldName>telefono</fieldName>
+				<fieldParam/>
+			</field>
+			<field>
+				<fieldType>INPUT_EMAIL</fieldType>
+				<fieldLabel>Email:</fieldLabel>
+				<fieldName>email</fieldName>
+				<required/>
+			</field>
+			<field>
+				<fieldType>INPUT_CHECK</fieldType>
+				<fieldLabel>LLamada telefonica:</fieldLabel>
+				<fieldName>estado</fieldName>
+			</field>
+		</form>
+	</data>
+</levelData>

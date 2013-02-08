@@ -2,14 +2,15 @@
 <level>
 	<menuActions>
 		<action>
+			<actionTitle>Boton1</actionTitle>
 			<actionImageName>images/back.png</actionImageName>
 			<systemAction>back</systemAction>
-		</action>
-		<action>
-			<actionImageName>images/info.png</actionImageName>
+			<leftMargin>5</leftMargin>
+			<widthButton>50</widthButton>
+			<heightButton>28</heightButton>
 			<nextLevel>
-				<nextLevelLevelId>info</nextLevelLevelId>
-				<nextLevelDataId>info</nextLevelDataId>
+				<nextLevelLevelId></nextLevelLevelId>
+				<nextLevelDataId></nextLevelDataId>
 			</nextLevel>
 		</action>
 	</menuActions>

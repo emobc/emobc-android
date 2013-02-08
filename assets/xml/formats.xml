@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application>
+    <formats>
+        <format>
+	        <name>default</name>
+	        <textColor>#999999</textColor>
+	        <textSize>16sp</textSize>
+	        <textStyle>normal</textStyle>
+	        <typeFace>sans</typeFace>
+	        <cacheColorHint></cacheColorHint>
+	        <backgroundColor></backgroundColor>
+	        <backgroundSelectionFileName></backgroundSelectionFileName>
+	    </format>
+         
+	    <format>
+	        <name>title1</name>
+	        <textColor>#00ccff</textColor>
+	        <textSize>20sp</textSize>
+	        <textStyle>bold</textStyle>
+	        <typeFace>NeoGen</typeFace>
+	        <cacheColorHint></cacheColorHint>
+	        <backgroundColor></backgroundColor>
+	        <backgroundSelectionFileName></backgroundSelectionFileName>
+	    </format>
+	    
+	    <format>
+	        <name>title2</name>
+	        <textColor>#00ccff</textColor>
+	        <textSize>18sp</textSize>
+	        <textStyle>bold</textStyle>
+	        <typeFace>NeoGen</typeFace>
+	        <cacheColorHint></cacheColorHint>
+	        <backgroundColor></backgroundColor>
+	        <backgroundSelectionFileName></backgroundSelectionFileName>
+	    </format>
+	    
+	    <format>
+	        <name>text1</name>
+	        <textColor>#000000</textColor>
+	        <textSize>16sp</textSize>
+	        <textStyle>normal</textStyle>
+	        <typeFace>NeoGen</typeFace>
+	        <cacheColorHint></cacheColorHint>
+	        <backgroundColor></backgroundColor>
+	        <backgroundSelectionFileName></backgroundSelectionFileName>
+	    </format>
+	    
+	    <format>
+	        <name>text2</name>
+	        <textColor>#ccFFFF</textColor>
+	        <textSize>16sp</textSize>
+	        <textStyle>normal</textStyle>
+	        <typeFace>Arial</typeFace>
+	        <cacheColorHint></cacheColorHint>
+	        <backgroundColor></backgroundColor>
+	        <backgroundSelectionFileName></backgroundSelectionFileName>
+	    </format>
+	    
+	    <format>
+	        <name>list1</name>
+	        <textColor>#000000</textColor>
+	        <textSize>14sp</textSize>
+	        <textStyle>bold</textStyle>
+	        <typeFace>NeoGen</typeFace>
+	        <cacheColorHint>#FFFFFF</cacheColorHint>
+	        <backgroundColor>#FFFFFF</backgroundColor>
+	        <backgroundSelectionFileName>list_selector.xml</backgroundSelectionFileName>
+	    </format> 
+	</formats>
+</application>

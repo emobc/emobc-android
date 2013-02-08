@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Formularios</dataId>
+		<headerText>Formularios</headerText>
+		<order>false</order>
+		<geoRef/>
+		<list>
+			<listItem>
+				<description>Formulario solicita un proyecto</description>
+				<text>Solicita un proyecto</text>
+				<nextLevel>
+					<nextLevelLevelId>Formulario1</nextLevelLevelId>
+					<nextLevelDataId>Formulario1</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Formulario alta bolsa de trabajo</description>
+				<text>Alta bolsa de trabajo</text>
+				<nextLevel>
+					<nextLevelLevelId>Formulario2</nextLevelLevelId>
+					<nextLevelDataId>Formulario2</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Formulario contacto</description>
+				<text>Contacto</text>
+				<nextLevel>
+					<nextLevelLevelId>Formulario3</nextLevelLevelId>
+					<nextLevelDataId>Formulario3</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+		</list>
+	</data>
+</levelData>

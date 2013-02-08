@@ -2,57 +2,51 @@
 <level>
 	<menuActions>
 		<action>
-			<actionImageName>images/menu_domicilio.png</actionImageName>
-			<systemAction></systemAction>
-			<leftMargin></leftMargin>
+			<actionTitle>Boton1</actionTitle>
+			<actionImageName>images/menu/homeButton.png</actionImageName>
+			<systemAction>home</systemAction>
+			<leftMargin>0</leftMargin>
+			<widthButton>79</widthButton>
+			<heightButton>38</heightButton>
 			<nextLevel>
-				<nextLevelLevelId>listado_portada</nextLevelLevelId>
-				<nextLevelDataId>listado_portada</nextLevelDataId>
+				<nextLevelLevelId></nextLevelLevelId>
+				<nextLevelDataId></nextLevelDataId>
 			</nextLevel>
 		</action>
 		<action>
-			<actionImageName>images/menu_reno.png</actionImageName>
+			<actionTitle>Boton2</actionTitle>
+			<actionImageName>images/menu/button+.png</actionImageName>
 			<systemAction></systemAction>
-			<leftMargin></leftMargin>
+			<leftMargin>1</leftMargin>
+			<widthButton>79</widthButton>
+			<heightButton>38</heightButton>
 			<nextLevel>
-				<nextLevelLevelId>referencia</nextLevelLevelId>
-				<nextLevelDataId>referencia</nextLevelDataId>
+				<nextLevelLevelId>Texto</nextLevelLevelId>
+				<nextLevelDataId>Texto</nextLevelDataId>
 			</nextLevel>
 		</action>
 		<action>
-			<actionImageName>images/menu_borrador.png</actionImageName>
+			<actionTitle>Boton3</actionTitle>
+			<actionImageName>images/menu/button+.png</actionImageName>
 			<systemAction></systemAction>
-			<leftMargin></leftMargin>
+			<leftMargin>1</leftMargin>
+			<widthButton>79</widthButton>
+			<heightButton>38</heightButton>
 			<nextLevel>
-				<nextLevelLevelId>consulta</nextLevelLevelId>
-				<nextLevelDataId>consulta</nextLevelDataId>
+				<nextLevelLevelId>PDF</nextLevelLevelId>
+				<nextLevelDataId>PDF</nextLevelDataId>
 			</nextLevel>
 		</action>
 		<action>
-			<actionImageName>images/menu_devolucion.png</actionImageName>
+			<actionTitle>Boton4</actionTitle>
+			<actionImageName>images/menu/button+.png</actionImageName>
 			<systemAction></systemAction>
-			<leftMargin></leftMargin>
+			<leftMargin>1</leftMargin>
+			<widthButton>79</widthButton>
+			<heightButton>38</heightButton>
 			<nextLevel>
-				<nextLevelLevelId>servicios</nextLevelLevelId>
-				<nextLevelDataId>servicios</nextLevelDataId>
-			</nextLevel>
-		</action>
-        <action>
-			<actionImageName>images/menu_calendario.png</actionImageName>
-			<systemAction></systemAction>
-			<leftMargin></leftMargin>
-			<nextLevel>
-				<nextLevelLevelId>Calendar</nextLevelLevelId>
-				<nextLevelDataId>Calendar</nextLevelDataId>
-			</nextLevel>
-		</action>
-		<action>
-			<actionImageName>images/menu_mas.png</actionImageName>
-			<systemAction></systemAction>
-			<leftMargin></leftMargin>
-			<nextLevel>
-				<nextLevelLevelId>mas</nextLevelLevelId>
-				<nextLevelDataId>mas</nextLevelDataId>
+				<nextLevelLevelId>Galería video</nextLevelLevelId>
+				<nextLevelDataId>Galería video</nextLevelDataId>
 			</nextLevel>
 		</action>
 	</menuActions>

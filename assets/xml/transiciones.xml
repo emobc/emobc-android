@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levelData>
+	<data>
+		<dataId>Transiciones</dataId>
+		<headerText>Transiciones</headerText>
+		<order>false</order>
+		<geoRef/>
+		<list>
+			<listItem>
+				<description>Transicion FlipLeft</description>
+				<text>Pdf FlipFeft</text>
+				<nextLevel>
+					<nextLevelLevelId>PDF FlipLeft</nextLevelLevelId>
+					<nextLevelDataId>PDF</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Transicion FlipRight</description>
+				<text>Web FlipRight</text>
+				<nextLevel>
+					<nextLevelLevelId>Contenedor Web FlipRight</nextLevelLevelId>
+					<nextLevelDataId>Contenedor Web</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Transicion CurlDown</description>
+				<text>Galeria foto CurlDown</text>
+				<nextLevel>
+					<nextLevelLevelId>Galería Foto CurlDown</nextLevelLevelId>
+					<nextLevelDataId>Galería Foto</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+			<listItem>
+				<description>Transicion CurlUp</description>
+				<text>Texto CurlUp</text>
+				<nextLevel>
+					<nextLevelLevelId>Texto CurlUp</nextLevelLevelId>
+					<nextLevelDataId>Texto</nextLevelDataId>
+				</nextLevel>
+				<imageFile>images/icons/button_default.png</imageFile>
+			</listItem>
+		</list>
+	</data>
+</levelData>
