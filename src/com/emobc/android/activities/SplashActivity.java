@@ -24,7 +24,6 @@ package com.emobc.android.activities;
 
 import java.io.Serializable;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -47,7 +46,7 @@ import com.emobc.android.utils.InvalidFileException;
  * @version 0.1
  * @since 0.1
  */
-public class SplashActivity extends Activity implements Serializable {
+public class SplashActivity extends EMobcActivity implements Serializable {
 
 	/**
 	 * 

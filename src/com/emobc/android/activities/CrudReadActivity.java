@@ -61,7 +61,7 @@ import com.emobc.android.parse.ParseUtils;
  * @since 0.1
  * @version 0.1
  */
-public class CrudReadActivity extends Activity implements Serializable{
+public class CrudReadActivity extends EMobcActivity implements Serializable{
 	/**
 	 * 
 	 */
@@ -112,11 +112,6 @@ public class CrudReadActivity extends Activity implements Serializable{
 		
 		registerForContextMenu(lv);
     }
-    
-	private ApplicationData getApplicationData() {
-		EMobcApplication app = (EMobcApplication)getApplication();
-		return app.getApplicationData();
-	}
     
     // Application Menu
     

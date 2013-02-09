@@ -1,9 +1,9 @@
 /**
-* Copyright 2012 Neurowork Consulting S.L.
+* Copyright 2013 Neurowork Consulting S.L.
 *
 * This file is part of eMobc.
 *
-* CanvasActivity.java
+* EMobcActivity.java
 * eMobc Android Framework
 *
 * eMobc is free software: you can redistribute it and/or modify
@@ -22,27 +22,28 @@
 */
 package com.emobc.android.activities;
 
-import android.os.Bundle;
+import com.emobc.android.ApplicationData;
+import com.emobc.android.NextLevel;
 
-import com.emobc.android.activities.generators.CanvasActivityGenerator;
+import android.app.Activity;
 
 /**
- * Defines an activity of type CALENDAR_ACTIVITY, and 
- * initialize all screen menu and the screen rotations. In its 
- * method onCreate(), call its CalendarActivityGenerator generator class. 
- * 
- * @see CanvasActivityGenerator
- * @version 0.1
+ * @author Jorge E. Villaverde
  * @since 0.1
+ * @version 0.1
  */
-
-public class CanvasActivity extends EMobcActivity {
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_canvas);
-    }
-
+public class EMobcActivity extends Activity{
+    private NextLevel currentNextLevel;
     
+	public NextLevel getCurrentNextLevel() {
+		return currentNextLevel;
+	}
+	public void setCurrentNextLevel(NextLevel currentNextLevel) {
+		this.currentNextLevel = currentNextLevel;
+	}
+    
+    public ApplicationData getApplicationData() {
+		EMobcApplication app = (EMobcApplication)getApplication();
+		return app.getApplicationData();
+	}	
 }

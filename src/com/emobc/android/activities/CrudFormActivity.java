@@ -28,7 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,7 +50,7 @@ import com.emobc.android.data.metadata.Table;
  * @since 0.1
  * @version 0.1
  */
-public class CrudFormActivity extends Activity implements Serializable {
+public class CrudFormActivity extends EMobcActivity implements Serializable {
 	/**
 	 * 
 	 */

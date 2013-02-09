@@ -75,12 +75,12 @@ public class MapsActivity extends MapActivity {
 			NextLevel nextLevel = (NextLevel)intent.getSerializableExtra(ApplicationData.NEXT_LEVEL_TAG);
 			ActivityGenerator generator = applicationData.getFromNextLevel(this, nextLevel);
 			generator.initializeActivity(this);
+			CreateMenus.createMenus(this, applicationData, nextLevel);
 		}else{
 			Intent i = new Intent (this, SplashActivity.class);
 			startActivity(i);
 			finish();
 		}
-
 	}
 	
 	private ApplicationData getApplicationData() {

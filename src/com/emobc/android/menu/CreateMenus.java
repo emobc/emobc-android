@@ -49,6 +49,7 @@ import android.widget.TextView;
 
 import com.emobc.android.ApplicationData;
 import com.emobc.android.NextLevel;
+import com.emobc.android.activities.EMobcActivity;
 import com.emobc.android.activities.EMobcApplication;
 import com.emobc.android.activities.R;
 import com.emobc.android.menu.builders.HorizontalMenuBuilder;
@@ -65,7 +66,7 @@ import com.emobc.android.utils.Utils;
  * @version 0.1
  * @since 0.1
  */
-public class CreateMenus extends Activity implements AnimationListener, Serializable {
+public class CreateMenus extends EMobcActivity implements AnimationListener, Serializable {
 	
 	/**
 	 * 
@@ -82,7 +83,7 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
 	private RelativeLayout appLayout;
 	private boolean menuOut = false;
     private AnimParams animParams = new AnimParams();	
-    private NextLevel currentNextLevel;
+
     
     
     @Override
@@ -117,45 +118,39 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
             }
         }
     }
-
-    protected ApplicationData getApplicationData() {
-		EMobcApplication app = (EMobcApplication)getApplication();
-		return app.getApplicationData();
-	}
     
-    /**
-     * Creates each menu if is defined in app.xml file (if the field is empty
-     * in app.xml file, simply ignore the creation.)
-     * @param activity
-     * @param isEntryPoint
-     */
-	protected void createMenus(){		
-		ApplicationData applicationData = getApplicationData();
+    public static void createMenus(Activity activity, 
+    		ApplicationData applicationData, 
+    		NextLevel currentNextLevel){
 		
 		int menuHeight = 0;
 		
 		//TOP MENU
-		ViewGroup topLayout = (ViewGroup) findViewById(R.id.topLayout);
-		com.emobc.android.menu.Menu topMenu = applicationData.getTopMenu(getCurrentNextLevel(), this);
+		ViewGroup topLayout = (ViewGroup) activity.findViewById(R.id.topLayout);
+		com.emobc.android.menu.Menu topMenu = applicationData.getTopMenu(currentNextLevel, activity);
 		
 		if(topLayout != null && topMenu != null)
-			menuHeight += buildMenu(topLayout, topMenu, new HorizontalMenuBuilder());
+			menuHeight += buildMenu(topLayout, topMenu, new HorizontalMenuBuilder(), activity);
 		
 		//BOTTOM MENU
-		ViewGroup bottomLayout = (ViewGroup) findViewById(R.id.bottomLayout);
-		com.emobc.android.menu.Menu bottomMenu = applicationData.getBottomMenu(getCurrentNextLevel(), this);
+		ViewGroup bottomLayout = (ViewGroup) activity.findViewById(R.id.bottomLayout);
+		com.emobc.android.menu.Menu bottomMenu = applicationData.getBottomMenu(currentNextLevel, activity);
 		
 		if(bottomLayout != null && bottomMenu != null)
-			menuHeight += buildMenu(bottomLayout, bottomMenu, new HorizontalMenuBuilder());
+			menuHeight += buildMenu(bottomLayout, bottomMenu, new HorizontalMenuBuilder(), activity);
 		
 		//CONTEXT MENU
-		this.contextMenu = applicationData.getContextMenu(getCurrentNextLevel(), this);
+		if (activity instanceof CreateMenus) {
+			CreateMenus createMenus = (CreateMenus) activity;
+			createMenus.contextMenu = applicationData.getContextMenu(currentNextLevel, activity);	
+		}
+		
 
 		if(menuHeight > 0){	
-			Display display = getWindowManager().getDefaultDisplay();
+			Display display = activity.getWindowManager().getDefaultDisplay();
 			int height = display.getHeight() - menuHeight;		
 			
-			RelativeLayout contentLayout = (RelativeLayout)findViewById(R.id.contentLayout);
+			RelativeLayout contentLayout = (RelativeLayout)activity.findViewById(R.id.contentLayout);
 			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
 					android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, 
 					height);
@@ -165,12 +160,23 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
 //		final String sideMenu = applicationData.getSideMenu();
 //		if(Utils.hasLength(sideMenu)){
 //			initializeSideMenuList(sideMenu);
-//		}
+//		}    	
+    }
+    
+    /**
+     * Creates each menu if is defined in app.xml file (if the field is empty
+     * in app.xml file, simply ignore the creation.)
+     * @param activity
+     * @param isEntryPoint
+     */
+	protected void createMenus(){
+		createMenus(this, getApplicationData(), getCurrentNextLevel());
 	}
 	
-	protected int buildMenu(ViewGroup layout, 
+	protected static int buildMenu(ViewGroup layout, 
 			com.emobc.android.menu.Menu menu, 
-			MenuBuilder menuBuilder) {
+			MenuBuilder menuBuilder, 
+			Activity activity) {
 		// If no layout, noting to do.
 		if(layout == null)
 			return 0;
@@ -179,7 +185,7 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
 			layout.setVisibility(View.GONE);
 			return 0;
 		}
-		return menuBuilder.buildMenu(this, menu, layout);
+		return menuBuilder.buildMenu(activity, menu, layout);
 	}
 	
 	//  -- Context_Menu methods
@@ -409,13 +415,6 @@ public class CreateMenus extends Activity implements AnimationListener, Serializ
 		this.isEntryPoint = isEntryPoint;
 	}
 	
-	public NextLevel getCurrentNextLevel() {
-		return currentNextLevel;
-	}
-	public void setCurrentNextLevel(NextLevel currentNextLevel) {
-		this.currentNextLevel = currentNextLevel;
-	}
-
 	/**
 	 * Class for intercept call phone.
 	 */
