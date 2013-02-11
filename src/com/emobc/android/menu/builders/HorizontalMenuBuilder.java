@@ -28,6 +28,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -54,6 +55,7 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 	
 	private static final int HORIZONTAL_MENU_MIN_HEIGTH = 70;
 	private static final int HORIZONTAL_MENU_MIN_WIDTH = 140;
+	private static final long MENU_ITEM_COLOR_FILTER_TIMEOUT = 500;
 
 	@Override
 	public int buildMenu(final Activity context, Menu menu, ViewGroup layout) {
@@ -112,7 +114,6 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 				
 				TextView menuItemTextView = (TextView )itemView.findViewById(R.id.menu_item_text);
 				final ImageView menuItemImageView = (ImageView) itemView.findViewById(R.id.menu_item_image);
-				menuItemImageView.setColorFilter(Color.TRANSPARENT, Mode.SRC_ATOP);
 				
 				if(Utils.hasLength(item.getTitle())){
 					menuItemTextView.setText(item.getTitle());
@@ -137,6 +138,13 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 					public void onClick(View v) {
 						menuItemImageView.setColorFilter(0x77000000, Mode.SRC_ATOP);
 						item.executeMenuItem(context);
+						new Handler().postDelayed(new Runnable() {
+							
+							@Override
+							public void run() {
+								menuItemImageView.setColorFilter(Color.TRANSPARENT, Mode.SRC_ATOP);
+							}
+						}, MENU_ITEM_COLOR_FILTER_TIMEOUT);
 					}
 				});
 				
