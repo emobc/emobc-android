@@ -65,9 +65,13 @@ public class NextLevelMenuItem extends MenuItem {
 
 	@Override
 	public boolean isEnable(Activity context) {
-		NextLevel nextLevel = ((CreateMenus)context).getCurrentNextLevel();
-		if(nextLevel == null)
-			return true;
-		return !this.nextLevel.equals(nextLevel);
+		if (context instanceof CreateMenus) {
+			CreateMenus cm = (CreateMenus) context;
+			NextLevel nextLevel = cm.getCurrentNextLevel();
+			if(nextLevel == null)
+				return true;
+			return !this.nextLevel.equals(nextLevel);			
+		}
+		return true;
 	}
 }
