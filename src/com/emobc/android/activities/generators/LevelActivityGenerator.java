@@ -32,6 +32,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -278,9 +279,10 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param textView
 	 * @param fs
 	 */
-	private void initializeSelectionFormat(Activity activity, TextView textView, FormatStyle fs){
+	private void initializeSelectionFormat(Activity activity, View view, FormatStyle fs){
 		try{
 			ListView list = (ListView) activity.findViewById(R.id.list);
+			TextView textView = (TextView)view.findViewById(R.id.list_item_text);
 			
 			if(Utils.hasLength(fs.getCacheColorHint()))
 				list.setCacheColorHint(Color.parseColor(fs.getCacheColorHint()));
@@ -347,7 +349,7 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 	 * @param activityType
 	 * @param textView
 	 */
-	public void initializeListFormat(Activity activity, ActivityType activityType, TextView textView){
+	public void initializeListFormat(Activity activity, ActivityType activityType, View view){
 		Map<ActivityType, ActivityTypeStyle> activityTypeStyleTypeMap = 
 				AbstractActivtyGenerator.getApplicationData(activity).getActivityTypeStyleTypeMap(activity);
 		
@@ -361,14 +363,14 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 		LevelStyle levelStyle = levelStyleTypeMap.get(nextLevel.getLevelId());
 		
 		if(activityTypeStyle != null && !activityTypeStyle.isCleanFormat()){
-			applyStyle(activity, activityTypeStyle, formatStyleMap, textView);			
+			applyStyle(activity, activityTypeStyle, formatStyleMap, view);			
 		}
 		if(levelStyle != null && !levelStyle.isCleanFormat()){
-			applyStyle(activity, levelStyle, formatStyleMap, textView);
+			applyStyle(activity, levelStyle, formatStyleMap, view);
 		}
 	}
 	
-	private void applyStyle(Activity activity, Style style, Map<String, FormatStyle> formatStyleMap, TextView textView) {
+	private void applyStyle(Activity activity, Style style, Map<String, FormatStyle> formatStyleMap, View view) {
 		String listFormat = style.getSelectionList();
 		FormatStyle fs = formatStyleMap.get(listFormat);	
 		
@@ -378,9 +380,9 @@ public abstract class LevelActivityGenerator extends AbstractActivtyGenerator {
 			
 			int imageResource = activity.getResources().getIdentifier(backgroundSelectionName, "drawable", activity.getPackageName());
 			Drawable backgroundSelectionDrawable = activity.getResources().getDrawable(imageResource);
-			textView.setBackgroundDrawable(backgroundSelectionDrawable);
+			view.setBackgroundDrawable(backgroundSelectionDrawable);
 	
-			initializeSelectionFormat(activity, textView, fs);
+			initializeSelectionFormat(activity, view, fs);
 		}
 		
 	}

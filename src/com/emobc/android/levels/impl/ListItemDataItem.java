@@ -31,26 +31,84 @@ import com.emobc.android.NextLevel;
  * @since 0.1
  */
 public class ListItemDataItem {
-	private String text;
-	private NextLevel nextLevel;
-	private String imageFile;
+	private final NextLevel nextLevel;
+	private final String imageFile;
+	private final String text;
+	private final String description;
+
+	public ListItemDataItem(NextLevel nextLevel, String imageFile, String text,
+			String description) {
+		super();
+		this.nextLevel = nextLevel;
+		this.imageFile = imageFile;
+		this.text = text;
+		this.description = description;
+	}
 	
 	public String getText() {
 		return text;
 	}
-	public void setText(String text) {
-		this.text = text;
-	}
+
 	public NextLevel getNextLevel() {
 		return nextLevel;
 	}
-	public void setNextLevel(NextLevel nextLevel) {
-		this.nextLevel = nextLevel;
-	}
+
 	public String getImageFile() {
 		return imageFile;
 	}
-	public void setImageFile(String imageFile) {
-		this.imageFile = imageFile;
+
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public String toString() {
+		return "ListItemDataItem [text = " + text + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((description == null) ? 0 : description.hashCode());
+		result = prime * result
+				+ ((imageFile == null) ? 0 : imageFile.hashCode());
+		result = prime * result
+				+ ((nextLevel == null) ? 0 : nextLevel.hashCode());
+		result = prime * result + ((text == null) ? 0 : text.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ListItemDataItem other = (ListItemDataItem) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (imageFile == null) {
+			if (other.imageFile != null)
+				return false;
+		} else if (!imageFile.equals(other.imageFile))
+			return false;
+		if (nextLevel == null) {
+			if (other.nextLevel != null)
+				return false;
+		} else if (!nextLevel.equals(other.nextLevel))
+			return false;
+		if (text == null) {
+			if (other.text != null)
+				return false;
+		} else if (!text.equals(other.text))
+			return false;
+		return true;
 	}
 }

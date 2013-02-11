@@ -42,6 +42,16 @@ public abstract class ActivityLevelParser extends AbstractParser<AppLevelData> {
 	protected static final String _HEADER_TEXT_TAG_ = "headerText";
 	protected static final String _GEO_REF_TAG_ = "geoRef";
 	
+	// Next Level Tags
+	protected static final String _NEXT_LEVEL_TAG_ = "nextLevel";
+	protected static final String _NL_LEVEL_ID_TAG_ = "nextLevelLevelId";
+	protected static final String _NL_DATA_ID_TAG_ = "nextLevelDataId";
+
+	protected static final String _LEVEL_NUMBER_TAG_ = "levelNumber";
+	protected static final String _DATA_NUMBER_TAG_ = "dataNumber";
+	protected static final String _LEVEL_ID_TAG_ = "levelId";
+	
+
 	public ActivityLevelParser(XmlPullParser xpp) {
 		super(xpp);
 	}

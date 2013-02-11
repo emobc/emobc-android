@@ -70,7 +70,6 @@ import com.emobc.android.levels.impl.ImageLevelDataItem;
 import com.emobc.android.levels.impl.ImageListLevelDataItem;
 import com.emobc.android.levels.impl.ImageTextDescriptionLevelDataItem;
 import com.emobc.android.levels.impl.ListItemDataItem;
-import com.emobc.android.levels.impl.ListLevelDataItem;
 import com.emobc.android.levels.impl.MapDataItem;
 import com.emobc.android.levels.impl.MapLevelDataItem;
 import com.emobc.android.levels.impl.PdfLevelDataItem;
@@ -81,6 +80,7 @@ import com.emobc.android.levels.impl.WebLevelDataItem;
 import com.emobc.android.levels.impl.quiz.QuestionDataItem;
 import com.emobc.android.levels.impl.quiz.QuizAnswerDataItem;
 import com.emobc.android.levels.impl.quiz.QuizLevelDataItem;
+import com.emobc.android.parse.activities.ListActivityParser;
 import com.emobc.android.parse.activities.SaleActivityParser;
 import com.emobc.android.profiling.Profile;
 import com.emobc.android.utils.InvalidFileException;
@@ -152,8 +152,6 @@ public class ParseUtils {
 
 	private static final String _HEADER_IMAGE_FILE_TAG_ = "headerImageFile";
 	private static final String _HEADER_TEXT_TAG_ = "headerText";
-
-	private static final String _ORDER_TAG_ = "order";
 	
 	private static final String _IMAGE_FILE_TAG_ = "imageFile";
 	private static final String _TEXT_TAG_ = "text";
@@ -582,6 +580,9 @@ public class ParseUtils {
 		if(xpp != null){
 			EMobcParser<AppLevelData> parser = null;
 			switch (activityType) {
+			case LIST_ACTIVITY:
+				parser = new ListActivityParser(xpp);
+				return parser.parse();
 			case SALE_ACTIVITY:
 				parser = new SaleActivityParser(xpp);
 				return parser.parse();
@@ -605,8 +606,8 @@ public class ParseUtils {
 			return parseImageTextLevelDataFile(xpp);
 		case IMAGE_LIST_ACTIVITY:
 			return parseImageListLevelDataFile(xpp);
-		case LIST_ACTIVITY:
-			return parseListLevelDataFile(xpp);
+//		case LIST_ACTIVITY:
+//			return parseListLevelDataFile(xpp);
 		case VIDEO_ACTIVITY:
 			return parseVideoLevelDataFile(xpp);
 		case IMAGE_ZOOM_ACTIVITY:
@@ -1473,6 +1474,9 @@ public class ParseUtils {
 					private List<ListItemDataItem> list;
 					private ListItemDataItem currListItem;
 					private NextLevel nextLevel;
+					private String imageFile;
+					private String text;
+					private String description;
 					
 					@Override
 					public void handleText(String currentField, String text) {
@@ -1485,19 +1489,17 @@ public class ParseUtils {
 							currItem.setHeaderImageFile(text);
 						}else if(currentField.equals(_HEADER_TEXT_TAG_)){
 							currItem.setHeaderText(text);
-						}else if(currentField.equals(_IMAGE_FILE_TAG_)){
-							currItem.setImageFile(text);
 						}else if(currentField.equals(_LIST_TAG_)){
 							list = currItem.getList();
 							list.clear();
-						}else if(currentField.equals(_LIST_ITEM_TAG_)){
-							currListItem = new ListItemDataItem();
-							list.add(currListItem);
 						}else if(currentField.equals(_TEXT_TAG_)){
-							currListItem.setText(text);
+							this.text = text;
+						}else if(_DESCRIPTION_TAG.equals(currentField)){
+							this.description = text;
+						}else if(currentField.equals(_IMAGE_FILE_TAG_)){
+							this.imageFile = text;	
 						}else if(currentField.equals(_NEXT_LEVEL_TAG_)){
 							nextLevel = new NextLevel();
-							currListItem.setNextLevel(nextLevel);
 						}else if(currentField.equals(_LEVEL_NUMBER_TAG_)){
 							nextLevel.setLevelNumber(Integer.parseInt(text));
 						}else if(currentField.equals(_NL_LEVEL_ID_TAG_)){
@@ -1518,11 +1520,20 @@ public class ParseUtils {
 						if(currentField.equals(_LEVEL_DATA_TAG_)){
 							ret.put(_LEVEL_DATA_TAG_, appLevelData);
 							appLevelData.reIndex();
+						}else if(currentField.equals(_LIST_ITEM_TAG_)){
+							currListItem = new ListItemDataItem(nextLevel, imageFile, text, description);
+							list.add(currListItem);
 						}
 					}
 					
 					@Override
-					public void handleBeginTag(String currentField) {						
+					public void handleBeginTag(String currentField) {
+						if(currentField.equals(_LIST_ITEM_TAG_)){
+							nextLevel = null;
+							imageFile = null; 
+							text = null;
+							description = null;
+						}						
 					}
 				}
 		, _LEVEL_DATA_TAG_);
@@ -1582,81 +1593,6 @@ public class ParseUtils {
 		return ret;
 	}
 	
-	/**
-	 * Generate a table of the elements of XmlPullParser useful for the List
-	 * @param xpp
-	 * @return
-	 */
-	private static Map<String, Object> parseListLevelDataFile(XmlPullParser xpp) {
-		final Map<String, Object> ret = new HashMap<String, Object>();
-		
-		NwXmlStandarParser parser = new NwXmlStandarParser(xpp,
-				new NwXmlStandarParserTextHandler() {
-					private AppLevelData appLevelData = new DefaultAppLevelData();
-					private ListLevelDataItem currItem;
-					private List<ListItemDataItem> list;
-					private ListItemDataItem currListItem;
-					private NextLevel nextLevel;
-					
-					@Override
-					public void handleText(String currentField, String text) {
-						if(currentField.equals(_DATA_TAG_)){
-							currItem = new ListLevelDataItem();
-							appLevelData.addItem(currItem);
-						}else if(currentField.equals(_DATA_ID_TAG_)){
-							currItem.setId(text);							
-						}else if(currentField.equals(_HEADER_IMAGE_FILE_TAG_)){
-							currItem.setHeaderImageFile(text);
-						}else if(currentField.equals(_HEADER_TEXT_TAG_)){
-							currItem.setHeaderText(text);
-						}else if(currentField.equals(_ORDER_TAG_)){
-							currItem.setOrder(Boolean.parseBoolean(text));
-						}else if(currentField.equals(_LIST_TAG_)){ 
-							list = currItem.getList();
-							list.clear();
-						}else if(currentField.equals(_LIST_ITEM_TAG_)){
-							currListItem = new ListItemDataItem();
-							list.add(currListItem);
-						}else if(currentField.equals(_TEXT_TAG_)){
-							currListItem.setText(text);
-						}else if(currentField.equals(_IMAGE_FILE_TAG_)){
-							currListItem.setImageFile(text);	
-						}else if(currentField.equals(_NEXT_LEVEL_TAG_)){
-							nextLevel = new NextLevel();
-							currListItem.setNextLevel(nextLevel);
-						}else if(currentField.equals(_LEVEL_NUMBER_TAG_)){
-							nextLevel.setLevelNumber(Integer.parseInt(text));
-						}else if(currentField.equals(_NL_LEVEL_ID_TAG_)){
-							nextLevel.setLevelId(text);
-						}else if(currentField.equals(_DATA_NUMBER_TAG_)){
-							nextLevel.setDataNumber(Integer.parseInt(text));
-						}else if(currentField.equals(_NL_DATA_ID_TAG_)){
-							nextLevel.setDataId(text);
-						}else if(currentField.equals(_GEO_REF_TAG_)){
-							currItem.setGeoReferencia(text);
-						}else{
-							ret.put(currentField, text);
-						}
-					}
-					
-					@Override
-					public void handleEndTag(String currentField) {
-						if(currentField.equals(_LEVEL_DATA_TAG_)){
-							ret.put(_LEVEL_DATA_TAG_, appLevelData);
-							appLevelData.reIndex();
-						}
-					}
-					
-					@Override
-					public void handleBeginTag(String currentField) {						
-					}
-				}
-		, _LEVEL_DATA_TAG_);
-		
-		parser.startParsing();
-		
-		return ret;
-	}
 	
 	/**
 	 * Generate a table of the elements of XmlPullParser useful for the ImageTextDescripction

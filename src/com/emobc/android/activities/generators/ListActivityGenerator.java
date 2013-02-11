@@ -115,12 +115,6 @@ public class ListActivityGenerator extends LevelActivityGenerator {
     	private LayoutInflater inflater=null;
         public ImageLoader imageLoader;
     	
-        public class ViewHolder{
-			@SuppressWarnings("unused")
-			public TextView textView;
-            public ImageView image;
-        }
-        
         public NwListAdapter(Activity context, int textViewResourceId, List<ListItemDataItem> objects) {
     		this.items = objects;
     		this.activity = context;
@@ -129,53 +123,59 @@ public class ListActivityGenerator extends LevelActivityGenerator {
 		}
     	
     	public View getView(int position, View convertView, ViewGroup parent) {
-    		View vi=convertView;
-            ViewHolder holder;
             final ListItemDataItem item = items.get(position);
-            if(convertView==null){
-                vi = inflater.inflate(R.layout.list_item, null);
-                holder=new ViewHolder();
-            } else {
-                holder=(ViewHolder)vi.getTag();
-            }
+            if(item == null)
+            	return null;
             
+    		View vi = (convertView != null) ? convertView : createView(parent);
             
-            View.OnClickListener listener = new View.OnClickListener() {
+            vi.setOnClickListener(new View.OnClickListener() {
 		        public void onClick(View view) {
 		        	showNextLevel(activity, item.getNextLevel());		        	
 		        }
-            };
+            });
             
-            TextView textView = (TextView)vi.findViewById(R.id.list_item_text);
-            if(textView != null){
-            	textView.setText(item.getText());
-            	textView.setOnClickListener(listener);
-            	
-            	initializeListFormat(activity, ActivityType.LIST_ACTIVITY, textView);
+            TextView text = (TextView)vi.findViewById(R.id.list_item_text);
+            if(text != null){
+            	if(Utils.hasLength(item.getText())){
+                	text.setText(item.getText());
+            	}else{
+            		text.setVisibility(View.GONE);
+            	}
+            }
+            TextView description = (TextView)vi.findViewById(R.id.list_item_description);
+            if(description != null){
+            	if(Utils.hasLength(item.getDescription())){
+                	description.setText(item.getDescription());
+            	}else{
+            		description.setVisibility(View.GONE);
+            	}
+            }
+            ImageView image = (ImageView)vi.findViewById(R.id.list_item_img);
+            if(image != null){
+            	if(Utils.hasLength(item.getImageFile())){
+    	            if (Utils.isUrl(item.getImageFile())){
+    	            	image.setTag(item.getImageFile());
+    	            	imageLoader.DisplayImage(item.getImageFile(), activity, image);
+    	            }else{
+    	            	try {
+    						image.setImageDrawable(ImagesUtils.getDrawable(activity, item.getImageFile()));
+    					} catch (InvalidFileException e) {
+    						Log.e("ListActivityGenerator", e.getMessage());
+    					}
+    	            }            		
+            	}else{
+            		image.setVisibility(View.GONE);
+            	}
             }
             
-            holder.textView = textView;
-            holder.image = (ImageView)vi.findViewById(R.id.list_item_img);
-            vi.setTag(holder);
+            initializeListFormat(activity, ActivityType.LIST_ACTIVITY, vi);
             
-            if(Utils.hasLength(item.getImageFile())){
-	            if (Utils.isUrl(item.getImageFile())){
-	            	holder.image.setTag(item.getImageFile());
-	            	imageLoader.DisplayImage(item.getImageFile(), activity, holder.image);
-	            }else{
-	            	try {
-						holder.image.setImageDrawable(ImagesUtils.getDrawable(activity, item.getImageFile()));
-					} catch (InvalidFileException e) {
-						Log.e("ListActivityGenerator", e.getMessage());
-					}
-	            }
-            }            
             return vi;
     	 }
 
-    	@SuppressWarnings("unused")
 		private LinearLayout createView(ViewGroup parent) {
-    		 LinearLayout item = (LinearLayout)activity.getLayoutInflater().inflate(R.layout.list_item, parent, false);
+    		 LinearLayout item = (LinearLayout)inflater.inflate(R.layout.list_item, parent, false);
     		 return item;
     	 }
 
