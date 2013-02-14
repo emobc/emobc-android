@@ -7,5 +7,7 @@
 
     <!-- Menu Dimmensions -->
     <dimen name="menu_height">50px</dimen>	
-    <dimen name="menu_width">100px</dimen>	
+    <dimen name="menu_width">100px</dimen>
+    <!-- Top Menu Heigth para Renta -->
+    <dimen name="renta_top_menu_height">70px</dimen>	
 </resources>

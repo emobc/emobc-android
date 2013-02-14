@@ -94,7 +94,7 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 			LinearLayout menuBandLinearLayout = new LinearLayout(context);
 			menuBandLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
 			LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, HORIZONTAL_MENU_MIN_HEIGTH);
+					LayoutParams.MATCH_PARENT, menuItemHeight);
 			menuBandLinearLayout.setLayoutParams(llp);
 			
 			int bandMenuItemWidth = menuItemWidth;

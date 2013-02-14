@@ -10,7 +10,12 @@
     <dimen name="padding_large">16dp</dimen>
     <dimen name="padding_medium">16dp</dimen>
     <dimen name="padding_small">8dp</dimen>
+
     <!-- Menu Dimmensions -->
-    <dimen name="menu_height">70px</dimen>	
-    <dimen name="menu_width">140px</dimen>	
+    <dimen name="menu_height">64px</dimen>	
+    <dimen name="menu_width">64px</dimen>	
+    
+    <!-- Top Menu Heigth para Renta -->
+    <dimen name="renta_top_menu_height">64px</dimen>	
+    
 </resources>

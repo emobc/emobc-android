@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
-            android:lines="3"
+            android:lines="2"
             android:text="normal-hdpi description"
             android:textSize="12sp" />
     </LinearLayout>

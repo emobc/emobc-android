@@ -134,10 +134,18 @@ public class ImagesUtils {
 			Drawable ret = null;
 			EMobcApplication app = (EMobcApplication)activity.getApplication();
 			
-			if (app.getApplicationData().getCache().get(imageName)!=null){
-				Log.i(TAG, "Loading from cache: " + imageName);
-				return app.getApplicationData().getCache().get(imageName);
+			String imageToFetchFromCache = null;
+			if(Utils.isUrl(imageName)){
+				imageToFetchFromCache = imageName;
 			}else{
+				imageToFetchFromCache = buildImagePathNameFromModifiers(imageName, activity);
+			}
+			
+			if (app.getApplicationData().getCache().get(imageToFetchFromCache)!=null){
+				Log.i(TAG, "Loading from cache: " + imageToFetchFromCache);
+				return app.getApplicationData().getCache().get(imageToFetchFromCache);
+			}else{
+				String imageToCache = imageName; 
 				if(Utils.isUrl(imageName)){
 					ret = getDrawableFromUrl(imageName);
 				}else{
@@ -162,14 +170,16 @@ public class ImagesUtils {
 						imageNameBuilder.append(rawImageName);
 						try {
 							ret = getDrawableFromAssetName(activity, imageNameBuilder.toString());
+							imageToCache = imageNameBuilder.toString();
 						} catch (InvalidFileException e) {
 							ret = getDrawableFromAssetName(activity, DEFAULT_IMAGE_PATH_IMAGES + rawImageName);
+							imageToCache = DEFAULT_IMAGE_PATH_IMAGES + rawImageName;
 						}
 					}
 						
 				}
-				app.getApplicationData().getCache().put(imageName, ret);
-				return app.getApplicationData().getCache().get(imageName);
+				app.getApplicationData().getCache().put(imageToCache, ret);
+				return app.getApplicationData().getCache().get(imageToCache);
 			}
 		} catch (Exception e) {
 			Log.d(TAG, "Drawable exception");
@@ -178,6 +188,21 @@ public class ImagesUtils {
 	}
 	
 	
+	private static String buildImagePathNameFromModifiers(String imageName, Activity activity) {
+		String imagePathName = getImagesPathName(activity);
+		String rawImageName = null;
+		StringBuilder imageNameBuilder = new StringBuilder();
+		
+		if(imageName.startsWith(DEFAULT_IMAGE_PATH_IMAGES)){
+			rawImageName = imageName.substring(DEFAULT_IMAGE_PATH_IMAGES.length());
+		}else{
+			rawImageName = imageName;
+		}
+		imageNameBuilder.append(imagePathName);
+		imageNameBuilder.append(rawImageName);
+		return imageNameBuilder.toString();				
+	}
+
 	/**
 	 * Return the directory where to find the application images based on the Display Metrics of the Context.
 	 * <p>
