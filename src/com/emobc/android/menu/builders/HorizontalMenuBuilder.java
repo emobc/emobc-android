@@ -53,8 +53,8 @@ import com.emobc.android.utils.Utils;
  */
 public class HorizontalMenuBuilder implements MenuBuilder {
 	
-	private static final int HORIZONTAL_MENU_MIN_HEIGTH = 70;
-	private static final int HORIZONTAL_MENU_MIN_WIDTH = 140;
+	private static final int HORIZONTAL_MENU_MIN_HEIGTH = 50;
+	private static final int HORIZONTAL_MENU_MIN_WIDTH = 133;
 	private static final long MENU_ITEM_COLOR_FILTER_TIMEOUT = 500;
 
 	@Override
@@ -94,7 +94,7 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 			LinearLayout menuBandLinearLayout = new LinearLayout(context);
 			menuBandLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
 			LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, menuItemHeight);
+					LayoutParams.MATCH_PARENT, HORIZONTAL_MENU_MIN_HEIGTH);
 			menuBandLinearLayout.setLayoutParams(llp);
 			
 			int bandMenuItemWidth = menuItemWidth;
@@ -172,8 +172,8 @@ public class HorizontalMenuBuilder implements MenuBuilder {
 		
 		int menuHeight = menuItemHeight * numberOfBands; 
 		
-		LayoutParams menuLayoutParams = new LinearLayout.LayoutParams(
-				LayoutParams.FILL_PARENT, 
+		RelativeLayout.LayoutParams menuLayoutParams = new RelativeLayout.LayoutParams(
+				RelativeLayout.LayoutParams.FILL_PARENT, 
 				menuHeight);
 		
 		layout.setLayoutParams(menuLayoutParams);

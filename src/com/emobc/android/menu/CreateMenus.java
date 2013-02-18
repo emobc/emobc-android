@@ -152,8 +152,8 @@ public class CreateMenus extends EMobcActivity implements AnimationListener, Ser
 			int height = display.getHeight() - menuHeight;		
 			
 			RelativeLayout contentLayout = (RelativeLayout)activity.findViewById(R.id.contentLayout);
-			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-					android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, 
+			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+					RelativeLayout.LayoutParams.WRAP_CONTENT, 
 					height);
 			contentLayout.setLayoutParams(lp);
 		}
