@@ -61,19 +61,28 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/descr_mas"
                 android:layout_below="@+id/header"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginLeft="15dip"
                 android:layout_marginRight="14dip"
                 android:divider="@android:drawable/divider_horizontal_bright" >
             </ListView>
+
+            <LinearLayout
+                android:id="@+id/descr_mas"
+                android:layout_width="fill_parent"
+                android:layout_height="34dip"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true" >
+            </LinearLayout>
         </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@android:color/background_dark"
             android:orientation="vertical" >
         </LinearLayout>
     </LinearLayout>

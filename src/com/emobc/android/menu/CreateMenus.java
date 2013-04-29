@@ -54,7 +54,6 @@ import com.emobc.android.activities.EMobcApplication;
 import com.emobc.android.activities.R;
 import com.emobc.android.menu.builders.HorizontalMenuBuilder;
 import com.emobc.android.menu.builders.MenuBuilder;
-import com.emobc.android.menu.builders.RentaTopMenuBuilder;
 import com.emobc.android.utils.ImagesUtils;
 import com.emobc.android.utils.InvalidFileException;
 import com.emobc.android.utils.Utils;
@@ -131,7 +130,7 @@ public class CreateMenus extends EMobcActivity implements AnimationListener, Ser
 		com.emobc.android.menu.Menu topMenu = applicationData.getTopMenu(currentNextLevel, activity);
 		
 		if(topLayout != null && topMenu != null)
-			menuHeight += buildMenu(topLayout, topMenu, new RentaTopMenuBuilder(), activity);
+			menuHeight += buildMenu(topLayout, topMenu, new HorizontalMenuBuilder(), activity);
 		
 		//BOTTOM MENU
 		ViewGroup bottomLayout = (ViewGroup) activity.findViewById(R.id.bottomLayout);
@@ -152,8 +151,8 @@ public class CreateMenus extends EMobcActivity implements AnimationListener, Ser
 			int height = display.getHeight() - menuHeight;		
 			
 			RelativeLayout contentLayout = (RelativeLayout)activity.findViewById(R.id.contentLayout);
-			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-					RelativeLayout.LayoutParams.WRAP_CONTENT, 
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+					android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, 
 					height);
 			contentLayout.setLayoutParams(lp);
 		}

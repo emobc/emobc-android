@@ -35,8 +35,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.emobc.android.ActivityType;
@@ -186,7 +186,7 @@ public class CalendarActivityGenerator extends LevelActivityGenerator {
     	
     	@Override
     	public View getView(int position, View convertView, ViewGroup parent) {
-    		LinearLayout view = (convertView != null) ? (LinearLayout) convertView : createView(parent);
+    		RelativeLayout view = (convertView != null) ? (RelativeLayout) convertView : createView(parent);
     		final EventDataItem item = items.get(position);            
 
             TextView textView = (TextView)view.findViewById(R.id.list_item_text);
@@ -205,8 +205,8 @@ public class CalendarActivityGenerator extends LevelActivityGenerator {
 	    	return view;
     	 }
 
-    	 private LinearLayout createView(ViewGroup parent) {
-    		 LinearLayout item = (LinearLayout)activity.getLayoutInflater().inflate(R.layout.list_item, parent, false);
+    	 private RelativeLayout createView(ViewGroup parent) {
+    		 RelativeLayout item = (RelativeLayout)activity.getLayoutInflater().inflate(R.layout.list_item, parent, false);
     		 return item;
     	 }
     }

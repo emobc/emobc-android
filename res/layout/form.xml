@@ -22,7 +22,7 @@
         <ListView
             android:id="@+id/sideMenuList"
             android:layout_width="match_parent"
-            android:layout_height="0dip"
+            android:layout_height="394dp"
             android:layout_weight="1.21"
             android:background="#FFFFFF"
             android:cacheColorHint="#999999"
@@ -34,7 +34,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/backgroundLayout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -44,10 +44,17 @@
             android:orientation="vertical" >
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/contentLayout"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/header"
@@ -55,7 +62,12 @@
                 android:layout_height="45dip"
                 android:gravity="center_vertical|center_horizontal"
                 android:scaleType="fitXY"
-                android:text="normal-hdpi" />
+                android:text="Formulario"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:typeface="sans" >
+            </TextView>
 
             <ScrollView
                 android:id="@+id/formScroll"
@@ -73,14 +85,5 @@
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/bottomLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:orientation="vertical" >
-        </LinearLayout>
     </LinearLayout>
-
 </FrameLayout>

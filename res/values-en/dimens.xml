@@ -5,7 +5,4 @@
     <dimen name="padding_medium">8dp</dimen>
     <dimen name="padding_large">16dp</dimen>
 
-    <!-- Menu Dimmensions -->
-    <dimen name="menu_height">50px</dimen>	
-    <dimen name="menu_width">100px</dimen>	
 </resources>
