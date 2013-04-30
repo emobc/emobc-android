@@ -36,7 +36,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.emobc.android.ActivityType;
@@ -154,7 +154,7 @@ public class CalendarActivityGenerator extends LevelActivityGenerator {
 		
 		// Loading the list in the ListView
 		ListView lv = (ListView)activity.findViewById(R.id.listViewCalendarEvents);
-		lv.setAdapter(new CalListAdapter(activity, R.layout.list_item, eventsList));
+		lv.setAdapter(new CalListAdapter(activity, R.layout.calendar_list_item, eventsList));
 		lv.setTextFilterEnabled(true);
 	}
 
@@ -186,13 +186,12 @@ public class CalendarActivityGenerator extends LevelActivityGenerator {
     	
     	@Override
     	public View getView(int position, View convertView, ViewGroup parent) {
-    		RelativeLayout view = (convertView != null) ? (RelativeLayout) convertView : createView(parent);
-    		final EventDataItem item = items.get(position);            
+    		 LinearLayout view = (convertView != null) ? (LinearLayout) convertView : createView(parent);final EventDataItem item = items.get(position);            
 
             TextView textView = (TextView)view.findViewById(R.id.list_item_text);
             
             if(textView != null){
-	            textView.setText(item.getTime()+"    "+item.getTitle());
+	            textView.setText(item.getTime()+"    "+item.getDescription());
 	    		View.OnClickListener listener = new View.OnClickListener() {
 			        public void onClick(View view) {
 			        	showNextLevel(activity, item.getNextLevel());		        	
@@ -205,9 +204,9 @@ public class CalendarActivityGenerator extends LevelActivityGenerator {
 	    	return view;
     	 }
 
-    	 private RelativeLayout createView(ViewGroup parent) {
-    		 RelativeLayout item = (RelativeLayout)activity.getLayoutInflater().inflate(R.layout.list_item, parent, false);
-    		 return item;
+    	private LinearLayout createView(ViewGroup parent) {
+    		LinearLayout item = (LinearLayout)activity.getLayoutInflater().inflate(R.layout.calendar_list_item, parent, false);
+    		return item;
     	 }
     }
 

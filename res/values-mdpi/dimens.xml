@@ -2,12 +2,15 @@
 <resources>
 	<dimen name="week_top_margin">52.3px</dimen>
 	<dimen name="week_left_margin">56.3px</dimen>
-	<dimen name="cell_width">44.3px</dimen>
-	<dimen name="cell_heigh">28.3px</dimen>
-	<dimen name="cell_margin_top">61.3px</dimen>
+	<dimen name="cell_width">30.3px</dimen>
+	<dimen name="cell_heigh">24.3px</dimen>
+	<dimen name="cell_margin_top">10.3px</dimen>
 	<dimen name="cell_margin_left">46px</dimen>
 	<dimen name="cell_text_size">17.3px</dimen>
 	<dimen name="padding_large">16dp</dimen>
 	<dimen name="padding_medium">16dp</dimen>
 	<dimen name="padding_small">8dp</dimen>
+	<dimen name="menu_height">44px</dimen>
+	<dimen name="menu_width">53px</dimen>
+	<dimen name="renta_top_menu_height">40px</dimen>
 </resources>

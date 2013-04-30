@@ -20,3 +20,15 @@ Blog: emobc.blogspot.com
 Mailing List: Sign in emobc-dev in Google Groups
 
 Contact information emobc in developers _at_ emobc _dot_ com
+
+
+
+Warnings and errors using Eclipse IDE.
+
+Quit warnings related with DTD in XML layout files:
+1) Preferences -> XML -> XML files -> validation
+2) Choose Ignore in the drop down box for the "No grammar specified" preference.
+Close the file and then reopen it to make the warning go away.
+
+Quit namespace errors in XML files:
+Project -> Clean...

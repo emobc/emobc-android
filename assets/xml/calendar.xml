@@ -57,12 +57,12 @@
             </event>
 			<event>
                 <title>titulo Evento 1</title>
-                <eventDate>18/07/2012</eventDate>
+                <eventDate>30/04/2013</eventDate>
 				<time>22:15</time>
 				<text>descripcion Evento 18/07</text>
                 <nextLevel>
-                    <nextLevelLevelId>PDF</nextLevelLevelId>
-                    <nextLevelDataId>PDF</nextLevelDataId>
+                    <nextLevelLevelId></nextLevelLevelId>
+                    <nextLevelDataId></nextLevelDataId>
                 </nextLevel>
             </event>
 		</events>

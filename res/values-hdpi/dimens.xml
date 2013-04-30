@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<dimen name="week_top_margin">74px</dimen>
-	<dimen name="week_left_margin">40px</dimen>
-	<dimen name="cell_width">58px</dimen>
-	<dimen name="cell_heigh">53px</dimen>
-	<dimen name="cell_margin_top">92px</dimen>
-	<dimen name="cell_margin_left">39px</dimen>
+	<dimen name="week_top_margin">74px</dimen><!-- 74 -->
+	<dimen name="week_left_margin">40px</dimen><!-- 40 -->
+	<dimen name="cell_width">44px</dimen>
+	<dimen name="cell_heigh">35px</dimen><!--53-->
+	<dimen name="cell_margin_top">12px</dimen><!-- 72 -->
+	<dimen name="cell_margin_left">-30px</dimen>
 	<dimen name="cell_text_size">26px</dimen>
     <dimen name="padding_large">16dp</dimen>
     <dimen name="padding_medium">16dp</dimen>
     <dimen name="padding_small">8dp</dimen>
+    
     <!-- Menu Dimmensions -->
-    <dimen name="menu_height">70px</dimen>	
-    <dimen name="menu_width">140px</dimen>	
+    <dimen name="menu_height">80px</dimen>	
+    <dimen name="menu_width">80px</dimen>	
 </resources>

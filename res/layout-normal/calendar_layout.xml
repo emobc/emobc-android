@@ -52,26 +52,29 @@
             <TextView
                 android:id="@+id/header"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_alignParentTop="true"
-                android:gravity="center_vertical|center_horizontal"
-                android:scaleType="fitXY" />
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="4dp"
+                android:scaleType="fitXY"
+                android:text="normal-hdpi" />
 
             <RelativeLayout
                 android:id="@+id/RelativeLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="73dp"
+                android:layout_height="43dp"
                 android:layout_below="@id/header"
                 android:gravity="bottom|center_horizontal" >
 
                 <Button
                     android:id="@+id/prevMonthButton"
-                    android:layout_width="40dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="21dp"
-                    android:text="@string/prev" />
+                     android:background="@drawable/arrow_left"/>
 
                 <TextView
                     android:id="@+id/textViewMonth"
@@ -86,20 +89,19 @@
 
                 <Button
                     android:id="@+id/nextMonthButton"
-                    android:layout_width="40dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="21dp"
-                    android:text="@string/next" />
+                     android:background="@drawable/arrow_right" />
             </RelativeLayout>
 
             <com.emobc.android.views.CalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/RelativeLayout2"
-                android:layout_marginTop="-35dp" />
+                android:layout_below="@id/RelativeLayout2" />
 
             <TextView
                 android:id="@+id/textViewDayEvents"
@@ -107,8 +109,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/calendarView"
                 android:layout_marginTop="5dp"
-                android:text="@string/events_day"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="15sp"
                 android:textColor="#000000" />
 
             <ListView

@@ -44,7 +44,7 @@ public class CalendarView extends ImageView {
     private static float CELL_TEXT_SIZE;
     
 	private Calendar mRightNow = null;
-    private Drawable mWeekTitle = null;
+    //private Drawable mWeekTitle = null;
     private Cell mToday = null;
     private Cell[][] mCells = new Cell[6][7];
     private OnCellTouchListener mOnCellTouchListener = null;
@@ -90,7 +90,7 @@ public class CalendarView extends ImageView {
 		CELL_TEXT_SIZE = res.getDimension(R.dimen.cell_text_size);
 		// set background
 		setImageResource(R.drawable.background);
-		mWeekTitle = res.getDrawable(R.drawable.calendar_week_es);
+//		mWeekTitle = res.getDrawable(R.drawable.calendar_week_es);
 		
 		mHelper = new MonthDisplayHelper(mRightNow.get(Calendar.YEAR), mRightNow.get(Calendar.MONTH), Calendar.MONDAY); 
 		
@@ -162,6 +162,7 @@ public class CalendarView extends ImageView {
 					int yearNumber = mHelper.getYear();
 					dateKey = dateKey+"/"+yearNumber;
 					if(events.get(dateKey)!=null) {
+						if (tmp[week][day].thisMonth)
 						mCells[week][day] = new EventCell(tmp[week][day].day, new Rect(Bound), CELL_TEXT_SIZE);
 					}
 				}
@@ -186,7 +187,7 @@ public class CalendarView extends ImageView {
 	public void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		Rect re = getDrawable().getBounds();
 		WEEK_LEFT_MARGIN = CELL_MARGIN_LEFT = (right-left - re.width()) / 2;
-		mWeekTitle.setBounds(WEEK_LEFT_MARGIN, WEEK_TOP_MARGIN, WEEK_LEFT_MARGIN+mWeekTitle.getMinimumWidth(), WEEK_TOP_MARGIN+mWeekTitle.getMinimumHeight());
+	//	mWeekTitle.setBounds(WEEK_LEFT_MARGIN, WEEK_TOP_MARGIN, WEEK_LEFT_MARGIN+mWeekTitle.getMinimumWidth(), WEEK_TOP_MARGIN+mWeekTitle.getMinimumHeight());
 		initCells();
 		super.onLayout(changed, left, top, right, bottom);
 	}
@@ -258,7 +259,7 @@ public class CalendarView extends ImageView {
 	protected void onDraw(Canvas canvas) {
 		// draw background
 		super.onDraw(canvas);
-		mWeekTitle.draw(canvas);
+		//mWeekTitle.draw(canvas);
 		
 		// draw cells
 		for(Cell[] week : mCells) {
