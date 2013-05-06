@@ -21,7 +21,7 @@
         <ListView
             android:id="@+id/sideMenuList"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="394dp"
             android:layout_weight="1.21"
             android:background="#FFFFFF"
             android:cacheColorHint="#999999"
@@ -48,36 +48,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
+            <Gallery
+                android:id="@+id/galery"
+                android:layout_width="fill_parent"
+                android:layout_height="450dip"
+                android:layout_below="@+id/header"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip">
+            </Gallery>
+
             <TextView
                 android:id="@+id/header"
                 android:layout_width="fill_parent"
                 android:layout_height="45dip"
-                android:gravity="center_vertical|center_horizontal"
-                android:scaleType="fitXY"
-                android:text="Formulario"
-                android:textColor="#000000"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dip"
+                android:paddingTop="10dip"
+                android:text="Galería de Fotos"
+                android:textColor="#e4100f"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:typeface="sans" >
-            </TextView>
-
-            <ScrollView
-                android:id="@+id/formScroll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/header" >
-
-                <LinearLayout
-                    android:id="@+id/formLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-                </LinearLayout>
-            </ScrollView>
+                android:typeface="sans" />
         </RelativeLayout>
 
         <LinearLayout

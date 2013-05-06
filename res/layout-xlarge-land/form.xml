@@ -21,7 +21,7 @@
         <ListView
             android:id="@+id/sideMenuList"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="394dp"
             android:layout_weight="1.21"
             android:background="#FFFFFF"
             android:cacheColorHint="#999999"
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
+                   android:paddingRight="15dp" >
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>

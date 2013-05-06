@@ -27,8 +27,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 
 import org.apache.http.util.ByteArrayBuffer;
 
@@ -74,12 +76,12 @@ public class PdfActivityGenerator extends LevelActivityGenerator {
 	 */
     private class InsideWebViewClient extends WebViewClient {
     	Context activity;
-    	ProgressDialog dialog;
-    	boolean loading;
+    	//ProgressDialog dialog;
+    	//boolean loading;
     	public InsideWebViewClient(Context activity){
     		super();
     		this.activity=activity;
-    		loading=false;
+    		//loading=false;
     	}
     	@Override
     	public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -95,20 +97,11 @@ public class PdfActivityGenerator extends LevelActivityGenerator {
     	@Override
     	public void onPageStarted(WebView view, String url, Bitmap favicon){
     		super.onPageStarted(view, url, favicon);
-    		if (!loading){
-	    		dialog = new ProgressDialog(activity);
-	    		dialog.setMessage(activity.getResources().getString(R.string.cargando_pdf));
-	    		dialog.show();
-	    		loading = true;
-    		}
-            //SHOW LOADING IF IT ISNT ALREADY VISIBLE  
+    		 
         }
     	@Override
         public void onPageFinished(WebView view, String url) {
-	        if (loading){
-	        	dialog.dismiss();
-		        dialog = null;
-	        }	
+	        
 
         }
 
@@ -135,10 +128,17 @@ public class PdfActivityGenerator extends LevelActivityGenerator {
 		if(Utils.hasLength(item.getPdfUrl())){
 			WebView webview = (WebView) activity.findViewById(R.id.pdfviewer);
 	        webview.getSettings().setJavaScriptEnabled(true);
-	        webview.getSettings().setPluginsEnabled(true);
 	        webview.setWebViewClient(new InsideWebViewClient(activity));
-	        
-	        webview.loadUrl("http://docs.google.com/gview?embedded=true&url="+item.getPdfUrl());
+	        Log.d("PDF URL", item.getPdfUrl());
+	        String urls = item.getPdfUrl().replace("&","%26");
+	       
+	        try {
+	        	Log.d("PDF URL", URLEncoder.encode(urls, "UTF-8"));
+				webview.loadUrl("http://docs.google.com/gview?embedded=true&url="+urls);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			
 			//activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(item.getPdfUrl())));

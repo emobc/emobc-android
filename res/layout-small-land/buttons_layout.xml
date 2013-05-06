@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
@@ -21,7 +20,7 @@
         <ListView
             android:id="@+id/sideMenuList"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="394dp"
             android:layout_weight="1.21"
             android:background="#FFFFFF"
             android:cacheColorHint="#999999"
@@ -52,32 +51,27 @@
                 android:id="@+id/header"
                 android:layout_width="fill_parent"
                 android:layout_height="45dip"
-                android:gravity="center_vertical|center_horizontal"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dip"
+                android:paddingTop="10dip"
                 android:scaleType="fitXY"
-                android:text="Formulario"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:typeface="sans" >
+                android:text="normal-hdpi" >
             </TextView>
 
-            <ScrollView
-                android:id="@+id/formScroll"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:id="@+id/buttonsLayout"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
                 android:layout_below="@+id/header" >
 
                 <LinearLayout
-                    android:id="@+id/formLayout"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical" >
                 </LinearLayout>
-            </ScrollView>
+            </RelativeLayout>
         </RelativeLayout>
 
         <LinearLayout

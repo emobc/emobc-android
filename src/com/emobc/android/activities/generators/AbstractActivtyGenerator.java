@@ -32,6 +32,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -163,15 +164,17 @@ public abstract class AbstractActivtyGenerator implements ActivityGenerator, Ser
 			return;
 		
 		TextView header = (TextView)activity.findViewById(R.id.header);
+		header.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
 		if(Utils.hasLength(item.getHeaderImageFile())){
 			try {
 				header.setBackgroundDrawable(ImagesUtils.getDrawable(activity, item.getHeaderImageFile()));
+				
 			} catch (InvalidFileException e) {
 				Log.e("AbstractActivityGenerator", "Error loading Image "+item.getHeaderImageFile());
 			}
 		}		
 		if(Utils.hasLength(item.getHeaderText())){
-			header.setText(item.getHeaderText());
+			header.setText(item.getHeaderText().toUpperCase());
 		}	
 	}
 	

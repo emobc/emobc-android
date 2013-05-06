@@ -21,7 +21,7 @@
         <ListView
             android:id="@+id/sideMenuList"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="394dp"
             android:layout_weight="1.21"
             android:background="#FFFFFF"
             android:cacheColorHint="#999999"
@@ -54,36 +54,35 @@
                 android:layout_height="45dip"
                 android:gravity="center_vertical|center_horizontal"
                 android:scaleType="fitXY"
-                android:text="Formulario"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:typeface="sans" >
+                android:text="Videos" >
             </TextView>
 
-            <ScrollView
-                android:id="@+id/formScroll"
-                android:layout_width="match_parent"
+            <VideoView
+                android:id="@+id/video"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_above="@+id/descr_mas"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/header" >
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/header"
+                android:cacheColorHint="#FFFFFF"
+                android:textColor="#FFFFFF" >
+            </VideoView>
 
-                <LinearLayout
-                    android:id="@+id/formLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-                </LinearLayout>
-            </ScrollView>
+            <LinearLayout
+                android:id="@+id/descr_mas"
+                android:layout_width="fill_parent"
+                android:layout_height="34dip"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true" >
+            </LinearLayout>
         </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
         </LinearLayout>
     </LinearLayout>
 

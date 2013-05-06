@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
@@ -21,7 +20,7 @@
         <ListView
             android:id="@+id/sideMenuList"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="394dp"
             android:layout_weight="1.21"
             android:background="#FFFFFF"
             android:cacheColorHint="#999999"
@@ -31,10 +30,10 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/backgroundLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
         <LinearLayout
             android:id="@+id/topLayout"
@@ -46,44 +45,45 @@
         <RelativeLayout
             android:id="@+id/contentLayout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/header"
                 android:layout_width="fill_parent"
-                android:layout_height="45dip"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:gravity="center_vertical|center_horizontal"
                 android:scaleType="fitXY"
-                android:text="Formulario"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:typeface="sans" >
-            </TextView>
+                android:typeface="sans" />
 
-            <ScrollView
-                android:id="@+id/formScroll"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/quizDescription"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/header" >
+                android:layout_centerHorizontal="true"
+                android:padding="@dimen/padding_medium"
+                android:text="@null"
+                tools:context=".QuizActivity" />
 
-                <LinearLayout
-                    android:id="@+id/formLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-                </LinearLayout>
-            </ScrollView>
+            <Button
+                android:id="@+id/startQuizButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/quizDescription"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="34dp"
+                android:text="Button" />
         </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
         </LinearLayout>
     </LinearLayout>
 

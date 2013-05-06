@@ -25,6 +25,7 @@ package com.emobc.android.activities;
 import java.lang.reflect.InvocationTargetException;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -138,5 +139,10 @@ public class WebActivity extends CreateMenus {
 		} catch (NoSuchMethodException e) {
 		} catch (ClassNotFoundException e) {
 		}
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig){
+	    super.onConfigurationChanged(newConfig);
 	}
 }
